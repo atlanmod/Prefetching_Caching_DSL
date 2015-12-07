@@ -3,10 +3,22 @@
  */
 package fr.inria.atlanmod.neoemf.ui.contentassist
 
-import fr.inria.atlanmod.neoemf.ui.contentassist.AbstractPrefetchingProposalProvider
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EPackage
+import org.eclipse.xtext.Assignment
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
  */
 class PrefetchingProposalProvider extends AbstractPrefetchingProposalProvider {
+
+	override completeMetamodelImport_NsURI(EObject model, Assignment assignment, ContentAssistContext context,
+		ICompletionProposalAcceptor acceptor) {
+		super.completeMetamodelImport_NsURI(model, assignment, context, acceptor);
+		EPackage.Registry.INSTANCE.keySet().forEach[e|
+			acceptor.accept(createCompletionProposal("\"" + e + "\"", context))];
+	}
+		
 }
