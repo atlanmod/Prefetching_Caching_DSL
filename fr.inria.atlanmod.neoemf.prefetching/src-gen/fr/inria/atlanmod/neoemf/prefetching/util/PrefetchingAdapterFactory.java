@@ -80,6 +80,11 @@ public class PrefetchingAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
+      public Adapter caseMetamodelImport(MetamodelImport object)
+      {
+        return createMetamodelImportAdapter();
+      }
+      @Override
       public Adapter caseCache(Cache object)
       {
         return createCacheAdapter();
@@ -152,6 +157,21 @@ public class PrefetchingAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link fr.inria.atlanmod.neoemf.prefetching.MetamodelImport <em>Metamodel Import</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see fr.inria.atlanmod.neoemf.prefetching.MetamodelImport
+   * @generated
+   */
+  public Adapter createMetamodelImportAdapter()
   {
     return null;
   }

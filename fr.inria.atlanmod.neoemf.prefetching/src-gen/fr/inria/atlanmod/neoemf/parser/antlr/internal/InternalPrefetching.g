@@ -81,16 +81,34 @@ ruleModel returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getCacheCacheParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getModelAccess().getMetamodelMetamodelImportParserRuleCall_0_0()); 
 	    }
-		lv_cache_0_0=ruleCache		{
+		lv_metamodel_0_0=ruleMetamodelImport		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
+	        }
+       		set(
+       			$current, 
+       			"metamodel",
+        		lv_metamodel_0_0, 
+        		"MetamodelImport");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getModelAccess().getCacheCacheParserRuleCall_1_0()); 
+	    }
+		lv_cache_1_0=ruleCache		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
        		set(
        			$current, 
        			"cache",
-        		lv_cache_0_0, 
+        		lv_cache_1_0, 
         		"Cache");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -99,22 +117,65 @@ ruleModel returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getPlansPlanParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getModelAccess().getPlansPlanParserRuleCall_2_0()); 
 	    }
-		lv_plans_1_0=rulePlan		{
+		lv_plans_2_0=rulePlan		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
        		add(
        			$current, 
        			"plans",
-        		lv_plans_1_0, 
+        		lv_plans_2_0, 
         		"Plan");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )*)
+;
+
+
+
+
+
+// Entry rule entryRuleMetamodelImport
+entryRuleMetamodelImport returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMetamodelImportRule()); }
+	 iv_ruleMetamodelImport=ruleMetamodelImport 
+	 { $current=$iv_ruleMetamodelImport.current; } 
+	 EOF 
+;
+
+// Rule MetamodelImport
+ruleMetamodelImport returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='import' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getMetamodelImportAccess().getImportKeyword_0());
+    }
+(
+(
+		lv_nsURI_1_0=RULE_STRING
+		{
+			newLeafNode(lv_nsURI_1_0, grammarAccess.getMetamodelImportAccess().getNsURISTRINGTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMetamodelImportRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"nsURI",
+        		lv_nsURI_1_0, 
+        		"STRING");
+	    }
+
+)
+))
 ;
 
 
@@ -719,7 +780,7 @@ ruleCacheType returns [Enumerator current=null]
         newLeafNode(enumLiteral_0, grammarAccess.getCacheTypeAccess().getLRUEnumLiteralDeclaration_0()); 
     }
 )
-    |(	enumLiteral_1='PREDICTIVE' 
+    |(	enumLiteral_1='Predictive' 
 	{
         $current = grammarAccess.getCacheTypeAccess().getPREDICTIVEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_1, grammarAccess.getCacheTypeAccess().getPREDICTIVEEnumLiteralDeclaration_1()); 

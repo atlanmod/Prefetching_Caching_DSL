@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalPrefetchingLexer extends Lexer {
-    public static final int RULE_ID=5;
+    public static final int RULE_ID=6;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -28,7 +28,8 @@ public class InternalPrefetchingLexer extends Lexer {
     public static final int RULE_SL_COMMENT=8;
     public static final int RULE_ML_COMMENT=7;
     public static final int T__19=19;
-    public static final int RULE_STRING=6;
+    public static final int T__30=30;
+    public static final int RULE_STRING=4;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
@@ -37,7 +38,7 @@ public class InternalPrefetchingLexer extends Lexer {
     public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_INT=4;
+    public static final int RULE_INT=5;
     public static final int RULE_WS=9;
 
     // delegates
@@ -58,10 +59,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__11;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:11:7: ( 'use cache' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:11:9: 'use cache'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:11:7: ( 'import' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:11:9: 'import'
             {
-            match("use cache"); 
+            match("import"); 
 
 
             }
@@ -79,10 +80,11 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__12;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:12:7: ( '[' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:12:9: '['
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:12:7: ( 'use cache' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:12:9: 'use cache'
             {
-            match('['); 
+            match("use cache"); 
+
 
             }
 
@@ -99,11 +101,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__13;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:13:7: ( 'type' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:13:9: 'type'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:13:7: ( '[' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:13:9: '['
             {
-            match("type"); 
-
+            match('['); 
 
             }
 
@@ -120,10 +121,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__14;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:14:7: ( 'size' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:14:9: 'size'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:14:7: ( 'type' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:14:9: 'type'
             {
-            match("size"); 
+            match("type"); 
 
 
             }
@@ -141,10 +142,11 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:15:7: ( ']' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:15:9: ']'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:15:7: ( 'size' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:15:9: 'size'
             {
-            match(']'); 
+            match("size"); 
+
 
             }
 
@@ -161,11 +163,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:16:7: ( 'plan' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:16:9: 'plan'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:16:7: ( ']' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:16:9: ']'
             {
-            match("plan"); 
-
+            match(']'); 
 
             }
 
@@ -182,10 +183,11 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:17:7: ( '{' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:17:9: '{'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:17:7: ( 'plan' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:17:9: 'plan'
             {
-            match('{'); 
+            match("plan"); 
+
 
             }
 
@@ -202,10 +204,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:18:7: ( '}' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:18:9: '}'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:18:7: ( '{' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:18:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -222,11 +224,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:19:7: ( 'after' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:19:9: 'after'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:19:7: ( '}' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:19:9: '}'
             {
-            match("after"); 
-
+            match('}'); 
 
             }
 
@@ -243,10 +244,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:20:7: ( 'fetch' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:20:9: 'fetch'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:20:7: ( 'after' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:20:9: 'after'
             {
-            match("fetch"); 
+            match("after"); 
 
 
             }
@@ -264,10 +265,11 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:21:7: ( '%' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:21:9: '%'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:21:7: ( 'fetch' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:21:9: 'fetch'
             {
-            match('%'); 
+            match("fetch"); 
+
 
             }
 
@@ -284,10 +286,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:22:7: ( '.' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:22:9: '.'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:22:7: ( '%' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:22:9: '%'
             {
-            match('.'); 
+            match('%'); 
 
             }
 
@@ -304,11 +306,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:23:7: ( 'LRU' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:23:9: 'LRU'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:23:7: ( '.' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:23:9: '.'
             {
-            match("LRU"); 
-
+            match('.'); 
 
             }
 
@@ -325,10 +326,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:24:7: ( 'PREDICTIVE' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:24:9: 'PREDICTIVE'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:24:7: ( 'LRU' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:24:9: 'LRU'
             {
-            match("PREDICTIVE"); 
+            match("LRU"); 
 
 
             }
@@ -346,10 +347,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:25:7: ( 'strong' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:25:9: 'strong'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:25:7: ( 'Predictive' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:25:9: 'Predictive'
             {
-            match("strong"); 
+            match("Predictive"); 
 
 
             }
@@ -367,10 +368,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:26:7: ( 'soft' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:26:9: 'soft'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:26:7: ( 'strong' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:26:9: 'strong'
             {
-            match("soft"); 
+            match("strong"); 
 
 
             }
@@ -388,10 +389,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:27:7: ( 'weak' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:27:9: 'weak'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:27:7: ( 'soft' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:27:9: 'soft'
             {
-            match("weak"); 
+            match("soft"); 
 
 
             }
@@ -409,10 +410,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:28:7: ( 'on starting' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:28:9: 'on starting'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:28:7: ( 'weak' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:28:9: 'weak'
             {
-            match("on starting"); 
+            match("weak"); 
 
 
             }
@@ -430,10 +431,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:29:7: ( 'on loading' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:29:9: 'on loading'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:29:7: ( 'on starting' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:29:9: 'on starting'
             {
-            match("on loading"); 
+            match("on starting"); 
 
 
             }
@@ -446,15 +447,36 @@ public class InternalPrefetchingLexer extends Lexer {
     }
     // $ANTLR end "T__29"
 
+    // $ANTLR start "T__30"
+    public final void mT__30() throws RecognitionException {
+        try {
+            int _type = T__30;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:30:7: ( 'on loading' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:30:9: 'on loading'
+            {
+            match("on loading"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__30"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:775:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:775:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:836:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:836:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:775:11: ( '^' )?
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:836:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -463,7 +485,7 @@ public class InternalPrefetchingLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:775:11: '^'
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:836:11: '^'
                     {
                     match('^'); 
 
@@ -481,7 +503,7 @@ public class InternalPrefetchingLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:775:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:836:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -530,10 +552,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:10: ( ( '0' .. '9' )+ )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:12: ( '0' .. '9' )+
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:838:10: ( ( '0' .. '9' )+ )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:838:12: ( '0' .. '9' )+
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:12: ( '0' .. '9' )+
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:838:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -547,7 +569,7 @@ public class InternalPrefetchingLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:13: '0' .. '9'
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:838:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -579,10 +601,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -600,10 +622,10 @@ public class InternalPrefetchingLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -619,7 +641,7 @@ public class InternalPrefetchingLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -635,7 +657,7 @@ public class InternalPrefetchingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -660,10 +682,10 @@ public class InternalPrefetchingLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -679,7 +701,7 @@ public class InternalPrefetchingLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -695,7 +717,7 @@ public class InternalPrefetchingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:779:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:840:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -738,12 +760,12 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:781:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:781:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:842:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:842:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:781:24: ( options {greedy=false; } : . )*
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:842:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -768,7 +790,7 @@ public class InternalPrefetchingLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:781:52: .
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:842:52: .
             	    {
             	    matchAny(); 
 
@@ -798,12 +820,12 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -816,7 +838,7 @@ public class InternalPrefetchingLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -836,7 +858,7 @@ public class InternalPrefetchingLexer extends Lexer {
                 }
             } while (true);
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:40: ( ( '\\r' )? '\\n' )?
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -845,9 +867,9 @@ public class InternalPrefetchingLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:41: ( '\\r' )? '\\n'
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:41: ( '\\r' )? '\\n'
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:41: ( '\\r' )?
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -856,7 +878,7 @@ public class InternalPrefetchingLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:41: '\\r'
+                            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:844:41: '\\r'
                             {
                             match('\r'); 
 
@@ -888,10 +910,10 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:785:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:785:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:846:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:846:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:785:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:846:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -945,8 +967,8 @@ public class InternalPrefetchingLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:787:16: ( . )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:787:18: .
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:848:16: ( . )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:848:18: .
             {
             matchAny(); 
 
@@ -961,8 +983,8 @@ public class InternalPrefetchingLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=26;
+        // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=27;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1099,49 +1121,56 @@ public class InternalPrefetchingLexer extends Lexer {
                 }
                 break;
             case 20 :
-                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:124: RULE_ID
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:124: T__30
+                {
+                mT__30(); 
+
+                }
+                break;
+            case 21 :
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:130: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 21 :
-                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:132: RULE_INT
+            case 22 :
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:138: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 22 :
-                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:141: RULE_STRING
+            case 23 :
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:147: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 23 :
-                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:153: RULE_ML_COMMENT
+            case 24 :
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:159: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 24 :
-                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:169: RULE_SL_COMMENT
+            case 25 :
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:175: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 25 :
-                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:185: RULE_WS
+            case 26 :
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:191: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 26 :
-                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:193: RULE_ANY_OTHER
+            case 27 :
+                // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:1:199: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1155,134 +1184,144 @@ public class InternalPrefetchingLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\1\32\1\uffff\2\32\1\uffff\1\32\2\uffff\2\32\2\uffff\4\32"+
-        "\1\30\2\uffff\3\30\2\uffff\1\32\2\uffff\4\32\1\uffff\1\32\2\uffff"+
-        "\2\32\2\uffff\4\32\5\uffff\10\32\1\105\2\32\2\uffff\1\112\1\113"+
-        "\1\32\1\115\1\116\2\32\1\uffff\1\32\1\122\4\uffff\1\32\2\uffff\1"+
-        "\124\1\125\1\32\1\uffff\1\127\2\uffff\1\32\1\uffff\3\32\1\134\1"+
-        "\uffff";
+        "\1\uffff\2\33\1\uffff\2\33\1\uffff\1\33\2\uffff\2\33\2\uffff\4\33"+
+        "\1\31\2\uffff\3\31\2\uffff\1\33\1\uffff\1\33\1\uffff\4\33\1\uffff"+
+        "\1\33\2\uffff\2\33\2\uffff\4\33\5\uffff\11\33\1\111\2\33\1\uffff"+
+        "\1\33\1\uffff\1\117\1\120\1\33\1\122\1\123\2\33\1\uffff\1\33\1\127"+
+        "\2\uffff\1\33\2\uffff\1\33\2\uffff\1\132\1\133\1\33\1\uffff\1\135"+
+        "\1\136\2\uffff\1\33\2\uffff\3\33\1\143\1\uffff";
     static final String DFA12_eofS =
-        "\135\uffff";
+        "\144\uffff";
     static final String DFA12_minS =
-        "\1\0\1\163\1\uffff\1\171\1\151\1\uffff\1\154\2\uffff\1\146\1\145"+
-        "\2\uffff\2\122\1\145\1\156\1\101\2\uffff\2\0\1\52\2\uffff\1\145"+
-        "\2\uffff\1\160\1\172\1\162\1\146\1\uffff\1\141\2\uffff\2\164\2\uffff"+
-        "\1\125\1\105\1\141\1\40\5\uffff\1\40\2\145\1\157\1\164\1\156\1\145"+
-        "\1\143\1\60\1\104\1\153\1\154\1\uffff\2\60\1\156\2\60\1\162\1\150"+
-        "\1\uffff\1\111\1\60\4\uffff\1\147\2\uffff\2\60\1\103\1\uffff\1\60"+
-        "\2\uffff\1\124\1\uffff\1\111\1\126\1\105\1\60\1\uffff";
+        "\1\0\1\155\1\163\1\uffff\1\171\1\151\1\uffff\1\154\2\uffff\1\146"+
+        "\1\145\2\uffff\1\122\1\162\1\145\1\156\1\101\2\uffff\2\0\1\52\2"+
+        "\uffff\1\160\1\uffff\1\145\1\uffff\1\160\1\172\1\162\1\146\1\uffff"+
+        "\1\141\2\uffff\2\164\2\uffff\1\125\1\145\1\141\1\40\5\uffff\1\157"+
+        "\1\40\2\145\1\157\1\164\1\156\1\145\1\143\1\60\1\144\1\153\1\154"+
+        "\1\162\1\uffff\2\60\1\156\2\60\1\162\1\150\1\uffff\1\151\1\60\2"+
+        "\uffff\1\164\2\uffff\1\147\2\uffff\2\60\1\143\1\uffff\2\60\2\uffff"+
+        "\1\164\2\uffff\1\151\1\166\1\145\1\60\1\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\163\1\uffff\1\171\1\164\1\uffff\1\154\2\uffff\1\146\1"+
-        "\145\2\uffff\2\122\1\145\1\156\1\172\2\uffff\2\uffff\1\57\2\uffff"+
-        "\1\145\2\uffff\1\160\1\172\1\162\1\146\1\uffff\1\141\2\uffff\2\164"+
-        "\2\uffff\1\125\1\105\1\141\1\40\5\uffff\1\40\2\145\1\157\1\164\1"+
-        "\156\1\145\1\143\1\172\1\104\1\153\1\163\1\uffff\2\172\1\156\2\172"+
-        "\1\162\1\150\1\uffff\1\111\1\172\4\uffff\1\147\2\uffff\2\172\1\103"+
-        "\1\uffff\1\172\2\uffff\1\124\1\uffff\1\111\1\126\1\105\1\172\1\uffff";
+        "\1\uffff\1\155\1\163\1\uffff\1\171\1\164\1\uffff\1\154\2\uffff\1"+
+        "\146\1\145\2\uffff\1\122\1\162\1\145\1\156\1\172\2\uffff\2\uffff"+
+        "\1\57\2\uffff\1\160\1\uffff\1\145\1\uffff\1\160\1\172\1\162\1\146"+
+        "\1\uffff\1\141\2\uffff\2\164\2\uffff\1\125\1\145\1\141\1\40\5\uffff"+
+        "\1\157\1\40\2\145\1\157\1\164\1\156\1\145\1\143\1\172\1\144\1\153"+
+        "\1\163\1\162\1\uffff\2\172\1\156\2\172\1\162\1\150\1\uffff\1\151"+
+        "\1\172\2\uffff\1\164\2\uffff\1\147\2\uffff\2\172\1\143\1\uffff\2"+
+        "\172\2\uffff\1\164\2\uffff\1\151\1\166\1\145\1\172\1\uffff";
     static final String DFA12_acceptS =
-        "\2\uffff\1\2\2\uffff\1\5\1\uffff\1\7\1\10\2\uffff\1\13\1\14\5\uffff"+
-        "\1\24\1\25\3\uffff\1\31\1\32\1\uffff\1\24\1\2\4\uffff\1\5\1\uffff"+
-        "\1\7\1\10\2\uffff\1\13\1\14\4\uffff\1\25\1\26\1\27\1\30\1\31\14"+
-        "\uffff\1\1\7\uffff\1\15\2\uffff\1\22\1\23\1\3\1\4\1\uffff\1\20\1"+
-        "\6\3\uffff\1\21\1\uffff\1\11\1\12\1\uffff\1\17\4\uffff\1\16";
+        "\3\uffff\1\3\2\uffff\1\6\1\uffff\1\10\1\11\2\uffff\1\14\1\15\5\uffff"+
+        "\1\25\1\26\3\uffff\1\32\1\33\1\uffff\1\25\1\uffff\1\3\4\uffff\1"+
+        "\6\1\uffff\1\10\1\11\2\uffff\1\14\1\15\4\uffff\1\26\1\27\1\30\1"+
+        "\31\1\32\16\uffff\1\2\7\uffff\1\16\2\uffff\1\23\1\24\1\uffff\1\4"+
+        "\1\5\1\uffff\1\21\1\7\3\uffff\1\22\2\uffff\1\12\1\13\1\uffff\1\1"+
+        "\1\20\4\uffff\1\17";
     static final String DFA12_specialS =
-        "\1\1\23\uffff\1\2\1\0\107\uffff}>";
+        "\1\2\24\uffff\1\1\1\0\115\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\30\2\27\2\30\1\27\22\30\1\27\1\30\1\24\2\30\1\13\1\30\1"+
-            "\25\6\30\1\14\1\26\12\23\7\30\13\22\1\15\3\22\1\16\12\22\1\2"+
-            "\1\30\1\5\1\21\1\22\1\30\1\11\4\22\1\12\10\22\1\20\1\6\2\22"+
-            "\1\4\1\3\1\1\1\22\1\17\3\22\1\7\1\30\1\10\uff82\30",
-            "\1\31",
-            "",
+            "\11\31\2\30\2\31\1\30\22\31\1\30\1\31\1\25\2\31\1\14\1\31\1"+
+            "\26\6\31\1\15\1\27\12\24\7\31\13\23\1\16\3\23\1\17\12\23\1\3"+
+            "\1\31\1\6\1\22\1\23\1\31\1\12\4\23\1\13\2\23\1\1\5\23\1\21\1"+
+            "\7\2\23\1\5\1\4\1\2\1\23\1\20\3\23\1\10\1\31\1\11\uff82\31",
+            "\1\32",
             "\1\34",
-            "\1\35\5\uffff\1\37\4\uffff\1\36",
             "",
-            "\1\41",
+            "\1\36",
+            "\1\37\5\uffff\1\41\4\uffff\1\40",
             "",
-            "",
-            "\1\44",
-            "\1\45",
+            "\1\43",
             "",
             "",
-            "\1\50",
-            "\1\51",
+            "\1\46",
+            "\1\47",
+            "",
+            "",
             "\1\52",
             "\1\53",
-            "\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\54",
+            "\1\55",
+            "\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
             "",
-            "\0\55",
-            "\0\55",
-            "\1\56\4\uffff\1\57",
+            "\0\57",
+            "\0\57",
+            "\1\60\4\uffff\1\61",
             "",
             "",
-            "\1\61",
-            "",
-            "",
-            "\1\62",
             "\1\63",
+            "",
             "\1\64",
+            "",
             "\1\65",
-            "",
             "\1\66",
-            "",
-            "",
             "\1\67",
             "\1\70",
             "",
-            "",
             "\1\71",
+            "",
+            "",
             "\1\72",
             "\1\73",
+            "",
+            "",
             "\1\74",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\75",
             "\1\76",
             "\1\77",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\100",
             "\1\101",
             "\1\102",
             "\1\103",
             "\1\104",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\105",
             "\1\106",
             "\1\107",
-            "\1\111\6\uffff\1\110",
+            "\1\110",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\1\112",
+            "\1\113",
+            "\1\115\6\uffff\1\114",
+            "\1\116",
             "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\114",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\1\117",
-            "\1\120",
-            "",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "\1\121",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\1\124",
+            "\1\125",
             "",
-            "",
-            "",
-            "",
-            "\1\123",
-            "",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\126",
-            "",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
             "",
             "\1\130",
             "",
+            "",
             "\1\131",
-            "\1\132",
-            "\1\133",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "",
+            "",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\1\134",
+            "",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "",
+            "",
+            "\1\137",
+            "",
+            "",
+            "\1\140",
+            "\1\141",
+            "\1\142",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             ""
     };
 
@@ -1316,83 +1355,85 @@ public class InternalPrefetchingLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_21 = input.LA(1);
+                        int LA12_22 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_21>='\u0000' && LA12_21<='\uFFFF')) ) {s = 45;}
+                        if ( ((LA12_22>='\u0000' && LA12_22<='\uFFFF')) ) {s = 47;}
 
-                        else s = 24;
+                        else s = 25;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA12_0 = input.LA(1);
+                        int LA12_21 = input.LA(1);
 
                         s = -1;
-                        if ( (LA12_0=='u') ) {s = 1;}
+                        if ( ((LA12_21>='\u0000' && LA12_21<='\uFFFF')) ) {s = 47;}
 
-                        else if ( (LA12_0=='[') ) {s = 2;}
-
-                        else if ( (LA12_0=='t') ) {s = 3;}
-
-                        else if ( (LA12_0=='s') ) {s = 4;}
-
-                        else if ( (LA12_0==']') ) {s = 5;}
-
-                        else if ( (LA12_0=='p') ) {s = 6;}
-
-                        else if ( (LA12_0=='{') ) {s = 7;}
-
-                        else if ( (LA12_0=='}') ) {s = 8;}
-
-                        else if ( (LA12_0=='a') ) {s = 9;}
-
-                        else if ( (LA12_0=='f') ) {s = 10;}
-
-                        else if ( (LA12_0=='%') ) {s = 11;}
-
-                        else if ( (LA12_0=='.') ) {s = 12;}
-
-                        else if ( (LA12_0=='L') ) {s = 13;}
-
-                        else if ( (LA12_0=='P') ) {s = 14;}
-
-                        else if ( (LA12_0=='w') ) {s = 15;}
-
-                        else if ( (LA12_0=='o') ) {s = 16;}
-
-                        else if ( (LA12_0=='^') ) {s = 17;}
-
-                        else if ( ((LA12_0>='A' && LA12_0<='K')||(LA12_0>='M' && LA12_0<='O')||(LA12_0>='Q' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='b' && LA12_0<='e')||(LA12_0>='g' && LA12_0<='n')||(LA12_0>='q' && LA12_0<='r')||LA12_0=='v'||(LA12_0>='x' && LA12_0<='z')) ) {s = 18;}
-
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 19;}
-
-                        else if ( (LA12_0=='\"') ) {s = 20;}
-
-                        else if ( (LA12_0=='\'') ) {s = 21;}
-
-                        else if ( (LA12_0=='/') ) {s = 22;}
-
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 23;}
-
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='$')||LA12_0=='&'||(LA12_0>='(' && LA12_0<='-')||(LA12_0>=':' && LA12_0<='@')||LA12_0=='\\'||LA12_0=='`'||LA12_0=='|'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 24;}
+                        else s = 25;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_20 = input.LA(1);
+                        int LA12_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_20>='\u0000' && LA12_20<='\uFFFF')) ) {s = 45;}
+                        if ( (LA12_0=='i') ) {s = 1;}
 
-                        else s = 24;
+                        else if ( (LA12_0=='u') ) {s = 2;}
+
+                        else if ( (LA12_0=='[') ) {s = 3;}
+
+                        else if ( (LA12_0=='t') ) {s = 4;}
+
+                        else if ( (LA12_0=='s') ) {s = 5;}
+
+                        else if ( (LA12_0==']') ) {s = 6;}
+
+                        else if ( (LA12_0=='p') ) {s = 7;}
+
+                        else if ( (LA12_0=='{') ) {s = 8;}
+
+                        else if ( (LA12_0=='}') ) {s = 9;}
+
+                        else if ( (LA12_0=='a') ) {s = 10;}
+
+                        else if ( (LA12_0=='f') ) {s = 11;}
+
+                        else if ( (LA12_0=='%') ) {s = 12;}
+
+                        else if ( (LA12_0=='.') ) {s = 13;}
+
+                        else if ( (LA12_0=='L') ) {s = 14;}
+
+                        else if ( (LA12_0=='P') ) {s = 15;}
+
+                        else if ( (LA12_0=='w') ) {s = 16;}
+
+                        else if ( (LA12_0=='o') ) {s = 17;}
+
+                        else if ( (LA12_0=='^') ) {s = 18;}
+
+                        else if ( ((LA12_0>='A' && LA12_0<='K')||(LA12_0>='M' && LA12_0<='O')||(LA12_0>='Q' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='b' && LA12_0<='e')||(LA12_0>='g' && LA12_0<='h')||(LA12_0>='j' && LA12_0<='n')||(LA12_0>='q' && LA12_0<='r')||LA12_0=='v'||(LA12_0>='x' && LA12_0<='z')) ) {s = 19;}
+
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 20;}
+
+                        else if ( (LA12_0=='\"') ) {s = 21;}
+
+                        else if ( (LA12_0=='\'') ) {s = 22;}
+
+                        else if ( (LA12_0=='/') ) {s = 23;}
+
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 24;}
+
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='$')||LA12_0=='&'||(LA12_0>='(' && LA12_0<='-')||(LA12_0>=':' && LA12_0<='@')||LA12_0=='\\'||LA12_0=='`'||LA12_0=='|'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 25;}
 
                         if ( s>=0 ) return s;
                         break;

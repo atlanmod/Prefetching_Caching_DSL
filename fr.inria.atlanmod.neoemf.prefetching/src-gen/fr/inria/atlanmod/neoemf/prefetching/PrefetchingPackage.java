@@ -68,13 +68,22 @@ public interface PrefetchingPackage extends EPackage
   int MODEL = 0;
 
   /**
+   * The feature id for the '<em><b>Metamodel</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__METAMODEL = 0;
+
+  /**
    * The feature id for the '<em><b>Cache</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__CACHE = 0;
+  int MODEL__CACHE = 1;
 
   /**
    * The feature id for the '<em><b>Plans</b></em>' containment reference list.
@@ -83,7 +92,7 @@ public interface PrefetchingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL__PLANS = 1;
+  int MODEL__PLANS = 2;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -92,7 +101,35 @@ public interface PrefetchingPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 2;
+  int MODEL_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.impl.MetamodelImportImpl <em>Metamodel Import</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see fr.inria.atlanmod.neoemf.prefetching.impl.MetamodelImportImpl
+   * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getMetamodelImport()
+   * @generated
+   */
+  int METAMODEL_IMPORT = 1;
+
+  /**
+   * The feature id for the '<em><b>Ns URI</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAMODEL_IMPORT__NS_URI = 0;
+
+  /**
+   * The number of structural features of the '<em>Metamodel Import</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METAMODEL_IMPORT_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.impl.CacheImpl <em>Cache</em>}' class.
@@ -102,7 +139,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getCache()
    * @generated
    */
-  int CACHE = 1;
+  int CACHE = 2;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -139,7 +176,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getCacheProperties()
    * @generated
    */
-  int CACHE_PROPERTIES = 2;
+  int CACHE_PROPERTIES = 3;
 
   /**
    * The feature id for the '<em><b>Ref Type</b></em>' attribute.
@@ -176,7 +213,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getPlan()
    * @generated
    */
-  int PLAN = 3;
+  int PLAN = 4;
 
   /**
    * The feature id for the '<em><b>Plan Id</b></em>' attribute.
@@ -222,7 +259,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getAfterRule()
    * @generated
    */
-  int AFTER_RULE = 4;
+  int AFTER_RULE = 5;
 
   /**
    * The feature id for the '<em><b>Plan Id</b></em>' reference.
@@ -250,7 +287,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getPrefetchingRule()
    * @generated
    */
-  int PREFETCHING_RULE = 5;
+  int PREFETCHING_RULE = 6;
 
   /**
    * The feature id for the '<em><b>Moment</b></em>' attribute.
@@ -314,7 +351,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getSourcePattern()
    * @generated
    */
-  int SOURCE_PATTERN = 6;
+  int SOURCE_PATTERN = 7;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -351,7 +388,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getFilterPattern()
    * @generated
    */
-  int FILTER_PATTERN = 7;
+  int FILTER_PATTERN = 8;
 
   /**
    * The feature id for the '<em><b>String Pattern</b></em>' attribute.
@@ -379,7 +416,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getTargetPattern()
    * @generated
    */
-  int TARGET_PATTERN = 8;
+  int TARGET_PATTERN = 9;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -416,7 +453,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getCacheType()
    * @generated
    */
-  int CACHE_TYPE = 9;
+  int CACHE_TYPE = 10;
 
   /**
    * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.RefType <em>Ref Type</em>}' enum.
@@ -426,7 +463,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getRefType()
    * @generated
    */
-  int REF_TYPE = 10;
+  int REF_TYPE = 11;
 
   /**
    * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.Moment <em>Moment</em>}' enum.
@@ -436,7 +473,7 @@ public interface PrefetchingPackage extends EPackage
    * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getMoment()
    * @generated
    */
-  int MOMENT = 11;
+  int MOMENT = 12;
 
 
   /**
@@ -448,6 +485,17 @@ public interface PrefetchingPackage extends EPackage
    * @generated
    */
   EClass getModel();
+
+  /**
+   * Returns the meta object for the containment reference '{@link fr.inria.atlanmod.neoemf.prefetching.Model#getMetamodel <em>Metamodel</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Metamodel</em>'.
+   * @see fr.inria.atlanmod.neoemf.prefetching.Model#getMetamodel()
+   * @see #getModel()
+   * @generated
+   */
+  EReference getModel_Metamodel();
 
   /**
    * Returns the meta object for the containment reference '{@link fr.inria.atlanmod.neoemf.prefetching.Model#getCache <em>Cache</em>}'.
@@ -470,6 +518,27 @@ public interface PrefetchingPackage extends EPackage
    * @generated
    */
   EReference getModel_Plans();
+
+  /**
+   * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.MetamodelImport <em>Metamodel Import</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Metamodel Import</em>'.
+   * @see fr.inria.atlanmod.neoemf.prefetching.MetamodelImport
+   * @generated
+   */
+  EClass getMetamodelImport();
+
+  /**
+   * Returns the meta object for the attribute '{@link fr.inria.atlanmod.neoemf.prefetching.MetamodelImport#getNsURI <em>Ns URI</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ns URI</em>'.
+   * @see fr.inria.atlanmod.neoemf.prefetching.MetamodelImport#getNsURI()
+   * @see #getMetamodelImport()
+   * @generated
+   */
+  EAttribute getMetamodelImport_NsURI();
 
   /**
    * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.Cache <em>Cache</em>}'.
@@ -813,6 +882,14 @@ public interface PrefetchingPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
+     * The meta object literal for the '<em><b>Metamodel</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODEL__METAMODEL = eINSTANCE.getModel_Metamodel();
+
+    /**
      * The meta object literal for the '<em><b>Cache</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -827,6 +904,24 @@ public interface PrefetchingPackage extends EPackage
      * @generated
      */
     EReference MODEL__PLANS = eINSTANCE.getModel_Plans();
+
+    /**
+     * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.impl.MetamodelImportImpl <em>Metamodel Import</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see fr.inria.atlanmod.neoemf.prefetching.impl.MetamodelImportImpl
+     * @see fr.inria.atlanmod.neoemf.prefetching.impl.PrefetchingPackageImpl#getMetamodelImport()
+     * @generated
+     */
+    EClass METAMODEL_IMPORT = eINSTANCE.getMetamodelImport();
+
+    /**
+     * The meta object literal for the '<em><b>Ns URI</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute METAMODEL_IMPORT__NS_URI = eINSTANCE.getMetamodelImport_NsURI();
 
     /**
      * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.impl.CacheImpl <em>Cache</em>}' class.

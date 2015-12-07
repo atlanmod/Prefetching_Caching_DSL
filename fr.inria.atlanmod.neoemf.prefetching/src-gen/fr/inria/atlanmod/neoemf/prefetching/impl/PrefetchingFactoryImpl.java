@@ -66,6 +66,7 @@ public class PrefetchingFactoryImpl extends EFactoryImpl implements PrefetchingF
     switch (eClass.getClassifierID())
     {
       case PrefetchingPackage.MODEL: return createModel();
+      case PrefetchingPackage.METAMODEL_IMPORT: return createMetamodelImport();
       case PrefetchingPackage.CACHE: return createCache();
       case PrefetchingPackage.CACHE_PROPERTIES: return createCacheProperties();
       case PrefetchingPackage.PLAN: return createPlan();
@@ -130,6 +131,17 @@ public class PrefetchingFactoryImpl extends EFactoryImpl implements PrefetchingF
   {
     ModelImpl model = new ModelImpl();
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MetamodelImport createMetamodelImport()
+  {
+    MetamodelImportImpl metamodelImport = new MetamodelImportImpl();
+    return metamodelImport;
   }
 
   /**

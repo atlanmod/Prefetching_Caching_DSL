@@ -37,7 +37,7 @@ public enum CacheType implements Enumerator
    * @generated
    * @ordered
    */
-  PREDICTIVE(1, "PREDICTIVE", "PREDICTIVE");
+  PREDICTIVE(1, "PREDICTIVE", "Predictive");
 
   /**
    * The '<em><b>LRU</b></em>' literal value.
@@ -63,7 +63,7 @@ public enum CacheType implements Enumerator
    * </p>
    * <!-- end-user-doc -->
    * @see #PREDICTIVE
-   * @model
+   * @model literal="Predictive"
    * @generated
    * @ordered
    */

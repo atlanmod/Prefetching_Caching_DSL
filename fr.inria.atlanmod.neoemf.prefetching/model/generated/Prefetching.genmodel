@@ -22,8 +22,12 @@
       <genEnumLiterals ecoreEnumLiteral="Prefetching.ecore#//Moment/ON_LOADING"/>
     </genEnums>
     <genClasses ecoreClass="Prefetching.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Model/metamodel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Model/cache"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Model/plans"/>
+    </genClasses>
+    <genClasses ecoreClass="Prefetching.ecore#//MetamodelImport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//MetamodelImport/nsURI"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//Cache">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//Cache/type"/>

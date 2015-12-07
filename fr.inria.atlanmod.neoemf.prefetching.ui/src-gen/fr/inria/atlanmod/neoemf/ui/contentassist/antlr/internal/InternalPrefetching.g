@@ -84,6 +84,34 @@ finally {
 
 
 
+// Entry rule entryRuleMetamodelImport
+entryRuleMetamodelImport 
+:
+{ before(grammarAccess.getMetamodelImportRule()); }
+	 ruleMetamodelImport
+{ after(grammarAccess.getMetamodelImportRule()); } 
+	 EOF 
+;
+
+// Rule MetamodelImport
+ruleMetamodelImport
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getMetamodelImportAccess().getGroup()); }
+(rule__MetamodelImport__Group__0)
+{ after(grammarAccess.getMetamodelImportAccess().getGroup()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleCache
 entryRuleCache 
 :
@@ -408,7 +436,7 @@ rule__CacheType__Alternatives
 
     |(
 { before(grammarAccess.getCacheTypeAccess().getPREDICTIVEEnumLiteralDeclaration_1()); }
-(	'PREDICTIVE' 
+(	'Predictive' 
 )
 { after(grammarAccess.getCacheTypeAccess().getPREDICTIVEEnumLiteralDeclaration_1()); }
 )
@@ -493,9 +521,9 @@ rule__Model__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getModelAccess().getCacheAssignment_0()); }
-(rule__Model__CacheAssignment_0)
-{ after(grammarAccess.getModelAccess().getCacheAssignment_0()); }
+{ before(grammarAccess.getModelAccess().getMetamodelAssignment_0()); }
+(rule__Model__MetamodelAssignment_0)
+{ after(grammarAccess.getModelAccess().getMetamodelAssignment_0()); }
 )
 
 ;
@@ -510,6 +538,7 @@ rule__Model__Group__1
     }
 :
 	rule__Model__Group__1__Impl
+	rule__Model__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -521,9 +550,102 @@ rule__Model__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getModelAccess().getPlansAssignment_1()); }
-(rule__Model__PlansAssignment_1)*
-{ after(grammarAccess.getModelAccess().getPlansAssignment_1()); }
+{ before(grammarAccess.getModelAccess().getCacheAssignment_1()); }
+(rule__Model__CacheAssignment_1)
+{ after(grammarAccess.getModelAccess().getCacheAssignment_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__Model__Group__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Model__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getModelAccess().getPlansAssignment_2()); }
+(rule__Model__PlansAssignment_2)*
+{ after(grammarAccess.getModelAccess().getPlansAssignment_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+
+
+rule__MetamodelImport__Group__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetamodelImport__Group__0__Impl
+	rule__MetamodelImport__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetamodelImport__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetamodelImportAccess().getImportKeyword_0()); }
+
+	'import' 
+
+{ after(grammarAccess.getMetamodelImportAccess().getImportKeyword_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__MetamodelImport__Group__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__MetamodelImport__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetamodelImport__Group__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetamodelImportAccess().getNsURIAssignment_1()); }
+(rule__MetamodelImport__NsURIAssignment_1)
+{ after(grammarAccess.getMetamodelImportAccess().getNsURIAssignment_1()); }
 )
 
 ;
@@ -1766,14 +1888,14 @@ finally {
 
 
 
-rule__Model__CacheAssignment_0
+rule__Model__MetamodelAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getModelAccess().getCacheCacheParserRuleCall_0_0()); }
-	ruleCache{ after(grammarAccess.getModelAccess().getCacheCacheParserRuleCall_0_0()); }
+{ before(grammarAccess.getModelAccess().getMetamodelMetamodelImportParserRuleCall_0_0()); }
+	ruleMetamodelImport{ after(grammarAccess.getModelAccess().getMetamodelMetamodelImportParserRuleCall_0_0()); }
 )
 
 ;
@@ -1781,14 +1903,44 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Model__PlansAssignment_1
+rule__Model__CacheAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getModelAccess().getPlansPlanParserRuleCall_1_0()); }
-	rulePlan{ after(grammarAccess.getModelAccess().getPlansPlanParserRuleCall_1_0()); }
+{ before(grammarAccess.getModelAccess().getCacheCacheParserRuleCall_1_0()); }
+	ruleCache{ after(grammarAccess.getModelAccess().getCacheCacheParserRuleCall_1_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__PlansAssignment_2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getModelAccess().getPlansPlanParserRuleCall_2_0()); }
+	rulePlan{ after(grammarAccess.getModelAccess().getPlansPlanParserRuleCall_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MetamodelImport__NsURIAssignment_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getMetamodelImportAccess().getNsURISTRINGTerminalRuleCall_1_0()); }
+	RULE_STRING{ after(grammarAccess.getMetamodelImportAccess().getNsURISTRINGTerminalRuleCall_1_0()); }
 )
 
 ;

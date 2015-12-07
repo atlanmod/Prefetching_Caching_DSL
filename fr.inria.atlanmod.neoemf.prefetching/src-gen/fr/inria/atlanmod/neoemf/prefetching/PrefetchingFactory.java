@@ -32,6 +32,15 @@ public interface PrefetchingFactory extends EFactory
   Model createModel();
 
   /**
+   * Returns a new object of class '<em>Metamodel Import</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Metamodel Import</em>'.
+   * @generated
+   */
+  MetamodelImport createMetamodelImport();
+
+  /**
    * Returns a new object of class '<em>Cache</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

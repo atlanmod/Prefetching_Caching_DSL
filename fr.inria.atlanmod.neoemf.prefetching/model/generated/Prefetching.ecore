@@ -3,10 +3,15 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="prefetching" nsURI="http://www.inria.fr/atlanmod/neoemf/Prefetching"
     nsPrefix="prefetching">
   <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//MetamodelImport"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//Cache"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="plans" upperBound="-1"
         eType="#//Plan" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MetamodelImport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cache">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CacheType"/>
@@ -15,7 +20,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CacheType">
     <eLiterals name="LRU" literal="LRU"/>
-    <eLiterals name="PREDICTIVE" value="1" literal="PREDICTIVE"/>
+    <eLiterals name="PREDICTIVE" value="1" literal="Predictive"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CacheProperties">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="refType" eType="#//RefType"/>

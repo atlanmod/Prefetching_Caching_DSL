@@ -6,6 +6,7 @@ import fr.inria.atlanmod.neoemf.prefetching.AfterRule;
 import fr.inria.atlanmod.neoemf.prefetching.Cache;
 import fr.inria.atlanmod.neoemf.prefetching.CacheProperties;
 import fr.inria.atlanmod.neoemf.prefetching.FilterPattern;
+import fr.inria.atlanmod.neoemf.prefetching.MetamodelImport;
 import fr.inria.atlanmod.neoemf.prefetching.Model;
 import fr.inria.atlanmod.neoemf.prefetching.Plan;
 import fr.inria.atlanmod.neoemf.prefetching.PrefetchingPackage;
@@ -54,6 +55,12 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 			case PrefetchingPackage.FILTER_PATTERN:
 				if(context == grammarAccess.getFilterPatternRule()) {
 					sequence_FilterPattern(context, (FilterPattern) semanticObject); 
+					return; 
+				}
+				else break;
+			case PrefetchingPackage.METAMODEL_IMPORT:
+				if(context == grammarAccess.getMetamodelImportRule()) {
+					sequence_MetamodelImport(context, (MetamodelImport) semanticObject); 
 					return; 
 				}
 				else break;
@@ -153,7 +160,23 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     (cache=Cache plans+=Plan*)
+	 *     nsURI=STRING
+	 */
+	protected void sequence_MetamodelImport(EObject context, MetamodelImport semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, PrefetchingPackage.Literals.METAMODEL_IMPORT__NS_URI) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PrefetchingPackage.Literals.METAMODEL_IMPORT__NS_URI));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getMetamodelImportAccess().getNsURISTRINGTerminalRuleCall_1_0(), semanticObject.getNsURI());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (metamodel=MetamodelImport cache=Cache plans+=Plan*)
 	 */
 	protected void sequence_Model(EObject context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -21,29 +21,61 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cCacheAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cCacheCacheParserRuleCall_0_0 = (RuleCall)cCacheAssignment_0.eContents().get(0);
-		private final Assignment cPlansAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPlansPlanParserRuleCall_1_0 = (RuleCall)cPlansAssignment_1.eContents().get(0);
+		private final Assignment cMetamodelAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cMetamodelMetamodelImportParserRuleCall_0_0 = (RuleCall)cMetamodelAssignment_0.eContents().get(0);
+		private final Assignment cCacheAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cCacheCacheParserRuleCall_1_0 = (RuleCall)cCacheAssignment_1.eContents().get(0);
+		private final Assignment cPlansAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPlansPlanParserRuleCall_2_0 = (RuleCall)cPlansAssignment_2.eContents().get(0);
 		
 		//Model:
-		//	cache=Cache plans+=Plan*;
+		//	metamodel=MetamodelImport cache=Cache plans+=Plan*;
 		public ParserRule getRule() { return rule; }
 
-		//cache=Cache plans+=Plan*
+		//metamodel=MetamodelImport cache=Cache plans+=Plan*
 		public Group getGroup() { return cGroup; }
 
+		//metamodel=MetamodelImport
+		public Assignment getMetamodelAssignment_0() { return cMetamodelAssignment_0; }
+
+		//MetamodelImport
+		public RuleCall getMetamodelMetamodelImportParserRuleCall_0_0() { return cMetamodelMetamodelImportParserRuleCall_0_0; }
+
 		//cache=Cache
-		public Assignment getCacheAssignment_0() { return cCacheAssignment_0; }
+		public Assignment getCacheAssignment_1() { return cCacheAssignment_1; }
 
 		//Cache
-		public RuleCall getCacheCacheParserRuleCall_0_0() { return cCacheCacheParserRuleCall_0_0; }
+		public RuleCall getCacheCacheParserRuleCall_1_0() { return cCacheCacheParserRuleCall_1_0; }
 
 		//plans+=Plan*
-		public Assignment getPlansAssignment_1() { return cPlansAssignment_1; }
+		public Assignment getPlansAssignment_2() { return cPlansAssignment_2; }
 
 		//Plan
-		public RuleCall getPlansPlanParserRuleCall_1_0() { return cPlansPlanParserRuleCall_1_0; }
+		public RuleCall getPlansPlanParserRuleCall_2_0() { return cPlansPlanParserRuleCall_2_0; }
+	}
+
+	public class MetamodelImportElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetamodelImport");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNsURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNsURISTRINGTerminalRuleCall_1_0 = (RuleCall)cNsURIAssignment_1.eContents().get(0);
+		
+		//MetamodelImport:
+		//	"import" nsURI=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//"import" nsURI=STRING
+		public Group getGroup() { return cGroup; }
+
+		//"import"
+		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
+
+		//nsURI=STRING
+		public Assignment getNsURIAssignment_1() { return cNsURIAssignment_1; }
+
+		//STRING
+		public RuleCall getNsURISTRINGTerminalRuleCall_1_0() { return cNsURISTRINGTerminalRuleCall_1_0; }
 	}
 
 	public class CacheElements extends AbstractParserRuleElementFinder {
@@ -395,13 +427,13 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cLRUEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cLRULRUKeyword_0_0 = (Keyword)cLRUEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cPREDICTIVEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cPREDICTIVEPREDICTIVEKeyword_1_0 = (Keyword)cPREDICTIVEEnumLiteralDeclaration_1.eContents().get(0);
+		private final Keyword cPREDICTIVEPredictiveKeyword_1_0 = (Keyword)cPREDICTIVEEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum CacheType:
-		//	LRU | PREDICTIVE;
+		//	LRU | PREDICTIVE="Predictive";
 		public EnumRule getRule() { return rule; }
 
-		//LRU | PREDICTIVE
+		//LRU | PREDICTIVE="Predictive"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LRU
@@ -410,11 +442,11 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		//"LRU"
 		public Keyword getLRULRUKeyword_0_0() { return cLRULRUKeyword_0_0; }
 
-		//PREDICTIVE
+		//PREDICTIVE="Predictive"
 		public EnumLiteralDeclaration getPREDICTIVEEnumLiteralDeclaration_1() { return cPREDICTIVEEnumLiteralDeclaration_1; }
 
-		//"PREDICTIVE"
-		public Keyword getPREDICTIVEPREDICTIVEKeyword_1_0() { return cPREDICTIVEPREDICTIVEKeyword_1_0; }
+		//"Predictive"
+		public Keyword getPREDICTIVEPredictiveKeyword_1_0() { return cPREDICTIVEPredictiveKeyword_1_0; }
 	}
 
 	public class RefTypeElements extends AbstractEnumRuleElementFinder {
@@ -482,6 +514,7 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private ModelElements pModel;
+	private MetamodelImportElements pMetamodelImport;
 	private CacheElements pCache;
 	private CacheTypeElements unknownRuleCacheType;
 	private CachePropertiesElements pCacheProperties;
@@ -534,13 +567,23 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	cache=Cache plans+=Plan*;
+	//	metamodel=MetamodelImport cache=Cache plans+=Plan*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
 	
 	public ParserRule getModelRule() {
 		return getModelAccess().getRule();
+	}
+
+	//MetamodelImport:
+	//	"import" nsURI=STRING;
+	public MetamodelImportElements getMetamodelImportAccess() {
+		return (pMetamodelImport != null) ? pMetamodelImport : (pMetamodelImport = new MetamodelImportElements());
+	}
+	
+	public ParserRule getMetamodelImportRule() {
+		return getMetamodelImportAccess().getRule();
 	}
 
 	//Cache:
@@ -554,7 +597,7 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum CacheType:
-	//	LRU | PREDICTIVE;
+	//	LRU | PREDICTIVE="Predictive";
 	public CacheTypeElements getCacheTypeAccess() {
 		return (unknownRuleCacheType != null) ? unknownRuleCacheType : (unknownRuleCacheType = new CacheTypeElements());
 	}

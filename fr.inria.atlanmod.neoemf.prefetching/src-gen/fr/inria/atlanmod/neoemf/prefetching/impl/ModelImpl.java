@@ -3,6 +3,7 @@
 package fr.inria.atlanmod.neoemf.prefetching.impl;
 
 import fr.inria.atlanmod.neoemf.prefetching.Cache;
+import fr.inria.atlanmod.neoemf.prefetching.MetamodelImport;
 import fr.inria.atlanmod.neoemf.prefetching.Model;
 import fr.inria.atlanmod.neoemf.prefetching.Plan;
 import fr.inria.atlanmod.neoemf.prefetching.PrefetchingPackage;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.impl.ModelImpl#getMetamodel <em>Metamodel</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.impl.ModelImpl#getCache <em>Cache</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.impl.ModelImpl#getPlans <em>Plans</em>}</li>
  * </ul>
@@ -39,6 +41,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
+  /**
+   * The cached value of the '{@link #getMetamodel() <em>Metamodel</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getMetamodel()
+   * @generated
+   * @ordered
+   */
+  protected MetamodelImport metamodel;
+
   /**
    * The cached value of the '{@link #getCache() <em>Cache</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -78,6 +90,54 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected EClass eStaticClass()
   {
     return PrefetchingPackage.Literals.MODEL;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MetamodelImport getMetamodel()
+  {
+    return metamodel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetMetamodel(MetamodelImport newMetamodel, NotificationChain msgs)
+  {
+    MetamodelImport oldMetamodel = metamodel;
+    metamodel = newMetamodel;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PrefetchingPackage.MODEL__METAMODEL, oldMetamodel, newMetamodel);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMetamodel(MetamodelImport newMetamodel)
+  {
+    if (newMetamodel != metamodel)
+    {
+      NotificationChain msgs = null;
+      if (metamodel != null)
+        msgs = ((InternalEObject)metamodel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PrefetchingPackage.MODEL__METAMODEL, null, msgs);
+      if (newMetamodel != null)
+        msgs = ((InternalEObject)newMetamodel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PrefetchingPackage.MODEL__METAMODEL, null, msgs);
+      msgs = basicSetMetamodel(newMetamodel, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PrefetchingPackage.MODEL__METAMODEL, newMetamodel, newMetamodel));
   }
 
   /**
@@ -152,6 +212,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PrefetchingPackage.MODEL__METAMODEL:
+        return basicSetMetamodel(null, msgs);
       case PrefetchingPackage.MODEL__CACHE:
         return basicSetCache(null, msgs);
       case PrefetchingPackage.MODEL__PLANS:
@@ -170,6 +232,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PrefetchingPackage.MODEL__METAMODEL:
+        return getMetamodel();
       case PrefetchingPackage.MODEL__CACHE:
         return getCache();
       case PrefetchingPackage.MODEL__PLANS:
@@ -189,6 +253,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PrefetchingPackage.MODEL__METAMODEL:
+        setMetamodel((MetamodelImport)newValue);
+        return;
       case PrefetchingPackage.MODEL__CACHE:
         setCache((Cache)newValue);
         return;
@@ -210,6 +277,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PrefetchingPackage.MODEL__METAMODEL:
+        setMetamodel((MetamodelImport)null);
+        return;
       case PrefetchingPackage.MODEL__CACHE:
         setCache((Cache)null);
         return;
@@ -230,6 +300,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case PrefetchingPackage.MODEL__METAMODEL:
+        return metamodel != null;
       case PrefetchingPackage.MODEL__CACHE:
         return cache != null;
       case PrefetchingPackage.MODEL__PLANS:

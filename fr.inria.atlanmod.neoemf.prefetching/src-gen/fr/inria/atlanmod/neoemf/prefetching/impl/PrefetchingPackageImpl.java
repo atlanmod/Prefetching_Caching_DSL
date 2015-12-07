@@ -7,6 +7,7 @@ import fr.inria.atlanmod.neoemf.prefetching.Cache;
 import fr.inria.atlanmod.neoemf.prefetching.CacheProperties;
 import fr.inria.atlanmod.neoemf.prefetching.CacheType;
 import fr.inria.atlanmod.neoemf.prefetching.FilterPattern;
+import fr.inria.atlanmod.neoemf.prefetching.MetamodelImport;
 import fr.inria.atlanmod.neoemf.prefetching.Model;
 import fr.inria.atlanmod.neoemf.prefetching.Moment;
 import fr.inria.atlanmod.neoemf.prefetching.Plan;
@@ -39,6 +40,13 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
    * @generated
    */
   private EClass modelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass metamodelImportEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -195,7 +203,7 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Cache()
+  public EReference getModel_Metamodel()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(0);
   }
@@ -205,9 +213,39 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Plans()
+  public EReference getModel_Cache()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModel_Plans()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMetamodelImport()
+  {
+    return metamodelImportEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMetamodelImport_NsURI()
+  {
+    return (EAttribute)metamodelImportEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -531,8 +569,12 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
+    createEReference(modelEClass, MODEL__METAMODEL);
     createEReference(modelEClass, MODEL__CACHE);
     createEReference(modelEClass, MODEL__PLANS);
+
+    metamodelImportEClass = createEClass(METAMODEL_IMPORT);
+    createEAttribute(metamodelImportEClass, METAMODEL_IMPORT__NS_URI);
 
     cacheEClass = createEClass(CACHE);
     createEAttribute(cacheEClass, CACHE__TYPE);
@@ -606,8 +648,12 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModel_Metamodel(), this.getMetamodelImport(), null, "metamodel", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Cache(), this.getCache(), null, "cache", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Plans(), this.getPlan(), null, "plans", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(metamodelImportEClass, MetamodelImport.class, "MetamodelImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMetamodelImport_NsURI(), ecorePackage.getEString(), "nsURI", null, 0, 1, MetamodelImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(cacheEClass, Cache.class, "Cache", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCache_Type(), this.getCacheType(), "type", null, 0, 1, Cache.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

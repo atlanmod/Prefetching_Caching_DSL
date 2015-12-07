@@ -41,6 +41,7 @@ public class PrefetchingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRefTypeAccess().getAlternatives(), "rule__RefType__Alternatives");
 					put(grammarAccess.getMomentAccess().getAlternatives(), "rule__Moment__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+					put(grammarAccess.getMetamodelImportAccess().getGroup(), "rule__MetamodelImport__Group__0");
 					put(grammarAccess.getCacheAccess().getGroup(), "rule__Cache__Group__0");
 					put(grammarAccess.getCachePropertiesAccess().getGroup(), "rule__CacheProperties__Group__0");
 					put(grammarAccess.getPlanAccess().getGroup(), "rule__Plan__Group__0");
@@ -53,8 +54,10 @@ public class PrefetchingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTargetPatternAccess().getGroup(), "rule__TargetPattern__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
-					put(grammarAccess.getModelAccess().getCacheAssignment_0(), "rule__Model__CacheAssignment_0");
-					put(grammarAccess.getModelAccess().getPlansAssignment_1(), "rule__Model__PlansAssignment_1");
+					put(grammarAccess.getModelAccess().getMetamodelAssignment_0(), "rule__Model__MetamodelAssignment_0");
+					put(grammarAccess.getModelAccess().getCacheAssignment_1(), "rule__Model__CacheAssignment_1");
+					put(grammarAccess.getModelAccess().getPlansAssignment_2(), "rule__Model__PlansAssignment_2");
+					put(grammarAccess.getMetamodelImportAccess().getNsURIAssignment_1(), "rule__MetamodelImport__NsURIAssignment_1");
 					put(grammarAccess.getCacheAccess().getTypeAssignment_1(), "rule__Cache__TypeAssignment_1");
 					put(grammarAccess.getCacheAccess().getPropertiesAssignment_2(), "rule__Cache__PropertiesAssignment_2");
 					put(grammarAccess.getCachePropertiesAccess().getRefTypeAssignment_2(), "rule__CacheProperties__RefTypeAssignment_2");

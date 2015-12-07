@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.Model#getMetamodel <em>Metamodel</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.Model#getCache <em>Cache</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.Model#getPlans <em>Plans</em>}</li>
  * </ul>
@@ -25,6 +26,32 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Model extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Metamodel</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Metamodel</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Metamodel</em>' containment reference.
+   * @see #setMetamodel(MetamodelImport)
+   * @see fr.inria.atlanmod.neoemf.prefetching.PrefetchingPackage#getModel_Metamodel()
+   * @model containment="true"
+   * @generated
+   */
+  MetamodelImport getMetamodel();
+
+  /**
+   * Sets the value of the '{@link fr.inria.atlanmod.neoemf.prefetching.Model#getMetamodel <em>Metamodel</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Metamodel</em>' containment reference.
+   * @see #getMetamodel()
+   * @generated
+   */
+  void setMetamodel(MetamodelImport value);
+
   /**
    * Returns the value of the '<em><b>Cache</b></em>' containment reference.
    * <!-- begin-user-doc -->

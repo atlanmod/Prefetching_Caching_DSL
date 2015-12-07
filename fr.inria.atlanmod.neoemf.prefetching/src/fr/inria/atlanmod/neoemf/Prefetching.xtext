@@ -3,8 +3,13 @@ grammar fr.inria.atlanmod.neoemf.Prefetching with org.eclipse.xtext.common.Termi
 generate prefetching "http://www.inria.fr/atlanmod/neoemf/Prefetching"
 
 Model:
+	metamodel=MetamodelImport
 	cache=Cache
 	plans+=Plan*
+;
+
+MetamodelImport:
+	'import' nsURI=STRING
 ;
 
 Cache:
@@ -13,7 +18,7 @@ Cache:
 
 enum CacheType:
 	LRU='LRU' |
-	PREDICTIVE='PREDICTIVE'
+	PREDICTIVE='Predictive'
 ;
 
 
