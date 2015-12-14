@@ -3,6 +3,9 @@
  */
 package fr.inria.atlanmod.neoemf.ui.contentassist
 
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.xtext.Assignment
@@ -20,5 +23,46 @@ class PrefetchingProposalProvider extends AbstractPrefetchingProposalProvider {
 		EPackage.Registry.INSTANCE.keySet().forEach[e|
 			acceptor.accept(createCompletionProposal("\"" + e + "\"", context))];
 	}
-		
+	
+	override completeStartingRule_TargetPattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeStartingRule_TargetPattern(model, assignment, context, acceptor)
+		val PrefetchingRule pr = model as PrefetchingRule
+		val EPackage ePackage = getImportedEPackage(pr)
+		ePackage.EClassifiers.filter[c | c instanceof EClass]
+			.filter[c | !(c as EClass).abstract]
+			.forEach[c | acceptor.accept(createCompletionProposal(c.name,context))]
+	}
+	
+	override completeLoadingRule_TargetPattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeLoadingRule_TargetPattern(model, assignment, context, acceptor)
+		val PrefetchingRule pr = model as PrefetchingRule
+		val String srcPattern = pr.sourcePattern.pattern
+		val EPackage ePackage = getImportedEPackage(pr)
+		ePackage.EClassifiers.filter[c | c instanceof EClass]
+			.filter[c | !(c as EClass).abstract]
+			.forEach[c | acceptor.accept(createCompletionProposal(c.name,context))]
+		val EClass srcEClass = ePackage.EClassifiers.filter[c | c instanceof EClass]
+			.findFirst[c | c.name.equals(srcPattern)] as EClass
+		srcEClass.EAllReferences.forEach[r | acceptor.accept(createCompletionProposal(srcEClass.name + '.' + r.name, null, null, 100000, context.prefix, context))]
+	}
+	
+	
+	override completeLoadingRule_SourcePattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeLoadingRule_SourcePattern(model, assignment, context, acceptor)
+		val PrefetchingRule pr = model as PrefetchingRule
+		val EPackage ePackage = getImportedEPackage(pr)
+		ePackage.EClassifiers.filter[c | c instanceof EClass]
+			.filter[c | !(c as EClass).abstract]
+			.forEach[c | acceptor.accept(createCompletionProposal(c.name, context))]
+	}
+	
+	def EPackage getImportedEPackage(EObject in) {
+		val Model prefetchingModel = in.eResource.contents.get(0) as Model
+		val metamodelURI = prefetchingModel.metamodel.nsURI
+		if(EPackage.Registry.INSTANCE.keySet.contains(metamodelURI)) {
+			return EPackage.Registry.INSTANCE.getEPackage(metamodelURI)
+		}
+		return null;
+	}
+	
 }

@@ -29,9 +29,6 @@ public class PrefetchingStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.inria.fr/atlanmod/neoemf/Prefetching")) {
-		EPackage.Registry.INSTANCE.put("http://www.inria.fr/atlanmod/neoemf/Prefetching", fr.inria.atlanmod.neoemf.prefetching.PrefetchingPackage.eINSTANCE);
-	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);
 		org.eclipse.xtext.resource.IResourceServiceProvider serviceProvider = injector.getInstance(org.eclipse.xtext.resource.IResourceServiceProvider.class);

@@ -4,6 +4,10 @@
 package fr.inria.atlanmod.neoemf.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.linking.lazy.LazyLinker;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -12,4 +16,21 @@ public class PrefetchingUiModule extends fr.inria.atlanmod.neoemf.ui.AbstractPre
 	public PrefetchingUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
+	
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration () {
+	     return PrefetchingHighlightingConfiguration.class;
+	}
+	
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return PrefetchingAntlrTokenToAttributeIdMapper.class;
+	}
+	
+	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+		return PrefetchingSemanticHighlightingCalculator.class;
+	}
+	
+	public Class<? extends LazyLinker> bindLazyLinker() {
+		return PrefetchingLazyLinker.class;
+	}
+	
 }

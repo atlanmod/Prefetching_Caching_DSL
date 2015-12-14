@@ -17,15 +17,13 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.emf.common,
  org.antlr.runtime,
  org.eclipse.xtext.common.types,
- org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ fr.inria.atlanmod.neoemf.prefetching.metamodel;bundle-version="0.0.1"
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: fr.inria.atlanmod.neoemf,
  fr.inria.atlanmod.neoemf.services,
- fr.inria.atlanmod.neoemf.prefetching,
- fr.inria.atlanmod.neoemf.prefetching.impl,
- fr.inria.atlanmod.neoemf.prefetching.util,
  fr.inria.atlanmod.neoemf.serializer,
  fr.inria.atlanmod.neoemf.parser.antlr,
  fr.inria.atlanmod.neoemf.parser.antlr.internal,

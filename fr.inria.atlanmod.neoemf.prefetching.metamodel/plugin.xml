@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Prefetching -->
+      <package
+            uri="http://www.inria.fr/atlanmod/neoemf/Prefetching"
+            class="fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage"
+            genModel="model/Prefetching.genmodel"/>
+   </extension>
+
+</plugin>

@@ -114,127 +114,186 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CacheProperties");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cTypeKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRefTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRefTypeRefTypeEnumRuleCall_2_0 = (RuleCall)cRefTypeAssignment_2.eContents().get(0);
-		private final Keyword cSizeKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cSizeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cSizeINTTerminalRuleCall_4_0 = (RuleCall)cSizeAssignment_4.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cSizeKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSizeAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSizeINTTerminalRuleCall_2_0 = (RuleCall)cSizeAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//CacheProperties:
-		//	"[" "type" refType=RefType "size" size=INT "]";
+		//	"[" "size" size=INT "]";
 		public ParserRule getRule() { return rule; }
 
-		//"[" "type" refType=RefType "size" size=INT "]"
+		//"[" "size" size=INT "]"
 		public Group getGroup() { return cGroup; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 
-		//"type"
-		public Keyword getTypeKeyword_1() { return cTypeKeyword_1; }
-
-		//refType=RefType
-		public Assignment getRefTypeAssignment_2() { return cRefTypeAssignment_2; }
-
-		//RefType
-		public RuleCall getRefTypeRefTypeEnumRuleCall_2_0() { return cRefTypeRefTypeEnumRuleCall_2_0; }
-
 		//"size"
-		public Keyword getSizeKeyword_3() { return cSizeKeyword_3; }
+		public Keyword getSizeKeyword_1() { return cSizeKeyword_1; }
 
 		//size=INT
-		public Assignment getSizeAssignment_4() { return cSizeAssignment_4; }
+		public Assignment getSizeAssignment_2() { return cSizeAssignment_2; }
 
 		//INT
-		public RuleCall getSizeINTTerminalRuleCall_4_0() { return cSizeINTTerminalRuleCall_4_0; }
+		public RuleCall getSizeINTTerminalRuleCall_2_0() { return cSizeINTTerminalRuleCall_2_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 
 	public class PlanElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Plan");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPlanKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPlanIdAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPlanIdIDTerminalRuleCall_1_0 = (RuleCall)cPlanIdAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cAfterAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cAfterAfterRuleParserRuleCall_2_0 = (RuleCall)cAfterAssignment_2.eContents().get(0);
+		private final RuleCall cAfterAfterClauseParserRuleCall_2_0 = (RuleCall)cAfterAssignment_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRulesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRulesPrefetchingRuleParserRuleCall_4_0 = (RuleCall)cRulesAssignment_4.eContents().get(0);
+		private final Alternatives cRulesAlternatives_4_0 = (Alternatives)cRulesAssignment_4.eContents().get(0);
+		private final RuleCall cRulesStartingRuleParserRuleCall_4_0_0 = (RuleCall)cRulesAlternatives_4_0.eContents().get(0);
+		private final RuleCall cRulesLoadingRuleParserRuleCall_4_0_1 = (RuleCall)cRulesAlternatives_4_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Plan:
-		//	"plan" planId=ID after=AfterRule? "{" rules+=PrefetchingRule* "}";
+		//	"plan" name=ID after=AfterClause? "{" rules+=(StartingRule | LoadingRule)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"plan" planId=ID after=AfterRule? "{" rules+=PrefetchingRule* "}"
+		//"plan" name=ID after=AfterClause? "{" rules+=(StartingRule | LoadingRule)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"plan"
 		public Keyword getPlanKeyword_0() { return cPlanKeyword_0; }
 
-		//planId=ID
-		public Assignment getPlanIdAssignment_1() { return cPlanIdAssignment_1; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//ID
-		public RuleCall getPlanIdIDTerminalRuleCall_1_0() { return cPlanIdIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//after=AfterRule?
+		//after=AfterClause?
 		public Assignment getAfterAssignment_2() { return cAfterAssignment_2; }
 
-		//AfterRule
-		public RuleCall getAfterAfterRuleParserRuleCall_2_0() { return cAfterAfterRuleParserRuleCall_2_0; }
+		//AfterClause
+		public RuleCall getAfterAfterClauseParserRuleCall_2_0() { return cAfterAfterClauseParserRuleCall_2_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
-		//rules+=PrefetchingRule*
+		//rules+=(StartingRule | LoadingRule)*
 		public Assignment getRulesAssignment_4() { return cRulesAssignment_4; }
 
-		//PrefetchingRule
-		public RuleCall getRulesPrefetchingRuleParserRuleCall_4_0() { return cRulesPrefetchingRuleParserRuleCall_4_0; }
+		//StartingRule | LoadingRule
+		public Alternatives getRulesAlternatives_4_0() { return cRulesAlternatives_4_0; }
+
+		//StartingRule
+		public RuleCall getRulesStartingRuleParserRuleCall_4_0_0() { return cRulesStartingRuleParserRuleCall_4_0_0; }
+
+		//LoadingRule
+		public RuleCall getRulesLoadingRuleParserRuleCall_4_0_1() { return cRulesLoadingRuleParserRuleCall_4_0_1; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 
-	public class AfterRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AfterRule");
+	public class AfterClauseElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AfterClause");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cAfterKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPlanIdAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cPlanIdPlanCrossReference_1_0 = (CrossReference)cPlanIdAssignment_1.eContents().get(0);
-		private final RuleCall cPlanIdPlanIDTerminalRuleCall_1_0_1 = (RuleCall)cPlanIdPlanCrossReference_1_0.eContents().get(1);
+		private final Assignment cPlanAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cPlanPlanCrossReference_1_0 = (CrossReference)cPlanAssignment_1.eContents().get(0);
+		private final RuleCall cPlanPlanIDTerminalRuleCall_1_0_1 = (RuleCall)cPlanPlanCrossReference_1_0.eContents().get(1);
 		
-		//AfterRule:
-		//	"after" planId=[Plan];
+		//AfterClause:
+		//	"after" plan=[Plan];
 		public ParserRule getRule() { return rule; }
 
-		//"after" planId=[Plan]
+		//"after" plan=[Plan]
 		public Group getGroup() { return cGroup; }
 
 		//"after"
 		public Keyword getAfterKeyword_0() { return cAfterKeyword_0; }
 
-		//planId=[Plan]
-		public Assignment getPlanIdAssignment_1() { return cPlanIdAssignment_1; }
+		//plan=[Plan]
+		public Assignment getPlanAssignment_1() { return cPlanAssignment_1; }
 
 		//[Plan]
-		public CrossReference getPlanIdPlanCrossReference_1_0() { return cPlanIdPlanCrossReference_1_0; }
+		public CrossReference getPlanPlanCrossReference_1_0() { return cPlanPlanCrossReference_1_0; }
 
 		//ID
-		public RuleCall getPlanIdPlanIDTerminalRuleCall_1_0_1() { return cPlanIdPlanIDTerminalRuleCall_1_0_1; }
+		public RuleCall getPlanPlanIDTerminalRuleCall_1_0_1() { return cPlanPlanIDTerminalRuleCall_1_0_1; }
 	}
 
-	public class PrefetchingRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrefetchingRule");
+	public class StartingRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StartingRule");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cMomentAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cMomentMomentEnumRuleCall_0_0 = (RuleCall)cMomentAssignment_0.eContents().get(0);
+		private final Keyword cOnStartingKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cFetchKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cTargetPatternAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cTargetPatternTargetPatternParserRuleCall_2_0 = (RuleCall)cTargetPatternAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cProbabilityAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cProbabilityINTTerminalRuleCall_3_0_0 = (RuleCall)cProbabilityAssignment_3_0.eContents().get(0);
+		private final Keyword cPercentSignKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cSubRulesAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSubRulesLoadingRuleParserRuleCall_4_1_0 = (RuleCall)cSubRulesAssignment_4_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
+		
+		//StartingRule returns PrefetchingRule:
+		//	"on starting" "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{" subRules+=LoadingRule* "}");
+		public ParserRule getRule() { return rule; }
+
+		//"on starting" "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{" subRules+=LoadingRule* "}")
+		public Group getGroup() { return cGroup; }
+
+		//"on starting"
+		public Keyword getOnStartingKeyword_0() { return cOnStartingKeyword_0; }
+
+		//"fetch"
+		public Keyword getFetchKeyword_1() { return cFetchKeyword_1; }
+
+		//targetPattern=TargetPattern
+		public Assignment getTargetPatternAssignment_2() { return cTargetPatternAssignment_2; }
+
+		//TargetPattern
+		public RuleCall getTargetPatternTargetPatternParserRuleCall_2_0() { return cTargetPatternTargetPatternParserRuleCall_2_0; }
+
+		//(probability=INT "%")?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//probability=INT
+		public Assignment getProbabilityAssignment_3_0() { return cProbabilityAssignment_3_0; }
+
+		//INT
+		public RuleCall getProbabilityINTTerminalRuleCall_3_0_0() { return cProbabilityINTTerminalRuleCall_3_0_0; }
+
+		//"%"
+		public Keyword getPercentSignKeyword_3_1() { return cPercentSignKeyword_3_1; }
+
+		//"{" subRules+=LoadingRule* "}"
+		public Group getGroup_4() { return cGroup_4; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
+
+		//subRules+=LoadingRule*
+		public Assignment getSubRulesAssignment_4_1() { return cSubRulesAssignment_4_1; }
+
+		//LoadingRule
+		public RuleCall getSubRulesLoadingRuleParserRuleCall_4_1_0() { return cSubRulesLoadingRuleParserRuleCall_4_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
+	}
+
+	public class LoadingRuleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LoadingRule");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cOnLoadingKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cSourcePatternAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cSourcePatternSourcePatternParserRuleCall_1_0 = (RuleCall)cSourcePatternAssignment_1.eContents().get(0);
 		private final Keyword cFetchKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -247,23 +306,20 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cSubRulesAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cSubRulesPrefetchingRuleParserRuleCall_5_1_0 = (RuleCall)cSubRulesAssignment_5_1.eContents().get(0);
+		private final RuleCall cSubRulesLoadingRuleParserRuleCall_5_1_0 = (RuleCall)cSubRulesAssignment_5_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
 		
-		//PrefetchingRule:
-		//	moment=Moment sourcePattern=SourcePattern? "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{"
-		//	subRules+=PrefetchingRule* "}")?;
+		//LoadingRule returns PrefetchingRule:
+		//	"on loading" sourcePattern=SourcePattern? "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{"
+		//	subRules+=LoadingRule* "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//moment=Moment sourcePattern=SourcePattern? "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{"
-		//subRules+=PrefetchingRule* "}")?
+		//"on loading" sourcePattern=SourcePattern? "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{"
+		//subRules+=LoadingRule* "}")?
 		public Group getGroup() { return cGroup; }
 
-		//moment=Moment
-		public Assignment getMomentAssignment_0() { return cMomentAssignment_0; }
-
-		//Moment
-		public RuleCall getMomentMomentEnumRuleCall_0_0() { return cMomentMomentEnumRuleCall_0_0; }
+		//"on loading"
+		public Keyword getOnLoadingKeyword_0() { return cOnLoadingKeyword_0; }
 
 		//sourcePattern=SourcePattern?
 		public Assignment getSourcePatternAssignment_1() { return cSourcePatternAssignment_1; }
@@ -292,17 +348,17 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		//"%"
 		public Keyword getPercentSignKeyword_4_1() { return cPercentSignKeyword_4_1; }
 
-		//("{" subRules+=PrefetchingRule* "}")?
+		//("{" subRules+=LoadingRule* "}")?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_5_0() { return cLeftCurlyBracketKeyword_5_0; }
 
-		//subRules+=PrefetchingRule*
+		//subRules+=LoadingRule*
 		public Assignment getSubRulesAssignment_5_1() { return cSubRulesAssignment_5_1; }
 
-		//PrefetchingRule
-		public RuleCall getSubRulesPrefetchingRuleParserRuleCall_5_1_0() { return cSubRulesPrefetchingRuleParserRuleCall_5_1_0; }
+		//LoadingRule
+		public RuleCall getSubRulesLoadingRuleParserRuleCall_5_1_0() { return cSubRulesLoadingRuleParserRuleCall_5_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5_2() { return cRightCurlyBracketKeyword_5_2; }
@@ -312,22 +368,22 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SourcePattern");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cPatternAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPatternQualifiedNameParserRuleCall_0_0 = (RuleCall)cPatternAssignment_0.eContents().get(0);
+		private final RuleCall cPatternPatternExpParserRuleCall_0_0 = (RuleCall)cPatternAssignment_0.eContents().get(0);
 		private final Assignment cFilterAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cFilterFilterPatternParserRuleCall_1_0 = (RuleCall)cFilterAssignment_1.eContents().get(0);
 		
 		//SourcePattern:
-		//	pattern=QualifiedName filter=FilterPattern?;
+		//	pattern=PatternExp filter=FilterPattern?;
 		public ParserRule getRule() { return rule; }
 
-		//pattern=QualifiedName filter=FilterPattern?
+		//pattern=PatternExp filter=FilterPattern?
 		public Group getGroup() { return cGroup; }
 
-		//pattern=QualifiedName
+		//pattern=PatternExp
 		public Assignment getPatternAssignment_0() { return cPatternAssignment_0; }
 
-		//QualifiedName
-		public RuleCall getPatternQualifiedNameParserRuleCall_0_0() { return cPatternQualifiedNameParserRuleCall_0_0; }
+		//PatternExp
+		public RuleCall getPatternPatternExpParserRuleCall_0_0() { return cPatternPatternExpParserRuleCall_0_0; }
 
 		//filter=FilterPattern?
 		public Assignment getFilterAssignment_1() { return cFilterAssignment_1; }
@@ -368,28 +424,56 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TargetPattern");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cPatternAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPatternQualifiedNameParserRuleCall_0_0 = (RuleCall)cPatternAssignment_0.eContents().get(0);
+		private final RuleCall cPatternPatternExpParserRuleCall_0_0 = (RuleCall)cPatternAssignment_0.eContents().get(0);
 		private final Assignment cFilterAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cFilterFilterPatternParserRuleCall_1_0 = (RuleCall)cFilterAssignment_1.eContents().get(0);
 		
 		//TargetPattern:
-		//	pattern=QualifiedName filter=FilterPattern?;
+		//	pattern=PatternExp filter=FilterPattern?;
 		public ParserRule getRule() { return rule; }
 
-		//pattern=QualifiedName filter=FilterPattern?
+		//pattern=PatternExp filter=FilterPattern?
 		public Group getGroup() { return cGroup; }
 
-		//pattern=QualifiedName
+		//pattern=PatternExp
 		public Assignment getPatternAssignment_0() { return cPatternAssignment_0; }
 
-		//QualifiedName
-		public RuleCall getPatternQualifiedNameParserRuleCall_0_0() { return cPatternQualifiedNameParserRuleCall_0_0; }
+		//PatternExp
+		public RuleCall getPatternPatternExpParserRuleCall_0_0() { return cPatternPatternExpParserRuleCall_0_0; }
 
 		//filter=FilterPattern?
 		public Assignment getFilterAssignment_1() { return cFilterAssignment_1; }
 
 		//FilterPattern
 		public RuleCall getFilterFilterPatternParserRuleCall_1_0() { return cFilterFilterPatternParserRuleCall_1_0; }
+	}
+
+	public class PatternExpElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PatternExp");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//PatternExp:
+		//	ID ("." ID)*;
+		public ParserRule getRule() { return rule; }
+
+		//ID ("." ID)*
+		public Group getGroup() { return cGroup; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+
+		//("." ID)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"."
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
@@ -520,12 +604,14 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	private CachePropertiesElements pCacheProperties;
 	private RefTypeElements unknownRuleRefType;
 	private PlanElements pPlan;
-	private AfterRuleElements pAfterRule;
-	private PrefetchingRuleElements pPrefetchingRule;
+	private AfterClauseElements pAfterClause;
+	private StartingRuleElements pStartingRule;
+	private LoadingRuleElements pLoadingRule;
 	private SourcePatternElements pSourcePattern;
 	private FilterPatternElements pFilterPattern;
 	private TargetPatternElements pTargetPattern;
 	private MomentElements unknownRuleMoment;
+	private PatternExpElements pPatternExp;
 	private QualifiedNameElements pQualifiedName;
 	
 	private final Grammar grammar;
@@ -607,7 +693,7 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CacheProperties:
-	//	"[" "type" refType=RefType "size" size=INT "]";
+	//	"[" "size" size=INT "]";
 	public CachePropertiesElements getCachePropertiesAccess() {
 		return (pCacheProperties != null) ? pCacheProperties : (pCacheProperties = new CachePropertiesElements());
 	}
@@ -627,7 +713,7 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Plan:
-	//	"plan" planId=ID after=AfterRule? "{" rules+=PrefetchingRule* "}";
+	//	"plan" name=ID after=AfterClause? "{" rules+=(StartingRule | LoadingRule)* "}";
 	public PlanElements getPlanAccess() {
 		return (pPlan != null) ? pPlan : (pPlan = new PlanElements());
 	}
@@ -636,29 +722,39 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 		return getPlanAccess().getRule();
 	}
 
-	//AfterRule:
-	//	"after" planId=[Plan];
-	public AfterRuleElements getAfterRuleAccess() {
-		return (pAfterRule != null) ? pAfterRule : (pAfterRule = new AfterRuleElements());
+	//AfterClause:
+	//	"after" plan=[Plan];
+	public AfterClauseElements getAfterClauseAccess() {
+		return (pAfterClause != null) ? pAfterClause : (pAfterClause = new AfterClauseElements());
 	}
 	
-	public ParserRule getAfterRuleRule() {
-		return getAfterRuleAccess().getRule();
+	public ParserRule getAfterClauseRule() {
+		return getAfterClauseAccess().getRule();
 	}
 
-	//PrefetchingRule:
-	//	moment=Moment sourcePattern=SourcePattern? "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{"
-	//	subRules+=PrefetchingRule* "}")?;
-	public PrefetchingRuleElements getPrefetchingRuleAccess() {
-		return (pPrefetchingRule != null) ? pPrefetchingRule : (pPrefetchingRule = new PrefetchingRuleElements());
+	//StartingRule returns PrefetchingRule:
+	//	"on starting" "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{" subRules+=LoadingRule* "}");
+	public StartingRuleElements getStartingRuleAccess() {
+		return (pStartingRule != null) ? pStartingRule : (pStartingRule = new StartingRuleElements());
 	}
 	
-	public ParserRule getPrefetchingRuleRule() {
-		return getPrefetchingRuleAccess().getRule();
+	public ParserRule getStartingRuleRule() {
+		return getStartingRuleAccess().getRule();
+	}
+
+	//LoadingRule returns PrefetchingRule:
+	//	"on loading" sourcePattern=SourcePattern? "fetch" targetPattern=TargetPattern (probability=INT "%")? ("{"
+	//	subRules+=LoadingRule* "}")?;
+	public LoadingRuleElements getLoadingRuleAccess() {
+		return (pLoadingRule != null) ? pLoadingRule : (pLoadingRule = new LoadingRuleElements());
+	}
+	
+	public ParserRule getLoadingRuleRule() {
+		return getLoadingRuleAccess().getRule();
 	}
 
 	//SourcePattern:
-	//	pattern=QualifiedName filter=FilterPattern?;
+	//	pattern=PatternExp filter=FilterPattern?;
 	public SourcePatternElements getSourcePatternAccess() {
 		return (pSourcePattern != null) ? pSourcePattern : (pSourcePattern = new SourcePatternElements());
 	}
@@ -678,7 +774,7 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TargetPattern:
-	//	pattern=QualifiedName filter=FilterPattern?;
+	//	pattern=PatternExp filter=FilterPattern?;
 	public TargetPatternElements getTargetPatternAccess() {
 		return (pTargetPattern != null) ? pTargetPattern : (pTargetPattern = new TargetPatternElements());
 	}
@@ -695,6 +791,16 @@ public class PrefetchingGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getMomentRule() {
 		return getMomentAccess().getRule();
+	}
+
+	//PatternExp:
+	//	ID ("." ID)*;
+	public PatternExpElements getPatternExpAccess() {
+		return (pPatternExp != null) ? pPatternExp : (pPatternExp = new PatternExpElements());
+	}
+	
+	public ParserRule getPatternExpRule() {
+		return getPatternExpAccess().getRule();
 	}
 
 	//QualifiedName:

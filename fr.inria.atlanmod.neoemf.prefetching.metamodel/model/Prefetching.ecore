@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="prefetching" nsURI="http://www.inria.fr/atlanmod/neoemf/Prefetching"
+    nsPrefix="prefetching">
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//MetamodelImport"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//Cache"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plans" upperBound="-1"
+        eType="#//Plan" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MetamodelImport">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cache">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CacheType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//CacheProperties"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CacheType">
+    <eLiterals name="LRU" literal="LRU"/>
+    <eLiterals name="PREDICTIVE" value="1" literal="Predictive"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CacheProperties">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RefType">
+    <eLiterals name="STRONG" literal="strong"/>
+    <eLiterals name="SOFT" value="1" literal="soft"/>
+    <eLiterals name="WEAK" value="2" literal="weak"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Plan">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="after" eType="#//AfterClause"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//PrefetchingRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AfterClause">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plan" eType="#//Plan"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrefetchingRule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//TargetPattern"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subRules" upperBound="-1"
+        eType="#//PrefetchingRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePattern" eType="#//SourcePattern"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SourcePattern">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//FilterPattern"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterPattern">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringPattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetPattern">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//FilterPattern"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Moment">
+    <eLiterals name="ON_STARTING" literal="on starting"/>
+    <eLiterals name="ON_LOADING" value="1" literal="on loading"/>
+  </eClassifiers>
+</ecore:EPackage>

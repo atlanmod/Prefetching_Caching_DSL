@@ -22,12 +22,9 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'import'", "'use cache'", "'['", "'type'", "'size'", "']'", "'plan'", "'{'", "'}'", "'after'", "'fetch'", "'%'", "'.'", "'LRU'", "'Predictive'", "'strong'", "'soft'", "'weak'", "'on starting'", "'on loading'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'import'", "'use cache'", "'['", "'size'", "']'", "'plan'", "'{'", "'}'", "'after'", "'on starting'", "'fetch'", "'%'", "'on loading'", "'.'", "'LRU'", "'Predictive'"
     };
     public static final int RULE_ID=6;
-    public static final int T__29=29;
-    public static final int T__28=28;
-    public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
     public static final int T__24=24;
@@ -39,7 +36,6 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
     public static final int RULE_SL_COMMENT=8;
     public static final int EOF=-1;
     public static final int RULE_ML_COMMENT=7;
-    public static final int T__30=30;
     public static final int T__19=19;
     public static final int RULE_STRING=4;
     public static final int T__16=16;
@@ -216,7 +212,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==17) ) {
+                if ( (LA1_0==16) ) {
                     alt1=1;
                 }
 
@@ -572,26 +568,23 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCacheProperties"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:256:1: ruleCacheProperties returns [EObject current=null] : (otherlv_0= '[' otherlv_1= 'type' ( (lv_refType_2_0= ruleRefType ) ) otherlv_3= 'size' ( (lv_size_4_0= RULE_INT ) ) otherlv_5= ']' ) ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:256:1: ruleCacheProperties returns [EObject current=null] : (otherlv_0= '[' otherlv_1= 'size' ( (lv_size_2_0= RULE_INT ) ) otherlv_3= ']' ) ;
     public final EObject ruleCacheProperties() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
+        Token lv_size_2_0=null;
         Token otherlv_3=null;
-        Token lv_size_4_0=null;
-        Token otherlv_5=null;
-        Enumerator lv_refType_2_0 = null;
-
 
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:259:28: ( (otherlv_0= '[' otherlv_1= 'type' ( (lv_refType_2_0= ruleRefType ) ) otherlv_3= 'size' ( (lv_size_4_0= RULE_INT ) ) otherlv_5= ']' ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:260:1: (otherlv_0= '[' otherlv_1= 'type' ( (lv_refType_2_0= ruleRefType ) ) otherlv_3= 'size' ( (lv_size_4_0= RULE_INT ) ) otherlv_5= ']' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:259:28: ( (otherlv_0= '[' otherlv_1= 'size' ( (lv_size_2_0= RULE_INT ) ) otherlv_3= ']' ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:260:1: (otherlv_0= '[' otherlv_1= 'size' ( (lv_size_2_0= RULE_INT ) ) otherlv_3= ']' )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:260:1: (otherlv_0= '[' otherlv_1= 'type' ( (lv_refType_2_0= ruleRefType ) ) otherlv_3= 'size' ( (lv_size_4_0= RULE_INT ) ) otherlv_5= ']' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:260:3: otherlv_0= '[' otherlv_1= 'type' ( (lv_refType_2_0= ruleRefType ) ) otherlv_3= 'size' ( (lv_size_4_0= RULE_INT ) ) otherlv_5= ']'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:260:1: (otherlv_0= '[' otherlv_1= 'size' ( (lv_size_2_0= RULE_INT ) ) otherlv_3= ']' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:260:3: otherlv_0= '[' otherlv_1= 'size' ( (lv_size_2_0= RULE_INT ) ) otherlv_3= ']'
             {
             otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleCacheProperties488); 
 
@@ -599,52 +592,17 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                 
             otherlv_1=(Token)match(input,14,FOLLOW_14_in_ruleCacheProperties500); 
 
-                	newLeafNode(otherlv_1, grammarAccess.getCachePropertiesAccess().getTypeKeyword_1());
+                	newLeafNode(otherlv_1, grammarAccess.getCachePropertiesAccess().getSizeKeyword_1());
                 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:268:1: ( (lv_refType_2_0= ruleRefType ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:269:1: (lv_refType_2_0= ruleRefType )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:268:1: ( (lv_size_2_0= RULE_INT ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:269:1: (lv_size_2_0= RULE_INT )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:269:1: (lv_refType_2_0= ruleRefType )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:270:3: lv_refType_2_0= ruleRefType
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:269:1: (lv_size_2_0= RULE_INT )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:270:3: lv_size_2_0= RULE_INT
             {
-             
-            	        newCompositeNode(grammarAccess.getCachePropertiesAccess().getRefTypeRefTypeEnumRuleCall_2_0()); 
-            	    
-            pushFollow(FOLLOW_ruleRefType_in_ruleCacheProperties521);
-            lv_refType_2_0=ruleRefType();
+            lv_size_2_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleCacheProperties517); 
 
-            state._fsp--;
-
-
-            	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getCachePropertiesRule());
-            	        }
-                   		set(
-                   			current, 
-                   			"refType",
-                    		lv_refType_2_0, 
-                    		"RefType");
-            	        afterParserOrEnumRuleCall();
-            	    
-
-            }
-
-
-            }
-
-            otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleCacheProperties533); 
-
-                	newLeafNode(otherlv_3, grammarAccess.getCachePropertiesAccess().getSizeKeyword_3());
-                
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:290:1: ( (lv_size_4_0= RULE_INT ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:291:1: (lv_size_4_0= RULE_INT )
-            {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:291:1: (lv_size_4_0= RULE_INT )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:292:3: lv_size_4_0= RULE_INT
-            {
-            lv_size_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleCacheProperties550); 
-
-            			newLeafNode(lv_size_4_0, grammarAccess.getCachePropertiesAccess().getSizeINTTerminalRuleCall_4_0()); 
+            			newLeafNode(lv_size_2_0, grammarAccess.getCachePropertiesAccess().getSizeINTTerminalRuleCall_2_0()); 
             		
 
             	        if (current==null) {
@@ -653,7 +611,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"size",
-                    		lv_size_4_0, 
+                    		lv_size_2_0, 
                     		"INT");
             	    
 
@@ -662,9 +620,9 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,16,FOLLOW_16_in_ruleCacheProperties567); 
+            otherlv_3=(Token)match(input,15,FOLLOW_15_in_ruleCacheProperties534); 
 
-                	newLeafNode(otherlv_5, grammarAccess.getCachePropertiesAccess().getRightSquareBracketKeyword_5());
+                	newLeafNode(otherlv_3, grammarAccess.getCachePropertiesAccess().getRightSquareBracketKeyword_3());
                 
 
             }
@@ -687,7 +645,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePlan"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:320:1: entryRulePlan returns [EObject current=null] : iv_rulePlan= rulePlan EOF ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:298:1: entryRulePlan returns [EObject current=null] : iv_rulePlan= rulePlan EOF ;
     public final EObject entryRulePlan() throws RecognitionException {
         EObject current = null;
 
@@ -695,17 +653,17 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:321:2: (iv_rulePlan= rulePlan EOF )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:322:2: iv_rulePlan= rulePlan EOF
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:299:2: (iv_rulePlan= rulePlan EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:300:2: iv_rulePlan= rulePlan EOF
             {
              newCompositeNode(grammarAccess.getPlanRule()); 
-            pushFollow(FOLLOW_rulePlan_in_entryRulePlan603);
+            pushFollow(FOLLOW_rulePlan_in_entryRulePlan570);
             iv_rulePlan=rulePlan();
 
             state._fsp--;
 
              current =iv_rulePlan; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePlan613); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePlan580); 
 
             }
 
@@ -723,41 +681,43 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePlan"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:329:1: rulePlan returns [EObject current=null] : (otherlv_0= 'plan' ( (lv_planId_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterRule ) )? otherlv_3= '{' ( (lv_rules_4_0= rulePrefetchingRule ) )* otherlv_5= '}' ) ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:307:1: rulePlan returns [EObject current=null] : (otherlv_0= 'plan' ( (lv_name_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterClause ) )? otherlv_3= '{' ( ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) ) )* otherlv_5= '}' ) ;
     public final EObject rulePlan() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_planId_1_0=null;
+        Token lv_name_1_0=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
         EObject lv_after_2_0 = null;
 
-        EObject lv_rules_4_0 = null;
+        EObject lv_rules_4_1 = null;
+
+        EObject lv_rules_4_2 = null;
 
 
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:332:28: ( (otherlv_0= 'plan' ( (lv_planId_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterRule ) )? otherlv_3= '{' ( (lv_rules_4_0= rulePrefetchingRule ) )* otherlv_5= '}' ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:333:1: (otherlv_0= 'plan' ( (lv_planId_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterRule ) )? otherlv_3= '{' ( (lv_rules_4_0= rulePrefetchingRule ) )* otherlv_5= '}' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:310:28: ( (otherlv_0= 'plan' ( (lv_name_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterClause ) )? otherlv_3= '{' ( ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) ) )* otherlv_5= '}' ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:311:1: (otherlv_0= 'plan' ( (lv_name_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterClause ) )? otherlv_3= '{' ( ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) ) )* otherlv_5= '}' )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:333:1: (otherlv_0= 'plan' ( (lv_planId_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterRule ) )? otherlv_3= '{' ( (lv_rules_4_0= rulePrefetchingRule ) )* otherlv_5= '}' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:333:3: otherlv_0= 'plan' ( (lv_planId_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterRule ) )? otherlv_3= '{' ( (lv_rules_4_0= rulePrefetchingRule ) )* otherlv_5= '}'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:311:1: (otherlv_0= 'plan' ( (lv_name_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterClause ) )? otherlv_3= '{' ( ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) ) )* otherlv_5= '}' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:311:3: otherlv_0= 'plan' ( (lv_name_1_0= RULE_ID ) ) ( (lv_after_2_0= ruleAfterClause ) )? otherlv_3= '{' ( ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) ) )* otherlv_5= '}'
             {
-            otherlv_0=(Token)match(input,17,FOLLOW_17_in_rulePlan650); 
+            otherlv_0=(Token)match(input,16,FOLLOW_16_in_rulePlan617); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getPlanAccess().getPlanKeyword_0());
                 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:337:1: ( (lv_planId_1_0= RULE_ID ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:338:1: (lv_planId_1_0= RULE_ID )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:315:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:316:1: (lv_name_1_0= RULE_ID )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:338:1: (lv_planId_1_0= RULE_ID )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:339:3: lv_planId_1_0= RULE_ID
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:316:1: (lv_name_1_0= RULE_ID )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:317:3: lv_name_1_0= RULE_ID
             {
-            lv_planId_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePlan667); 
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePlan634); 
 
-            			newLeafNode(lv_planId_1_0, grammarAccess.getPlanAccess().getPlanIdIDTerminalRuleCall_1_0()); 
+            			newLeafNode(lv_name_1_0, grammarAccess.getPlanAccess().getNameIDTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
@@ -765,8 +725,8 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
             	        }
                    		setWithLastConsumed(
                    			current, 
-                   			"planId",
-                    		lv_planId_1_0, 
+                   			"name",
+                    		lv_name_1_0, 
                     		"ID");
             	    
 
@@ -775,25 +735,25 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:355:2: ( (lv_after_2_0= ruleAfterRule ) )?
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:333:2: ( (lv_after_2_0= ruleAfterClause ) )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==20) ) {
+            if ( (LA3_0==19) ) {
                 alt3=1;
             }
             switch (alt3) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:356:1: (lv_after_2_0= ruleAfterRule )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:334:1: (lv_after_2_0= ruleAfterClause )
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:356:1: (lv_after_2_0= ruleAfterRule )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:357:3: lv_after_2_0= ruleAfterRule
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:334:1: (lv_after_2_0= ruleAfterClause )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:335:3: lv_after_2_0= ruleAfterClause
                     {
                      
-                    	        newCompositeNode(grammarAccess.getPlanAccess().getAfterAfterRuleParserRuleCall_2_0()); 
+                    	        newCompositeNode(grammarAccess.getPlanAccess().getAfterAfterClauseParserRuleCall_2_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleAfterRule_in_rulePlan693);
-                    lv_after_2_0=ruleAfterRule();
+                    pushFollow(FOLLOW_ruleAfterClause_in_rulePlan660);
+                    lv_after_2_0=ruleAfterClause();
 
                     state._fsp--;
 
@@ -805,7 +765,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                            			current, 
                            			"after",
                             		lv_after_2_0, 
-                            		"AfterRule");
+                            		"AfterClause");
                     	        afterParserOrEnumRuleCall();
                     	    
 
@@ -817,47 +777,98 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_3=(Token)match(input,18,FOLLOW_18_in_rulePlan706); 
+            otherlv_3=(Token)match(input,17,FOLLOW_17_in_rulePlan673); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getPlanAccess().getLeftCurlyBracketKeyword_3());
                 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:377:1: ( (lv_rules_4_0= rulePrefetchingRule ) )*
-            loop4:
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:355:1: ( ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) ) )*
+            loop5:
             do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+                int alt5=2;
+                int LA5_0 = input.LA(1);
 
-                if ( ((LA4_0>=29 && LA4_0<=30)) ) {
-                    alt4=1;
+                if ( (LA5_0==20||LA5_0==23) ) {
+                    alt5=1;
                 }
 
 
-                switch (alt4) {
+                switch (alt5) {
             	case 1 :
-            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:378:1: (lv_rules_4_0= rulePrefetchingRule )
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:356:1: ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) )
             	    {
-            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:378:1: (lv_rules_4_0= rulePrefetchingRule )
-            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:379:3: lv_rules_4_0= rulePrefetchingRule
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:356:1: ( (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule ) )
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:357:1: (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule )
             	    {
-            	     
-            	    	        newCompositeNode(grammarAccess.getPlanAccess().getRulesPrefetchingRuleParserRuleCall_4_0()); 
-            	    	    
-            	    pushFollow(FOLLOW_rulePrefetchingRule_in_rulePlan727);
-            	    lv_rules_4_0=rulePrefetchingRule();
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:357:1: (lv_rules_4_1= ruleStartingRule | lv_rules_4_2= ruleLoadingRule )
+            	    int alt4=2;
+            	    int LA4_0 = input.LA(1);
 
-            	    state._fsp--;
+            	    if ( (LA4_0==20) ) {
+            	        alt4=1;
+            	    }
+            	    else if ( (LA4_0==23) ) {
+            	        alt4=2;
+            	    }
+            	    else {
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("", 4, 0, input);
+
+            	        throw nvae;
+            	    }
+            	    switch (alt4) {
+            	        case 1 :
+            	            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:358:3: lv_rules_4_1= ruleStartingRule
+            	            {
+            	             
+            	            	        newCompositeNode(grammarAccess.getPlanAccess().getRulesStartingRuleParserRuleCall_4_0_0()); 
+            	            	    
+            	            pushFollow(FOLLOW_ruleStartingRule_in_rulePlan696);
+            	            lv_rules_4_1=ruleStartingRule();
+
+            	            state._fsp--;
 
 
-            	    	        if (current==null) {
-            	    	            current = createModelElementForParent(grammarAccess.getPlanRule());
-            	    	        }
-            	           		add(
-            	           			current, 
-            	           			"rules",
-            	            		lv_rules_4_0, 
-            	            		"PrefetchingRule");
-            	    	        afterParserOrEnumRuleCall();
-            	    	    
+            	            	        if (current==null) {
+            	            	            current = createModelElementForParent(grammarAccess.getPlanRule());
+            	            	        }
+            	                   		add(
+            	                   			current, 
+            	                   			"rules",
+            	                    		lv_rules_4_1, 
+            	                    		"StartingRule");
+            	            	        afterParserOrEnumRuleCall();
+            	            	    
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:373:8: lv_rules_4_2= ruleLoadingRule
+            	            {
+            	             
+            	            	        newCompositeNode(grammarAccess.getPlanAccess().getRulesLoadingRuleParserRuleCall_4_0_1()); 
+            	            	    
+            	            pushFollow(FOLLOW_ruleLoadingRule_in_rulePlan715);
+            	            lv_rules_4_2=ruleLoadingRule();
+
+            	            state._fsp--;
+
+
+            	            	        if (current==null) {
+            	            	            current = createModelElementForParent(grammarAccess.getPlanRule());
+            	            	        }
+            	                   		add(
+            	                   			current, 
+            	                   			"rules",
+            	                    		lv_rules_4_2, 
+            	                    		"LoadingRule");
+            	            	        afterParserOrEnumRuleCall();
+            	            	    
+
+            	            }
+            	            break;
+
+            	    }
+
 
             	    }
 
@@ -866,11 +877,11 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop4;
+            	    break loop5;
                 }
             } while (true);
 
-            otherlv_5=(Token)match(input,19,FOLLOW_19_in_rulePlan740); 
+            otherlv_5=(Token)match(input,18,FOLLOW_18_in_rulePlan731); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getPlanAccess().getRightCurlyBracketKeyword_5());
                 
@@ -894,26 +905,26 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePlan"
 
 
-    // $ANTLR start "entryRuleAfterRule"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:407:1: entryRuleAfterRule returns [EObject current=null] : iv_ruleAfterRule= ruleAfterRule EOF ;
-    public final EObject entryRuleAfterRule() throws RecognitionException {
+    // $ANTLR start "entryRuleAfterClause"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:403:1: entryRuleAfterClause returns [EObject current=null] : iv_ruleAfterClause= ruleAfterClause EOF ;
+    public final EObject entryRuleAfterClause() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleAfterRule = null;
+        EObject iv_ruleAfterClause = null;
 
 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:408:2: (iv_ruleAfterRule= ruleAfterRule EOF )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:409:2: iv_ruleAfterRule= ruleAfterRule EOF
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:404:2: (iv_ruleAfterClause= ruleAfterClause EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:405:2: iv_ruleAfterClause= ruleAfterClause EOF
             {
-             newCompositeNode(grammarAccess.getAfterRuleRule()); 
-            pushFollow(FOLLOW_ruleAfterRule_in_entryRuleAfterRule776);
-            iv_ruleAfterRule=ruleAfterRule();
+             newCompositeNode(grammarAccess.getAfterClauseRule()); 
+            pushFollow(FOLLOW_ruleAfterClause_in_entryRuleAfterClause767);
+            iv_ruleAfterClause=ruleAfterClause();
 
             state._fsp--;
 
-             current =iv_ruleAfterRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAfterRule786); 
+             current =iv_ruleAfterClause; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAfterClause777); 
 
             }
 
@@ -927,12 +938,12 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleAfterRule"
+    // $ANTLR end "entryRuleAfterClause"
 
 
-    // $ANTLR start "ruleAfterRule"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:416:1: ruleAfterRule returns [EObject current=null] : (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) ) ;
-    public final EObject ruleAfterRule() throws RecognitionException {
+    // $ANTLR start "ruleAfterClause"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:412:1: ruleAfterClause returns [EObject current=null] : (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) ) ;
+    public final EObject ruleAfterClause() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -941,30 +952,30 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:419:28: ( (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:420:1: (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:415:28: ( (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:416:1: (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:420:1: (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:420:3: otherlv_0= 'after' ( (otherlv_1= RULE_ID ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:416:1: (otherlv_0= 'after' ( (otherlv_1= RULE_ID ) ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:416:3: otherlv_0= 'after' ( (otherlv_1= RULE_ID ) )
             {
-            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleAfterRule823); 
+            otherlv_0=(Token)match(input,19,FOLLOW_19_in_ruleAfterClause814); 
 
-                	newLeafNode(otherlv_0, grammarAccess.getAfterRuleAccess().getAfterKeyword_0());
+                	newLeafNode(otherlv_0, grammarAccess.getAfterClauseAccess().getAfterKeyword_0());
                 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:424:1: ( (otherlv_1= RULE_ID ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:425:1: (otherlv_1= RULE_ID )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:420:1: ( (otherlv_1= RULE_ID ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:421:1: (otherlv_1= RULE_ID )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:425:1: (otherlv_1= RULE_ID )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:426:3: otherlv_1= RULE_ID
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:421:1: (otherlv_1= RULE_ID )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:422:3: otherlv_1= RULE_ID
             {
 
             			if (current==null) {
-            	            current = createModelElement(grammarAccess.getAfterRuleRule());
+            	            current = createModelElement(grammarAccess.getAfterClauseRule());
             	        }
                     
-            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAfterRule843); 
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAfterClause834); 
 
-            		newLeafNode(otherlv_1, grammarAccess.getAfterRuleAccess().getPlanIdPlanCrossReference_1_0()); 
+            		newLeafNode(otherlv_1, grammarAccess.getAfterClauseAccess().getPlanPlanCrossReference_1_0()); 
             	
 
             }
@@ -989,29 +1000,29 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleAfterRule"
+    // $ANTLR end "ruleAfterClause"
 
 
-    // $ANTLR start "entryRulePrefetchingRule"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:445:1: entryRulePrefetchingRule returns [EObject current=null] : iv_rulePrefetchingRule= rulePrefetchingRule EOF ;
-    public final EObject entryRulePrefetchingRule() throws RecognitionException {
+    // $ANTLR start "entryRuleStartingRule"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:441:1: entryRuleStartingRule returns [EObject current=null] : iv_ruleStartingRule= ruleStartingRule EOF ;
+    public final EObject entryRuleStartingRule() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_rulePrefetchingRule = null;
+        EObject iv_ruleStartingRule = null;
 
 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:446:2: (iv_rulePrefetchingRule= rulePrefetchingRule EOF )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:447:2: iv_rulePrefetchingRule= rulePrefetchingRule EOF
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:442:2: (iv_ruleStartingRule= ruleStartingRule EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:443:2: iv_ruleStartingRule= ruleStartingRule EOF
             {
-             newCompositeNode(grammarAccess.getPrefetchingRuleRule()); 
-            pushFollow(FOLLOW_rulePrefetchingRule_in_entryRulePrefetchingRule879);
-            iv_rulePrefetchingRule=rulePrefetchingRule();
+             newCompositeNode(grammarAccess.getStartingRuleRule()); 
+            pushFollow(FOLLOW_ruleStartingRule_in_entryRuleStartingRule870);
+            iv_ruleStartingRule=ruleStartingRule();
 
             state._fsp--;
 
-             current =iv_rulePrefetchingRule; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePrefetchingRule889); 
+             current =iv_ruleStartingRule; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStartingRule880); 
 
             }
 
@@ -1025,21 +1036,250 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRulePrefetchingRule"
+    // $ANTLR end "entryRuleStartingRule"
 
 
-    // $ANTLR start "rulePrefetchingRule"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:454:1: rulePrefetchingRule returns [EObject current=null] : ( ( (lv_moment_0_0= ruleMoment ) ) ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= rulePrefetchingRule ) )* otherlv_8= '}' )? ) ;
-    public final EObject rulePrefetchingRule() throws RecognitionException {
+    // $ANTLR start "ruleStartingRule"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:450:1: ruleStartingRule returns [EObject current=null] : (otherlv_0= 'on starting' otherlv_1= 'fetch' ( (lv_targetPattern_2_0= ruleTargetPattern ) ) ( ( (lv_probability_3_0= RULE_INT ) ) otherlv_4= '%' )? (otherlv_5= '{' ( (lv_subRules_6_0= ruleLoadingRule ) )* otherlv_7= '}' ) ) ;
+    public final EObject ruleStartingRule() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_0=null;
+        Token otherlv_1=null;
+        Token lv_probability_3_0=null;
+        Token otherlv_4=null;
+        Token otherlv_5=null;
+        Token otherlv_7=null;
+        EObject lv_targetPattern_2_0 = null;
+
+        EObject lv_subRules_6_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:453:28: ( (otherlv_0= 'on starting' otherlv_1= 'fetch' ( (lv_targetPattern_2_0= ruleTargetPattern ) ) ( ( (lv_probability_3_0= RULE_INT ) ) otherlv_4= '%' )? (otherlv_5= '{' ( (lv_subRules_6_0= ruleLoadingRule ) )* otherlv_7= '}' ) ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:454:1: (otherlv_0= 'on starting' otherlv_1= 'fetch' ( (lv_targetPattern_2_0= ruleTargetPattern ) ) ( ( (lv_probability_3_0= RULE_INT ) ) otherlv_4= '%' )? (otherlv_5= '{' ( (lv_subRules_6_0= ruleLoadingRule ) )* otherlv_7= '}' ) )
+            {
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:454:1: (otherlv_0= 'on starting' otherlv_1= 'fetch' ( (lv_targetPattern_2_0= ruleTargetPattern ) ) ( ( (lv_probability_3_0= RULE_INT ) ) otherlv_4= '%' )? (otherlv_5= '{' ( (lv_subRules_6_0= ruleLoadingRule ) )* otherlv_7= '}' ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:454:3: otherlv_0= 'on starting' otherlv_1= 'fetch' ( (lv_targetPattern_2_0= ruleTargetPattern ) ) ( ( (lv_probability_3_0= RULE_INT ) ) otherlv_4= '%' )? (otherlv_5= '{' ( (lv_subRules_6_0= ruleLoadingRule ) )* otherlv_7= '}' )
+            {
+            otherlv_0=(Token)match(input,20,FOLLOW_20_in_ruleStartingRule917); 
+
+                	newLeafNode(otherlv_0, grammarAccess.getStartingRuleAccess().getOnStartingKeyword_0());
+                
+            otherlv_1=(Token)match(input,21,FOLLOW_21_in_ruleStartingRule929); 
+
+                	newLeafNode(otherlv_1, grammarAccess.getStartingRuleAccess().getFetchKeyword_1());
+                
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:462:1: ( (lv_targetPattern_2_0= ruleTargetPattern ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:463:1: (lv_targetPattern_2_0= ruleTargetPattern )
+            {
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:463:1: (lv_targetPattern_2_0= ruleTargetPattern )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:464:3: lv_targetPattern_2_0= ruleTargetPattern
+            {
+             
+            	        newCompositeNode(grammarAccess.getStartingRuleAccess().getTargetPatternTargetPatternParserRuleCall_2_0()); 
+            	    
+            pushFollow(FOLLOW_ruleTargetPattern_in_ruleStartingRule950);
+            lv_targetPattern_2_0=ruleTargetPattern();
+
+            state._fsp--;
+
+
+            	        if (current==null) {
+            	            current = createModelElementForParent(grammarAccess.getStartingRuleRule());
+            	        }
+                   		set(
+                   			current, 
+                   			"targetPattern",
+                    		lv_targetPattern_2_0, 
+                    		"TargetPattern");
+            	        afterParserOrEnumRuleCall();
+            	    
+
+            }
+
+
+            }
+
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:480:2: ( ( (lv_probability_3_0= RULE_INT ) ) otherlv_4= '%' )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
+
+            if ( (LA6_0==RULE_INT) ) {
+                alt6=1;
+            }
+            switch (alt6) {
+                case 1 :
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:480:3: ( (lv_probability_3_0= RULE_INT ) ) otherlv_4= '%'
+                    {
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:480:3: ( (lv_probability_3_0= RULE_INT ) )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:481:1: (lv_probability_3_0= RULE_INT )
+                    {
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:481:1: (lv_probability_3_0= RULE_INT )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:482:3: lv_probability_3_0= RULE_INT
+                    {
+                    lv_probability_3_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleStartingRule968); 
+
+                    			newLeafNode(lv_probability_3_0, grammarAccess.getStartingRuleAccess().getProbabilityINTTerminalRuleCall_3_0_0()); 
+                    		
+
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getStartingRuleRule());
+                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"probability",
+                            		lv_probability_3_0, 
+                            		"INT");
+                    	    
+
+                    }
+
+
+                    }
+
+                    otherlv_4=(Token)match(input,22,FOLLOW_22_in_ruleStartingRule985); 
+
+                        	newLeafNode(otherlv_4, grammarAccess.getStartingRuleAccess().getPercentSignKeyword_3_1());
+                        
+
+                    }
+                    break;
+
+            }
+
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:502:3: (otherlv_5= '{' ( (lv_subRules_6_0= ruleLoadingRule ) )* otherlv_7= '}' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:502:5: otherlv_5= '{' ( (lv_subRules_6_0= ruleLoadingRule ) )* otherlv_7= '}'
+            {
+            otherlv_5=(Token)match(input,17,FOLLOW_17_in_ruleStartingRule1000); 
+
+                	newLeafNode(otherlv_5, grammarAccess.getStartingRuleAccess().getLeftCurlyBracketKeyword_4_0());
+                
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:506:1: ( (lv_subRules_6_0= ruleLoadingRule ) )*
+            loop7:
+            do {
+                int alt7=2;
+                int LA7_0 = input.LA(1);
+
+                if ( (LA7_0==23) ) {
+                    alt7=1;
+                }
+
+
+                switch (alt7) {
+            	case 1 :
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:507:1: (lv_subRules_6_0= ruleLoadingRule )
+            	    {
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:507:1: (lv_subRules_6_0= ruleLoadingRule )
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:508:3: lv_subRules_6_0= ruleLoadingRule
+            	    {
+            	     
+            	    	        newCompositeNode(grammarAccess.getStartingRuleAccess().getSubRulesLoadingRuleParserRuleCall_4_1_0()); 
+            	    	    
+            	    pushFollow(FOLLOW_ruleLoadingRule_in_ruleStartingRule1021);
+            	    lv_subRules_6_0=ruleLoadingRule();
+
+            	    state._fsp--;
+
+
+            	    	        if (current==null) {
+            	    	            current = createModelElementForParent(grammarAccess.getStartingRuleRule());
+            	    	        }
+            	           		add(
+            	           			current, 
+            	           			"subRules",
+            	            		lv_subRules_6_0, 
+            	            		"LoadingRule");
+            	    	        afterParserOrEnumRuleCall();
+            	    	    
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop7;
+                }
+            } while (true);
+
+            otherlv_7=(Token)match(input,18,FOLLOW_18_in_ruleStartingRule1034); 
+
+                	newLeafNode(otherlv_7, grammarAccess.getStartingRuleAccess().getRightCurlyBracketKeyword_4_2());
+                
+
+            }
+
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleStartingRule"
+
+
+    // $ANTLR start "entryRuleLoadingRule"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:536:1: entryRuleLoadingRule returns [EObject current=null] : iv_ruleLoadingRule= ruleLoadingRule EOF ;
+    public final EObject entryRuleLoadingRule() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleLoadingRule = null;
+
+
+        try {
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:537:2: (iv_ruleLoadingRule= ruleLoadingRule EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:538:2: iv_ruleLoadingRule= ruleLoadingRule EOF
+            {
+             newCompositeNode(grammarAccess.getLoadingRuleRule()); 
+            pushFollow(FOLLOW_ruleLoadingRule_in_entryRuleLoadingRule1071);
+            iv_ruleLoadingRule=ruleLoadingRule();
+
+            state._fsp--;
+
+             current =iv_ruleLoadingRule; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLoadingRule1081); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleLoadingRule"
+
+
+    // $ANTLR start "ruleLoadingRule"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:545:1: ruleLoadingRule returns [EObject current=null] : (otherlv_0= 'on loading' ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= ruleLoadingRule ) )* otherlv_8= '}' )? ) ;
+    public final EObject ruleLoadingRule() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
         Token otherlv_2=null;
         Token lv_probability_4_0=null;
         Token otherlv_5=null;
         Token otherlv_6=null;
         Token otherlv_8=null;
-        Enumerator lv_moment_0_0 = null;
-
         EObject lv_sourcePattern_1_0 = null;
 
         EObject lv_targetPattern_3_0 = null;
@@ -1050,68 +1290,41 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:457:28: ( ( ( (lv_moment_0_0= ruleMoment ) ) ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= rulePrefetchingRule ) )* otherlv_8= '}' )? ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:458:1: ( ( (lv_moment_0_0= ruleMoment ) ) ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= rulePrefetchingRule ) )* otherlv_8= '}' )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:548:28: ( (otherlv_0= 'on loading' ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= ruleLoadingRule ) )* otherlv_8= '}' )? ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:549:1: (otherlv_0= 'on loading' ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= ruleLoadingRule ) )* otherlv_8= '}' )? )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:458:1: ( ( (lv_moment_0_0= ruleMoment ) ) ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= rulePrefetchingRule ) )* otherlv_8= '}' )? )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:458:2: ( (lv_moment_0_0= ruleMoment ) ) ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= rulePrefetchingRule ) )* otherlv_8= '}' )?
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:549:1: (otherlv_0= 'on loading' ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= ruleLoadingRule ) )* otherlv_8= '}' )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:549:3: otherlv_0= 'on loading' ( (lv_sourcePattern_1_0= ruleSourcePattern ) )? otherlv_2= 'fetch' ( (lv_targetPattern_3_0= ruleTargetPattern ) ) ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )? (otherlv_6= '{' ( (lv_subRules_7_0= ruleLoadingRule ) )* otherlv_8= '}' )?
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:458:2: ( (lv_moment_0_0= ruleMoment ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:459:1: (lv_moment_0_0= ruleMoment )
-            {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:459:1: (lv_moment_0_0= ruleMoment )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:460:3: lv_moment_0_0= ruleMoment
-            {
-             
-            	        newCompositeNode(grammarAccess.getPrefetchingRuleAccess().getMomentMomentEnumRuleCall_0_0()); 
-            	    
-            pushFollow(FOLLOW_ruleMoment_in_rulePrefetchingRule935);
-            lv_moment_0_0=ruleMoment();
+            otherlv_0=(Token)match(input,23,FOLLOW_23_in_ruleLoadingRule1118); 
 
-            state._fsp--;
+                	newLeafNode(otherlv_0, grammarAccess.getLoadingRuleAccess().getOnLoadingKeyword_0());
+                
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:553:1: ( (lv_sourcePattern_1_0= ruleSourcePattern ) )?
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-
-            	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getPrefetchingRuleRule());
-            	        }
-                   		set(
-                   			current, 
-                   			"moment",
-                    		lv_moment_0_0, 
-                    		"Moment");
-            	        afterParserOrEnumRuleCall();
-            	    
-
+            if ( (LA8_0==RULE_ID) ) {
+                alt8=1;
             }
-
-
-            }
-
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:476:2: ( (lv_sourcePattern_1_0= ruleSourcePattern ) )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
-
-            if ( (LA5_0==RULE_ID) ) {
-                alt5=1;
-            }
-            switch (alt5) {
+            switch (alt8) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:477:1: (lv_sourcePattern_1_0= ruleSourcePattern )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:554:1: (lv_sourcePattern_1_0= ruleSourcePattern )
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:477:1: (lv_sourcePattern_1_0= ruleSourcePattern )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:478:3: lv_sourcePattern_1_0= ruleSourcePattern
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:554:1: (lv_sourcePattern_1_0= ruleSourcePattern )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:555:3: lv_sourcePattern_1_0= ruleSourcePattern
                     {
                      
-                    	        newCompositeNode(grammarAccess.getPrefetchingRuleAccess().getSourcePatternSourcePatternParserRuleCall_1_0()); 
+                    	        newCompositeNode(grammarAccess.getLoadingRuleAccess().getSourcePatternSourcePatternParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleSourcePattern_in_rulePrefetchingRule956);
+                    pushFollow(FOLLOW_ruleSourcePattern_in_ruleLoadingRule1139);
                     lv_sourcePattern_1_0=ruleSourcePattern();
 
                     state._fsp--;
 
 
                     	        if (current==null) {
-                    	            current = createModelElementForParent(grammarAccess.getPrefetchingRuleRule());
+                    	            current = createModelElementForParent(grammarAccess.getLoadingRuleRule());
                     	        }
                            		set(
                            			current, 
@@ -1129,27 +1342,27 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,21,FOLLOW_21_in_rulePrefetchingRule969); 
+            otherlv_2=(Token)match(input,21,FOLLOW_21_in_ruleLoadingRule1152); 
 
-                	newLeafNode(otherlv_2, grammarAccess.getPrefetchingRuleAccess().getFetchKeyword_2());
+                	newLeafNode(otherlv_2, grammarAccess.getLoadingRuleAccess().getFetchKeyword_2());
                 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:498:1: ( (lv_targetPattern_3_0= ruleTargetPattern ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:499:1: (lv_targetPattern_3_0= ruleTargetPattern )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:575:1: ( (lv_targetPattern_3_0= ruleTargetPattern ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:576:1: (lv_targetPattern_3_0= ruleTargetPattern )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:499:1: (lv_targetPattern_3_0= ruleTargetPattern )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:500:3: lv_targetPattern_3_0= ruleTargetPattern
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:576:1: (lv_targetPattern_3_0= ruleTargetPattern )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:577:3: lv_targetPattern_3_0= ruleTargetPattern
             {
              
-            	        newCompositeNode(grammarAccess.getPrefetchingRuleAccess().getTargetPatternTargetPatternParserRuleCall_3_0()); 
+            	        newCompositeNode(grammarAccess.getLoadingRuleAccess().getTargetPatternTargetPatternParserRuleCall_3_0()); 
             	    
-            pushFollow(FOLLOW_ruleTargetPattern_in_rulePrefetchingRule990);
+            pushFollow(FOLLOW_ruleTargetPattern_in_ruleLoadingRule1173);
             lv_targetPattern_3_0=ruleTargetPattern();
 
             state._fsp--;
 
 
             	        if (current==null) {
-            	            current = createModelElementForParent(grammarAccess.getPrefetchingRuleRule());
+            	            current = createModelElementForParent(grammarAccess.getLoadingRuleRule());
             	        }
                    		set(
                    			current, 
@@ -1164,30 +1377,30 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:516:2: ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:593:2: ( ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%' )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA6_0==RULE_INT) ) {
-                alt6=1;
+            if ( (LA9_0==RULE_INT) ) {
+                alt9=1;
             }
-            switch (alt6) {
+            switch (alt9) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:516:3: ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%'
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:593:3: ( (lv_probability_4_0= RULE_INT ) ) otherlv_5= '%'
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:516:3: ( (lv_probability_4_0= RULE_INT ) )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:517:1: (lv_probability_4_0= RULE_INT )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:593:3: ( (lv_probability_4_0= RULE_INT ) )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:594:1: (lv_probability_4_0= RULE_INT )
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:517:1: (lv_probability_4_0= RULE_INT )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:518:3: lv_probability_4_0= RULE_INT
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:594:1: (lv_probability_4_0= RULE_INT )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:595:3: lv_probability_4_0= RULE_INT
                     {
-                    lv_probability_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_rulePrefetchingRule1008); 
+                    lv_probability_4_0=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleLoadingRule1191); 
 
-                    			newLeafNode(lv_probability_4_0, grammarAccess.getPrefetchingRuleAccess().getProbabilityINTTerminalRuleCall_4_0_0()); 
+                    			newLeafNode(lv_probability_4_0, grammarAccess.getLoadingRuleAccess().getProbabilityINTTerminalRuleCall_4_0_0()); 
                     		
 
                     	        if (current==null) {
-                    	            current = createModelElement(grammarAccess.getPrefetchingRuleRule());
+                    	            current = createModelElement(grammarAccess.getLoadingRuleRule());
                     	        }
                            		setWithLastConsumed(
                            			current, 
@@ -1201,9 +1414,9 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_5=(Token)match(input,22,FOLLOW_22_in_rulePrefetchingRule1025); 
+                    otherlv_5=(Token)match(input,22,FOLLOW_22_in_ruleLoadingRule1208); 
 
-                        	newLeafNode(otherlv_5, grammarAccess.getPrefetchingRuleAccess().getPercentSignKeyword_4_1());
+                        	newLeafNode(otherlv_5, grammarAccess.getLoadingRuleAccess().getPercentSignKeyword_4_1());
                         
 
                     }
@@ -1211,56 +1424,56 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:538:3: (otherlv_6= '{' ( (lv_subRules_7_0= rulePrefetchingRule ) )* otherlv_8= '}' )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:615:3: (otherlv_6= '{' ( (lv_subRules_7_0= ruleLoadingRule ) )* otherlv_8= '}' )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA8_0==18) ) {
-                alt8=1;
+            if ( (LA11_0==17) ) {
+                alt11=1;
             }
-            switch (alt8) {
+            switch (alt11) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:538:5: otherlv_6= '{' ( (lv_subRules_7_0= rulePrefetchingRule ) )* otherlv_8= '}'
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:615:5: otherlv_6= '{' ( (lv_subRules_7_0= ruleLoadingRule ) )* otherlv_8= '}'
                     {
-                    otherlv_6=(Token)match(input,18,FOLLOW_18_in_rulePrefetchingRule1040); 
+                    otherlv_6=(Token)match(input,17,FOLLOW_17_in_ruleLoadingRule1223); 
 
-                        	newLeafNode(otherlv_6, grammarAccess.getPrefetchingRuleAccess().getLeftCurlyBracketKeyword_5_0());
+                        	newLeafNode(otherlv_6, grammarAccess.getLoadingRuleAccess().getLeftCurlyBracketKeyword_5_0());
                         
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:542:1: ( (lv_subRules_7_0= rulePrefetchingRule ) )*
-                    loop7:
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:619:1: ( (lv_subRules_7_0= ruleLoadingRule ) )*
+                    loop10:
                     do {
-                        int alt7=2;
-                        int LA7_0 = input.LA(1);
+                        int alt10=2;
+                        int LA10_0 = input.LA(1);
 
-                        if ( ((LA7_0>=29 && LA7_0<=30)) ) {
-                            alt7=1;
+                        if ( (LA10_0==23) ) {
+                            alt10=1;
                         }
 
 
-                        switch (alt7) {
+                        switch (alt10) {
                     	case 1 :
-                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:543:1: (lv_subRules_7_0= rulePrefetchingRule )
+                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:620:1: (lv_subRules_7_0= ruleLoadingRule )
                     	    {
-                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:543:1: (lv_subRules_7_0= rulePrefetchingRule )
-                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:544:3: lv_subRules_7_0= rulePrefetchingRule
+                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:620:1: (lv_subRules_7_0= ruleLoadingRule )
+                    	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:621:3: lv_subRules_7_0= ruleLoadingRule
                     	    {
                     	     
-                    	    	        newCompositeNode(grammarAccess.getPrefetchingRuleAccess().getSubRulesPrefetchingRuleParserRuleCall_5_1_0()); 
+                    	    	        newCompositeNode(grammarAccess.getLoadingRuleAccess().getSubRulesLoadingRuleParserRuleCall_5_1_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_rulePrefetchingRule_in_rulePrefetchingRule1061);
-                    	    lv_subRules_7_0=rulePrefetchingRule();
+                    	    pushFollow(FOLLOW_ruleLoadingRule_in_ruleLoadingRule1244);
+                    	    lv_subRules_7_0=ruleLoadingRule();
 
                     	    state._fsp--;
 
 
                     	    	        if (current==null) {
-                    	    	            current = createModelElementForParent(grammarAccess.getPrefetchingRuleRule());
+                    	    	            current = createModelElementForParent(grammarAccess.getLoadingRuleRule());
                     	    	        }
                     	           		add(
                     	           			current, 
                     	           			"subRules",
                     	            		lv_subRules_7_0, 
-                    	            		"PrefetchingRule");
+                    	            		"LoadingRule");
                     	    	        afterParserOrEnumRuleCall();
                     	    	    
 
@@ -1271,13 +1484,13 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop7;
+                    	    break loop10;
                         }
                     } while (true);
 
-                    otherlv_8=(Token)match(input,19,FOLLOW_19_in_rulePrefetchingRule1074); 
+                    otherlv_8=(Token)match(input,18,FOLLOW_18_in_ruleLoadingRule1257); 
 
-                        	newLeafNode(otherlv_8, grammarAccess.getPrefetchingRuleAccess().getRightCurlyBracketKeyword_5_2());
+                        	newLeafNode(otherlv_8, grammarAccess.getLoadingRuleAccess().getRightCurlyBracketKeyword_5_2());
                         
 
                     }
@@ -1302,11 +1515,11 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "rulePrefetchingRule"
+    // $ANTLR end "ruleLoadingRule"
 
 
     // $ANTLR start "entryRuleSourcePattern"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:572:1: entryRuleSourcePattern returns [EObject current=null] : iv_ruleSourcePattern= ruleSourcePattern EOF ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:649:1: entryRuleSourcePattern returns [EObject current=null] : iv_ruleSourcePattern= ruleSourcePattern EOF ;
     public final EObject entryRuleSourcePattern() throws RecognitionException {
         EObject current = null;
 
@@ -1314,17 +1527,17 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:573:2: (iv_ruleSourcePattern= ruleSourcePattern EOF )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:574:2: iv_ruleSourcePattern= ruleSourcePattern EOF
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:650:2: (iv_ruleSourcePattern= ruleSourcePattern EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:651:2: iv_ruleSourcePattern= ruleSourcePattern EOF
             {
              newCompositeNode(grammarAccess.getSourcePatternRule()); 
-            pushFollow(FOLLOW_ruleSourcePattern_in_entryRuleSourcePattern1112);
+            pushFollow(FOLLOW_ruleSourcePattern_in_entryRuleSourcePattern1295);
             iv_ruleSourcePattern=ruleSourcePattern();
 
             state._fsp--;
 
              current =iv_ruleSourcePattern; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSourcePattern1122); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSourcePattern1305); 
 
             }
 
@@ -1342,7 +1555,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSourcePattern"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:581:1: ruleSourcePattern returns [EObject current=null] : ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:658:1: ruleSourcePattern returns [EObject current=null] : ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) ;
     public final EObject ruleSourcePattern() throws RecognitionException {
         EObject current = null;
 
@@ -1354,23 +1567,23 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:584:28: ( ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:585:1: ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:661:28: ( ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:662:1: ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:585:1: ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:585:2: ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )?
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:662:1: ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:662:2: ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )?
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:585:2: ( (lv_pattern_0_0= ruleQualifiedName ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:586:1: (lv_pattern_0_0= ruleQualifiedName )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:662:2: ( (lv_pattern_0_0= rulePatternExp ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:663:1: (lv_pattern_0_0= rulePatternExp )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:586:1: (lv_pattern_0_0= ruleQualifiedName )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:587:3: lv_pattern_0_0= ruleQualifiedName
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:663:1: (lv_pattern_0_0= rulePatternExp )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:664:3: lv_pattern_0_0= rulePatternExp
             {
              
-            	        newCompositeNode(grammarAccess.getSourcePatternAccess().getPatternQualifiedNameParserRuleCall_0_0()); 
+            	        newCompositeNode(grammarAccess.getSourcePatternAccess().getPatternPatternExpParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleSourcePattern1168);
-            lv_pattern_0_0=ruleQualifiedName();
+            pushFollow(FOLLOW_rulePatternExp_in_ruleSourcePattern1351);
+            lv_pattern_0_0=rulePatternExp();
 
             state._fsp--;
 
@@ -1382,7 +1595,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"pattern",
                     		lv_pattern_0_0, 
-                    		"QualifiedName");
+                    		"PatternExp");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -1391,24 +1604,24 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:603:2: ( (lv_filter_1_0= ruleFilterPattern ) )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:680:2: ( (lv_filter_1_0= ruleFilterPattern ) )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA9_0==13) ) {
-                alt9=1;
+            if ( (LA12_0==13) ) {
+                alt12=1;
             }
-            switch (alt9) {
+            switch (alt12) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:604:1: (lv_filter_1_0= ruleFilterPattern )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:681:1: (lv_filter_1_0= ruleFilterPattern )
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:604:1: (lv_filter_1_0= ruleFilterPattern )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:605:3: lv_filter_1_0= ruleFilterPattern
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:681:1: (lv_filter_1_0= ruleFilterPattern )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:682:3: lv_filter_1_0= ruleFilterPattern
                     {
                      
                     	        newCompositeNode(grammarAccess.getSourcePatternAccess().getFilterFilterPatternParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleFilterPattern_in_ruleSourcePattern1189);
+                    pushFollow(FOLLOW_ruleFilterPattern_in_ruleSourcePattern1372);
                     lv_filter_1_0=ruleFilterPattern();
 
                     state._fsp--;
@@ -1454,7 +1667,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFilterPattern"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:629:1: entryRuleFilterPattern returns [EObject current=null] : iv_ruleFilterPattern= ruleFilterPattern EOF ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:706:1: entryRuleFilterPattern returns [EObject current=null] : iv_ruleFilterPattern= ruleFilterPattern EOF ;
     public final EObject entryRuleFilterPattern() throws RecognitionException {
         EObject current = null;
 
@@ -1462,17 +1675,17 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:630:2: (iv_ruleFilterPattern= ruleFilterPattern EOF )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:631:2: iv_ruleFilterPattern= ruleFilterPattern EOF
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:707:2: (iv_ruleFilterPattern= ruleFilterPattern EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:708:2: iv_ruleFilterPattern= ruleFilterPattern EOF
             {
              newCompositeNode(grammarAccess.getFilterPatternRule()); 
-            pushFollow(FOLLOW_ruleFilterPattern_in_entryRuleFilterPattern1226);
+            pushFollow(FOLLOW_ruleFilterPattern_in_entryRuleFilterPattern1409);
             iv_ruleFilterPattern=ruleFilterPattern();
 
             state._fsp--;
 
              current =iv_ruleFilterPattern; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFilterPattern1236); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFilterPattern1419); 
 
             }
 
@@ -1490,7 +1703,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFilterPattern"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:638:1: ruleFilterPattern returns [EObject current=null] : (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' ) ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:715:1: ruleFilterPattern returns [EObject current=null] : (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' ) ;
     public final EObject ruleFilterPattern() throws RecognitionException {
         EObject current = null;
 
@@ -1501,23 +1714,23 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:641:28: ( (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:642:1: (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:718:28: ( (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:719:1: (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:642:1: (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:642:3: otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']'
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:719:1: (otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']' )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:719:3: otherlv_0= '[' ( (lv_stringPattern_1_0= RULE_STRING ) ) otherlv_2= ']'
             {
-            otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleFilterPattern1273); 
+            otherlv_0=(Token)match(input,13,FOLLOW_13_in_ruleFilterPattern1456); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getFilterPatternAccess().getLeftSquareBracketKeyword_0());
                 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:646:1: ( (lv_stringPattern_1_0= RULE_STRING ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:647:1: (lv_stringPattern_1_0= RULE_STRING )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:723:1: ( (lv_stringPattern_1_0= RULE_STRING ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:724:1: (lv_stringPattern_1_0= RULE_STRING )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:647:1: (lv_stringPattern_1_0= RULE_STRING )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:648:3: lv_stringPattern_1_0= RULE_STRING
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:724:1: (lv_stringPattern_1_0= RULE_STRING )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:725:3: lv_stringPattern_1_0= RULE_STRING
             {
-            lv_stringPattern_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFilterPattern1290); 
+            lv_stringPattern_1_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleFilterPattern1473); 
 
             			newLeafNode(lv_stringPattern_1_0, grammarAccess.getFilterPatternAccess().getStringPatternSTRINGTerminalRuleCall_1_0()); 
             		
@@ -1537,7 +1750,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,16,FOLLOW_16_in_ruleFilterPattern1307); 
+            otherlv_2=(Token)match(input,15,FOLLOW_15_in_ruleFilterPattern1490); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getFilterPatternAccess().getRightSquareBracketKeyword_2());
                 
@@ -1562,7 +1775,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTargetPattern"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:676:1: entryRuleTargetPattern returns [EObject current=null] : iv_ruleTargetPattern= ruleTargetPattern EOF ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:753:1: entryRuleTargetPattern returns [EObject current=null] : iv_ruleTargetPattern= ruleTargetPattern EOF ;
     public final EObject entryRuleTargetPattern() throws RecognitionException {
         EObject current = null;
 
@@ -1570,17 +1783,17 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:677:2: (iv_ruleTargetPattern= ruleTargetPattern EOF )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:678:2: iv_ruleTargetPattern= ruleTargetPattern EOF
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:754:2: (iv_ruleTargetPattern= ruleTargetPattern EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:755:2: iv_ruleTargetPattern= ruleTargetPattern EOF
             {
              newCompositeNode(grammarAccess.getTargetPatternRule()); 
-            pushFollow(FOLLOW_ruleTargetPattern_in_entryRuleTargetPattern1343);
+            pushFollow(FOLLOW_ruleTargetPattern_in_entryRuleTargetPattern1526);
             iv_ruleTargetPattern=ruleTargetPattern();
 
             state._fsp--;
 
              current =iv_ruleTargetPattern; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTargetPattern1353); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTargetPattern1536); 
 
             }
 
@@ -1598,7 +1811,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTargetPattern"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:685:1: ruleTargetPattern returns [EObject current=null] : ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:762:1: ruleTargetPattern returns [EObject current=null] : ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) ;
     public final EObject ruleTargetPattern() throws RecognitionException {
         EObject current = null;
 
@@ -1610,23 +1823,23 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:688:28: ( ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:689:1: ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:765:28: ( ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:766:1: ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:689:1: ( ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:689:2: ( (lv_pattern_0_0= ruleQualifiedName ) ) ( (lv_filter_1_0= ruleFilterPattern ) )?
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:766:1: ( ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:766:2: ( (lv_pattern_0_0= rulePatternExp ) ) ( (lv_filter_1_0= ruleFilterPattern ) )?
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:689:2: ( (lv_pattern_0_0= ruleQualifiedName ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:690:1: (lv_pattern_0_0= ruleQualifiedName )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:766:2: ( (lv_pattern_0_0= rulePatternExp ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:767:1: (lv_pattern_0_0= rulePatternExp )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:690:1: (lv_pattern_0_0= ruleQualifiedName )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:691:3: lv_pattern_0_0= ruleQualifiedName
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:767:1: (lv_pattern_0_0= rulePatternExp )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:768:3: lv_pattern_0_0= rulePatternExp
             {
              
-            	        newCompositeNode(grammarAccess.getTargetPatternAccess().getPatternQualifiedNameParserRuleCall_0_0()); 
+            	        newCompositeNode(grammarAccess.getTargetPatternAccess().getPatternPatternExpParserRuleCall_0_0()); 
             	    
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleTargetPattern1399);
-            lv_pattern_0_0=ruleQualifiedName();
+            pushFollow(FOLLOW_rulePatternExp_in_ruleTargetPattern1582);
+            lv_pattern_0_0=rulePatternExp();
 
             state._fsp--;
 
@@ -1638,7 +1851,7 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                    			current, 
                    			"pattern",
                     		lv_pattern_0_0, 
-                    		"QualifiedName");
+                    		"PatternExp");
             	        afterParserOrEnumRuleCall();
             	    
 
@@ -1647,24 +1860,24 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:707:2: ( (lv_filter_1_0= ruleFilterPattern ) )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:784:2: ( (lv_filter_1_0= ruleFilterPattern ) )?
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( (LA10_0==13) ) {
-                alt10=1;
+            if ( (LA13_0==13) ) {
+                alt13=1;
             }
-            switch (alt10) {
+            switch (alt13) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:708:1: (lv_filter_1_0= ruleFilterPattern )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:785:1: (lv_filter_1_0= ruleFilterPattern )
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:708:1: (lv_filter_1_0= ruleFilterPattern )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:709:3: lv_filter_1_0= ruleFilterPattern
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:785:1: (lv_filter_1_0= ruleFilterPattern )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:786:3: lv_filter_1_0= ruleFilterPattern
                     {
                      
                     	        newCompositeNode(grammarAccess.getTargetPatternAccess().getFilterFilterPatternParserRuleCall_1_0()); 
                     	    
-                    pushFollow(FOLLOW_ruleFilterPattern_in_ruleTargetPattern1420);
+                    pushFollow(FOLLOW_ruleFilterPattern_in_ruleTargetPattern1603);
                     lv_filter_1_0=ruleFilterPattern();
 
                     state._fsp--;
@@ -1709,26 +1922,26 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleTargetPattern"
 
 
-    // $ANTLR start "entryRuleQualifiedName"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:733:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
-    public final String entryRuleQualifiedName() throws RecognitionException {
+    // $ANTLR start "entryRulePatternExp"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:810:1: entryRulePatternExp returns [String current=null] : iv_rulePatternExp= rulePatternExp EOF ;
+    public final String entryRulePatternExp() throws RecognitionException {
         String current = null;
 
-        AntlrDatatypeRuleToken iv_ruleQualifiedName = null;
+        AntlrDatatypeRuleToken iv_rulePatternExp = null;
 
 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:734:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:735:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:811:2: (iv_rulePatternExp= rulePatternExp EOF )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:812:2: iv_rulePatternExp= rulePatternExp EOF
             {
-             newCompositeNode(grammarAccess.getQualifiedNameRule()); 
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1458);
-            iv_ruleQualifiedName=ruleQualifiedName();
+             newCompositeNode(grammarAccess.getPatternExpRule()); 
+            pushFollow(FOLLOW_rulePatternExp_in_entryRulePatternExp1641);
+            iv_rulePatternExp=rulePatternExp();
 
             state._fsp--;
 
-             current =iv_ruleQualifiedName.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName1469); 
+             current =iv_rulePatternExp.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePatternExp1652); 
 
             }
 
@@ -1742,12 +1955,12 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleQualifiedName"
+    // $ANTLR end "entryRulePatternExp"
 
 
-    // $ANTLR start "ruleQualifiedName"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:742:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
-    public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
+    // $ANTLR start "rulePatternExp"
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:819:1: rulePatternExp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
+    public final AntlrDatatypeRuleToken rulePatternExp() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
         Token this_ID_0=null;
@@ -1757,52 +1970,52 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:745:28: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:746:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:822:28: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:823:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:746:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:746:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:823:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:823:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
-            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1509); 
+            this_ID_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePatternExp1692); 
 
             		current.merge(this_ID_0);
                 
              
-                newLeafNode(this_ID_0, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_0()); 
+                newLeafNode(this_ID_0, grammarAccess.getPatternExpAccess().getIDTerminalRuleCall_0()); 
                 
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:753:1: (kw= '.' this_ID_2= RULE_ID )*
-            loop11:
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:830:1: (kw= '.' this_ID_2= RULE_ID )*
+            loop14:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt14=2;
+                int LA14_0 = input.LA(1);
 
-                if ( (LA11_0==23) ) {
-                    alt11=1;
+                if ( (LA14_0==24) ) {
+                    alt14=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt14) {
             	case 1 :
-            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:754:2: kw= '.' this_ID_2= RULE_ID
+            	    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:831:2: kw= '.' this_ID_2= RULE_ID
             	    {
-            	    kw=(Token)match(input,23,FOLLOW_23_in_ruleQualifiedName1528); 
+            	    kw=(Token)match(input,24,FOLLOW_24_in_rulePatternExp1711); 
 
             	            current.merge(kw);
-            	            newLeafNode(kw, grammarAccess.getQualifiedNameAccess().getFullStopKeyword_1_0()); 
+            	            newLeafNode(kw, grammarAccess.getPatternExpAccess().getFullStopKeyword_1_0()); 
             	        
-            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1543); 
+            	    this_ID_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePatternExp1726); 
 
             	    		current.merge(this_ID_2);
             	        
             	     
-            	        newLeafNode(this_ID_2, grammarAccess.getQualifiedNameAccess().getIDTerminalRuleCall_1_1()); 
+            	        newLeafNode(this_ID_2, grammarAccess.getPatternExpAccess().getIDTerminalRuleCall_1_1()); 
             	        
 
             	    }
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop14;
                 }
             } while (true);
 
@@ -1823,11 +2036,11 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleQualifiedName"
+    // $ANTLR end "rulePatternExp"
 
 
     // $ANTLR start "ruleCacheType"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:774:1: ruleCacheType returns [Enumerator current=null] : ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) ) ;
+    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:853:1: ruleCacheType returns [Enumerator current=null] : ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) ) ;
     public final Enumerator ruleCacheType() throws RecognitionException {
         Enumerator current = null;
 
@@ -1836,33 +2049,33 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:776:28: ( ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:1: ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:855:28: ( ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:856:1: ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:1: ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) )
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:856:1: ( (enumLiteral_0= 'LRU' ) | (enumLiteral_1= 'Predictive' ) )
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA12_0==24) ) {
-                alt12=1;
+            if ( (LA15_0==25) ) {
+                alt15=1;
             }
-            else if ( (LA12_0==25) ) {
-                alt12=2;
+            else if ( (LA15_0==26) ) {
+                alt15=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 12, 0, input);
+                    new NoViableAltException("", 15, 0, input);
 
                 throw nvae;
             }
-            switch (alt12) {
+            switch (alt15) {
                 case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:2: (enumLiteral_0= 'LRU' )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:856:2: (enumLiteral_0= 'LRU' )
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:2: (enumLiteral_0= 'LRU' )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:777:4: enumLiteral_0= 'LRU'
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:856:2: (enumLiteral_0= 'LRU' )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:856:4: enumLiteral_0= 'LRU'
                     {
-                    enumLiteral_0=(Token)match(input,24,FOLLOW_24_in_ruleCacheType1604); 
+                    enumLiteral_0=(Token)match(input,25,FOLLOW_25_in_ruleCacheType1789); 
 
                             current = grammarAccess.getCacheTypeAccess().getLRUEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_0, grammarAccess.getCacheTypeAccess().getLRUEnumLiteralDeclaration_0()); 
@@ -1874,12 +2087,12 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:6: (enumLiteral_1= 'Predictive' )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:862:6: (enumLiteral_1= 'Predictive' )
                     {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:6: (enumLiteral_1= 'Predictive' )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:783:8: enumLiteral_1= 'Predictive'
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:862:6: (enumLiteral_1= 'Predictive' )
+                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:862:8: enumLiteral_1= 'Predictive'
                     {
-                    enumLiteral_1=(Token)match(input,25,FOLLOW_25_in_ruleCacheType1621); 
+                    enumLiteral_1=(Token)match(input,26,FOLLOW_26_in_ruleCacheType1806); 
 
                             current = grammarAccess.getCacheTypeAccess().getPREDICTIVEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             newLeafNode(enumLiteral_1, grammarAccess.getCacheTypeAccess().getPREDICTIVEEnumLiteralDeclaration_1()); 
@@ -1909,201 +2122,6 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end "ruleCacheType"
 
-
-    // $ANTLR start "ruleRefType"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:793:1: ruleRefType returns [Enumerator current=null] : ( (enumLiteral_0= 'strong' ) | (enumLiteral_1= 'soft' ) | (enumLiteral_2= 'weak' ) ) ;
-    public final Enumerator ruleRefType() throws RecognitionException {
-        Enumerator current = null;
-
-        Token enumLiteral_0=null;
-        Token enumLiteral_1=null;
-        Token enumLiteral_2=null;
-
-         enterRule(); 
-        try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:795:28: ( ( (enumLiteral_0= 'strong' ) | (enumLiteral_1= 'soft' ) | (enumLiteral_2= 'weak' ) ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:796:1: ( (enumLiteral_0= 'strong' ) | (enumLiteral_1= 'soft' ) | (enumLiteral_2= 'weak' ) )
-            {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:796:1: ( (enumLiteral_0= 'strong' ) | (enumLiteral_1= 'soft' ) | (enumLiteral_2= 'weak' ) )
-            int alt13=3;
-            switch ( input.LA(1) ) {
-            case 26:
-                {
-                alt13=1;
-                }
-                break;
-            case 27:
-                {
-                alt13=2;
-                }
-                break;
-            case 28:
-                {
-                alt13=3;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt13) {
-                case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:796:2: (enumLiteral_0= 'strong' )
-                    {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:796:2: (enumLiteral_0= 'strong' )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:796:4: enumLiteral_0= 'strong'
-                    {
-                    enumLiteral_0=(Token)match(input,26,FOLLOW_26_in_ruleRefType1666); 
-
-                            current = grammarAccess.getRefTypeAccess().getSTRONGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-                            newLeafNode(enumLiteral_0, grammarAccess.getRefTypeAccess().getSTRONGEnumLiteralDeclaration_0()); 
-                        
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:802:6: (enumLiteral_1= 'soft' )
-                    {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:802:6: (enumLiteral_1= 'soft' )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:802:8: enumLiteral_1= 'soft'
-                    {
-                    enumLiteral_1=(Token)match(input,27,FOLLOW_27_in_ruleRefType1683); 
-
-                            current = grammarAccess.getRefTypeAccess().getSOFTEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-                            newLeafNode(enumLiteral_1, grammarAccess.getRefTypeAccess().getSOFTEnumLiteralDeclaration_1()); 
-                        
-
-                    }
-
-
-                    }
-                    break;
-                case 3 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:808:6: (enumLiteral_2= 'weak' )
-                    {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:808:6: (enumLiteral_2= 'weak' )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:808:8: enumLiteral_2= 'weak'
-                    {
-                    enumLiteral_2=(Token)match(input,28,FOLLOW_28_in_ruleRefType1700); 
-
-                            current = grammarAccess.getRefTypeAccess().getWEAKEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-                            newLeafNode(enumLiteral_2, grammarAccess.getRefTypeAccess().getWEAKEnumLiteralDeclaration_2()); 
-                        
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleRefType"
-
-
-    // $ANTLR start "ruleMoment"
-    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:818:1: ruleMoment returns [Enumerator current=null] : ( (enumLiteral_0= 'on starting' ) | (enumLiteral_1= 'on loading' ) ) ;
-    public final Enumerator ruleMoment() throws RecognitionException {
-        Enumerator current = null;
-
-        Token enumLiteral_0=null;
-        Token enumLiteral_1=null;
-
-         enterRule(); 
-        try {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:820:28: ( ( (enumLiteral_0= 'on starting' ) | (enumLiteral_1= 'on loading' ) ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:821:1: ( (enumLiteral_0= 'on starting' ) | (enumLiteral_1= 'on loading' ) )
-            {
-            // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:821:1: ( (enumLiteral_0= 'on starting' ) | (enumLiteral_1= 'on loading' ) )
-            int alt14=2;
-            int LA14_0 = input.LA(1);
-
-            if ( (LA14_0==29) ) {
-                alt14=1;
-            }
-            else if ( (LA14_0==30) ) {
-                alt14=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
-
-                throw nvae;
-            }
-            switch (alt14) {
-                case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:821:2: (enumLiteral_0= 'on starting' )
-                    {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:821:2: (enumLiteral_0= 'on starting' )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:821:4: enumLiteral_0= 'on starting'
-                    {
-                    enumLiteral_0=(Token)match(input,29,FOLLOW_29_in_ruleMoment1745); 
-
-                            current = grammarAccess.getMomentAccess().getON_STARTINGEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-                            newLeafNode(enumLiteral_0, grammarAccess.getMomentAccess().getON_STARTINGEnumLiteralDeclaration_0()); 
-                        
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:827:6: (enumLiteral_1= 'on loading' )
-                    {
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:827:6: (enumLiteral_1= 'on loading' )
-                    // ../fr.inria.atlanmod.neoemf.prefetching/src-gen/fr/inria/atlanmod/neoemf/parser/antlr/internal/InternalPrefetching.g:827:8: enumLiteral_1= 'on loading'
-                    {
-                    enumLiteral_1=(Token)match(input,30,FOLLOW_30_in_ruleMoment1762); 
-
-                            current = grammarAccess.getMomentAccess().getON_LOADINGEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-                            newLeafNode(enumLiteral_1, grammarAccess.getMomentAccess().getON_LOADINGEnumLiteralDeclaration_1()); 
-                        
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleMoment"
-
     // Delegated rules
 
 
@@ -2112,72 +2130,76 @@ public class InternalPrefetchingParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleModel_in_entryRuleModel75 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModel85 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMetamodelImport_in_ruleModel131 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_ruleCache_in_ruleModel152 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_rulePlan_in_ruleModel173 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_ruleCache_in_ruleModel152 = new BitSet(new long[]{0x0000000000010002L});
+    public static final BitSet FOLLOW_rulePlan_in_ruleModel173 = new BitSet(new long[]{0x0000000000010002L});
     public static final BitSet FOLLOW_ruleMetamodelImport_in_entryRuleMetamodelImport210 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMetamodelImport220 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_11_in_ruleMetamodelImport257 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleMetamodelImport274 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCache_in_entryRuleCache315 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCache325 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleCache362 = new BitSet(new long[]{0x0000000003000000L});
+    public static final BitSet FOLLOW_12_in_ruleCache362 = new BitSet(new long[]{0x0000000006000000L});
     public static final BitSet FOLLOW_ruleCacheType_in_ruleCache383 = new BitSet(new long[]{0x0000000000002002L});
     public static final BitSet FOLLOW_ruleCacheProperties_in_ruleCache404 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCacheProperties_in_entryRuleCacheProperties441 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCacheProperties451 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_13_in_ruleCacheProperties488 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleCacheProperties500 = new BitSet(new long[]{0x000000001C000000L});
-    public static final BitSet FOLLOW_ruleRefType_in_ruleCacheProperties521 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleCacheProperties533 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleCacheProperties550 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleCacheProperties567 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlan_in_entryRulePlan603 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePlan613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rulePlan650 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePlan667 = new BitSet(new long[]{0x0000000000140000L});
-    public static final BitSet FOLLOW_ruleAfterRule_in_rulePlan693 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_rulePlan706 = new BitSet(new long[]{0x0000000060080000L});
-    public static final BitSet FOLLOW_rulePrefetchingRule_in_rulePlan727 = new BitSet(new long[]{0x0000000060080000L});
-    public static final BitSet FOLLOW_19_in_rulePlan740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAfterRule_in_entryRuleAfterRule776 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAfterRule786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleAfterRule823 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleAfterRule843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePrefetchingRule_in_entryRulePrefetchingRule879 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePrefetchingRule889 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMoment_in_rulePrefetchingRule935 = new BitSet(new long[]{0x0000000000200040L});
-    public static final BitSet FOLLOW_ruleSourcePattern_in_rulePrefetchingRule956 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_rulePrefetchingRule969 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_ruleTargetPattern_in_rulePrefetchingRule990 = new BitSet(new long[]{0x0000000000040022L});
-    public static final BitSet FOLLOW_RULE_INT_in_rulePrefetchingRule1008 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_rulePrefetchingRule1025 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_rulePrefetchingRule1040 = new BitSet(new long[]{0x0000000060080000L});
-    public static final BitSet FOLLOW_rulePrefetchingRule_in_rulePrefetchingRule1061 = new BitSet(new long[]{0x0000000060080000L});
-    public static final BitSet FOLLOW_19_in_rulePrefetchingRule1074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSourcePattern_in_entryRuleSourcePattern1112 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSourcePattern1122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleSourcePattern1168 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_ruleFilterPattern_in_ruleSourcePattern1189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFilterPattern_in_entryRuleFilterPattern1226 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFilterPattern1236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_ruleFilterPattern1273 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleFilterPattern1290 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleFilterPattern1307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTargetPattern_in_entryRuleTargetPattern1343 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTargetPattern1353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleTargetPattern1399 = new BitSet(new long[]{0x0000000000002002L});
-    public static final BitSet FOLLOW_ruleFilterPattern_in_ruleTargetPattern1420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName1458 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName1469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1509 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_23_in_ruleQualifiedName1528 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1543 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_24_in_ruleCacheType1604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_ruleCacheType1621 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleRefType1666 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleRefType1683 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleRefType1700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleMoment1745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleMoment1762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_ruleCacheProperties500 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleCacheProperties517 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleCacheProperties534 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlan_in_entryRulePlan570 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePlan580 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rulePlan617 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePlan634 = new BitSet(new long[]{0x00000000000A0000L});
+    public static final BitSet FOLLOW_ruleAfterClause_in_rulePlan660 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_rulePlan673 = new BitSet(new long[]{0x0000000000940000L});
+    public static final BitSet FOLLOW_ruleStartingRule_in_rulePlan696 = new BitSet(new long[]{0x0000000000940000L});
+    public static final BitSet FOLLOW_ruleLoadingRule_in_rulePlan715 = new BitSet(new long[]{0x0000000000940000L});
+    public static final BitSet FOLLOW_18_in_rulePlan731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAfterClause_in_entryRuleAfterClause767 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAfterClause777 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleAfterClause814 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleAfterClause834 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStartingRule_in_entryRuleStartingRule870 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStartingRule880 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleStartingRule917 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleStartingRule929 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_ruleTargetPattern_in_ruleStartingRule950 = new BitSet(new long[]{0x0000000000020020L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleStartingRule968 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleStartingRule985 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleStartingRule1000 = new BitSet(new long[]{0x0000000000940000L});
+    public static final BitSet FOLLOW_ruleLoadingRule_in_ruleStartingRule1021 = new BitSet(new long[]{0x0000000000940000L});
+    public static final BitSet FOLLOW_18_in_ruleStartingRule1034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLoadingRule_in_entryRuleLoadingRule1071 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLoadingRule1081 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleLoadingRule1118 = new BitSet(new long[]{0x0000000000200040L});
+    public static final BitSet FOLLOW_ruleSourcePattern_in_ruleLoadingRule1139 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_ruleLoadingRule1152 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_ruleTargetPattern_in_ruleLoadingRule1173 = new BitSet(new long[]{0x0000000000020022L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleLoadingRule1191 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleLoadingRule1208 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_17_in_ruleLoadingRule1223 = new BitSet(new long[]{0x0000000000940000L});
+    public static final BitSet FOLLOW_ruleLoadingRule_in_ruleLoadingRule1244 = new BitSet(new long[]{0x0000000000940000L});
+    public static final BitSet FOLLOW_18_in_ruleLoadingRule1257 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSourcePattern_in_entryRuleSourcePattern1295 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSourcePattern1305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternExp_in_ruleSourcePattern1351 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_ruleFilterPattern_in_ruleSourcePattern1372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFilterPattern_in_entryRuleFilterPattern1409 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFilterPattern1419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleFilterPattern1456 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleFilterPattern1473 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleFilterPattern1490 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTargetPattern_in_entryRuleTargetPattern1526 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTargetPattern1536 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternExp_in_ruleTargetPattern1582 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_ruleFilterPattern_in_ruleTargetPattern1603 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternExp_in_entryRulePatternExp1641 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePatternExp1652 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePatternExp1692 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_24_in_rulePatternExp1711 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePatternExp1726 = new BitSet(new long[]{0x0000000001000002L});
+    public static final BitSet FOLLOW_25_in_ruleCacheType1789 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleCacheType1806 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -37,6 +37,7 @@ public class PrefetchingParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getPlanAccess().getRulesAlternatives_4_0(), "rule__Plan__RulesAlternatives_4_0");
 					put(grammarAccess.getCacheTypeAccess().getAlternatives(), "rule__CacheType__Alternatives");
 					put(grammarAccess.getRefTypeAccess().getAlternatives(), "rule__RefType__Alternatives");
 					put(grammarAccess.getMomentAccess().getAlternatives(), "rule__Moment__Alternatives");
@@ -45,13 +46,18 @@ public class PrefetchingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCacheAccess().getGroup(), "rule__Cache__Group__0");
 					put(grammarAccess.getCachePropertiesAccess().getGroup(), "rule__CacheProperties__Group__0");
 					put(grammarAccess.getPlanAccess().getGroup(), "rule__Plan__Group__0");
-					put(grammarAccess.getAfterRuleAccess().getGroup(), "rule__AfterRule__Group__0");
-					put(grammarAccess.getPrefetchingRuleAccess().getGroup(), "rule__PrefetchingRule__Group__0");
-					put(grammarAccess.getPrefetchingRuleAccess().getGroup_4(), "rule__PrefetchingRule__Group_4__0");
-					put(grammarAccess.getPrefetchingRuleAccess().getGroup_5(), "rule__PrefetchingRule__Group_5__0");
+					put(grammarAccess.getAfterClauseAccess().getGroup(), "rule__AfterClause__Group__0");
+					put(grammarAccess.getStartingRuleAccess().getGroup(), "rule__StartingRule__Group__0");
+					put(grammarAccess.getStartingRuleAccess().getGroup_3(), "rule__StartingRule__Group_3__0");
+					put(grammarAccess.getStartingRuleAccess().getGroup_4(), "rule__StartingRule__Group_4__0");
+					put(grammarAccess.getLoadingRuleAccess().getGroup(), "rule__LoadingRule__Group__0");
+					put(grammarAccess.getLoadingRuleAccess().getGroup_4(), "rule__LoadingRule__Group_4__0");
+					put(grammarAccess.getLoadingRuleAccess().getGroup_5(), "rule__LoadingRule__Group_5__0");
 					put(grammarAccess.getSourcePatternAccess().getGroup(), "rule__SourcePattern__Group__0");
 					put(grammarAccess.getFilterPatternAccess().getGroup(), "rule__FilterPattern__Group__0");
 					put(grammarAccess.getTargetPatternAccess().getGroup(), "rule__TargetPattern__Group__0");
+					put(grammarAccess.getPatternExpAccess().getGroup(), "rule__PatternExp__Group__0");
+					put(grammarAccess.getPatternExpAccess().getGroup_1(), "rule__PatternExp__Group_1__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 					put(grammarAccess.getModelAccess().getMetamodelAssignment_0(), "rule__Model__MetamodelAssignment_0");
@@ -60,17 +66,18 @@ public class PrefetchingParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMetamodelImportAccess().getNsURIAssignment_1(), "rule__MetamodelImport__NsURIAssignment_1");
 					put(grammarAccess.getCacheAccess().getTypeAssignment_1(), "rule__Cache__TypeAssignment_1");
 					put(grammarAccess.getCacheAccess().getPropertiesAssignment_2(), "rule__Cache__PropertiesAssignment_2");
-					put(grammarAccess.getCachePropertiesAccess().getRefTypeAssignment_2(), "rule__CacheProperties__RefTypeAssignment_2");
-					put(grammarAccess.getCachePropertiesAccess().getSizeAssignment_4(), "rule__CacheProperties__SizeAssignment_4");
-					put(grammarAccess.getPlanAccess().getPlanIdAssignment_1(), "rule__Plan__PlanIdAssignment_1");
+					put(grammarAccess.getCachePropertiesAccess().getSizeAssignment_2(), "rule__CacheProperties__SizeAssignment_2");
+					put(grammarAccess.getPlanAccess().getNameAssignment_1(), "rule__Plan__NameAssignment_1");
 					put(grammarAccess.getPlanAccess().getAfterAssignment_2(), "rule__Plan__AfterAssignment_2");
 					put(grammarAccess.getPlanAccess().getRulesAssignment_4(), "rule__Plan__RulesAssignment_4");
-					put(grammarAccess.getAfterRuleAccess().getPlanIdAssignment_1(), "rule__AfterRule__PlanIdAssignment_1");
-					put(grammarAccess.getPrefetchingRuleAccess().getMomentAssignment_0(), "rule__PrefetchingRule__MomentAssignment_0");
-					put(grammarAccess.getPrefetchingRuleAccess().getSourcePatternAssignment_1(), "rule__PrefetchingRule__SourcePatternAssignment_1");
-					put(grammarAccess.getPrefetchingRuleAccess().getTargetPatternAssignment_3(), "rule__PrefetchingRule__TargetPatternAssignment_3");
-					put(grammarAccess.getPrefetchingRuleAccess().getProbabilityAssignment_4_0(), "rule__PrefetchingRule__ProbabilityAssignment_4_0");
-					put(grammarAccess.getPrefetchingRuleAccess().getSubRulesAssignment_5_1(), "rule__PrefetchingRule__SubRulesAssignment_5_1");
+					put(grammarAccess.getAfterClauseAccess().getPlanAssignment_1(), "rule__AfterClause__PlanAssignment_1");
+					put(grammarAccess.getStartingRuleAccess().getTargetPatternAssignment_2(), "rule__StartingRule__TargetPatternAssignment_2");
+					put(grammarAccess.getStartingRuleAccess().getProbabilityAssignment_3_0(), "rule__StartingRule__ProbabilityAssignment_3_0");
+					put(grammarAccess.getStartingRuleAccess().getSubRulesAssignment_4_1(), "rule__StartingRule__SubRulesAssignment_4_1");
+					put(grammarAccess.getLoadingRuleAccess().getSourcePatternAssignment_1(), "rule__LoadingRule__SourcePatternAssignment_1");
+					put(grammarAccess.getLoadingRuleAccess().getTargetPatternAssignment_3(), "rule__LoadingRule__TargetPatternAssignment_3");
+					put(grammarAccess.getLoadingRuleAccess().getProbabilityAssignment_4_0(), "rule__LoadingRule__ProbabilityAssignment_4_0");
+					put(grammarAccess.getLoadingRuleAccess().getSubRulesAssignment_5_1(), "rule__LoadingRule__SubRulesAssignment_5_1");
 					put(grammarAccess.getSourcePatternAccess().getPatternAssignment_0(), "rule__SourcePattern__PatternAssignment_0");
 					put(grammarAccess.getSourcePatternAccess().getFilterAssignment_1(), "rule__SourcePattern__FilterAssignment_1");
 					put(grammarAccess.getFilterPatternAccess().getStringPatternAssignment_1(), "rule__FilterPattern__StringPatternAssignment_1");

@@ -1,6 +1,6 @@
 grammar fr.inria.atlanmod.neoemf.Prefetching with org.eclipse.xtext.common.Terminals
-
-generate prefetching "http://www.inria.fr/atlanmod/neoemf/Prefetching"
+import "http://www.eclipse.org/emf/2002/Ecore"
+import "http://www.inria.fr/atlanmod/neoemf/Prefetching"
 
 Model:
 	metamodel=MetamodelImport
@@ -21,10 +21,8 @@ enum CacheType:
 	PREDICTIVE='Predictive'
 ;
 
-
-
 CacheProperties:
-	'[' 'type'refType=RefType 'size'size=INT ']'
+	'[' 'size'size=INT ']'
 ;
 
 enum RefType:
@@ -34,24 +32,31 @@ enum RefType:
 ;
 
 Plan:
-	'plan' planId=ID (after=AfterRule)? '{'
-		rules+=PrefetchingRule*
+	'plan' name=ID (after=AfterClause)? '{'
+		rules+=(StartingRule | LoadingRule)*
 	'}'
 ;
 
-AfterRule:
-	'after' planId=[Plan]
+AfterClause:
+	'after' plan=[Plan]
 ;
 
-PrefetchingRule:
-	moment=Moment (sourcePattern=SourcePattern)? 'fetch' targetPattern=TargetPattern (probability=INT'%')?
+StartingRule returns PrefetchingRule:
+	'on starting' 'fetch' targetPattern=TargetPattern (probability=INT'%')?
 	('{'
-		subRules+=PrefetchingRule*
+		subRules+=LoadingRule*
+	'}')
+;
+
+LoadingRule returns PrefetchingRule:
+	'on loading' (sourcePattern=SourcePattern)? 'fetch' targetPattern=TargetPattern (probability=INT'%')?
+	('{'
+		subRules+=LoadingRule*
 	'}')?
 ;
 
 SourcePattern:
-	pattern=QualifiedName (filter=FilterPattern)?
+	pattern=PatternExp (filter=FilterPattern)?
 ;
 
 FilterPattern:
@@ -59,12 +64,16 @@ FilterPattern:
 ;
 
 TargetPattern:
-	pattern=QualifiedName (filter=FilterPattern)?
+	pattern=PatternExp (filter=FilterPattern)?
 ;
 
 enum Moment:
 	ON_STARTING='on starting' |
 	ON_LOADING='on loading'
+;
+
+PatternExp:
+	ID ('.' ID)*
 ;
 
 QualifiedName:

@@ -3,14 +3,24 @@
  */
 package fr.inria.atlanmod.neoemf.ui.contentassist;
 
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.MetamodelImport;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern;
 import fr.inria.atlanmod.neoemf.ui.contentassist.AbstractPrefetchingProposalProvider;
 import java.util.Set;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
@@ -29,5 +39,134 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
       }
     };
     IterableExtensions.<String>forEach(_keySet, _function);
+  }
+  
+  public void completeStartingRule_TargetPattern(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    super.completeStartingRule_TargetPattern(model, assignment, context, acceptor);
+    final PrefetchingRule pr = ((PrefetchingRule) model);
+    final EPackage ePackage = this.getImportedEPackage(pr);
+    EList<EClassifier> _eClassifiers = ePackage.getEClassifiers();
+    final Function1<EClassifier, Boolean> _function = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        return Boolean.valueOf((c instanceof EClass));
+      }
+    };
+    Iterable<EClassifier> _filter = IterableExtensions.<EClassifier>filter(_eClassifiers, _function);
+    final Function1<EClassifier, Boolean> _function_1 = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        boolean _isAbstract = ((EClass) c).isAbstract();
+        return Boolean.valueOf((!_isAbstract));
+      }
+    };
+    Iterable<EClassifier> _filter_1 = IterableExtensions.<EClassifier>filter(_filter, _function_1);
+    final Procedure1<EClassifier> _function_2 = new Procedure1<EClassifier>() {
+      public void apply(final EClassifier c) {
+        String _name = c.getName();
+        ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal(_name, context);
+        acceptor.accept(_createCompletionProposal);
+      }
+    };
+    IterableExtensions.<EClassifier>forEach(_filter_1, _function_2);
+  }
+  
+  public void completeLoadingRule_TargetPattern(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    super.completeLoadingRule_TargetPattern(model, assignment, context, acceptor);
+    final PrefetchingRule pr = ((PrefetchingRule) model);
+    SourcePattern _sourcePattern = pr.getSourcePattern();
+    final String srcPattern = _sourcePattern.getPattern();
+    final EPackage ePackage = this.getImportedEPackage(pr);
+    EList<EClassifier> _eClassifiers = ePackage.getEClassifiers();
+    final Function1<EClassifier, Boolean> _function = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        return Boolean.valueOf((c instanceof EClass));
+      }
+    };
+    Iterable<EClassifier> _filter = IterableExtensions.<EClassifier>filter(_eClassifiers, _function);
+    final Function1<EClassifier, Boolean> _function_1 = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        boolean _isAbstract = ((EClass) c).isAbstract();
+        return Boolean.valueOf((!_isAbstract));
+      }
+    };
+    Iterable<EClassifier> _filter_1 = IterableExtensions.<EClassifier>filter(_filter, _function_1);
+    final Procedure1<EClassifier> _function_2 = new Procedure1<EClassifier>() {
+      public void apply(final EClassifier c) {
+        String _name = c.getName();
+        ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal(_name, context);
+        acceptor.accept(_createCompletionProposal);
+      }
+    };
+    IterableExtensions.<EClassifier>forEach(_filter_1, _function_2);
+    EList<EClassifier> _eClassifiers_1 = ePackage.getEClassifiers();
+    final Function1<EClassifier, Boolean> _function_3 = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        return Boolean.valueOf((c instanceof EClass));
+      }
+    };
+    Iterable<EClassifier> _filter_2 = IterableExtensions.<EClassifier>filter(_eClassifiers_1, _function_3);
+    final Function1<EClassifier, Boolean> _function_4 = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        String _name = c.getName();
+        return Boolean.valueOf(_name.equals(srcPattern));
+      }
+    };
+    EClassifier _findFirst = IterableExtensions.<EClassifier>findFirst(_filter_2, _function_4);
+    final EClass srcEClass = ((EClass) _findFirst);
+    EList<EReference> _eAllReferences = srcEClass.getEAllReferences();
+    final Procedure1<EReference> _function_5 = new Procedure1<EReference>() {
+      public void apply(final EReference r) {
+        String _name = srcEClass.getName();
+        String _plus = (_name + ".");
+        String _name_1 = r.getName();
+        String _plus_1 = (_plus + _name_1);
+        String _prefix = context.getPrefix();
+        ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal(_plus_1, null, null, 100000, _prefix, context);
+        acceptor.accept(_createCompletionProposal);
+      }
+    };
+    IterableExtensions.<EReference>forEach(_eAllReferences, _function_5);
+  }
+  
+  public void completeLoadingRule_SourcePattern(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
+    super.completeLoadingRule_SourcePattern(model, assignment, context, acceptor);
+    final PrefetchingRule pr = ((PrefetchingRule) model);
+    final EPackage ePackage = this.getImportedEPackage(pr);
+    EList<EClassifier> _eClassifiers = ePackage.getEClassifiers();
+    final Function1<EClassifier, Boolean> _function = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        return Boolean.valueOf((c instanceof EClass));
+      }
+    };
+    Iterable<EClassifier> _filter = IterableExtensions.<EClassifier>filter(_eClassifiers, _function);
+    final Function1<EClassifier, Boolean> _function_1 = new Function1<EClassifier, Boolean>() {
+      public Boolean apply(final EClassifier c) {
+        boolean _isAbstract = ((EClass) c).isAbstract();
+        return Boolean.valueOf((!_isAbstract));
+      }
+    };
+    Iterable<EClassifier> _filter_1 = IterableExtensions.<EClassifier>filter(_filter, _function_1);
+    final Procedure1<EClassifier> _function_2 = new Procedure1<EClassifier>() {
+      public void apply(final EClassifier c) {
+        String _name = c.getName();
+        ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal(_name, context);
+        acceptor.accept(_createCompletionProposal);
+      }
+    };
+    IterableExtensions.<EClassifier>forEach(_filter_1, _function_2);
+  }
+  
+  public EPackage getImportedEPackage(final EObject in) {
+    Resource _eResource = in.eResource();
+    EList<EObject> _contents = _eResource.getContents();
+    EObject _get = _contents.get(0);
+    final Model prefetchingModel = ((Model) _get);
+    MetamodelImport _metamodel = prefetchingModel.getMetamodel();
+    final String metamodelURI = _metamodel.getNsURI();
+    Set<String> _keySet = EPackage.Registry.INSTANCE.keySet();
+    boolean _contains = _keySet.contains(metamodelURI);
+    if (_contains) {
+      return EPackage.Registry.INSTANCE.getEPackage(metamodelURI);
+    }
+    return null;
   }
 }

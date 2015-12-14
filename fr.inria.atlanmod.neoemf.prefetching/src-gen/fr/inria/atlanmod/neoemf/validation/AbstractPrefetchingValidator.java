@@ -12,7 +12,7 @@ public class AbstractPrefetchingValidator extends org.eclipse.xtext.validation.A
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
-	    result.add(fr.inria.atlanmod.neoemf.prefetching.PrefetchingPackage.eINSTANCE);
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.inria.fr/atlanmod/neoemf/Prefetching"));
 		return result;
 	}
 }
