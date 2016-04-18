@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Benchmarks
+Bundle-SymbolicName: fr.inria.atlanmod.prefetching.benchmarks
+Bundle-Version: 1.0.0.qualifier
+Export-Package: fr.inria.atlanmod.prefetching.benchmarks.tests
+Require-Bundle: org.eclipse.ocl.ecore;bundle-version="3.3.100",
+ org.eclipse.gmt.modisco.java;bundle-version="0.1.0",
+ fr.inria.atlanmod.neoemf.core;bundle-version="0.0.1",
+ fr.inria.atlanmod.neoemf.graph.blueprints;bundle-version="0.0.1",
+ fr.inria.atlanmod.neoemf.graph.blueprints.neo4j;bundle-version="0.0.1",
+ fr.inria.atlanmod.prefetch;bundle-version="0.0.1",
+ org.junit;bundle-version="4.11.0",
+ fr.inria.atlanmod.prefetch.emf.aspectj;bundle-version="1.0.0"
