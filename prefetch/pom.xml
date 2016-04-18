@@ -102,7 +102,7 @@
 	           <instructions>
 	           	<Bundle-Version>0.0.1.${build.tstamp}</Bundle-Version>
 	           	<Bundle-ClassPath>.,{maven-dependencies},target/classes/</Bundle-ClassPath>
-	           	<Export-Package>*,fr.inria.atlanmod.prefetch.processor,fr.inria.atlanmod.prefetch.processor.emf,fr.inria.atlanmod.prefetch.util,fr.inria.atlanmod.prefetch.cache.emf,fr.inria.atlanmod.prefetch.core,fr.inria.atlanmod.prefetch.event</Export-Package>
+	           	<Export-Package>*,fr.inria.atlanmod.prefetch.cache,fr.inria.atlanmod.prefetch.core,fr.inria.atlanmod.prefetch.core.tasks,fr.inria.atlanmod.prefetch.event,fr.inria.atlanmod.prefetch.event,fr.inria.atlanmod.prefetch.processor,fr.inria.atlanmod.prefetch.processor.emf,fr.inria.atlanmod.prefetch.processor.neoemf,fr.inria.atlanmod.prefetch.util</Export-Package>
 	           	<Import-Package></Import-Package>
 	           	<Embed-Dependency>blueprints-core</Embed-Dependency>
 	           	<!-- <DynamicImport-Package>*</DynamicImport-Package> -->
