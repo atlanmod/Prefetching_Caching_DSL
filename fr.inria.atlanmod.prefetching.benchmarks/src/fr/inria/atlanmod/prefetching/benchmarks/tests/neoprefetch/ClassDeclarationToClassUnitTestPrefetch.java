@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.gmt.modisco.java.JavaPackage;
+import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.Query;
@@ -89,7 +89,7 @@ public class ClassDeclarationToClassUnitTestPrefetch extends AbstractTestCasePre
     
     @Override
     protected String getScriptString() {
-    	return "Q2.prefetch.bin";
+    	return "plans/Q2.prefetch.bin";
     }
     
     @Test

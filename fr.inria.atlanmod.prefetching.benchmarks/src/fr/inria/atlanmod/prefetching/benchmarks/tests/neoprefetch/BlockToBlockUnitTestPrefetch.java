@@ -5,8 +5,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmt.modisco.java.Block;
-import org.eclipse.gmt.modisco.java.JavaPackage;
+import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
@@ -42,7 +41,7 @@ public class BlockToBlockUnitTestPrefetch extends AbstractTestCasePrefetch {
     
     @Override
     protected String getScriptString() {
-    	return "Q3.prefetch.bin";
+    	return "plans/Q3.prefetch.bin";
     }
     
     @Test

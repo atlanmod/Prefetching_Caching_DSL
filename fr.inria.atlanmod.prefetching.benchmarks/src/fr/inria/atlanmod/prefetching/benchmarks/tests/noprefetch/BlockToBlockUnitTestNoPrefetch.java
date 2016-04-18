@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmt.modisco.java.JavaPackage;
+import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
@@ -51,38 +51,21 @@ public class BlockToBlockUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	        Object res = query.evaluate(blocks);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
-	        int count = 0;
-	        if(res instanceof Collection) {
-	        	Collection cc = (Collection)res;
-	        	for(Object oo : cc) {
-	        		if(oo instanceof Collection) {
-	        			Collection c2 = (Collection)oo;
-	        			for(Object o2 : c2) {
-	        				count++;
-	        			}
-	        		}
-	        		else {
-	        			count++;
-	        		}
-	        	}
+
+	        System.out.println("Q2");
+	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+	        this.oclHelper = ocl.createOCLHelper();
+	        oclHelper.setContext(eContext);
+	        try {
+	            expression = oclHelper.createQuery(textualQuery);
+	        } catch (ParserException e) {
+	            e.printStackTrace();
 	        }
-//	        
-	        System.out.println("res count = " + count);
-//        
-//	        System.out.println("Q2");
-//	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
-//	        this.oclHelper = ocl.createOCLHelper();
-//	        oclHelper.setContext(eContext);
-//	        try {
-//	            expression = oclHelper.createQuery(textualQuery);
-//	        } catch (ParserException e) {
-//	            e.printStackTrace();
-//	        }
-//	        this.query = ocl.createQuery(expression);
-//	        begin = System.currentTimeMillis();
-//	        Object res2 = query.evaluate(blocks);
-//	        end = System.currentTimeMillis();
-//	        System.out.println("Done : " + (end-begin) + "ms");
+	        this.query = ocl.createQuery(expression);
+	        begin = System.currentTimeMillis();
+	        Object res2 = query.evaluate(blocks);
+	        end = System.currentTimeMillis();
+	        System.out.println("Done : " + (end-begin) + "ms");
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

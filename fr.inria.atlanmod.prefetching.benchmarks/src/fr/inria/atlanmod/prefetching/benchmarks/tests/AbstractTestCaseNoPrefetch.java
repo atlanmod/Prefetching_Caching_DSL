@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.gmt.modisco.java.JavaPackage;
+import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.Query;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
@@ -64,7 +64,7 @@ public class AbstractTestCaseNoPrefetch extends AbstractPrefetchTest {
 		Map<Object,Object> options = new HashMap<Object,Object>();
 		List<Object> storeOptions = new ArrayList<Object>();
 		storeOptions.add(BlueprintsResourceOptions.EStoreGraphOption.DIRECT_WRITE);
-		storeOptions.add(PersistentResourceOptions.EStoreOption.LOADED_OBJECT_COUNTER_LOGGING);
+//		storeOptions.add(PersistentResourceOptions.EStoreOption.LOADED_OBJECT_COUNTER_LOGGING);
 		options.put(
 		    BlueprintsResourceOptions.OPTIONS_BLUEPRINTS_GRAPH_TYPE,
 		    BlueprintsNeo4jResourceOptions.OPTIONS_BLUEPRINTS_TYPE_NEO4J);

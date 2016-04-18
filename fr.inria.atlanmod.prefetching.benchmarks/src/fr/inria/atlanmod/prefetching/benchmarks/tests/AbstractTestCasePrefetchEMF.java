@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.gmt.modisco.java.JavaPackage;
+import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.Query;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
@@ -64,8 +64,10 @@ public abstract class AbstractTestCasePrefetchEMF extends AbstractPrefetchTest {
 		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		resSet.getResourceFactoryRegistry().getProtocolToFactoryMap().put(NeoBlueprintsURI.NEO_GRAPH_SCHEME, new PersistentResourceFactoryImpl());
 		
+		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File(resourceName)));
+		
 //		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File("jdt-core.graph")));
-		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File("modisco.graph")));
+//		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File("modisco.graph")));
 
 		Map<Object,Object> options = new HashMap<Object,Object>();
 		List<Object> storeOptions = new ArrayList<Object>();

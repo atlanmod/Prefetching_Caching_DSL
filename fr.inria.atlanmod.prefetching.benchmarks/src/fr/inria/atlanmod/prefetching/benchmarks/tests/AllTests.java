@@ -4,7 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import fr.inria.atalnmod.prefetching.benchmarks.tests.emfprefetch.EMFTestSuite;
+import fr.inria.atlanmod.prefetching.benchmarks.tests.emfprefetch.EMFTestSuite;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.neoprefetch.NeoPrefetchTestSuite;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.noprefetch.NoPrefetchTestSuite;
 
