@@ -3,9 +3,17 @@
  */
 package fr.inria.atlanmod.neoemf.generator;
 
+import java.io.File;
+import java.util.Collections;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 /**
  * Generates code from your model files on save.
@@ -15,5 +23,28 @@ import org.eclipse.xtext.generator.IGenerator;
 @SuppressWarnings("all")
 public class PrefetchingGenerator implements IGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    try {
+      final URI rURI = resource.getURI();
+      InputOutput.<String>println(("saving ... " + rURI));
+      String _fileString = rURI.toFileString();
+      InputOutput.<String>println(_fileString);
+      String _path = rURI.path();
+      InputOutput.<String>println(_path);
+      File _file = new File("test.bin");
+      String _absolutePath = _file.getAbsolutePath();
+      InputOutput.<String>println(_absolutePath);
+      ResourceSet _resourceSet = resource.getResourceSet();
+      URI _appendFileExtension = rURI.appendFileExtension("bin");
+      Resource rr = _resourceSet.createResource(_appendFileExtension);
+      EList<EObject> _contents = rr.getContents();
+      _contents.clear();
+      EList<EObject> _contents_1 = rr.getContents();
+      EList<EObject> _contents_2 = resource.getContents();
+      _contents_1.addAll(_contents_2);
+      rr.save(Collections.EMPTY_MAP);
+      fsa.generateFile("test.txt", "ttt");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

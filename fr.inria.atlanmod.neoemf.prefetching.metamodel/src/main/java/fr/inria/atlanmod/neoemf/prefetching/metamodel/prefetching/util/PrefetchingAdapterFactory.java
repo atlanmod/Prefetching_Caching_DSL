@@ -96,6 +96,14 @@ public class PrefetchingAdapterFactory extends AdapterFactoryImpl {
 				return createPrefetchingRuleAdapter();
 			}
 			@Override
+			public Adapter caseStartingRule(StartingRule object) {
+				return createStartingRuleAdapter();
+			}
+			@Override
+			public Adapter caseAccessRule(AccessRule object) {
+				return createAccessRuleAdapter();
+			}
+			@Override
 			public Adapter caseSourcePattern(SourcePattern object) {
 				return createSourcePatternAdapter();
 			}
@@ -106,6 +114,10 @@ public class PrefetchingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTargetPattern(TargetPattern object) {
 				return createTargetPatternAdapter();
+			}
+			@Override
+			public Adapter caseFeaturePattern(FeaturePattern object) {
+				return createFeaturePatternAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -226,6 +238,34 @@ public class PrefetchingAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule <em>Starting Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule
+	 * @generated
+	 */
+	public Adapter createStartingRuleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule <em>Access Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule
+	 * @generated
+	 */
+	public Adapter createAccessRuleAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern <em>Source Pattern</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -264,6 +304,20 @@ public class PrefetchingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTargetPatternAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern <em>Feature Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern
+	 * @generated
+	 */
+	public Adapter createFeaturePatternAdapter() {
 		return null;
 	}
 

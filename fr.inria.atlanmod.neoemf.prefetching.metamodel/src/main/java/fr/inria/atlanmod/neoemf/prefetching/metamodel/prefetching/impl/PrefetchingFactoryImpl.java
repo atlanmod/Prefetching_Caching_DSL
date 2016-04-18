@@ -64,9 +64,12 @@ public class PrefetchingFactoryImpl extends EFactoryImpl implements PrefetchingF
 			case PrefetchingPackage.PLAN: return createPlan();
 			case PrefetchingPackage.AFTER_CLAUSE: return createAfterClause();
 			case PrefetchingPackage.PREFETCHING_RULE: return createPrefetchingRule();
+			case PrefetchingPackage.STARTING_RULE: return createStartingRule();
+			case PrefetchingPackage.ACCESS_RULE: return createAccessRule();
 			case PrefetchingPackage.SOURCE_PATTERN: return createSourcePattern();
 			case PrefetchingPackage.FILTER_PATTERN: return createFilterPattern();
 			case PrefetchingPackage.TARGET_PATTERN: return createTargetPattern();
+			case PrefetchingPackage.FEATURE_PATTERN: return createFeaturePattern();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -185,6 +188,26 @@ public class PrefetchingFactoryImpl extends EFactoryImpl implements PrefetchingF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public StartingRule createStartingRule() {
+		StartingRuleImpl startingRule = new StartingRuleImpl();
+		return startingRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AccessRule createAccessRule() {
+		AccessRuleImpl accessRule = new AccessRuleImpl();
+		return accessRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SourcePattern createSourcePattern() {
 		SourcePatternImpl sourcePattern = new SourcePatternImpl();
 		return sourcePattern;
@@ -208,6 +231,16 @@ public class PrefetchingFactoryImpl extends EFactoryImpl implements PrefetchingF
 	public TargetPattern createTargetPattern() {
 		TargetPatternImpl targetPattern = new TargetPatternImpl();
 		return targetPattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FeaturePattern createFeaturePattern() {
+		FeaturePatternImpl featurePattern = new FeaturePatternImpl();
+		return featurePattern;
 	}
 
 	/**

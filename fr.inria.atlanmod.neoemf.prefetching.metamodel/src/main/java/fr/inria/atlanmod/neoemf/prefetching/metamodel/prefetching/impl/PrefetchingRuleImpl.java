@@ -4,24 +4,16 @@ package fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl;
 
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern;
-
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,9 +23,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingRuleImpl#getTargetPattern <em>Target Pattern</em>}</li>
- *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingRuleImpl#getProbability <em>Probability</em>}</li>
- *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingRuleImpl#getSubRules <em>Sub Rules</em>}</li>
- *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingRuleImpl#getSourcePattern <em>Source Pattern</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingRuleImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,44 +41,24 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 	protected TargetPattern targetPattern;
 
 	/**
-	 * The default value of the '{@link #getProbability() <em>Probability</em>}' attribute.
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProbability()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int PROBABILITY_EDEFAULT = 0;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProbability() <em>Probability</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProbability()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected int probability = PROBABILITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getSubRules() <em>Sub Rules</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubRules()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<PrefetchingRule> subRules;
-
-	/**
-	 * The cached value of the '{@link #getSourcePattern() <em>Source Pattern</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSourcePattern()
-	 * @generated
-	 * @ordered
-	 */
-	protected SourcePattern sourcePattern;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,8 +127,8 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getProbability() {
-		return probability;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -166,66 +136,11 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProbability(int newProbability) {
-		int oldProbability = probability;
-		probability = newProbability;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PrefetchingPackage.PREFETCHING_RULE__PROBABILITY, oldProbability, probability));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<PrefetchingRule> getSubRules() {
-		if (subRules == null) {
-			subRules = new EObjectContainmentEList<PrefetchingRule>(PrefetchingRule.class, this, PrefetchingPackage.PREFETCHING_RULE__SUB_RULES);
-		}
-		return subRules;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SourcePattern getSourcePattern() {
-		return sourcePattern;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetSourcePattern(SourcePattern newSourcePattern, NotificationChain msgs) {
-		SourcePattern oldSourcePattern = sourcePattern;
-		sourcePattern = newSourcePattern;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN, oldSourcePattern, newSourcePattern);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSourcePattern(SourcePattern newSourcePattern) {
-		if (newSourcePattern != sourcePattern) {
-			NotificationChain msgs = null;
-			if (sourcePattern != null)
-				msgs = ((InternalEObject)sourcePattern).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN, null, msgs);
-			if (newSourcePattern != null)
-				msgs = ((InternalEObject)newSourcePattern).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN, null, msgs);
-			msgs = basicSetSourcePattern(newSourcePattern, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN, newSourcePattern, newSourcePattern));
+			eNotify(new ENotificationImpl(this, Notification.SET, PrefetchingPackage.PREFETCHING_RULE__NAME, oldName, name));
 	}
 
 	/**
@@ -238,10 +153,6 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case PrefetchingPackage.PREFETCHING_RULE__TARGET_PATTERN:
 				return basicSetTargetPattern(null, msgs);
-			case PrefetchingPackage.PREFETCHING_RULE__SUB_RULES:
-				return ((InternalEList<?>)getSubRules()).basicRemove(otherEnd, msgs);
-			case PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN:
-				return basicSetSourcePattern(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -256,12 +167,8 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case PrefetchingPackage.PREFETCHING_RULE__TARGET_PATTERN:
 				return getTargetPattern();
-			case PrefetchingPackage.PREFETCHING_RULE__PROBABILITY:
-				return getProbability();
-			case PrefetchingPackage.PREFETCHING_RULE__SUB_RULES:
-				return getSubRules();
-			case PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN:
-				return getSourcePattern();
+			case PrefetchingPackage.PREFETCHING_RULE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -271,22 +178,14 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case PrefetchingPackage.PREFETCHING_RULE__TARGET_PATTERN:
 				setTargetPattern((TargetPattern)newValue);
 				return;
-			case PrefetchingPackage.PREFETCHING_RULE__PROBABILITY:
-				setProbability((Integer)newValue);
-				return;
-			case PrefetchingPackage.PREFETCHING_RULE__SUB_RULES:
-				getSubRules().clear();
-				getSubRules().addAll((Collection<? extends PrefetchingRule>)newValue);
-				return;
-			case PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN:
-				setSourcePattern((SourcePattern)newValue);
+			case PrefetchingPackage.PREFETCHING_RULE__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -303,14 +202,8 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 			case PrefetchingPackage.PREFETCHING_RULE__TARGET_PATTERN:
 				setTargetPattern((TargetPattern)null);
 				return;
-			case PrefetchingPackage.PREFETCHING_RULE__PROBABILITY:
-				setProbability(PROBABILITY_EDEFAULT);
-				return;
-			case PrefetchingPackage.PREFETCHING_RULE__SUB_RULES:
-				getSubRules().clear();
-				return;
-			case PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN:
-				setSourcePattern((SourcePattern)null);
+			case PrefetchingPackage.PREFETCHING_RULE__NAME:
+				setName(NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -326,12 +219,8 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case PrefetchingPackage.PREFETCHING_RULE__TARGET_PATTERN:
 				return targetPattern != null;
-			case PrefetchingPackage.PREFETCHING_RULE__PROBABILITY:
-				return probability != PROBABILITY_EDEFAULT;
-			case PrefetchingPackage.PREFETCHING_RULE__SUB_RULES:
-				return subRules != null && !subRules.isEmpty();
-			case PrefetchingPackage.PREFETCHING_RULE__SOURCE_PATTERN:
-				return sourcePattern != null;
+			case PrefetchingPackage.PREFETCHING_RULE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -346,8 +235,8 @@ public class PrefetchingRuleImpl extends MinimalEObjectImpl.Container implements
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (probability: ");
-		result.append(probability);
+		result.append(" (name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

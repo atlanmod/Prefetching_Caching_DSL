@@ -108,6 +108,20 @@ public class PrefetchingSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PrefetchingPackage.STARTING_RULE: {
+				StartingRule startingRule = (StartingRule)theEObject;
+				T result = caseStartingRule(startingRule);
+				if (result == null) result = casePrefetchingRule(startingRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PrefetchingPackage.ACCESS_RULE: {
+				AccessRule accessRule = (AccessRule)theEObject;
+				T result = caseAccessRule(accessRule);
+				if (result == null) result = casePrefetchingRule(accessRule);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case PrefetchingPackage.SOURCE_PATTERN: {
 				SourcePattern sourcePattern = (SourcePattern)theEObject;
 				T result = caseSourcePattern(sourcePattern);
@@ -123,6 +137,12 @@ public class PrefetchingSwitch<T> extends Switch<T> {
 			case PrefetchingPackage.TARGET_PATTERN: {
 				TargetPattern targetPattern = (TargetPattern)theEObject;
 				T result = caseTargetPattern(targetPattern);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PrefetchingPackage.FEATURE_PATTERN: {
+				FeaturePattern featurePattern = (FeaturePattern)theEObject;
+				T result = caseFeaturePattern(featurePattern);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -236,6 +256,36 @@ public class PrefetchingSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Starting Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Starting Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStartingRule(StartingRule object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Access Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Access Rule</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAccessRule(AccessRule object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Source Pattern</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -277,6 +327,21 @@ public class PrefetchingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTargetPattern(TargetPattern object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Pattern</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeaturePattern(FeaturePattern object) {
 		return null;
 	}
 

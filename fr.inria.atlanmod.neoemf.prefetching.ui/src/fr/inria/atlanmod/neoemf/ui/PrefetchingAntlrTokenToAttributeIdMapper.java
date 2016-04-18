@@ -10,7 +10,7 @@ public class PrefetchingAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenT
 {
 //    private static final Pattern QUOTED = Pattern.compile("(?:^'(\\w[^']*)'$)|(?:^\"(\\w[^\"]*)\")$", Pattern.MULTILINE);
 
-	private List<String> atlBlueKeywords = Arrays.asList("'LRU'","'Predictive'","'['","']'","'size'");
+	private List<String> atlBlueKeywords = Arrays.asList("'LRU'","'Predictive'","'['","']'","'size'","'chunk'");
 	
 	
 	

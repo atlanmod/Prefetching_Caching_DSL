@@ -1,0 +1,33 @@
+ <aspectj>
+
+            <aspects>
+              <!-- declare two existing aspects to the weaver -->
+           <!--   <aspect name="fr.inria.atlanmod.prefetch.emf.aspectj.ResourceAspect"/> -->
+              <aspect name="fr.inria.atlanmod.prefetch.emf.aspectj.EGetAspect"/>
+
+              <!-- Of the set of aspects declared to the weaver
+                   use aspects matching the type pattern "com..*" for weaving. -->
+              <include within="fr.inria.atlanmod.prefetch.emf.aspectj..*"/>
+
+            </aspects>
+
+            <weaver options="-verbose">
+              <!-- Weave types that are within the javax.* or org.aspectj.*
+                   packages. Also weave all types in the foo package that do
+                   not have the @NoWeave annotation. -->
+              <include within="org.eclipse.emf.ecore.resource.*"/>
+              <include within="org.eclipse.emf.ecore.resource.impl.*"/>
+              <include within="org.eclipse.emf.ecore.*"/>
+              <include within="org.eclipse.emf.ecore.impl.*"/>
+              <include within="org.eclipse.emf.common.util.*"/>
+              
+              <include within="fr.inria.atlanmod.prefetch.processor..*"/>
+              <!-- <include within="fr.inria.atlanmod.neoemf..*"/> -->
+
+              <!-- Dump all types within the "somepack" package,
+                   both before are after they are woven,
+                   to the "./_ajdump" folder on disk (for diagnostic purposes) -->
+              <dump within="somepack.*" />
+            </weaver>
+
+          </aspectj>

@@ -2,10 +2,12 @@
  */
 package fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl;
 
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AfterClause;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Cache;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheProperties;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheType;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FilterPattern;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.MetamodelImport;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model;
@@ -16,6 +18,7 @@ import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPac
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.RefType;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -23,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -87,6 +91,20 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass startingRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass accessRuleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass sourcePatternEClass = null;
 
 	/**
@@ -102,6 +120,13 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * @generated
 	 */
 	private EClass targetPatternEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass featurePatternEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,6 +195,9 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
 		// Create package meta-data objects
 		thePrefetchingPackage.createPackageContents();
 
@@ -208,17 +236,8 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModel_Cache() {
-		return (EReference)modelEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getModel_Plans() {
-		return (EReference)modelEClass.getEStructuralFeatures().get(2);
+		return (EReference)modelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -289,6 +308,15 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getCacheProperties_Chunk() {
+		return (EAttribute)cachePropertiesEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPlan() {
 		return planEClass;
 	}
@@ -318,6 +346,15 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 */
 	public EReference getPlan_Rules() {
 		return (EReference)planEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPlan_Cache() {
+		return (EReference)planEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -361,7 +398,7 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPrefetchingRule_Probability() {
+	public EAttribute getPrefetchingRule_Name() {
 		return (EAttribute)prefetchingRuleEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -370,8 +407,8 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrefetchingRule_SubRules() {
-		return (EReference)prefetchingRuleEClass.getEStructuralFeatures().get(2);
+	public EClass getStartingRule() {
+		return startingRuleEClass;
 	}
 
 	/**
@@ -379,8 +416,26 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrefetchingRule_SourcePattern() {
-		return (EReference)prefetchingRuleEClass.getEStructuralFeatures().get(3);
+	public EClass getAccessRule() {
+		return accessRuleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAccessRule_SourcePattern() {
+		return (EReference)accessRuleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAccessRule_RemoveType() {
+		return (EAttribute)accessRuleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -408,6 +463,15 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 */
 	public EReference getSourcePattern_Filter() {
 		return (EReference)sourcePatternEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSourcePattern_EClass() {
+		return (EReference)sourcePatternEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -451,8 +515,44 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTargetPattern_Filter() {
+	public EReference getTargetPattern_EClass() {
 		return (EReference)targetPatternEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetPattern_Features() {
+		return (EReference)targetPatternEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFeaturePattern() {
+		return featurePatternEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFeaturePattern_Feature() {
+		return (EReference)featurePatternEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFeaturePattern_Closure() {
+		return (EAttribute)featurePatternEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -512,7 +612,6 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 		// Create classes and their features
 		modelEClass = createEClass(MODEL);
 		createEReference(modelEClass, MODEL__METAMODEL);
-		createEReference(modelEClass, MODEL__CACHE);
 		createEReference(modelEClass, MODEL__PLANS);
 
 		metamodelImportEClass = createEClass(METAMODEL_IMPORT);
@@ -524,31 +623,43 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 
 		cachePropertiesEClass = createEClass(CACHE_PROPERTIES);
 		createEAttribute(cachePropertiesEClass, CACHE_PROPERTIES__SIZE);
+		createEAttribute(cachePropertiesEClass, CACHE_PROPERTIES__CHUNK);
 
 		planEClass = createEClass(PLAN);
 		createEAttribute(planEClass, PLAN__NAME);
 		createEReference(planEClass, PLAN__AFTER);
 		createEReference(planEClass, PLAN__RULES);
+		createEReference(planEClass, PLAN__CACHE);
 
 		afterClauseEClass = createEClass(AFTER_CLAUSE);
 		createEReference(afterClauseEClass, AFTER_CLAUSE__PLAN);
 
 		prefetchingRuleEClass = createEClass(PREFETCHING_RULE);
 		createEReference(prefetchingRuleEClass, PREFETCHING_RULE__TARGET_PATTERN);
-		createEAttribute(prefetchingRuleEClass, PREFETCHING_RULE__PROBABILITY);
-		createEReference(prefetchingRuleEClass, PREFETCHING_RULE__SUB_RULES);
-		createEReference(prefetchingRuleEClass, PREFETCHING_RULE__SOURCE_PATTERN);
+		createEAttribute(prefetchingRuleEClass, PREFETCHING_RULE__NAME);
+
+		startingRuleEClass = createEClass(STARTING_RULE);
+
+		accessRuleEClass = createEClass(ACCESS_RULE);
+		createEReference(accessRuleEClass, ACCESS_RULE__SOURCE_PATTERN);
+		createEAttribute(accessRuleEClass, ACCESS_RULE__REMOVE_TYPE);
 
 		sourcePatternEClass = createEClass(SOURCE_PATTERN);
 		createEAttribute(sourcePatternEClass, SOURCE_PATTERN__PATTERN);
 		createEReference(sourcePatternEClass, SOURCE_PATTERN__FILTER);
+		createEReference(sourcePatternEClass, SOURCE_PATTERN__ECLASS);
 
 		filterPatternEClass = createEClass(FILTER_PATTERN);
 		createEAttribute(filterPatternEClass, FILTER_PATTERN__STRING_PATTERN);
 
 		targetPatternEClass = createEClass(TARGET_PATTERN);
 		createEAttribute(targetPatternEClass, TARGET_PATTERN__PATTERN);
-		createEReference(targetPatternEClass, TARGET_PATTERN__FILTER);
+		createEReference(targetPatternEClass, TARGET_PATTERN__ECLASS);
+		createEReference(targetPatternEClass, TARGET_PATTERN__FEATURES);
+
+		featurePatternEClass = createEClass(FEATURE_PATTERN);
+		createEReference(featurePatternEClass, FEATURE_PATTERN__FEATURE);
+		createEAttribute(featurePatternEClass, FEATURE_PATTERN__CLOSURE);
 
 		// Create enums
 		cacheTypeEEnum = createEEnum(CACHE_TYPE);
@@ -579,16 +690,20 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		startingRuleEClass.getESuperTypes().add(this.getPrefetchingRule());
+		accessRuleEClass.getESuperTypes().add(this.getPrefetchingRule());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModel_Metamodel(), this.getMetamodelImport(), null, "metamodel", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModel_Cache(), this.getCache(), null, "cache", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getModel_Plans(), this.getPlan(), null, "plans", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(metamodelImportEClass, MetamodelImport.class, "MetamodelImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -600,31 +715,43 @@ public class PrefetchingPackageImpl extends EPackageImpl implements PrefetchingP
 
 		initEClass(cachePropertiesEClass, CacheProperties.class, "CacheProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCacheProperties_Size(), ecorePackage.getEInt(), "size", null, 0, 1, CacheProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCacheProperties_Chunk(), ecorePackage.getEInt(), "chunk", null, 0, 1, CacheProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(planEClass, Plan.class, "Plan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPlan_Name(), ecorePackage.getEString(), "name", null, 0, 1, Plan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlan_After(), this.getAfterClause(), null, "after", null, 0, 1, Plan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPlan_Rules(), this.getPrefetchingRule(), null, "rules", null, 0, -1, Plan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPlan_Cache(), this.getCache(), null, "cache", null, 0, 1, Plan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(afterClauseEClass, AfterClause.class, "AfterClause", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAfterClause_Plan(), this.getPlan(), null, "plan", null, 0, 1, AfterClause.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(prefetchingRuleEClass, PrefetchingRule.class, "PrefetchingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPrefetchingRule_TargetPattern(), this.getTargetPattern(), null, "targetPattern", null, 0, 1, PrefetchingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPrefetchingRule_Probability(), ecorePackage.getEInt(), "probability", null, 0, 1, PrefetchingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPrefetchingRule_SubRules(), this.getPrefetchingRule(), null, "subRules", null, 0, -1, PrefetchingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPrefetchingRule_SourcePattern(), this.getSourcePattern(), null, "sourcePattern", null, 0, 1, PrefetchingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPrefetchingRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, PrefetchingRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(startingRuleEClass, StartingRule.class, "StartingRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(accessRuleEClass, AccessRule.class, "AccessRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAccessRule_SourcePattern(), this.getSourcePattern(), null, "sourcePattern", null, 0, 1, AccessRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAccessRule_RemoveType(), ecorePackage.getEString(), "removeType", null, 0, 1, AccessRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sourcePatternEClass, SourcePattern.class, "SourcePattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSourcePattern_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, SourcePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSourcePattern_Filter(), this.getFilterPattern(), null, "filter", null, 0, 1, SourcePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourcePattern_EClass(), theEcorePackage.getEClass(), null, "eClass", null, 0, 1, SourcePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(filterPatternEClass, FilterPattern.class, "FilterPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFilterPattern_StringPattern(), ecorePackage.getEString(), "stringPattern", null, 0, 1, FilterPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(targetPatternEClass, TargetPattern.class, "TargetPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTargetPattern_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, TargetPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTargetPattern_Filter(), this.getFilterPattern(), null, "filter", null, 0, 1, TargetPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetPattern_EClass(), theEcorePackage.getEClass(), null, "eClass", null, 0, 1, TargetPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetPattern_Features(), this.getFeaturePattern(), null, "features", null, 0, -1, TargetPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(featurePatternEClass, FeaturePattern.class, "FeaturePattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFeaturePattern_Feature(), theEcorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, FeaturePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeaturePattern_Closure(), ecorePackage.getEBoolean(), "closure", "false", 0, 1, FeaturePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(cacheTypeEEnum, CacheType.class, "CacheType");

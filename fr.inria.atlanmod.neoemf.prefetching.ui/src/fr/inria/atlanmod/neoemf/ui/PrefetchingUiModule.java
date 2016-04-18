@@ -4,7 +4,9 @@
 package fr.inria.atlanmod.neoemf.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
+import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -31,6 +33,14 @@ public class PrefetchingUiModule extends fr.inria.atlanmod.neoemf.ui.AbstractPre
 	
 	public Class<? extends LazyLinker> bindLazyLinker() {
 		return PrefetchingLazyLinker.class;
+	}
+	
+	public Class<? extends IEObjectHoverProvider> bindIEobjectHoverProvider() {
+		return PrefetchingEObjectHoverProvider.class;
+	}
+	
+	public Class<? extends IEObjectDocumentationProvider> bindIEobjectDocumentationProvider() {
+		return PrefetchingEObjectDocumentationProvider.class;
 	}
 	
 }

@@ -2,6 +2,8 @@
  */
 package fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,7 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getPattern <em>Pattern</em>}</li>
- *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getFilter <em>Filter</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getEClass <em>EClass</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getFeatures <em>Features</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,29 +52,45 @@ public interface TargetPattern extends EObject {
 	void setPattern(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Filter</b></em>' containment reference.
+	 * Returns the value of the '<em><b>EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filter</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>EClass</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filter</em>' containment reference.
-	 * @see #setFilter(FilterPattern)
-	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage#getTargetPattern_Filter()
+	 * @return the value of the '<em>EClass</em>' reference.
+	 * @see #setEClass(EClass)
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage#getTargetPattern_EClass()
+	 * @model
+	 * @generated
+	 */
+	EClass getEClass();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getEClass <em>EClass</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>EClass</em>' reference.
+	 * @see #getEClass()
+	 * @generated
+	 */
+	void setEClass(EClass value);
+
+	/**
+	 * Returns the value of the '<em><b>Features</b></em>' containment reference list.
+	 * The list contents are of type {@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Features</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Features</em>' containment reference list.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage#getTargetPattern_Features()
 	 * @model containment="true"
 	 * @generated
 	 */
-	FilterPattern getFilter();
-
-	/**
-	 * Sets the value of the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getFilter <em>Filter</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filter</em>' containment reference.
-	 * @see #getFilter()
-	 * @generated
-	 */
-	void setFilter(FilterPattern value);
+	EList<FeaturePattern> getFeatures();
 
 } // TargetPattern

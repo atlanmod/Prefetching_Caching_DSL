@@ -3,6 +3,7 @@
 package fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl;
 
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AfterClause;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Cache;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Plan;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PlanImpl#getName <em>Name</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PlanImpl#getAfter <em>After</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PlanImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PlanImpl#getCache <em>Cache</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,6 +80,16 @@ public class PlanImpl extends MinimalEObjectImpl.Container implements Plan {
 	 * @ordered
 	 */
 	protected EList<PrefetchingRule> rules;
+
+	/**
+	 * The cached value of the '{@link #getCache() <em>Cache</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCache()
+	 * @generated
+	 * @ordered
+	 */
+	protected Cache cache;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -179,6 +191,49 @@ public class PlanImpl extends MinimalEObjectImpl.Container implements Plan {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Cache getCache() {
+		return cache;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCache(Cache newCache, NotificationChain msgs) {
+		Cache oldCache = cache;
+		cache = newCache;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PrefetchingPackage.PLAN__CACHE, oldCache, newCache);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCache(Cache newCache) {
+		if (newCache != cache) {
+			NotificationChain msgs = null;
+			if (cache != null)
+				msgs = ((InternalEObject)cache).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PrefetchingPackage.PLAN__CACHE, null, msgs);
+			if (newCache != null)
+				msgs = ((InternalEObject)newCache).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PrefetchingPackage.PLAN__CACHE, null, msgs);
+			msgs = basicSetCache(newCache, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PrefetchingPackage.PLAN__CACHE, newCache, newCache));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -186,6 +241,8 @@ public class PlanImpl extends MinimalEObjectImpl.Container implements Plan {
 				return basicSetAfter(null, msgs);
 			case PrefetchingPackage.PLAN__RULES:
 				return ((InternalEList<?>)getRules()).basicRemove(otherEnd, msgs);
+			case PrefetchingPackage.PLAN__CACHE:
+				return basicSetCache(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -204,6 +261,8 @@ public class PlanImpl extends MinimalEObjectImpl.Container implements Plan {
 				return getAfter();
 			case PrefetchingPackage.PLAN__RULES:
 				return getRules();
+			case PrefetchingPackage.PLAN__CACHE:
+				return getCache();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,6 +286,9 @@ public class PlanImpl extends MinimalEObjectImpl.Container implements Plan {
 				getRules().clear();
 				getRules().addAll((Collection<? extends PrefetchingRule>)newValue);
 				return;
+			case PrefetchingPackage.PLAN__CACHE:
+				setCache((Cache)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -248,6 +310,9 @@ public class PlanImpl extends MinimalEObjectImpl.Container implements Plan {
 			case PrefetchingPackage.PLAN__RULES:
 				getRules().clear();
 				return;
+			case PrefetchingPackage.PLAN__CACHE:
+				setCache((Cache)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -266,6 +331,8 @@ public class PlanImpl extends MinimalEObjectImpl.Container implements Plan {
 				return after != null;
 			case PrefetchingPackage.PLAN__RULES:
 				return rules != null && !rules.isEmpty();
+			case PrefetchingPackage.PLAN__CACHE:
+				return cache != null;
 		}
 		return super.eIsSet(featureID);
 	}

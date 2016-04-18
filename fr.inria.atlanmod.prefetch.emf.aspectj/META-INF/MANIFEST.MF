@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Aspectj
+Bundle-SymbolicName: fr.inria.atlanmod.prefetch.emf.aspectj
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.10.2",
+ org.eclipse.gmt.modisco.java,
+ org.junit,
+ fr.inria.atlanmod.neoemf.core;bundle-version="0.0.1",
+ fr.inria.atlanmod.neoemf.graph.blueprints;bundle-version="0.0.1",
+ fr.inria.atlanmod.neoemf.graph.blueprints.neo4j;bundle-version="0.0.1",
+ fr.inria.atlanmod.neoemf.map;bundle-version="0.0.1",
+ fr.inria.atlanmod.prefetch;bundle-version="0.0.1"
+Export-Package: fr.inria.atlanmod.prefetch.emf.aspectj,
+ fr.inria.atlanmod.prefetch.emf.aspectj.runtime

@@ -1,0 +1,77 @@
+package fr.inria.atlanmod.prefetch.emf.aspectj.test;
+
+import java.io.File;
+import java.util.Collections;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.gmt.modisco.java.AbstractTypeDeclaration;
+import org.eclipse.gmt.modisco.java.JavaPackage;
+import org.eclipse.gmt.modisco.java.Model;
+import org.eclipse.gmt.modisco.java.Package;
+import org.junit.Test;
+
+import fr.inria.atlanmod.neoemf.datastore.PersistenceBackendFactoryRegistry;
+import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.BlueprintsPersistenceBackendFactory;
+import fr.inria.atlanmod.neoemf.graph.blueprints.util.NeoBlueprintsURI;
+import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceFactoryImpl;
+import fr.inria.atlanmod.prefetch.core.PrefetchCore;
+import fr.inria.atlanmod.prefetch.emf.aspectj.runtime.EMFPrefetcherRuntime;
+
+public class PackageTraversalNeo4jTest {
+
+	protected PrefetchCore pCore;
+	protected String resourceFolderPath = "";
+	
+	protected JavaPackage jPackage = JavaPackage.eINSTANCE;
+	
+	protected Resource r;
+	
+	@Test
+	public void test() throws Exception {
+		PersistenceBackendFactoryRegistry.getFactories().put(NeoBlueprintsURI.NEO_GRAPH_SCHEME, new BlueprintsPersistenceBackendFactory());
+		Registry.INSTANCE.put(jPackage.getNsURI(), jPackage);
+		
+		// Load the test model
+		ResourceSet rSet = new ResourceSetImpl();
+		rSet.getResourceFactoryRegistry().getProtocolToFactoryMap().put(NeoBlueprintsURI.NEO_GRAPH_SCHEME, new PersistentResourceFactoryImpl());
+//		rSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		r = rSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File("modisco.graph")));
+		r.load(Collections.EMPTY_MAP);
+		EMFPrefetcherRuntime runtime = new EMFPrefetcherRuntime(r);
+		runtime.loadPrefetchScript(URI.createURI("packageTraversal.prefetch.bin"),r);
+		Model m = (Model)r.getContents().get(0);
+		Package frPack = (Package)m.getOwnedElements().get(0);
+		Package kyanosPack = frPack.getOwnedPackages().get(0).getOwnedPackages().get(0).getOwnedPackages().get(0);
+		Package ppp = kyanosPack.getOwnedPackages().get(0);
+		Object o = ((EObject)ppp).eGet(jPackage.getPackage_OwnedPackages());
+		EObject testPack = ((EList<EObject>)o).get(0);
+		System.out.println(((Package)testPack).getName());
+		int count = 0;
+		for(EObject a : (EList<EObject>)testPack.eGet(jPackage.getPackage_OwnedElements())) {
+//			System.out.println(((AbstractTypeDeclaration)a).getName());
+			for(EObject bd : (EList<EObject>)a.eGet(jPackage.getAbstractTypeDeclaration_BodyDeclarations())) {
+				bd.eGet(jPackage.getASTNode_OriginalCompilationUnit());
+//				System.out.println("\t" + bd.eGet(jPackage.getASTNode_OriginalCompilationUnit()));
+				count++;
+			}
+		}
+		System.out.println(count);
+//		((EList<EObject>)result).get(0).eGet(jPackage.getPackage_OwnedElements());
+		synchronized (this) {
+			wait(1000000);
+		}
+//		System.out.println(pCore.getActiveCache().toString());
+//		System.out.println("test : " + result);
+		
+		// Load the pScript
+//		runtime.loadPrefetchScript(prefetchScriptURI);
+	}
+	
+
+}

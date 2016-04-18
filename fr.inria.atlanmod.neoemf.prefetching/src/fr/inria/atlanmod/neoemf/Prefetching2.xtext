@@ -1,0 +1,79 @@
+grammar fr.inria.atlanmod.neoemf.Prefetching //with org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
+with org.eclipse.xtext.common.Terminals
+import "http://www.eclipse.org/emf/2002/Ecore"
+import "http://www.inria.fr/atlanmod/neoemf/Prefetching2"
+
+Model:
+	metamodel=MetamodelImport
+	plans+=Plan+
+;
+
+MetamodelImport:
+	'import' nsURI=STRING
+;
+
+Plan:
+	'plan' name=ID (default?='default')? '{'
+		cache=CacheStrategy
+		rules+=(StartingRule | AccessRule)*
+	'}'
+;
+
+CacheStrategy:
+	(LRUCache{LRUCache} | MRUCache{MRUCache}) (properties=CacheProperties)? ('when full remove ' tryFirstExp=OCLExpression)?
+	 
+;
+
+LRUCache:
+	'use cache' 'LRU' 
+;
+
+MRUCache:
+	'use cache' 'MRU'
+;
+
+CacheProperties:
+	'[' 'size'size=INT ('chunk'chunk=INT)? ']'
+;
+
+PrefetchingRule: 
+	(StartingRule | AccessRule | DeleteRule | SetRule)
+;
+
+StartingRule:
+	'rule' name=ID ':' 'on starting' 
+		'fetch' targetPatternExp=OCLExpression
+		('remove ' 'type'removeType=ClassifierExpression removePatternExp=OCLExpression)?
+;
+
+AccessRule:
+	'rule' name=ID ':' 'on access' 
+		'type'sourceType=ClassifierExpression (sourcePatternExp=OCLExpression)?
+		'fetch' targetPatternExp=OCLExpression
+		('remove ' 'type'removeType=ClassifierExpression removePatternExp=OCLExpression)?
+;
+
+DeleteRule:
+	'rule' name=ID ':' 'on delete' 
+		'type'sourceType=ClassifierExpression (sourcePatternExp=OCLExpression)?
+		'fetch' targetPatternExp=OCLExpression
+		('remove ' 'type'removeType=ClassifierExpression removePatternExp=OCLExpression)?
+;
+
+SetRule:
+	'rule' name=ID ':' 'on set' 
+		'type'sourceType=ClassifierExpression (sourcePatternExp=OCLExpression)?
+		'fetch' targetPatternExp=OCLExpression
+		('remove ' 'type'removeType=ClassifierExpression removePatternExp=OCLExpression)?
+;
+
+
+
+OCLExpression:
+	STRING
+;
+
+ClassifierExpression:
+	ID
+;
+

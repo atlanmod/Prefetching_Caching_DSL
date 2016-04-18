@@ -5,8 +5,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" eType="#//MetamodelImport"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//Cache"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="plans" upperBound="-1"
         eType="#//Plan" containment="true"/>
   </eClassifiers>
@@ -24,6 +22,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CacheProperties">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="chunk" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RefType">
     <eLiterals name="STRONG" literal="strong"/>
@@ -36,6 +35,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
         eType="#//PrefetchingRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cache" eType="#//Cache"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AfterClause">
     <eStructuralFeatures xsi:type="ecore:EReference" name="plan" eType="#//Plan"/>
@@ -43,24 +44,33 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrefetchingRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetPattern" eType="#//TargetPattern"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="probability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subRules" upperBound="-1"
-        eType="#//PrefetchingRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StartingRule" eSuperTypes="#//PrefetchingRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AccessRule" eSuperTypes="#//PrefetchingRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePattern" eType="#//SourcePattern"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="removeType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SourcePattern">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//FilterPattern"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterPattern">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stringPattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetPattern">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//FilterPattern"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eClass" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
+        eType="#//FeaturePattern" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeaturePattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="closure" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Moment">
     <eLiterals name="ON_STARTING" literal="on starting"/>

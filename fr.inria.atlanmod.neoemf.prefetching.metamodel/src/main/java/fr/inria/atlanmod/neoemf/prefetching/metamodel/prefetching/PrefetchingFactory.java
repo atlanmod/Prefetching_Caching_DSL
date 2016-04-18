@@ -85,6 +85,24 @@ public interface PrefetchingFactory extends EFactory {
 	PrefetchingRule createPrefetchingRule();
 
 	/**
+	 * Returns a new object of class '<em>Starting Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Starting Rule</em>'.
+	 * @generated
+	 */
+	StartingRule createStartingRule();
+
+	/**
+	 * Returns a new object of class '<em>Access Rule</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Access Rule</em>'.
+	 * @generated
+	 */
+	AccessRule createAccessRule();
+
+	/**
 	 * Returns a new object of class '<em>Source Pattern</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,6 +128,15 @@ public interface PrefetchingFactory extends EFactory {
 	 * @generated
 	 */
 	TargetPattern createTargetPattern();
+
+	/**
+	 * Returns a new object of class '<em>Feature Pattern</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Feature Pattern</em>'.
+	 * @generated
+	 */
+	FeaturePattern createFeaturePattern();
 
 	/**
 	 * Returns the package supported by this factory.

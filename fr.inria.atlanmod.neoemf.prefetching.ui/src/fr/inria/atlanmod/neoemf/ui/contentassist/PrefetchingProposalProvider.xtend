@@ -3,11 +3,13 @@
  */
 package fr.inria.atlanmod.neoemf.ui.contentassist
 
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.Assignment
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor
@@ -26,6 +28,7 @@ class PrefetchingProposalProvider extends AbstractPrefetchingProposalProvider {
 	
 	override completeStartingRule_TargetPattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		super.completeStartingRule_TargetPattern(model, assignment, context, acceptor)
+//		if(!(model instanceof PrefetchingRule)) return
 		val PrefetchingRule pr = model as PrefetchingRule
 		val EPackage ePackage = getImportedEPackage(pr)
 		ePackage.EClassifiers.filter[c | c instanceof EClass]
@@ -33,22 +36,68 @@ class PrefetchingProposalProvider extends AbstractPrefetchingProposalProvider {
 			.forEach[c | acceptor.accept(createCompletionProposal(c.name,context))]
 	}
 	
-	override completeLoadingRule_TargetPattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		super.completeLoadingRule_TargetPattern(model, assignment, context, acceptor)
-		val PrefetchingRule pr = model as PrefetchingRule
-		val String srcPattern = pr.sourcePattern.pattern
-		val EPackage ePackage = getImportedEPackage(pr)
-		ePackage.EClassifiers.filter[c | c instanceof EClass]
-			.filter[c | !(c as EClass).abstract]
-			.forEach[c | acceptor.accept(createCompletionProposal(c.name,context))]
-		val EClass srcEClass = ePackage.EClassifiers.filter[c | c instanceof EClass]
-			.findFirst[c | c.name.equals(srcPattern)] as EClass
-		srcEClass.EAllReferences.forEach[r | acceptor.accept(createCompletionProposal(srcEClass.name + '.' + r.name, null, null, 100000, context.prefix, context))]
+	override completeTargetPattern_Pattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeAccessRule_TargetPattern(model, assignment, context, acceptor)
+		if(!(model instanceof AccessRule)) return
+		val AccessRule ar = model as AccessRule
+		val prefix = context.prefix
+		println("prefix: " + prefix)
+		val String[] splittedPrefix = prefix.split('\\.')
+		val EPackage ePackage = getImportedEPackage(ar)
+		// Length cannot be 0, prefix cannot be null
+		if(splittedPrefix.length == 1 && !prefix.contains('.')) {
+			// No qualified name has been provided, propose the metaclasses of the metamodel
+			ePackage.EClassifiers.filter[c | c instanceof EClass]
+				.filter[c | !(c as EClass).abstract]
+				.forEach[c | acceptor.accept(createCompletionProposal(prefix+c.name,context))]
+		}
+		else {
+			// There is a qualified name, compute the current EClass and propose its references
+			var EClass currentEClass = ePackage.getEClassifier(splittedPrefix.get(0)) as EClass
+			var unknownRefName = ""
+			if(splittedPrefix.length > 1) {
+				// Compute the current EClass by navigating through the EReferences
+				for(var int i = 1; i < splittedPrefix.length; i++) {
+					val int idx = i
+					var EReference ref = null
+					if(splittedPrefix.get(idx).endsWith("*")) {
+						// The EReference name is a transitive closure, handle it
+						// as a regular EReference
+						ref = currentEClass.EAllReferences.findFirst[r | r.name.equals(splittedPrefix.get(idx).substring(0,splittedPrefix.get(idx).length-1))]
+					}
+					else {
+						ref = currentEClass.EAllReferences.findFirst[r | r.name.equals(splittedPrefix.get(idx))]
+					}
+					if(ref == null) {
+						// The reference does not exists
+						unknownRefName = splittedPrefix.get(idx)
+					}
+					else {
+						currentEClass = ref.EType as EClass
+					}
+				}
+			}
+			println("There is an unknown ref name: " + unknownRefName)
+			if(currentEClass != null) {
+				if(unknownRefName.empty) {
+					// There is no unknown EReference name: the pattern is composed of resolvable 
+					// EReferences, propose all the EReferences of the last EClass
+					currentEClass.EAllReferences.forEach[r | acceptor.accept(createCompletionProposal(prefix+r.name, null, null, 100000, context.prefix, context))]
+				}
+				else {
+					// There is an unknown EReference name, try to find EReferences starting with
+					// the unknown pattern
+					val refStartName = unknownRefName
+					currentEClass.EAllReferences.filter[r | r.name.startsWith(refStartName)]
+						.forEach[r | acceptor.accept(createCompletionProposal(prefix+r.name.substring(refStartName.length),null,null,100000,context.prefix,context))]
+				}
+			}
+		}
 	}
 	
 	
-	override completeLoadingRule_SourcePattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		super.completeLoadingRule_SourcePattern(model, assignment, context, acceptor)
+	override completeAccessRule_SourcePattern(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		super.completeAccessRule_SourcePattern(model, assignment, context, acceptor)
 		val PrefetchingRule pr = model as PrefetchingRule
 		val EPackage ePackage = getImportedEPackage(pr)
 		ePackage.EClassifiers.filter[c | c instanceof EClass]

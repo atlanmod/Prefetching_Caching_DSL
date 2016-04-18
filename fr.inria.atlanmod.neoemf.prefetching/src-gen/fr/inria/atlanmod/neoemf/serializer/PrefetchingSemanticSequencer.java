@@ -2,6 +2,7 @@ package fr.inria.atlanmod.neoemf.serializer;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AfterClause;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Cache;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheProperties;
@@ -10,8 +11,8 @@ import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.MetamodelImpor
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Plan;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern;
 import fr.inria.atlanmod.neoemf.services.PrefetchingGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
@@ -34,6 +35,12 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == PrefetchingPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+			case PrefetchingPackage.ACCESS_RULE:
+				if(context == grammarAccess.getAccessRuleRule()) {
+					sequence_AccessRule(context, (AccessRule) semanticObject); 
+					return; 
+				}
+				else break;
 			case PrefetchingPackage.AFTER_CLAUSE:
 				if(context == grammarAccess.getAfterClauseRule()) {
 					sequence_AfterClause(context, (AfterClause) semanticObject); 
@@ -76,19 +83,15 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 					return; 
 				}
 				else break;
-			case PrefetchingPackage.PREFETCHING_RULE:
-				if(context == grammarAccess.getLoadingRuleRule()) {
-					sequence_LoadingRule(context, (PrefetchingRule) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getStartingRuleRule()) {
-					sequence_StartingRule(context, (PrefetchingRule) semanticObject); 
-					return; 
-				}
-				else break;
 			case PrefetchingPackage.SOURCE_PATTERN:
 				if(context == grammarAccess.getSourcePatternRule()) {
 					sequence_SourcePattern(context, (SourcePattern) semanticObject); 
+					return; 
+				}
+				else break;
+			case PrefetchingPackage.STARTING_RULE:
+				if(context == grammarAccess.getStartingRuleRule()) {
+					sequence_StartingRule(context, (StartingRule) semanticObject); 
 					return; 
 				}
 				else break;
@@ -101,6 +104,15 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Constraint:
+	 *     (name=ID sourcePattern=SourcePattern? targetPattern=TargetPattern removeType=ClassPatternExp?)
+	 */
+	protected void sequence_AccessRule(EObject context, AccessRule semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Constraint:
@@ -120,17 +132,10 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     size=INT
+	 *     (size=INT chunk=INT?)
 	 */
 	protected void sequence_CacheProperties(EObject context, CacheProperties semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, PrefetchingPackage.Literals.CACHE_PROPERTIES__SIZE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PrefetchingPackage.Literals.CACHE_PROPERTIES__SIZE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getCachePropertiesAccess().getSizeINTTerminalRuleCall_2_0(), semanticObject.getSize());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -161,15 +166,6 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     (sourcePattern=SourcePattern? targetPattern=TargetPattern probability=INT? subRules+=LoadingRule*)
-	 */
-	protected void sequence_LoadingRule(EObject context, PrefetchingRule semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
 	 *     nsURI=STRING
 	 */
 	protected void sequence_MetamodelImport(EObject context, MetamodelImport semanticObject) {
@@ -186,7 +182,7 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     (metamodel=MetamodelImport cache=Cache plans+=Plan*)
+	 *     (metamodel=MetamodelImport plans+=Plan*)
 	 */
 	protected void sequence_Model(EObject context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -195,7 +191,7 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     (name=ID after=AfterClause? (rules+=StartingRule | rules+=LoadingRule)*)
+	 *     (name=ID after=AfterClause? cache=Cache (rules+=StartingRule | rules+=AccessRule)*)
 	 */
 	protected void sequence_Plan(EObject context, Plan semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -204,7 +200,7 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     (pattern=PatternExp filter=FilterPattern?)
+	 *     (pattern=ClassPatternExp filter=FilterPattern?)
 	 */
 	protected void sequence_SourcePattern(EObject context, SourcePattern semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -213,16 +209,26 @@ public class PrefetchingSemanticSequencer extends AbstractDelegatingSemanticSequ
 	
 	/**
 	 * Constraint:
-	 *     (targetPattern=TargetPattern probability=INT? subRules+=LoadingRule*)
+	 *     (name=ID targetPattern=TargetPattern)
 	 */
-	protected void sequence_StartingRule(EObject context, PrefetchingRule semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_StartingRule(EObject context, StartingRule semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, PrefetchingPackage.Literals.PREFETCHING_RULE__TARGET_PATTERN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PrefetchingPackage.Literals.PREFETCHING_RULE__TARGET_PATTERN));
+			if(transientValues.isValueTransient(semanticObject, PrefetchingPackage.Literals.PREFETCHING_RULE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PrefetchingPackage.Literals.PREFETCHING_RULE__NAME));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getStartingRuleAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getStartingRuleAccess().getTargetPatternTargetPatternParserRuleCall_5_0(), semanticObject.getTargetPattern());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (pattern=PatternExp filter=FilterPattern?)
+	 *     pattern=PatternExp2
 	 */
 	protected void sequence_TargetPattern(EObject context, TargetPattern semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

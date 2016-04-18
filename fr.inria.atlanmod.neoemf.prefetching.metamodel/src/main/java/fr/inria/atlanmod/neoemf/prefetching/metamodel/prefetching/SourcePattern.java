@@ -2,6 +2,7 @@
  */
 package fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern#getPattern <em>Pattern</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern#getFilter <em>Filter</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern#getEClass <em>EClass</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +75,31 @@ public interface SourcePattern extends EObject {
 	 * @generated
 	 */
 	void setFilter(FilterPattern value);
+
+	/**
+	 * Returns the value of the '<em><b>EClass</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>EClass</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>EClass</em>' reference.
+	 * @see #setEClass(EClass)
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage#getSourcePattern_EClass()
+	 * @model
+	 * @generated
+	 */
+	EClass getEClass();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern#getEClass <em>EClass</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>EClass</em>' reference.
+	 * @see #getEClass()
+	 * @generated
+	 */
+	void setEClass(EClass value);
 
 } // SourcePattern

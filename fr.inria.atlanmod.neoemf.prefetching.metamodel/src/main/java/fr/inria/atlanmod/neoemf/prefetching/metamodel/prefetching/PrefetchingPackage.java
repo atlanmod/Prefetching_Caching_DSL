@@ -77,22 +77,13 @@ public interface PrefetchingPackage extends EPackage {
 	int MODEL__METAMODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Cache</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__CACHE = 1;
-
-	/**
 	 * The feature id for the '<em><b>Plans</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__PLANS = 2;
+	int MODEL__PLANS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -101,7 +92,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_FEATURE_COUNT = 3;
+	int MODEL_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -215,13 +206,22 @@ public interface PrefetchingPackage extends EPackage {
 	int CACHE_PROPERTIES__SIZE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Chunk</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CACHE_PROPERTIES__CHUNK = 1;
+
+	/**
 	 * The number of structural features of the '<em>Cache Properties</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CACHE_PROPERTIES_FEATURE_COUNT = 1;
+	int CACHE_PROPERTIES_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Cache Properties</em>' class.
@@ -270,13 +270,22 @@ public interface PrefetchingPackage extends EPackage {
 	int PLAN__RULES = 2;
 
 	/**
+	 * The feature id for the '<em><b>Cache</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PLAN__CACHE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Plan</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PLAN_FEATURE_COUNT = 3;
+	int PLAN_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Plan</em>' class.
@@ -344,31 +353,13 @@ public interface PrefetchingPackage extends EPackage {
 	int PREFETCHING_RULE__TARGET_PATTERN = 0;
 
 	/**
-	 * The feature id for the '<em><b>Probability</b></em>' attribute.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREFETCHING_RULE__PROBABILITY = 1;
-
-	/**
-	 * The feature id for the '<em><b>Sub Rules</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFETCHING_RULE__SUB_RULES = 2;
-
-	/**
-	 * The feature id for the '<em><b>Source Pattern</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFETCHING_RULE__SOURCE_PATTERN = 3;
+	int PREFETCHING_RULE__NAME = 1;
 
 	/**
 	 * The number of structural features of the '<em>Rule</em>' class.
@@ -377,7 +368,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PREFETCHING_RULE_FEATURE_COUNT = 4;
+	int PREFETCHING_RULE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Rule</em>' class.
@@ -389,6 +380,116 @@ public interface PrefetchingPackage extends EPackage {
 	int PREFETCHING_RULE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.StartingRuleImpl <em>Starting Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.StartingRuleImpl
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getStartingRule()
+	 * @generated
+	 */
+	int STARTING_RULE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Target Pattern</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STARTING_RULE__TARGET_PATTERN = PREFETCHING_RULE__TARGET_PATTERN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STARTING_RULE__NAME = PREFETCHING_RULE__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Starting Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STARTING_RULE_FEATURE_COUNT = PREFETCHING_RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Starting Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STARTING_RULE_OPERATION_COUNT = PREFETCHING_RULE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.AccessRuleImpl <em>Access Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.AccessRuleImpl
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getAccessRule()
+	 * @generated
+	 */
+	int ACCESS_RULE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Target Pattern</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCESS_RULE__TARGET_PATTERN = PREFETCHING_RULE__TARGET_PATTERN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCESS_RULE__NAME = PREFETCHING_RULE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Source Pattern</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCESS_RULE__SOURCE_PATTERN = PREFETCHING_RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Remove Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCESS_RULE__REMOVE_TYPE = PREFETCHING_RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Access Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCESS_RULE_FEATURE_COUNT = PREFETCHING_RULE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Access Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACCESS_RULE_OPERATION_COUNT = PREFETCHING_RULE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.SourcePatternImpl <em>Source Pattern</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -396,7 +497,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getSourcePattern()
 	 * @generated
 	 */
-	int SOURCE_PATTERN = 7;
+	int SOURCE_PATTERN = 9;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -417,13 +518,22 @@ public interface PrefetchingPackage extends EPackage {
 	int SOURCE_PATTERN__FILTER = 1;
 
 	/**
+	 * The feature id for the '<em><b>EClass</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_PATTERN__ECLASS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Source Pattern</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_PATTERN_FEATURE_COUNT = 2;
+	int SOURCE_PATTERN_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Source Pattern</em>' class.
@@ -442,7 +552,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getFilterPattern()
 	 * @generated
 	 */
-	int FILTER_PATTERN = 8;
+	int FILTER_PATTERN = 10;
 
 	/**
 	 * The feature id for the '<em><b>String Pattern</b></em>' attribute.
@@ -479,7 +589,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getTargetPattern()
 	 * @generated
 	 */
-	int TARGET_PATTERN = 9;
+	int TARGET_PATTERN = 11;
 
 	/**
 	 * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -491,13 +601,22 @@ public interface PrefetchingPackage extends EPackage {
 	int TARGET_PATTERN__PATTERN = 0;
 
 	/**
-	 * The feature id for the '<em><b>Filter</b></em>' containment reference.
+	 * The feature id for the '<em><b>EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_PATTERN__FILTER = 1;
+	int TARGET_PATTERN__ECLASS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_PATTERN__FEATURES = 2;
 
 	/**
 	 * The number of structural features of the '<em>Target Pattern</em>' class.
@@ -506,7 +625,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_PATTERN_FEATURE_COUNT = 2;
+	int TARGET_PATTERN_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Target Pattern</em>' class.
@@ -518,6 +637,52 @@ public interface PrefetchingPackage extends EPackage {
 	int TARGET_PATTERN_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.FeaturePatternImpl <em>Feature Pattern</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.FeaturePatternImpl
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getFeaturePattern()
+	 * @generated
+	 */
+	int FEATURE_PATTERN = 12;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_PATTERN__FEATURE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Closure</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_PATTERN__CLOSURE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Feature Pattern</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_PATTERN_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Feature Pattern</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_PATTERN_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheType <em>Cache Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -525,7 +690,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getCacheType()
 	 * @generated
 	 */
-	int CACHE_TYPE = 10;
+	int CACHE_TYPE = 13;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.RefType <em>Ref Type</em>}' enum.
@@ -535,7 +700,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getRefType()
 	 * @generated
 	 */
-	int REF_TYPE = 11;
+	int REF_TYPE = 14;
 
 	/**
 	 * The meta object id for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Moment <em>Moment</em>}' enum.
@@ -545,7 +710,7 @@ public interface PrefetchingPackage extends EPackage {
 	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getMoment()
 	 * @generated
 	 */
-	int MOMENT = 12;
+	int MOMENT = 15;
 
 
 	/**
@@ -568,17 +733,6 @@ public interface PrefetchingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModel_Metamodel();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model#getCache <em>Cache</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Cache</em>'.
-	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model#getCache()
-	 * @see #getModel()
-	 * @generated
-	 */
-	EReference getModel_Cache();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model#getPlans <em>Plans</em>}'.
@@ -666,6 +820,17 @@ public interface PrefetchingPackage extends EPackage {
 	EAttribute getCacheProperties_Size();
 
 	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheProperties#getChunk <em>Chunk</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Chunk</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheProperties#getChunk()
+	 * @see #getCacheProperties()
+	 * @generated
+	 */
+	EAttribute getCacheProperties_Chunk();
+
+	/**
 	 * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Plan <em>Plan</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,6 +872,17 @@ public interface PrefetchingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPlan_Rules();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Plan#getCache <em>Cache</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Cache</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Plan#getCache()
+	 * @see #getPlan()
+	 * @generated
+	 */
+	EReference getPlan_Cache();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AfterClause <em>After Clause</em>}'.
@@ -751,37 +927,57 @@ public interface PrefetchingPackage extends EPackage {
 	EReference getPrefetchingRule_TargetPattern();
 
 	/**
-	 * Returns the meta object for the attribute '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getProbability <em>Probability</em>}'.
+	 * Returns the meta object for the attribute '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Probability</em>'.
-	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getProbability()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getName()
 	 * @see #getPrefetchingRule()
 	 * @generated
 	 */
-	EAttribute getPrefetchingRule_Probability();
+	EAttribute getPrefetchingRule_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getSubRules <em>Sub Rules</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule <em>Starting Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sub Rules</em>'.
-	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getSubRules()
-	 * @see #getPrefetchingRule()
+	 * @return the meta object for class '<em>Starting Rule</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule
 	 * @generated
 	 */
-	EReference getPrefetchingRule_SubRules();
+	EClass getStartingRule();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getSourcePattern <em>Source Pattern</em>}'.
+	 * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule <em>Access Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Access Rule</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule
+	 * @generated
+	 */
+	EClass getAccessRule();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule#getSourcePattern <em>Source Pattern</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Source Pattern</em>'.
-	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule#getSourcePattern()
-	 * @see #getPrefetchingRule()
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule#getSourcePattern()
+	 * @see #getAccessRule()
 	 * @generated
 	 */
-	EReference getPrefetchingRule_SourcePattern();
+	EReference getAccessRule_SourcePattern();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule#getRemoveType <em>Remove Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Remove Type</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule#getRemoveType()
+	 * @see #getAccessRule()
+	 * @generated
+	 */
+	EAttribute getAccessRule_RemoveType();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern <em>Source Pattern</em>}'.
@@ -814,6 +1010,17 @@ public interface PrefetchingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSourcePattern_Filter();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern#getEClass <em>EClass</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>EClass</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern#getEClass()
+	 * @see #getSourcePattern()
+	 * @generated
+	 */
+	EReference getSourcePattern_EClass();
 
 	/**
 	 * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FilterPattern <em>Filter Pattern</em>}'.
@@ -858,15 +1065,58 @@ public interface PrefetchingPackage extends EPackage {
 	EAttribute getTargetPattern_Pattern();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getFilter <em>Filter</em>}'.
+	 * Returns the meta object for the reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getEClass <em>EClass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Filter</em>'.
-	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getFilter()
+	 * @return the meta object for the reference '<em>EClass</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getEClass()
 	 * @see #getTargetPattern()
 	 * @generated
 	 */
-	EReference getTargetPattern_Filter();
+	EReference getTargetPattern_EClass();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getFeatures <em>Features</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Features</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern#getFeatures()
+	 * @see #getTargetPattern()
+	 * @generated
+	 */
+	EReference getTargetPattern_Features();
+
+	/**
+	 * Returns the meta object for class '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern <em>Feature Pattern</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Feature Pattern</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern
+	 * @generated
+	 */
+	EClass getFeaturePattern();
+
+	/**
+	 * Returns the meta object for the reference '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern#getFeature()
+	 * @see #getFeaturePattern()
+	 * @generated
+	 */
+	EReference getFeaturePattern_Feature();
+
+	/**
+	 * Returns the meta object for the attribute '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern#isClosure <em>Closure</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Closure</em>'.
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern#isClosure()
+	 * @see #getFeaturePattern()
+	 * @generated
+	 */
+	EAttribute getFeaturePattern_Closure();
 
 	/**
 	 * Returns the meta object for enum '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheType <em>Cache Type</em>}'.
@@ -940,14 +1190,6 @@ public interface PrefetchingPackage extends EPackage {
 		EReference MODEL__METAMODEL = eINSTANCE.getModel_Metamodel();
 
 		/**
-		 * The meta object literal for the '<em><b>Cache</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL__CACHE = eINSTANCE.getModel_Cache();
-
-		/**
 		 * The meta object literal for the '<em><b>Plans</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1018,6 +1260,14 @@ public interface PrefetchingPackage extends EPackage {
 		EAttribute CACHE_PROPERTIES__SIZE = eINSTANCE.getCacheProperties_Size();
 
 		/**
+		 * The meta object literal for the '<em><b>Chunk</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CACHE_PROPERTIES__CHUNK = eINSTANCE.getCacheProperties_Chunk();
+
+		/**
 		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PlanImpl <em>Plan</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1050,6 +1300,14 @@ public interface PrefetchingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PLAN__RULES = eINSTANCE.getPlan_Rules();
+
+		/**
+		 * The meta object literal for the '<em><b>Cache</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PLAN__CACHE = eINSTANCE.getPlan_Cache();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.AfterClauseImpl <em>After Clause</em>}' class.
@@ -1088,20 +1346,32 @@ public interface PrefetchingPackage extends EPackage {
 		EReference PREFETCHING_RULE__TARGET_PATTERN = eINSTANCE.getPrefetchingRule_TargetPattern();
 
 		/**
-		 * The meta object literal for the '<em><b>Probability</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PREFETCHING_RULE__PROBABILITY = eINSTANCE.getPrefetchingRule_Probability();
+		EAttribute PREFETCHING_RULE__NAME = eINSTANCE.getPrefetchingRule_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Rules</b></em>' containment reference list feature.
+		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.StartingRuleImpl <em>Starting Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.StartingRuleImpl
+		 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getStartingRule()
 		 * @generated
 		 */
-		EReference PREFETCHING_RULE__SUB_RULES = eINSTANCE.getPrefetchingRule_SubRules();
+		EClass STARTING_RULE = eINSTANCE.getStartingRule();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.AccessRuleImpl <em>Access Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.AccessRuleImpl
+		 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getAccessRule()
+		 * @generated
+		 */
+		EClass ACCESS_RULE = eINSTANCE.getAccessRule();
 
 		/**
 		 * The meta object literal for the '<em><b>Source Pattern</b></em>' containment reference feature.
@@ -1109,7 +1379,15 @@ public interface PrefetchingPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PREFETCHING_RULE__SOURCE_PATTERN = eINSTANCE.getPrefetchingRule_SourcePattern();
+		EReference ACCESS_RULE__SOURCE_PATTERN = eINSTANCE.getAccessRule_SourcePattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Remove Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACCESS_RULE__REMOVE_TYPE = eINSTANCE.getAccessRule_RemoveType();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.SourcePatternImpl <em>Source Pattern</em>}' class.
@@ -1136,6 +1414,14 @@ public interface PrefetchingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SOURCE_PATTERN__FILTER = eINSTANCE.getSourcePattern_Filter();
+
+		/**
+		 * The meta object literal for the '<em><b>EClass</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_PATTERN__ECLASS = eINSTANCE.getSourcePattern_EClass();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.FilterPatternImpl <em>Filter Pattern</em>}' class.
@@ -1174,12 +1460,46 @@ public interface PrefetchingPackage extends EPackage {
 		EAttribute TARGET_PATTERN__PATTERN = eINSTANCE.getTargetPattern_Pattern();
 
 		/**
-		 * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>EClass</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TARGET_PATTERN__FILTER = eINSTANCE.getTargetPattern_Filter();
+		EReference TARGET_PATTERN__ECLASS = eINSTANCE.getTargetPattern_EClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_PATTERN__FEATURES = eINSTANCE.getTargetPattern_Features();
+
+		/**
+		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.FeaturePatternImpl <em>Feature Pattern</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.FeaturePatternImpl
+		 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.PrefetchingPackageImpl#getFeaturePattern()
+		 * @generated
+		 */
+		EClass FEATURE_PATTERN = eINSTANCE.getFeaturePattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FEATURE_PATTERN__FEATURE = eINSTANCE.getFeaturePattern_Feature();
+
+		/**
+		 * The meta object literal for the '<em><b>Closure</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE_PATTERN__CLOSURE = eINSTANCE.getFeaturePattern_Closure();
 
 		/**
 		 * The meta object literal for the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheType <em>Cache Type</em>}' enum.

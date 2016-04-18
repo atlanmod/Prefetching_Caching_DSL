@@ -9,7 +9,6 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
 public class PrefetchingSemanticHighlightingCalculator implements
 		ISemanticHighlightingCalculator {
 
-	@Override
 	public void provideHighlightingFor(XtextResource resource,
 			IHighlightedPositionAcceptor acceptor) {
 		  if (resource == null || resource.getParseResult() == null)
@@ -20,6 +19,10 @@ public class PrefetchingSemanticHighlightingCalculator implements
 			  if(node.getGrammarElement() instanceof RuleCall) {
 				  RuleCall r = (RuleCall)node.getGrammarElement();
 				  if(r.getRule().getName().equals("PatternExp")) {
+					acceptor.addPosition(node.getOffset(), node.getLength(),
+							PrefetchingHighlightingConfiguration.ATL_BLUE);
+				  }
+				  if(r.getRule().getName().equals("ClassPatternExp")) {
 					acceptor.addPosition(node.getOffset(), node.getLength(),
 							PrefetchingHighlightingConfiguration.ATL_BLUE);
 				  }

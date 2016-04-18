@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.CachePropertiesImpl#getSize <em>Size</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.CachePropertiesImpl#getChunk <em>Chunk</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +46,26 @@ public class CachePropertiesImpl extends MinimalEObjectImpl.Container implements
 	 * @ordered
 	 */
 	protected int size = SIZE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getChunk() <em>Chunk</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getChunk()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int CHUNK_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getChunk() <em>Chunk</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getChunk()
+	 * @generated
+	 * @ordered
+	 */
+	protected int chunk = CHUNK_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,11 +112,34 @@ public class CachePropertiesImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getChunk() {
+		return chunk;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setChunk(int newChunk) {
+		int oldChunk = chunk;
+		chunk = newChunk;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PrefetchingPackage.CACHE_PROPERTIES__CHUNK, oldChunk, chunk));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PrefetchingPackage.CACHE_PROPERTIES__SIZE:
 				return getSize();
+			case PrefetchingPackage.CACHE_PROPERTIES__CHUNK:
+				return getChunk();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +154,9 @@ public class CachePropertiesImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case PrefetchingPackage.CACHE_PROPERTIES__SIZE:
 				setSize((Integer)newValue);
+				return;
+			case PrefetchingPackage.CACHE_PROPERTIES__CHUNK:
+				setChunk((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,6 +173,9 @@ public class CachePropertiesImpl extends MinimalEObjectImpl.Container implements
 			case PrefetchingPackage.CACHE_PROPERTIES__SIZE:
 				setSize(SIZE_EDEFAULT);
 				return;
+			case PrefetchingPackage.CACHE_PROPERTIES__CHUNK:
+				setChunk(CHUNK_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +190,8 @@ public class CachePropertiesImpl extends MinimalEObjectImpl.Container implements
 		switch (featureID) {
 			case PrefetchingPackage.CACHE_PROPERTIES__SIZE:
 				return size != SIZE_EDEFAULT;
+			case PrefetchingPackage.CACHE_PROPERTIES__CHUNK:
+				return chunk != CHUNK_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -156,6 +208,8 @@ public class CachePropertiesImpl extends MinimalEObjectImpl.Container implements
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (size: ");
 		result.append(size);
+		result.append(", chunk: ");
+		result.append(chunk);
 		result.append(')');
 		return result.toString();
 	}

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheProperties#getSize <em>Size</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheProperties#getChunk <em>Chunk</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,5 +47,31 @@ public interface CacheProperties extends EObject {
 	 * @generated
 	 */
 	void setSize(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Chunk</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Chunk</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Chunk</em>' attribute.
+	 * @see #setChunk(int)
+	 * @see fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage#getCacheProperties_Chunk()
+	 * @model
+	 * @generated
+	 */
+	int getChunk();
+
+	/**
+	 * Sets the value of the '{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheProperties#getChunk <em>Chunk</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Chunk</em>' attribute.
+	 * @see #getChunk()
+	 * @generated
+	 */
+	void setChunk(int value);
 
 } // CacheProperties

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.atlanmod.neoemf.prefetching.metamodel/src"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.atlanmod.neoemf.prefetching.metamodel/src/main/java"
     modelPluginID="fr.inria.atlanmod.neoemf.prefetching.metamodel" modelName="Prefetching"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>Prefetching.ecore</foreignModel>
   <genPackages prefix="Prefetching" basePackage="fr.inria.atlanmod.neoemf.prefetching.metamodel"
       disposableProviderFactory="true" ecorePackage="Prefetching.ecore#/">
@@ -22,7 +23,6 @@
     </genEnums>
     <genClasses ecoreClass="Prefetching.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Model/metamodel"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Model/cache"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Model/plans"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//MetamodelImport">
@@ -39,26 +39,35 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//Plan/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Plan/after"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Plan/rules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//Plan/cache"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//AfterClause">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Prefetching.ecore#//AfterClause/plan"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//PrefetchingRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//PrefetchingRule/targetPattern"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//PrefetchingRule/probability"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//PrefetchingRule/subRules"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//PrefetchingRule/sourcePattern"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//PrefetchingRule/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Prefetching.ecore#//StartingRule"/>
+    <genClasses ecoreClass="Prefetching.ecore#//AccessRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//AccessRule/sourcePattern"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//SourcePattern">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//SourcePattern/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//SourcePattern/filter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Prefetching.ecore#//SourcePattern/eClass"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//FilterPattern">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//FilterPattern/stringPattern"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//TargetPattern">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//TargetPattern/pattern"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//TargetPattern/filter"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Prefetching.ecore#//TargetPattern/eClass"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Prefetching.ecore#//TargetPattern/features"/>
+    </genClasses>
+    <genClasses ecoreClass="Prefetching.ecore#//FeaturePattern">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Prefetching.ecore#//FeaturePattern/feature"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//FeaturePattern/closure"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

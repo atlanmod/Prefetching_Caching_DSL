@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ASCII"?>
+<prefetching:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:prefetching="http://www.inria.fr/atlanmod/neoemf/Prefetching">
+  <metamodel nsURI="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf"/>
+  <plans name="MultipleRules">
+    <rules xsi:type="prefetching:AccessRule" name="r1">
+      <targetPattern pattern="Package.comments">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Package"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ASTNode/comments"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="Package">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Package"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="r2">
+      <targetPattern pattern="ClassDeclaration.bodyDeclarations">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//AbstractTypeDeclaration/bodyDeclarations"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="ClassDeclaration">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="r3">
+      <targetPattern pattern="IfStatement.thenStatement">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//IfStatement"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//IfStatement/thenStatement"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="IfStatement">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//IfStatement"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="r4">
+      <targetPattern pattern="IfStatement.elseStatement">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//IfStatement"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//IfStatement/elseStatement"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="IfStatement">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//IfStatement"/>
+      </sourcePattern>
+    </rules>
+    <cache/>
+  </plans>
+</prefetching:Model>

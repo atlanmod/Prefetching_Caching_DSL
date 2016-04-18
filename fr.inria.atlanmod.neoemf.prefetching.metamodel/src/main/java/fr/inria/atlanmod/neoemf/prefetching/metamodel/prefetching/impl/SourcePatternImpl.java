@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.SourcePatternImpl#getPattern <em>Pattern</em>}</li>
  *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.SourcePatternImpl#getFilter <em>Filter</em>}</li>
+ *   <li>{@link fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.impl.SourcePatternImpl#getEClass <em>EClass</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +60,16 @@ public class SourcePatternImpl extends MinimalEObjectImpl.Container implements S
 	 * @ordered
 	 */
 	protected FilterPattern filter;
+
+	/**
+	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEClass()
+	 * @generated
+	 * @ordered
+	 */
+	protected EClass eClass;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,6 +159,44 @@ public class SourcePatternImpl extends MinimalEObjectImpl.Container implements S
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEClass() {
+		if (eClass != null && eClass.eIsProxy()) {
+			InternalEObject oldEClass = (InternalEObject)eClass;
+			eClass = (EClass)eResolveProxy(oldEClass);
+			if (eClass != oldEClass) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrefetchingPackage.SOURCE_PATTERN__ECLASS, oldEClass, eClass));
+			}
+		}
+		return eClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass basicGetEClass() {
+		return eClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEClass(EClass newEClass) {
+		EClass oldEClass = eClass;
+		eClass = newEClass;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PrefetchingPackage.SOURCE_PATTERN__ECLASS, oldEClass, eClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -169,6 +218,9 @@ public class SourcePatternImpl extends MinimalEObjectImpl.Container implements S
 				return getPattern();
 			case PrefetchingPackage.SOURCE_PATTERN__FILTER:
 				return getFilter();
+			case PrefetchingPackage.SOURCE_PATTERN__ECLASS:
+				if (resolve) return getEClass();
+				return basicGetEClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,6 +238,9 @@ public class SourcePatternImpl extends MinimalEObjectImpl.Container implements S
 				return;
 			case PrefetchingPackage.SOURCE_PATTERN__FILTER:
 				setFilter((FilterPattern)newValue);
+				return;
+			case PrefetchingPackage.SOURCE_PATTERN__ECLASS:
+				setEClass((EClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -205,6 +260,9 @@ public class SourcePatternImpl extends MinimalEObjectImpl.Container implements S
 			case PrefetchingPackage.SOURCE_PATTERN__FILTER:
 				setFilter((FilterPattern)null);
 				return;
+			case PrefetchingPackage.SOURCE_PATTERN__ECLASS:
+				setEClass((EClass)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -221,6 +279,8 @@ public class SourcePatternImpl extends MinimalEObjectImpl.Container implements S
 				return PATTERN_EDEFAULT == null ? pattern != null : !PATTERN_EDEFAULT.equals(pattern);
 			case PrefetchingPackage.SOURCE_PATTERN__FILTER:
 				return filter != null;
+			case PrefetchingPackage.SOURCE_PATTERN__ECLASS:
+				return eClass != null;
 		}
 		return super.eIsSet(featureID);
 	}

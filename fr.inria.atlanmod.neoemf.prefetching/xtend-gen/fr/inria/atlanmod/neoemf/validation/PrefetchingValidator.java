@@ -1,8 +1,9 @@
 package fr.inria.atlanmod.neoemf.validation;
 
+import com.google.common.base.Objects;
+import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.MetamodelImport;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Plan;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern;
@@ -15,12 +16,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.Functions.Function2;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 /**
@@ -32,54 +32,49 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 public class PrefetchingValidator extends AbstractPrefetchingValidator {
   public final static String INVALID_PACKAGE = "invalidPackage";
   
+  public final static String INVALID_SOURCE_PATTERN = "invalidSourcePattern";
+  
   public final static String INVALID_TARGET_PATTERN = "invalidTargetPattern";
   
   public final static String INVALID_PROBABILITY_COUNT = "invalidProbabilityCount";
   
   @Check
-  public void checkPlanProbabilityIsValid(final Plan plan) {
-    final List<PrefetchingRule> pRules = plan.getRules();
-    final Function1<PrefetchingRule, Integer> _function = new Function1<PrefetchingRule, Integer>() {
-      public Integer apply(final PrefetchingRule r) {
-        return Integer.valueOf(r.getProbability());
-      }
-    };
-    List<Integer> _map = ListExtensions.<PrefetchingRule, Integer>map(pRules, _function);
-    final Function2<Integer, Integer, Integer> _function_1 = new Function2<Integer, Integer, Integer>() {
-      public Integer apply(final Integer p1, final Integer p2) {
-        return Integer.valueOf(((p1).intValue() + (p2).intValue()));
-      }
-    };
-    int pTot = (int) IterableExtensions.<Integer>reduce(_map, _function_1);
-    if ((pTot != 100)) {
-      String _name = plan.getName();
-      String _plus = ("The total probability of top level rules in plan " + _name);
-      String _plus_1 = (_plus + " is not 100");
+  public void checkSourcePatternIsValid(final SourcePattern sourcePattern) {
+    InputOutput.<String>println("check source pattern");
+    EClass _eClass = sourcePattern.getEClass();
+    boolean _equals = Objects.equal(_eClass, null);
+    if (_equals) {
+      String _pattern = sourcePattern.getPattern();
+      String _plus = ("The source pattern " + _pattern);
+      String _plus_1 = (_plus + " does not exist in imported metamodels");
       this.error(_plus_1, 
-        PrefetchingPackage.Literals.PLAN__NAME, 
-        PrefetchingValidator.INVALID_PROBABILITY_COUNT);
+        PrefetchingPackage.Literals.SOURCE_PATTERN__PATTERN, 
+        PrefetchingValidator.INVALID_SOURCE_PATTERN);
     }
-  }
-  
-  @Check
-  public void checkRuleProbabilityIsValid(final PrefetchingRule rule) {
-    final List<PrefetchingRule> subRules = rule.getSubRules();
-    final Function1<PrefetchingRule, Integer> _function = new Function1<PrefetchingRule, Integer>() {
-      public Integer apply(final PrefetchingRule r) {
-        return Integer.valueOf(r.getProbability());
+    final EPackage ePackage = this.getImportedEPackage(sourcePattern);
+    EClass _eClass_1 = sourcePattern.getEClass();
+    String _name = _eClass_1.getName();
+    String _plus_2 = ("eclass: " + _name);
+    InputOutput.<String>println(_plus_2);
+    EList<EClassifier> _eClassifiers = ePackage.getEClassifiers();
+    final Function1<EClassifier, String> _function = new Function1<EClassifier, String>() {
+      public String apply(final EClassifier cc) {
+        return cc.getName();
       }
     };
-    List<Integer> _map = ListExtensions.<PrefetchingRule, Integer>map(subRules, _function);
-    final Function2<Integer, Integer, Integer> _function_1 = new Function2<Integer, Integer, Integer>() {
-      public Integer apply(final Integer p1, final Integer p2) {
-        return Integer.valueOf(((p1).intValue() + (p2).intValue()));
-      }
-    };
-    int pTot = (int) IterableExtensions.<Integer>reduce(_map, _function_1);
-    if ((pTot != 100)) {
-      this.error("The total probability of sub-rules in rule is not 100", 
-        PrefetchingPackage.Literals.PREFETCHING_RULE__PROBABILITY, 
-        PrefetchingValidator.INVALID_PROBABILITY_COUNT);
+    List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
+    EClass _eClass_2 = sourcePattern.getEClass();
+    String _name_1 = _eClass_2.getName();
+    boolean _contains = _map.contains(_name_1);
+    boolean _not = (!_contains);
+    if (_not) {
+      EClass _eClass_3 = sourcePattern.getEClass();
+      String _name_2 = _eClass_3.getName();
+      String _plus_3 = ("The source pattern " + _name_2);
+      String _plus_4 = (_plus_3 + " does not exist in imported metamodels");
+      this.error(_plus_4, 
+        PrefetchingPackage.Literals.SOURCE_PATTERN__PATTERN, 
+        PrefetchingValidator.INVALID_SOURCE_PATTERN);
     }
   }
   
@@ -105,85 +100,111 @@ public class PrefetchingValidator extends AbstractPrefetchingValidator {
     int _length = splittedPattern.length;
     boolean _greaterThan = (_length > 0);
     if (_greaterThan) {
-      EList<EClassifier> _eClassifiers = ePackage.getEClassifiers();
-      final Function1<EClassifier, String> _function = new Function1<EClassifier, String>() {
-        public String apply(final EClassifier c) {
-          return c.getName();
-        }
-      };
-      List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
-      Object _get = splittedPattern[0];
-      boolean _contains = _map.contains(_get);
-      boolean _not = (!_contains);
-      if (_not) {
-        String _get_1 = splittedPattern[0];
-        String _plus = (("EClass " + "\'") + _get_1);
+      boolean _and = false;
+      String _get = splittedPattern[0];
+      boolean _equals = _get.equals("self");
+      boolean _not = (!_equals);
+      if (!_not) {
+        _and = false;
+      } else {
+        EList<EClassifier> _eClassifiers = ePackage.getEClassifiers();
+        final Function1<EClassifier, String> _function = new Function1<EClassifier, String>() {
+          public String apply(final EClassifier c) {
+            return c.getName();
+          }
+        };
+        List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
+        Object _get_1 = splittedPattern[0];
+        boolean _contains = _map.contains(_get_1);
+        boolean _not_1 = (!_contains);
+        _and = _not_1;
+      }
+      if (_and) {
+        String _get_2 = splittedPattern[0];
+        String _plus = (("EClass " + "\'") + _get_2);
         String _plus_1 = (_plus + "\'");
         String _plus_2 = (_plus_1 + " not found in package ");
         String _name = ePackage.getName();
         String _plus_3 = (_plus_2 + _name);
         this.error(_plus_3, 
-          PrefetchingPackage.Literals.TARGET_PATTERN__PATTERN, 
-          PrefetchingValidator.INVALID_TARGET_PATTERN);
+          PrefetchingPackage.Literals.TARGET_PATTERN__PATTERN);
       }
-      EList<EClassifier> _eClassifiers_1 = ePackage.getEClassifiers();
-      final Function1<EClassifier, Boolean> _function_1 = new Function1<EClassifier, Boolean>() {
-        public Boolean apply(final EClassifier c) {
-          return Boolean.valueOf((c instanceof EClass));
-        }
-      };
-      Iterable<EClassifier> _filter = IterableExtensions.<EClassifier>filter(_eClassifiers_1, _function_1);
-      final Function1<EClassifier, Boolean> _function_2 = new Function1<EClassifier, Boolean>() {
-        public Boolean apply(final EClassifier c) {
-          String _name = ((EClass) c).getName();
-          Object _get = splittedPattern[0];
-          return Boolean.valueOf(_name.equals(_get));
-        }
-      };
-      EClassifier _findFirst = IterableExtensions.<EClassifier>findFirst(_filter, _function_2);
-      final EClass targetEClass = ((EClass) _findFirst);
-      boolean _and = false;
+      String _get_3 = splittedPattern[0];
+      EClassifier _eClassifier = ePackage.getEClassifier(_get_3);
+      EClass eClass = ((EClass) _eClassifier);
+      String _get_4 = splittedPattern[0];
+      boolean _equals_1 = _get_4.equals("self");
+      if (_equals_1) {
+        InputOutput.<String>println("found self");
+        SourcePattern _sourcePattern = ((AccessRule) pr).getSourcePattern();
+        String _pattern_1 = _sourcePattern.getPattern();
+        EClassifier _eClassifier_1 = ePackage.getEClassifier(_pattern_1);
+        eClass = ((EClass) _eClassifier_1);
+        String _name_1 = eClass.getName();
+        String _plus_4 = ("validated " + _name_1);
+        InputOutput.<String>println(_plus_4);
+      }
       int _length_1 = splittedPattern.length;
       boolean _greaterThan_1 = (_length_1 > 1);
-      if (!_greaterThan_1) {
-        _and = false;
-      } else {
-        SourcePattern _sourcePattern = pr.getSourcePattern();
-        String _pattern_1 = _sourcePattern.getPattern();
-        Object _get_2 = splittedPattern[0];
-        boolean _equals = _pattern_1.equals(_get_2);
-        boolean _not_1 = (!_equals);
-        _and = _not_1;
-      }
-      if (_and) {
-        SourcePattern _sourcePattern_1 = pr.getSourcePattern();
-        String _pattern_2 = _sourcePattern_1.getPattern();
-        String _plus_4 = ("EReferences are only accessible from source pattern EClass " + _pattern_2);
-        this.error(_plus_4, 
-          PrefetchingPackage.Literals.TARGET_PATTERN__PATTERN, 
-          PrefetchingValidator.INVALID_TARGET_PATTERN);
-      }
-      for (int i = 1; (i < splittedPattern.length); i++) {
-        EList<EReference> _eAllReferences = targetEClass.getEAllReferences();
-        final Function1<EReference, String> _function_3 = new Function1<EReference, String>() {
-          public String apply(final EReference r) {
-            return r.getName();
+      if (_greaterThan_1) {
+        for (int i = 1; (i < splittedPattern.length); i++) {
+          {
+            final String currentPattern = splittedPattern[i];
+            EStructuralFeature feature = null;
+            boolean _endsWith = currentPattern.endsWith("*");
+            if (_endsWith) {
+              int _length_2 = currentPattern.length();
+              int _minus = (_length_2 - 1);
+              String _substring = currentPattern.substring(0, _minus);
+              String _plus_5 = ((("Pattern " + currentPattern) + " is validated as ") + _substring);
+              InputOutput.<String>println(_plus_5);
+              int _length_3 = currentPattern.length();
+              int _minus_1 = (_length_3 - 1);
+              String _substring_1 = currentPattern.substring(0, _minus_1);
+              EStructuralFeature _eStructuralFeature = eClass.getEStructuralFeature(_substring_1);
+              feature = _eStructuralFeature;
+              EClassifier _eType = feature.getEType();
+              if ((_eType instanceof EClass)) {
+                String _name_2 = eClass.getName();
+                String _plus_6 = ("EClass " + _name_2);
+                InputOutput.<String>println(_plus_6);
+                EClassifier _eType_1 = feature.getEType();
+                String _name_3 = _eType_1.getName();
+                String _plus_7 = ("EType " + _name_3);
+                InputOutput.<String>println(_plus_7);
+                EClassifier _eType_2 = feature.getEType();
+                boolean _isSuperTypeOf = eClass.isSuperTypeOf(((EClass) _eType_2));
+                InputOutput.<Boolean>println(Boolean.valueOf(_isSuperTypeOf));
+                EClassifier _eType_3 = feature.getEType();
+                boolean _isSuperTypeOf_1 = eClass.isSuperTypeOf(((EClass) _eType_3));
+                boolean _not_2 = (!_isSuperTypeOf_1);
+                if (_not_2) {
+                  String _name_4 = feature.getName();
+                  String _plus_8 = ("Transitive closure is not applicable for EReference returning a different type than their containing class (ref: " + _name_4);
+                  String _plus_9 = (_plus_8 + ", return: ");
+                  EClassifier _eType_4 = feature.getEType();
+                  String _name_5 = _eType_4.getName();
+                  String _plus_10 = (_plus_9 + _name_5);
+                  String _plus_11 = (_plus_10 + ", eclass: ");
+                  String _name_6 = eClass.getName();
+                  String _plus_12 = (_plus_11 + _name_6);
+                  String _plus_13 = (_plus_12 + ")");
+                  this.error(_plus_13, 
+                    PrefetchingPackage.Literals.TARGET_PATTERN__PATTERN, 
+                    PrefetchingValidator.INVALID_TARGET_PATTERN);
+                }
+              }
+            } else {
+              EStructuralFeature _eStructuralFeature_1 = eClass.getEStructuralFeature(currentPattern);
+              feature = _eStructuralFeature_1;
+            }
+            boolean _equals_2 = Objects.equal(feature, null);
+            if (_equals_2) {
+            } else {
+              EClassifier _eType_5 = feature.getEType();
+              eClass = ((EClass) _eType_5);
+            }
           }
-        };
-        List<String> _map_1 = ListExtensions.<EReference, String>map(_eAllReferences, _function_3);
-        Object _get_3 = splittedPattern[i];
-        boolean _contains_1 = _map_1.contains(_get_3);
-        boolean _not_2 = (!_contains_1);
-        if (_not_2) {
-          String _get_4 = splittedPattern[0];
-          String _plus_5 = (("EClass " + "\'") + _get_4);
-          String _plus_6 = (_plus_5 + "\'");
-          String _plus_7 = (_plus_6 + " does not have an EReference ");
-          String _get_5 = splittedPattern[i];
-          String _plus_8 = (_plus_7 + _get_5);
-          this.error(_plus_8, 
-            PrefetchingPackage.Literals.TARGET_PATTERN__PATTERN, 
-            PrefetchingValidator.INVALID_TARGET_PATTERN);
         }
       }
     }
