@@ -8,10 +8,12 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.Index;
 import com.tinkerpop.blueprints.KeyIndexableGraph;
 import com.tinkerpop.blueprints.Vertex;
@@ -21,6 +23,7 @@ import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
 import fr.inria.atlanmod.prefetch.cache.NeoEMFCacheKey;
+import fr.inria.atlanmod.prefetch.cache.NeoEMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
 
@@ -46,24 +49,47 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		}
 	}
 	
+	/**
+	 * Creates a new NeoEMFRuleProcessor with the given cache and graph
+	 * @param cache the structure to store the cached objects in
+	 * @param graph the graph that contains the model representation
+	 */
 	public NeoEMFRuleProcessor(Map<Object,Object> cache, IdGraph<KeyIndexableGraph> graph) {
 		this.cache = cache;
 		this.graph = graph;
 	}
 	
+	/**
+	 * @return the cache used to store the elements
+	 */
 	public Object getCache() {
 		return cache;
 	}
 
+	/**
+	 * @param newCache the cache to use to store the elements
+	 * @note the previous cache content will be discarded
+	 */
 	public void setCache(Map<Object, Object> newCache) {
 		this.cache = newCache;
 	}
 
+	/**
+	 * @deprecated executes a single starting rule
+	 * @see{NeoEMFRuleProcessor.processStartingRules(List<StartingRule>, Object)} instead
+	 * @param sRule the @see{StartingRule} to process
+	 * @param resourceStore the store that contains the model representation
+	 */
 	public void processStartingRule(StartingRule sRule, Object resourceStore) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+	 * Executes the starting rules given as parameters
+	 * @param sRules the @see{StartingRule}s to process
+	 * @param resourceStore the store that contains the model representation
+	 */
 	public void processStartingRules(List<StartingRule> sRules, Object resourceStore) {
 		for(StartingRule sRule : sRules) {
 			EClass eClassToFetch = sRule.getTargetPattern().getEClass();
@@ -75,46 +101,255 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		}
 	}
 
+	/**
+	 * @deprecated executes a single access rule for a given accessed element
+	 * @see{NeoEMFRuleProcessor.processAccessRules(List<StartingRule>, Object)} instead
+	 * @param source the element which has been accessed
+	 * @param aRule the @see{AccessRule} to process
+	 */
 	public void processAccessRule(Object source, AccessRule aRule) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Executes the access rules for a given accessed element
+	 * @param source the element which has been accessed
+	 * @param aRules the @see{AccessRule}s to process
+	 */
 	public void processAccessRules(Object source, List<AccessRule> aRules) {
 		if(aRules.isEmpty()) {
             return;
         }
-		if(!(source instanceof Vertex)) {
-			PrefetchLogger.error("NeoEMFRuleProcessor can only traverse Vertices");
-		}
-		Vertex v = (Vertex)source;
+//		if(!(source instanceof Vertex)) {
+//			PrefetchLogger.error("NeoEMFRuleProcessor can only traverse Vertices");
+//			throw new IllegalArgumentException("NeoEMFRuleProcessor can only traverse Vertices");
+//		}
+//		Vertex v = (Vertex)source;
         for(AccessRule aRule : aRules) {
             EClass sourceEClass = aRule.getSourcePattern().getEClass();
             EClass targetEClass = aRule.getTargetPattern().getEClass();
+            try {
             if(sourceEClass.equals(targetEClass)) {
-            	processFeatures(v, aRule.getTargetPattern().getFeatures());
+            	if(source instanceof Vertex) {
+            		Vertex v = (Vertex)source;
+            		processFeatures(v, aRule.getTargetPattern().getFeatures());
+            	}
+            	if(source instanceof String) {
+            		String id = (String)source;
+            		processFeatures(id, aRule.getTargetPattern().getFeatures());
+            	}
             }
             else {
             	PrefetchLogger.warn("The use of different source and target EClasses is not supported in NeoEMFRuleProcessor");
             }
-//            PrefetchLogger.debug("Done (" + aRule.getName() + "," + source + ")");
-//            System.out.println(v.getId().toString());
-//            NeoEMFCacheKey k = new NeoEMFCacheKey(v.getId().toString(), aRule.getTargetPattern().getFeatures().get(0).getFeature());
-//            System.out.println(k);
-//            PrefetchLogger.debug(cache.get(k).toString());
+            } catch(IllegalStateException e) {
+            	// DB already closed
+            	return;
+            } catch(IllegalArgumentException e) {
+            	return;
+            }
         }
 	}
 	
+	/**
+	 * Wrapper for the recursive method @see{processFeatures(String,EList<FeaturePattern>,int)}
+	 * @param vId the @see{Vertex} id of the element to process
+	 * @param features the @see{FeaturePattern}s to compute for the given vertex id
+	 */
+	private void processFeatures(String vId, EList<FeaturePattern> features) {
+		this.processFeatures(vId, features, 0);
+	}
+	
+	/**
+	 * Recursive method that computes the feature at the given index for the input vertex id
+	 * @param vId the @see{Vertex} id of the element to process
+	 * @param features the @see{FeaturePattern}s list to process
+	 * @param idx the index of the features list to compute
+	 */
+	private void processFeatures(String vId, EList<FeaturePattern> features, int idx) {
+		if(vId == null) {
+			return;
+		}
+        if(features == null || idx >= features.size()) {
+            return;
+        }
+        
+        EStructuralFeature theFeature = features.get(idx).getFeature();
+        String keyId = vId;
+        if(theFeature.isMany()) {
+        	// Search if the cache contains the size
+        	NeoEMFIndexedCacheKey sizeKey = new NeoEMFIndexedCacheKey(keyId, theFeature, -2);
+        	Iterator<Edge> links = null;
+        	int theSize = -1;
+        	Vertex v = null;
+        	if(cache.containsKey(sizeKey)) {
+        		theSize = (int)cache.get(sizeKey);
+        	}
+        	else {
+        		v = graph.getVertex(vId);
+        		links = v.getEdges(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
+        		if(links.hasNext()) {
+        			theSize = v.getProperty(features.get(idx).getFeature().getName()+":size");
+        			cache.put(sizeKey, theSize);
+        		}
+        		else {
+        			// Cache an invalid size
+        			cache.put(sizeKey, -1);
+        		}
+        		
+        	}
+        	// The size has been cached if necessary
+        	if(theSize > -1) {
+//        		if(links == null || !links.hasNext()) throw new RuntimeException("Positive size but invalid iterator");
+        		if(v == null) {
+        			v = graph.getVertex(vId);
+        		}
+        		for(int i = 0; i < theSize; i++) {
+        			NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, i);
+        			if(cache.containsKey(key)) {
+        				VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+        				processFeatures(wrapper.getV(), features, idx + 1);
+        			}
+        			else {
+        				// Get the links, the size is cached but not the individual item
+        				links = v.getEdges(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
+	        			while(links.hasNext()) {
+	        				// Iterate all the edges (good idea ?)
+	        				Edge theEdge = links.next();
+		        			// Get the edge position in the list (because edges are not ordered in Neo4j)
+		        			int edgeIdx = theEdge.getProperty("position");
+		        			Vertex otherEnd = theEdge.getVertex(Direction.IN);
+		        			if(otherEnd == v) {
+		        				PrefetchLogger.error("An Edge links a Vertex with himself");
+		        			}
+		        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
+		        			key = new NeoEMFIndexedCacheKey(keyId, theFeature, edgeIdx);
+		        			if(!cache.containsKey(key)) {
+			        			cache.put(key, wrapper);
+			        			processFeatures(otherEnd, features, idx + 1);
+		        			}
+	        			}
+        			}
+        		}
+        	}
+        }
+        else {
+        	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, -1);
+        	if(cache.containsKey(key)) {
+        		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+        		processFeatures(wrapper.getV(), features, idx + 1);
+        	}
+        	else {
+        		Vertex v = graph.getVertex(vId);
+        		Iterator<Vertex> otherEndIterator = v.getVertices(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
+        		if(otherEndIterator.hasNext()) {
+        			Vertex otherEnd = otherEndIterator.next();
+        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
+        			cache.put(key, wrapper);
+        			processFeatures(otherEnd, features, idx + 1);
+        		}
+        	}
+        }
+	}
+	
+	/**
+	 * Wrapper for the recursive method @see{processFeatures(Vertex,EList<FeaturePattern>,int)}
+	 * @param v the @see{Vertex} representing the element to process
+	 * @param features the @see{FeaturePattern}s to compute for the given vertex id
+	 */
 	private void processFeatures(Vertex v, EList<FeaturePattern> features) {
 		this.processFeatures(v, features, 0);
 	}
 	
+	/**
+	 * Recursive method that computes the feature at the given index for the input vertex
+	 * @param v the @see{Vertex} representing the element to process
+	 * @param features the @see{FeaturePattern}s list to process
+	 * @param idx the index of the features list to compute
+	 */
 	private void processFeatures(Vertex v, EList<FeaturePattern> features, int idx) {
 		if(v == null) {
 			return;
 		}
         if(features == null || idx >= features.size()) {
             return;
+        }
+        
+        EStructuralFeature theFeature = features.get(idx).getFeature();
+        String keyId = v.getId().toString();
+        
+        if(theFeature.isMany()) {
+        	// Search if the cache contains the size
+        	NeoEMFIndexedCacheKey sizeKey = new NeoEMFIndexedCacheKey(keyId, theFeature, -2);
+        	Iterator<Edge> links = null;
+        	int theSize = -1;
+        	if(cache.containsKey(sizeKey)) {
+        		theSize = (int)cache.get(sizeKey);
+        	}
+        	else {
+        		links = v.getEdges(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
+        		if(links.hasNext()) {
+        			theSize = v.getProperty(features.get(idx).getFeature().getName()+":size");
+        			cache.put(sizeKey, theSize);
+        		}
+        		else {
+        			// Cache an invalid size
+        			cache.put(sizeKey, -1);
+        		}
+        		
+        	}
+        	// The size has been cached if necessary
+        	if(theSize > -1) {
+//        		if(links == null || !links.hasNext()) throw new RuntimeException("Positive size but invalid iterator");
+        		for(int i = 0; i < theSize; i++) {
+        			NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, i);
+        			if(cache.containsKey(key)) {
+        				VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+        				processFeatures(wrapper.getV(), features, idx + 1);
+        			}
+        			else {
+        				// Get the links, the size is cached but not the individual item
+        				links = v.getEdges(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
+	        			while(links.hasNext()) {
+	        				// Iterate all the edges (good idea ?)
+	        				Edge theEdge = links.next();
+		        			// Get the edge position in the list (because edges are not ordered in Neo4j)
+		        			int edgeIdx = theEdge.getProperty("position");
+		        			Vertex otherEnd = theEdge.getVertex(Direction.IN);
+		        			if(otherEnd == v) {
+		        				PrefetchLogger.error("An Edge links a Vertex with himself");
+		        			}
+		        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
+		        			key = new NeoEMFIndexedCacheKey(keyId, theFeature, edgeIdx);
+		        			if(!cache.containsKey(key)) {
+			        			cache.put(key, wrapper);
+			        			processFeatures(otherEnd, features, idx + 1);
+		        			}
+	        			}
+        			}
+        		}
+        	}
+        }
+        else {
+        	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, -1);
+        	if(cache.containsKey(key)) {
+        		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+        		processFeatures(wrapper.getV(), features, idx + 1);
+        	}
+        	else {
+        		Iterator<Vertex> otherEndIterator = v.getVertices(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
+        		if(otherEndIterator.hasNext()) {
+        			Vertex otherEnd = otherEndIterator.next();
+        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
+        			cache.put(key, wrapper);
+        			processFeatures(otherEnd, features, idx + 1);
+        		}
+        	}
+        }
+        // TODO find if the following lines should be removed or if it has been set like that for debugging
+        if(1==1) {
+        	return;
         }
         
 //		PrefetchLogger.debug("Processing feature " + features.get(idx).getFeature().getName() + " for " + v.toString());

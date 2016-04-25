@@ -36,7 +36,7 @@ import fr.inria.atlanmod.prefetch.cache.NeoEMFCacheKey;
 import fr.inria.atlanmod.prefetch.cache.NeoEMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.core.PrefetchCore;
 import fr.inria.atlanmod.prefetch.event.EventAPI;
-import fr.inria.atlanmod.prefetch.processor.neoemf.NeoEMFRuleProcessor2.VertexWrapper;
+import fr.inria.atlanmod.prefetch.processor.neoemf.NeoEMFRuleProcessor.VertexWrapper;
 import fr.inria.atlanmod.prefetch.processor.neoemf.NeoEMFRuleProcessorFactory;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
 
