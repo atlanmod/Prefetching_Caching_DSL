@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1460969484134
+Bnd-LastModified: 1461079221626
 Build-Jdk: 1.7.0_71
 Built-By: gdaniel
 Bundle-ClassPath: .,target/classes/
 Bundle-ManifestVersion: 2
 Bundle-Name: NeoEMF Prefetcher :: Metamodel
 Bundle-SymbolicName: fr.inria.atlanmod.neoemf.prefetching.metamodel
-Bundle-Version: 0.0.1.201604180851
+Bundle-Version: 0.0.1.201604191520
 Created-By: Apache Maven Bundle Plugin
 Export-Package: fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetchi
  ng;version="0.0.1",fr.inria.atlanmod.neoemf.prefetching.metamodel.prefe
