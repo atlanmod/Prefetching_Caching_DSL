@@ -2,6 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.inria.atlanmod.neoemf</groupId>
   <artifactId>graph.prefetch</artifactId>
+  <packaging>bundle</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>NeoEMF :: Graph :: Prefetch</name>
   <description>A connector that enables native prefetching for the Graph implementation of NeoEMF</description>
@@ -102,10 +103,41 @@
 		          </execution>
 		        </executions>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <version>${maven-bundle-plugin.version}</version>
+                <configuration>
+                    <manifestLocation>${manifest-location}</manifestLocation>
+                    <instructions>
+                        <Bundle-Version>0.0.1.${build.tstamp}</Bundle-Version>
+                        <Bundle-ClassPath>.,{maven-dependencies}<!--,target/classes--></Bundle-ClassPath>
+                        <Export-Package>
+                            fr.inria.atlanmod.neoemf.graph.prefetch.datastore,
+                            fr.inria.atlanmod.neoemf.graph.prefetch.datastore.estores.impl,
+                            fr.inria.atlanmod.neoemf.graph.prefetch.resources
+                        </Export-Package>
+                        <Import-Package></Import-Package>
+                        <Embed-Dependency>
+                        </Embed-Dependency>
+                        <Require-Bundle>fr.inria.atlanmod.neoemf.graph.blueprints</Require-Bundle>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <!--<goals>
+                          <goal>manifest</goal>
+                        </goals>-->
+                    </execution>
+                </executions>
+            </plugin>
 	  </plugins>
   </build>
   
-  <reporting>
+<reporting>
       <plugins>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
