@@ -16,7 +16,7 @@ public class EMFRuleProcessorFactory implements RuleProcessorFactory {
 			throw new IllegalArgumentException("EMFRuleProcessor needs an EMF Resource");
 		}
 //		return new EMFRuleProcessor(cache, (Resource)resourceStore);
-		return new EMFRuleProcessor2(cache, (Resource)resourceStore);
+		return new EMFRuleProcessor(cache, (Resource)resourceStore);
 	}
 
 }

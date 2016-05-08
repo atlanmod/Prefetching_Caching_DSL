@@ -1,7 +1,6 @@
 package fr.inria.atlanmod.prefetch.processor.emf;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -12,14 +11,14 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
-import fr.inria.atlanmod.prefetch.cache.EMFCacheKey;
-import fr.inria.atlanmod.prefetch.core.PrefetchCore;
+import fr.inria.atlanmod.prefetch.cache.EMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
 
@@ -118,84 +117,52 @@ public class EMFRuleProcessor implements RuleProcessor {
 //			PrefetchLogger.debug("No more features to process for " + source.toString());
 			return;
 		}
-//		PrefetchLogger.debug("Processing feature " + features.get(idx).getFeature().getName() + " for " + source.eResource().getURIFragment(source));
-//		PrefetchLogger.debug("Updated cache " + cache.toString());
-		// TODO check if this does not take too many time (in particular in
-		// lazy-loading persistence framework, where all the containers have to be fetched)
+
+		// 1 - Est-ce que chaque idx est caché?
+		// 2 - Si oui on process sur le cache
+		// 3 - Si non on get, on cache tout, et on process
 		
-		EMFCacheKey key = new EMFCacheKey(source.eResource().getURIFragment(
-				source), features.get(idx).getFeature());
-		// Check if the elements are already in the cache
-		if(cache.containsKey(key)) {
-//			PrefetchLogger.debug(key.toString() + " is already cached");
-			// Get from the cache the objects and continue with them
-			List<EObject> cachedEObjects = (List<EObject>)cache.get(key);
-			for(EObject e : cachedEObjects) {
-				processFeatures(e, features, idx + 1);
+		EStructuralFeature theFeature = features.get(idx).getFeature();
+		String sourceFragment = source.eResource().getURIFragment(source);
+		
+		if(theFeature.isMany()) {
+			// Not costly (just a wrapper)
+			EList r = (EList)source.eGet(theFeature);
+			// Costly
+			EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(sourceFragment, theFeature, -2);
+			int theSize = -1;
+			if(cache.containsKey(sizeKey)) {
+				theSize = (int)cache.get(sizeKey);
+			}
+			else {
+				theSize = r.size();
+				cache.put(sizeKey, theSize);
+			}
+			for(int i = 0; i < theSize; i++) {
+				EMFIndexedCacheKey key = new EMFIndexedCacheKey(sourceFragment, theFeature, i);
+				if(cache.containsKey(key)) {
+					EObject cachedObject = (EObject)cache.get(key);
+					processFeatures(cachedObject, features, idx + 1);
+				}
+				else {
+					EObject computedObject = (EObject)r.get(i);
+					cache.put(key, computedObject);
+					processFeatures(computedObject, features, idx + 1);
+				}
 			}
 		}
 		else {
-			Object linkedEObjects = source.eGet(features.get(idx).getFeature());
-			List<EObject> fetchedEObjects = null;
-			if(linkedEObjects == null) {
-				// The feature returns null
-				synchronized (cache) {
-					cache.put(key, Arrays.asList(new EObject[0]));
-				}
-				return;
+			EMFIndexedCacheKey key = new EMFIndexedCacheKey(sourceFragment, theFeature, -1);
+			if(cache.containsKey(key)) {
+				EObject cachedObject = (EObject)cache.get(key);
+				processFeatures(cachedObject, features, idx + 1);
 			}
 			else {
-				if(features.get(idx).getFeature().isMany()) {
-					List l = (List)linkedEObjects;
-					// Delegate call to the store (costly !)
-					int size = l.size();
-					fetchedEObjects = Arrays.asList(new EObject[size]);
-				}
-				else {
-					fetchedEObjects = Arrays.asList(new EObject[1]);
-				}
-				synchronized (cache) {
-					cache.put(key, fetchedEObjects);
-				}
- 			}
-			
-			
-			// Get from the PB the objects and continue with them
-//			PrefetchLogger.debug(key.toString() + " is not in the cache");
-			if(features.get(idx).getFeature().isMany()) {
-//				PrefetchLogger.debug("Feature " + features.get(idx).getFeature().getName() + " is multi-valued");
-//				List<EObject> refEObjects = (List<EObject>)source.eGet(features.get(idx).getFeature());
-//				cache.put(key, refEObjects);
-//				try {
-					// Avoid concurrent accesses with standard EMF lists
-					// it is ok because the prefetcher only reads the list, it
-					// does not modify it
-//				
-//					Object[] array = ((EList)linkedEObjects).toArray();
-					for(int i = 0; i < ((EList)linkedEObjects).size(); i++) {
-						// pos == i (because EMF natively returns elements in the correct order)
-//						fetchedEObjects.set(i, (EObject)array[i]);
-						EObject linkedEObject = (EObject)((EList)linkedEObjects).get(i);
-//						System.out.println("Adding " + linkedEObject + "("+ i + ")" + " to " + key.toString());
-						fetchedEObjects.set(i, linkedEObject);
-						processFeatures(linkedEObject, features, idx+1);
-					}
-//				} catch (Exception e ) {
-//					System.out.println(refEObjects.size());
-//					e.printStackTrace();
-//					System.out.println(source);
-//					System.out.println(features.get(idx).getFeature());
-//				}
-			} else {
-				// TODO handle EAttributes
-//				PrefetchLogger.debug("Feature " + features.get(idx).getFeature().getName() + " is single-valued");
-//				EObject refEObject = (EObject)source.eGet(features.get(idx).getFeature());
-				fetchedEObjects.set(0, (EObject)linkedEObjects);
-				processFeatures((EObject)linkedEObjects, features, idx + 1);
+				EObject computedObject = (EObject)source.eGet(theFeature);
+				cache.put(key, computedObject);
+				processFeatures(computedObject, features, idx + 1);
 			}
 		}
-//		long end = System.currentTimeMillis();
-//		PrefetchLogger.debug("Fetch Computed in " + (end-begin) + " ms");
 	}
 	
 	private List<EObject> getAllInstances(EClass eClass, List<? extends PrefetchingRule> pRules, Resource resource) {

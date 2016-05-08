@@ -12,9 +12,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import fr.inria.atlanmod.prefetch.cache.EMFCacheKey;
 import fr.inria.atlanmod.prefetch.core.PrefetchCore;
-import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
 
 public class EventNotifierDelegateEList<E> implements EList<E> {
 

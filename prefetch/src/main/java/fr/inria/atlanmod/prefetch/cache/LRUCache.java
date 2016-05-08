@@ -2,9 +2,9 @@ package fr.inria.atlanmod.prefetch.cache;
 
 import org.apache.commons.collections.map.LRUMap;
 
-public class MyLRUMap extends LRUMap {
+public class LRUCache extends LRUMap {
 	private int chunkSize = 100;
-	public MyLRUMap(int size, int chunkSize) {
+	public LRUCache(int size, int chunkSize) {
 		super(size);
 		this.chunkSize = chunkSize;
 	}

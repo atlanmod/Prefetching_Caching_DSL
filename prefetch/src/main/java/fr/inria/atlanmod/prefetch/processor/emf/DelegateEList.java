@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import fr.inria.atlanmod.prefetch.cache.EMFCacheKey;
 import fr.inria.atlanmod.prefetch.cache.EMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.core.PrefetchCore;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
@@ -42,7 +41,7 @@ public class DelegateEList<E> implements EList<E> {
 	}
 	
 	public int size() {
-		if(1 == 1) {
+//		if(1 == 1) {
 			EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner),feature,-2);
 			if(pCore.getActiveCache().containsKey(sizeKey)) {
 				return (int)pCore.getActiveCache().get(sizeKey);
@@ -50,31 +49,31 @@ public class DelegateEList<E> implements EList<E> {
 			else {
 				return delegateEGet().size();
 			}
-		}
-		Object result = null;
-		if(owner != null && feature != null) {
-			EMFCacheKey cacheKey = new EMFCacheKey(owner.eResource().getURIFragment(owner), feature);
-	    	if(pCore.getActiveCache().containsKey(cacheKey)) {
-//	    		pCore.hitCount++;
-	    		result = ((List)pCore.getActiveCache().get(cacheKey));
-	    		return ((List)result).size();
-	    	}
-	    	else {
-	    		// The feature is not in the cache
-//	    		PrefetchLogger.debug("ConsMiss : " + cacheKey.toString());
-//	    		System.out.println(pCore.getActiveCache().get(cacheKey));
-//	    		pCore.missCount++;
-	    		List rList = (List)delegateEGet();
-	    		return rList.size();
-	    	}
-		}
-		else {
-			// This is not a miss, null owner and feature means that the EList is 
-			// an allInstance result
-//			pCore.missCount++;
-			List rList = (List)delegateEGet();
-			return rList.size();
-		}
+//		}
+//		Object result = null;
+//		if(owner != null && feature != null) {
+//			EMFCacheKey cacheKey = new EMFCacheKey(owner.eResource().getURIFragment(owner), feature);
+//	    	if(pCore.getActiveCache().containsKey(cacheKey)) {
+////	    		pCore.hitCount++;
+//	    		result = ((List)pCore.getActiveCache().get(cacheKey));
+//	    		return ((List)result).size();
+//	    	}
+//	    	else {
+//	    		// The feature is not in the cache
+////	    		PrefetchLogger.debug("ConsMiss : " + cacheKey.toString());
+////	    		System.out.println(pCore.getActiveCache().get(cacheKey));
+////	    		pCore.missCount++;
+//	    		List rList = (List)delegateEGet();
+//	    		return rList.size();
+//	    	}
+//		}
+//		else {
+//			// This is not a miss, null owner and feature means that the EList is 
+//			// an allInstance result
+////			pCore.missCount++;
+//			List rList = (List)delegateEGet();
+//			return rList.size();
+//		}
 	}
 
 	public boolean isEmpty() {

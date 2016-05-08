@@ -1,13 +1,8 @@
 package fr.inria.atlanmod.prefetch.cache;
 
-import java.util.Collections;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.collections.map.LRUMap;
-
-import sun.misc.LRUCache;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Cache;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheType;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
@@ -20,11 +15,11 @@ public class CacheFactory {
 			if(cache.getProperties().getSize() != 0) {
 				// TODO Handle chunksize
 				PrefetchLogger.info("Setting cache size to " + cache.getProperties().getSize());
-				return new MyLRUMap(cache.getProperties().getSize(), 1);
+				return new LRUCache(cache.getProperties().getSize(), 1);
 			}
 			else {
 				PrefetchLogger.info("Setting cache size to default");
-				return new MyLRUMap(1000000, 1);
+				return new LRUCache(1000000, 1);
 			}
 		}
 		else if(cache.getType().equals(CacheType.MRU)) {
@@ -32,11 +27,11 @@ public class CacheFactory {
 			if(cache.getProperties().getSize() != 0) {
 				// TODO Handle chunksize
 				PrefetchLogger.info("Setting cache size to " + cache.getProperties().getSize());
-				return new MyMRUMap(cache.getProperties().getSize(), 1);
+				return new MRUCache(cache.getProperties().getSize(), 1);
 			}
 			else {
 				PrefetchLogger.info("Setting cache size to default");
-				return new MyMRUMap(1000000, 1);
+				return new MRUCache(1000000, 1);
 			}
 			
 //			PrefetchLogger.debug("LRU map created");
