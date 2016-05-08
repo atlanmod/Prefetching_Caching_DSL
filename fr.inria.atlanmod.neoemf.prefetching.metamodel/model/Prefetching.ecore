@@ -18,7 +18,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CacheType">
     <eLiterals name="LRU" literal="LRU"/>
-    <eLiterals name="PREDICTIVE" value="1" literal="Predictive"/>
+    <eLiterals name="MRU" value="1" literal="MRU"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CacheProperties">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

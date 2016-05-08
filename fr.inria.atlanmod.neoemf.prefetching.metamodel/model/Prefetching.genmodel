@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.atlanmod.neoemf.prefetching.metamodel/src/main/java"
-    modelPluginID="fr.inria.atlanmod.neoemf.prefetching.metamodel" modelName="Prefetching"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
-    operationReflection="true" importOrganizing="true">
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/metamodel/src/main/java" modelPluginID="fr.inria.atlanmod.neoemf.prefetching.metamodel"
+    modelName="Prefetching" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore" operationReflection="true"
+    importOrganizing="true">
   <foreignModel>Prefetching.ecore</foreignModel>
   <genPackages prefix="Prefetching" basePackage="fr.inria.atlanmod.neoemf.prefetching.metamodel"
       disposableProviderFactory="true" ecorePackage="Prefetching.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Prefetching.ecore#//CacheType">
       <genEnumLiterals ecoreEnumLiteral="Prefetching.ecore#//CacheType/LRU"/>
-      <genEnumLiterals ecoreEnumLiteral="Prefetching.ecore#//CacheType/PREDICTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="Prefetching.ecore#//CacheType/MRU"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Prefetching.ecore#//RefType">
       <genEnumLiterals ecoreEnumLiteral="Prefetching.ecore#//RefType/STRONG"/>
@@ -34,6 +34,7 @@
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//CacheProperties">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//CacheProperties/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//CacheProperties/chunk"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//Plan">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//Plan/name"/>
@@ -51,6 +52,7 @@
     <genClasses ecoreClass="Prefetching.ecore#//StartingRule"/>
     <genClasses ecoreClass="Prefetching.ecore#//AccessRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prefetching.ecore#//AccessRule/sourcePattern"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//AccessRule/removeType"/>
     </genClasses>
     <genClasses ecoreClass="Prefetching.ecore#//SourcePattern">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prefetching.ecore#//SourcePattern/pattern"/>
