@@ -18,7 +18,7 @@ Cache:
 
 enum CacheType:
 	LRU='LRU' |
-	PREDICTIVE='Predictive' 
+	MRU='MRU' 
 ; 
  
 CacheProperties:
