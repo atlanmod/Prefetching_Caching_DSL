@@ -74,15 +74,11 @@ public class EMFRuleProcessor implements RuleProcessor {
 	}
 	
 	public void processAccessRules(Object source, List<AccessRule> aRules) {
-//		if((PrefetchCore.hitCount + PrefetchCore.missCount) > 0 && (PrefetchCore.hitCount/(PrefetchCore.hitCount + PrefetchCore.missCount)) < 0.001 && PrefetchCore.missCount > 10000) {
-//			return;
-//		}
 		if(!(source instanceof EObject)) {
 			PrefetchLogger.error("Cannot use EMFRuleProcessor on non EMF source object");
 			throw new IllegalArgumentException("Cannot use EMFRuleProcessor on non EMF source object");
 		}
 		if(aRules.isEmpty()) {
-//			PrefetchLogger.debug("Empty aRule list for source " + source.toString() + ", returning");
 			return;
 		}
 		for(AccessRule aRule : aRules) {
@@ -91,7 +87,6 @@ public class EMFRuleProcessor implements RuleProcessor {
 			if(sourceEClass.equals(targetEClass)) {
 				// The target pattern is an extension of the source one, simply process the references
 				processFeatures((EObject)source,aRule.getTargetPattern().getFeatures());
-//				PrefetchLogger.debug("DONE");
 			}
 			else {
 				// The target pattern starts with another EClass, fetch all the instances of this EClass
@@ -109,25 +104,19 @@ public class EMFRuleProcessor implements RuleProcessor {
 	
 	private void processFeatures(EObject source, EList<FeaturePattern> features, int idx) {
 		if(source == null) {
-//			PrefetchLogger.debug("Null source, stoping recursion");
 			return;
 		}
-//		long begin = System.currentTimeMillis();
 		if(features == null || idx >= features.size()) {
-//			PrefetchLogger.debug("No more features to process for " + source.toString());
 			return;
 		}
 
-		// 1 - Est-ce que chaque idx est caché?
-		// 2 - Si oui on process sur le cache
-		// 3 - Si non on get, on cache tout, et on process
-		
 		EStructuralFeature theFeature = features.get(idx).getFeature();
 		String sourceFragment = source.eResource().getURIFragment(source);
 		
 		if(theFeature.isMany()) {
 			// Not costly (just a wrapper)
-			EList r = (EList)source.eGet(theFeature);
+			@SuppressWarnings("unchecked")
+			EList<EObject> r = (EList<EObject>)source.eGet(theFeature);
 			// Costly
 			EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(sourceFragment, theFeature, -2);
 			int theSize = -1;

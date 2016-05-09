@@ -33,6 +33,7 @@ public class DelegateEList<E> implements EList<E> {
 		this.pCore = core;
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected List<E> delegateEGet() {
 		if(innerList == null) {
 			innerList = (List<E>)owner.eGet(feature);
@@ -41,39 +42,13 @@ public class DelegateEList<E> implements EList<E> {
 	}
 	
 	public int size() {
-//		if(1 == 1) {
-			EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner),feature,-2);
-			if(pCore.getActiveCache().containsKey(sizeKey)) {
-				return (int)pCore.getActiveCache().get(sizeKey);
-			}
-			else {
-				return delegateEGet().size();
-			}
-//		}
-//		Object result = null;
-//		if(owner != null && feature != null) {
-//			EMFCacheKey cacheKey = new EMFCacheKey(owner.eResource().getURIFragment(owner), feature);
-//	    	if(pCore.getActiveCache().containsKey(cacheKey)) {
-////	    		pCore.hitCount++;
-//	    		result = ((List)pCore.getActiveCache().get(cacheKey));
-//	    		return ((List)result).size();
-//	    	}
-//	    	else {
-//	    		// The feature is not in the cache
-////	    		PrefetchLogger.debug("ConsMiss : " + cacheKey.toString());
-////	    		System.out.println(pCore.getActiveCache().get(cacheKey));
-////	    		pCore.missCount++;
-//	    		List rList = (List)delegateEGet();
-//	    		return rList.size();
-//	    	}
-//		}
-//		else {
-//			// This is not a miss, null owner and feature means that the EList is 
-//			// an allInstance result
-////			pCore.missCount++;
-//			List rList = (List)delegateEGet();
-//			return rList.size();
-//		}
+		EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner),feature,-2);
+		if(pCore.getActiveCache().containsKey(sizeKey)) {
+			return (int)pCore.getActiveCache().get(sizeKey);
+		}
+		else {
+			return delegateEGet().size();
+		}
 	}
 
 	public boolean isEmpty() {
@@ -85,7 +60,6 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public Iterator<E> iterator() {
-//		return delegateEGet().iterator();
 		return new EIterator<E>();
 	}
 
@@ -239,16 +213,10 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public E get(int index) {
-//		if(1 == 1) {
-//		return delegateEGet().get(index);
-//		}
 		Object result = null;
 		if(owner != null && feature != null) {
 			EMFIndexedCacheKey cacheKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner), feature, index);
-//			EMFCacheKey cacheKey = new EMFCacheKey(owner.eResource().getURIFragment(owner), feature);
 	    	if(pCore.getActiveCache().containsKey(cacheKey)) {
-//	    		System.out.println(pCore.getActiveCache().get(cacheKey));
-	    		
 	    		result = pCore.getActiveCache().get(cacheKey);
 	    		if(result != null) {
 	    			pCore.hitCount++;
@@ -261,42 +229,12 @@ public class DelegateEList<E> implements EList<E> {
 	    			pCore.getEventAPI().accessEvent((EObject)result);
 	    			return (E)result;
 	    		}
-	    		
-	    		// STANDARD CODE
-//	    		result = ((List)pCore.getActiveCache().get(cacheKey)).get(index);
-//	    		if(result != null) {
-//	    			pCore.hitCount++;
-////		    		System.out.println("Hitted " + owner.eResource().getURIFragment(owner) + " -> " + feature.getName());
-////		    		PrefetchLogger.debug("Prefetch Hit " + cacheKey.toString() + "->" + result.toString());
-////		    		System.out.println("hit " + cacheKey.toString() + "(" + index + ")");
-//	    			pCore.getEventAPI().accessEvent((EObject)result);
-//		    		return (E)result;
-//	    		}
-//	    		else {
-//	    			// The feature is cached but the cache does not contain for now
-//	    			// the value requested at the specific index, retrieve it from
-//	    			// the underlying list
-//	    			pCore.missCount++;
-//	    			long begin = System.currentTimeMillis();
-////	    			System.out.println(((List)pCore.getActiveCache().get(cacheKey)).get(index));
-//	    			Object r = delegateEGet().get(index);
-//	    			pCore.getEventAPI().accessEvent((EObject)r);
-////	    			System.out.println(r);
-//	    			long end = System.currentTimeMillis();
-////	    			System.out.println("GetConsMiss : " + cacheKey.toString() + "(" + index + ")");
-////		    		System.out.println(pCore.getActiveCache().get(cacheKey));
-//	    			consistencyMissTime += (end-begin);
-//	    			return (E)r;
-//	    		}
 	    	}
 	    	else {
 	    		// The feature is not in the cache
 	    		pCore.missCount++;
-//	    		long begin = System.currentTimeMillis();
 	    		Object r = delegateEGet().get(index);
 	    		pCore.getEventAPI().accessEvent((EObject)r);
-//	    		long end = System.currentTimeMillis();
-//	    		missTime += (end-begin);
 	    		return (E)r;
 	    	}
 		}
@@ -304,19 +242,12 @@ public class DelegateEList<E> implements EList<E> {
 			// This is not a miss, null owner and feature means that the EList is 
 			// an allInstance result
 //			pCore.missCount++;
-			long begin = System.currentTimeMillis();
 			result = delegateEGet().get(index);
 			pCore.getEventAPI().accessEvent((EObject)result);
-			long end = System.currentTimeMillis();
-			wastedTime += (end-begin);
 			return (E)result;
 		}
 	}
 	
-	public static long wastedTime = 0;
-	public static long missTime = 0;
-	public static long consistencyMissTime = 0;
-
 	public E set(int index, E element) {
 		return delegateEGet().set(index, element);
 	}

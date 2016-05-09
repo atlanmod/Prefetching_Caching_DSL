@@ -16,8 +16,6 @@ import fr.inria.atlanmod.prefetch.core.PrefetchCore;
 
 public class EventNotifierDelegateEList<E> implements EList<E> {
 
-	private EObject owner;
-	private EStructuralFeature feature;
 	private PrefetchCore pCore;
 	private List<E> list;
 	

@@ -97,9 +97,6 @@ public class PrefetchCore {
 			System.out.println(Registry.INSTANCE.getEPackage(mImport.getNsURI()));
 		}
 		PrefetchLogger.info("Creating Plan caches");
-//		for(Plan plan : pModel.getPlans()) {
-//			cacheStore.put(plan.getName(), CacheFactory.createCacheInstance(plan.getCache()));
-//		}
 		// TODO handle multiple caches
 		cache = CacheFactory.createCacheInstance(pModel.getPlans().get(0).getCache());
 		worker.setCache(cache);

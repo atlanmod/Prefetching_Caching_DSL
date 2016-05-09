@@ -22,11 +22,22 @@ public class PrefetchWorker {
 	private RuleStore ruleStore;
 	private ExecutorService worker;
 	
-	public PrefetchWorker(RuleProcessorFactory processorFactory, RuleStore ruleStore, Map<Object,Object> cache, Object resourceStore) {
+	public PrefetchWorker(RuleProcessorFactory processorFactory, RuleStore ruleStore, Map<Object,Object> cache, Object resourceStore, int executorCount) {
+		assert executorCount > 0 : "PrefetchWorker need to instantiate at least one thread, " + executorCount + " given";
 		this.theProcessor = processorFactory.createProcessor(cache, resourceStore);
 		this.ruleStore = ruleStore;
-//		worker = Executors.newFixedThreadPool(10);
-		worker = Executors.newSingleThreadExecutor();
+		if(executorCount == 1) {
+			PrefetchLogger.info("Creating a single thread worker");
+			worker = Executors.newSingleThreadExecutor();
+		}
+		else {
+			PrefetchLogger.info("Creating a multi thread (" + executorCount + ") worker");
+			worker = Executors.newFixedThreadPool(executorCount);
+		}
+	}
+	
+	public PrefetchWorker(RuleProcessorFactory processorFactory, RuleStore ruleStore, Map<Object,Object> cache, Object resourceStore) {
+		this(processorFactory,ruleStore,cache,resourceStore,1);
 	}
 	
 	public void setCache(Map<Object,Object> newCache) {
@@ -46,21 +57,11 @@ public class PrefetchWorker {
 			return;
 		}
 		ar = new AccessRuleAction(source, pRules, theProcessor);
-//		ar.run();
 		worker.execute(ar);
-//		worker.execute(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				System.out.println("whil whil");
-//				while(true) {}
-//			}
-//		});
 	}
 	
 	public void handleAccess(Object source, EClass eClass) {
 		List<AccessRule> pRules = ruleStore.getARuleList(eClass);
-//		PrefetchLogger.debug("RS for : " + eClass.getName() + " : " + pRules.size());
 		if(pRules.isEmpty()) {
 			return;
 		}

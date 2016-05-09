@@ -118,11 +118,6 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		if(aRules.isEmpty()) {
             return;
         }
-//		if(!(source instanceof Vertex)) {
-//			PrefetchLogger.error("NeoEMFRuleProcessor can only traverse Vertices");
-//			throw new IllegalArgumentException("NeoEMFRuleProcessor can only traverse Vertices");
-//		}
-//		Vertex v = (Vertex)source;
         for(AccessRule aRule : aRules) {
             EClass sourceEClass = aRule.getSourcePattern().getEClass();
             EClass targetEClass = aRule.getTargetPattern().getEClass();
@@ -344,59 +339,6 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         		}
         	}
         }
-//        // TODO find if the following lines should be removed or if it has been set like that for debugging
-//        if(1==1) {
-//        	return;
-//        }
-        
-//		PrefetchLogger.debug("Processing feature " + features.get(idx).getFeature().getName() + " for " + v.toString());
-//        NeoEMFCacheKey key = new NeoEMFCacheKey(v.getId().toString(), features.get(idx).getFeature());
-//        if(cache.containsKey(key)) {
-//        	List<VertexWrapper> cachedVertices = (List<VertexWrapper>)cache.get(key);
-//			for(VertexWrapper vv : cachedVertices) {
-//				processFeatures(vv.getV(), features, idx + 1);
-//			}
-//        }
-//        else {
-//            
-//            Iterator<Vertex> linkedVertices = v.getVertices(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
-//            List<VertexWrapper> fetchedVertices = new ArrayList<VertexWrapper>();
-//            if(linkedVertices.hasNext()) {
-//            	Object o = v.getProperty(features.get(idx).getFeature().getName()+":size");
-//            	if(features.get(idx).getFeature().isMany()) {
-//            		fetchedVertices = Arrays.asList(new VertexWrapper[(Integer)v.getProperty(features.get(idx).getFeature().getName()+":size")]);
-//            	}
-//            	else {
-//            		fetchedVertices = Arrays.asList(new VertexWrapper[1]);
-//            	}
-////                		new ArrayList<Vertex>((Integer)v.getProperty(features.get(idx).getFeature().getName()+":size"));
-//            }
-////            System.out.println("hasNext" + linkedVertices.hasNext());
-//            if(linkedVertices.hasNext()) {
-//            	cache.put(key, fetchedVertices);
-////            	System.out.println("put key " + key + "in cache");
-//            }
-//            else {
-//            	cache.put(key, Arrays.asList(new VertexWrapper[0]));
-////            	System.out.println("size : " + ((List)cache.get(key)).size());
-//            }
-//            while(linkedVertices.hasNext()) {
-//            	Vertex lVertex = linkedVertices.next();
-//            	if(lVertex != null) {
-//            		if(features.get(idx).getFeature().isMany()) {
-//	                	int pos = lVertex.getEdges(Direction.IN, features.get(idx).getFeature().getName())
-//	                			.iterator().next().
-//	                			getProperty("position");
-//	            		fetchedVertices.set(pos,new VertexWrapper(lVertex,resolveInstanceOf(lVertex)));
-//            		}
-//            		else {
-//            			fetchedVertices.set(0, new VertexWrapper(lVertex, resolveInstanceOf(lVertex)));
-//            		}
-//            	}
-//            	processFeatures(lVertex, features, idx+1);
-//            }
-////            cache.put(key, fetchedVertices);
-//        }
     }
 	
 	private Iterator<Vertex> getAllInstancesOfEClass(EClass eClass) {

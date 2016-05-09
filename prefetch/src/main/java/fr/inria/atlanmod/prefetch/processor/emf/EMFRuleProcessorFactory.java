@@ -15,7 +15,6 @@ public class EMFRuleProcessorFactory implements RuleProcessorFactory {
 			PrefetchLogger.error("EMFRuleProcessor can only work with EMF Resource");
 			throw new IllegalArgumentException("EMFRuleProcessor needs an EMF Resource");
 		}
-//		return new EMFRuleProcessor(cache, (Resource)resourceStore);
 		return new EMFRuleProcessor(cache, (Resource)resourceStore);
 	}
 

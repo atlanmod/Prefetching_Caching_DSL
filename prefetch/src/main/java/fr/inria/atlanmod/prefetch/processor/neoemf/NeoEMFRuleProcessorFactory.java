@@ -17,6 +17,7 @@ public class NeoEMFRuleProcessorFactory implements RuleProcessorFactory {
 	 * @return an instance of @see{NeoEMFRuleProcessor}
 	 * @throws IllegalArgumentException if resourceStore is not an instance of IdGraph
 	 */
+	@SuppressWarnings("unchecked")
 	public RuleProcessor createProcessor(Map<Object, Object> cache, Object resourceStore) {
 		if(!(resourceStore instanceof IdGraph<?>)) {
 			throw new IllegalArgumentException("NeoEMFRuleProcessor needs a BlueprintsPersistenceBackend");

@@ -12,7 +12,6 @@ public class MRUCache extends LRUMap {
 	@Override
 	public Object put(Object key, Object value) {
 		if(isFull()) {
-//			System.out.println("Map full, removing chunk " + chunkSize);
 			for(int i = 0; i < chunkSize; i++) {
 				super.remove(super.lastKey());
 			}
