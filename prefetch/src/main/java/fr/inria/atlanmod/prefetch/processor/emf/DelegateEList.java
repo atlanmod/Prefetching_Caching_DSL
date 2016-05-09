@@ -219,12 +219,12 @@ public class DelegateEList<E> implements EList<E> {
 	    	if(pCore.getActiveCache().containsKey(cacheKey)) {
 	    		result = pCore.getActiveCache().get(cacheKey);
 	    		if(result != null) {
-	    			pCore.hitCount++;
+	    			pCore.hit();;
 	    			pCore.getEventAPI().accessEvent((EObject)result);
 	    			return (E)result;
 	    		}
 	    		else {
-	    			pCore.missCount++;
+	    			pCore.miss();
 	    			result = delegateEGet().get(index);
 	    			pCore.getEventAPI().accessEvent((EObject)result);
 	    			return (E)result;
@@ -232,7 +232,7 @@ public class DelegateEList<E> implements EList<E> {
 	    	}
 	    	else {
 	    		// The feature is not in the cache
-	    		pCore.missCount++;
+	    		pCore.miss();
 	    		Object r = delegateEGet().get(index);
 	    		pCore.getEventAPI().accessEvent((EObject)r);
 	    		return (E)r;
@@ -241,7 +241,6 @@ public class DelegateEList<E> implements EList<E> {
 		else {
 			// This is not a miss, null owner and feature means that the EList is 
 			// an allInstance result
-//			pCore.missCount++;
 			result = delegateEGet().get(index);
 			pCore.getEventAPI().accessEvent((EObject)result);
 			return (E)result;

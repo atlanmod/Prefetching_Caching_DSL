@@ -53,9 +53,6 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
     	return pCore;
     }
     
-    public static int missCount = 0;
-    public static int hitCount = 0;
-    
     @Override
     public int size(InternalEObject object, EStructuralFeature feature) {
     	if(feature instanceof EReference) {
@@ -67,7 +64,7 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
             PersistentEObject neoEObject = NeoEObjectAdapterFactoryImpl.getAdapter(object, PersistentEObject.class);
             NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -2);
             if(cache.containsKey(key)) {
-            	hitCount++;
+            	pCore.hit();;
             	int cachedSize = (int)cache.get(key);
             	if(cachedSize == -1) {
             		return 0;
@@ -77,7 +74,7 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
             	}
             }
             else {
-            	missCount++;
+            	pCore.miss();;
             	return super.size(object, feature);
             }
     	}
@@ -95,12 +92,12 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
             PersistentEObject neoEObject = NeoEObjectAdapterFactoryImpl.getAdapter(object, PersistentEObject.class);
             NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -2);
             if(cache.containsKey(key)) {
-            	hitCount++;
+            	pCore.hit();;
             	int theSize = (int)cache.get(key);
             	return theSize > 0;
             }
         }
-        missCount++;
+        pCore.miss();
     	return super.isSet(object, eReference);
     }
     
@@ -122,13 +119,13 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         if(eReference.isMany()) {
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, index);
         	if(cache.containsKey(key)) {
-        		hitCount++;
+        		pCore.hit();
         		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
         		eventAPI.accessEvent(wrapper.getV(),wrapper.getEClass());
         		return reifyVertex(wrapper);
         	}
         	else {
-        		missCount++;
+        		pCore.miss();
         		Vertex vertex = graph.getVertex(object);
         		Iterator<Vertex> iterator = vertex.query().labels(eReference.getName()).direction(Direction.OUT).has(POSITION, index).vertices().iterator();
                 if (iterator.hasNext()) {
@@ -144,13 +141,13 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         else {
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -1);
         	if(cache.containsKey(key)) {
-        		hitCount++;
+        		pCore.hit();
         		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
         		eventAPI.accessEvent(wrapper.getV(),wrapper.getEClass());
         		return reifyVertex(wrapper);
         	}
         	else {
-        		missCount++;
+        		pCore.miss();
         		Vertex vertex = graph.getVertex(object);
             	Iterator<Vertex> iterator = vertex.getVertices(Direction.OUT, eReference.getName()).iterator();
                 if (iterator.hasNext()) {

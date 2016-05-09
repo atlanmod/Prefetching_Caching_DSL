@@ -81,15 +81,15 @@ public class ClassDeclarationToClassUnitTestPrefetchEMF extends AbstractTestCase
     		EList<EObject> prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
     		System.out.println("input size : " + blocks.size());
 			System.out.println("Q1(1)");
-			core.hitCount = 0;
-			core.missCount = 0;
+			core.resetHitCount();
+			core.resetMissCount();
 			long begin = System.currentTimeMillis();
 			Object res = query.evaluate(prefetchableAllInstances);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
 //	        System.out.println("resres = " + resCount);
-	        System.out.println("Hits - " + core.hitCount);
-	        System.out.println("Misses - " + core.missCount);
+	        System.out.println("Hits - " + core.getHitCount());
+	        System.out.println("Misses - " + core.getMissCount());
 	        
 	        System.out.println("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -104,14 +104,14 @@ public class ClassDeclarationToClassUnitTestPrefetchEMF extends AbstractTestCase
 	        blocks = resource.getAllInstances(eContext);
     		prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
 	        begin = System.currentTimeMillis();
-	        core.hitCount = 0;
-	        core.missCount = 0;
+	        core.resetHitCount();
+	        core.resetMissCount();
 	        
 	        Object res2 = query.evaluate(prefetchableAllInstances);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + core.hitCount);
-	        System.out.println("Misses - " + core.missCount);
+	        System.out.println("Hits - " + core.getHitCount());
+	        System.out.println("Misses - " + core.getMissCount());
 	        System.out.println("cache size : "  + core.getActiveCache().size());
 	       
     	} catch(Exception e) {

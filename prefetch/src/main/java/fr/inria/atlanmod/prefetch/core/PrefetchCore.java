@@ -36,8 +36,14 @@ public class PrefetchCore {
 	private EventAPI eventAPI;
 	private Object resourceStore;
 	
-	public static int hitCount = 0;
-	public static int missCount = 0;
+	/**
+	 * The number of cache hits
+	 */
+	private int hitCount = 0;
+	/**
+	 * The number of cache misses
+	 */
+	private int missCount = 0;
 	
 	public PrefetchCore(Object resourceStore, RuleProcessorFactory ruleProcessorFactory) {
 		PrefetchLogger.info("Starting Prefetch Framework");
@@ -139,4 +145,45 @@ public class PrefetchCore {
 		return eventAPI;
 	}
 	
+	/**
+	 * @return the number of cache hits
+	 */
+	public int getHitCount() {
+		return this.hitCount;
+	}
+	
+	/**
+	 * Records a cache hit
+	 */
+	public void hit() {
+		this.hitCount++;
+	}
+	
+	/**
+	 * Resets the number of cache hits
+	 */
+	public void resetHitCount() {
+		this.hitCount = 0;
+	}
+	
+	/**
+	 * @return the number of cache misses
+	 */
+	public int getMissCount() {
+		return this.missCount;
+	}
+	
+	/**
+	 * Records a cache miss
+	 */
+	public void miss() {
+		this.missCount++;
+	}
+	
+	/**
+	 * Resets the number of cache misses
+	 */
+	public void resetMissCount() {
+		this.missCount = 0;
+	}
 }

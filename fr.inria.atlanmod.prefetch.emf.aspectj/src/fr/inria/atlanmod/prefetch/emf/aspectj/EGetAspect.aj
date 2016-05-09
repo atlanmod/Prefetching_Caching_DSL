@@ -52,12 +52,13 @@ public aspect EGetAspect extends AbstractEMFAspect {
     		EMFIndexedCacheKey cacheKey = new EMFIndexedCacheKey(sourceObject.eResource().getURIFragment(sourceObject),feature,-1);
     		Object result = null;
     		if(pCore.getActiveCache().containsKey(cacheKey)) {
-    			pCore.hitCount++;
+    			pCore.hit();
     			result = pCore.getActiveCache().get(cacheKey);
     			return result;
     		}
     		else {
     			// The value is not in the cache
+    			pCore.miss();
     			return proceed();
     		}
     	}

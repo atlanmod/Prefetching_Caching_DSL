@@ -56,10 +56,10 @@ public class BlockToBlockUnitTestPrefetch extends AbstractTestCasePrefetch {
 			Object res = query.evaluate(blocks);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pStore.hitCount);
-	        System.out.println("Misses - " + pStore.missCount);
-	        pStore.hitCount = 0;
-	        pStore.missCount = 0;
+	        System.out.println("Hits - " + pCore.getHitCount());
+	        System.out.println("Misses - " + pCore.getMissCount());
+	        pCore.resetHitCount();
+	        pCore.resetMissCount();
 	        System.out.println("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
@@ -74,8 +74,8 @@ public class BlockToBlockUnitTestPrefetch extends AbstractTestCasePrefetch {
 	        Object res2 = query.evaluate(blocks);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pStore.hitCount);
-	        System.out.println("Misses - " + pStore.missCount);
+	        System.out.println("Hits - " + pCore.getHitCount());
+	        System.out.println("Misses - " + pCore.getMissCount());
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

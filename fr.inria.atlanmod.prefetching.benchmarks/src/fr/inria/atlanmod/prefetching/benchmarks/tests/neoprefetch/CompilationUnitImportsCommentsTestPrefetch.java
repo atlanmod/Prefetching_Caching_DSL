@@ -1,42 +1,15 @@
 package fr.inria.atlanmod.prefetching.benchmarks.tests.neoprefetch;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage.Registry;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.Query;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.helper.OCLHelper;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.neoemf.datastore.PersistenceBackendFactoryRegistry;
-import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.BlueprintsPersistenceBackendFactory;
-import fr.inria.atlanmod.neoemf.graph.prefetch.datastore.estores.impl.PrefetchingDirectWriteBlueprintsResourceEStoreImpl;
-import fr.inria.atlanmod.neoemf.graph.blueprints.neo4j.resources.BlueprintsNeo4jResourceOptions;
-import fr.inria.atlanmod.neoemf.graph.blueprints.resources.BlueprintsResourceOptions;
-import fr.inria.atlanmod.neoemf.graph.blueprints.util.NeoBlueprintsURI;
-import fr.inria.atlanmod.neoemf.resources.PersistentResource;
-import fr.inria.atlanmod.neoemf.resources.PersistentResourceOptions;
-import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceFactoryImpl;
 import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCasePrefetch;
 
@@ -90,10 +63,10 @@ public class CompilationUnitImportsCommentsTestPrefetch extends AbstractTestCase
 			Object res = query.evaluate(abstractTypeDeclarations);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pStore.hitCount);
-	        System.out.println("Misses - " + pStore.missCount);
-	        pStore.hitCount = 0;
-	        pStore.missCount = 0;
+	        System.out.println("Hits - " + pCore.getHitCount());
+	        System.out.println("Misses - " + pCore.getMissCount());
+	        pCore.resetHitCount();
+	        pCore.resetMissCount();
 	        
 	        System.out.println("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -109,8 +82,8 @@ public class CompilationUnitImportsCommentsTestPrefetch extends AbstractTestCase
 	        Object res2 = query.evaluate(abstractTypeDeclarations);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pStore.hitCount);
-	        System.out.println("Misses - " + pStore.missCount);
+	        System.out.println("Hits - " + pCore.getHitCount());
+	        System.out.println("Misses - " + pCore.getMissCount());
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

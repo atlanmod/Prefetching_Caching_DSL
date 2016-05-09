@@ -1,7 +1,5 @@
 package fr.inria.atlanmod.prefetching.benchmarks.tests;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage.Registry;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -25,7 +22,6 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.junit.Before;
-import org.junit.Test;
 
 import fr.inria.atlanmod.neoemf.datastore.PersistenceBackendFactoryRegistry;
 import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.BlueprintsPersistenceBackendFactory;
@@ -37,11 +33,14 @@ import fr.inria.atlanmod.neoemf.graph.blueprints.util.NeoBlueprintsURI;
 import fr.inria.atlanmod.neoemf.resources.PersistentResource;
 import fr.inria.atlanmod.neoemf.resources.PersistentResourceOptions;
 import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceFactoryImpl;
+import fr.inria.atlanmod.prefetch.core.PrefetchCore;
 
 public abstract class AbstractTestCasePrefetch extends AbstractPrefetchTest {
 
+	@SuppressWarnings("rawtypes")
 	protected OCL ocl = null;
-    protected OCLHelper oclHelper = null;
+    @SuppressWarnings("rawtypes")
+	protected OCLHelper oclHelper = null;
     
     protected PersistentResource resource;
     
@@ -49,6 +48,7 @@ public abstract class AbstractTestCasePrefetch extends AbstractPrefetchTest {
     protected Query<EClassifier, EClass, EObject> query = null;
     
     protected PrefetchingDirectWriteBlueprintsResourceEStoreImpl pStore;
+    protected PrefetchCore pCore;
 	
     public AbstractTestCasePrefetch(String resourceName) {
     	super(resourceName);
@@ -87,7 +87,8 @@ public abstract class AbstractTestCasePrefetch extends AbstractPrefetchTest {
 		}
 		
 		pStore = (PrefetchingDirectWriteBlueprintsResourceEStoreImpl)((PersistentResource)resource).eStore();
-		pStore.getPrefetcher().loadPrefetchScript(URI.createURI(this.getScriptString()));
+		pCore = pStore.getPrefetcher();
+		pCore.loadPrefetchScript(URI.createURI(this.getScriptString()));
 		
 	}
 	
