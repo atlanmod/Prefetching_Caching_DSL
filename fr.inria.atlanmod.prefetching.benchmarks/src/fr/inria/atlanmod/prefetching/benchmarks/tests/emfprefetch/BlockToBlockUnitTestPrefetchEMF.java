@@ -66,9 +66,7 @@ public class BlockToBlockUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        System.out.println("Hits - " + core.hitCount);
 	        System.out.println("Misses - " + core.missCount);
-	        System.out.println("Events : " + core.getEventAPI().accessCount);
 	        System.out.println("Event types : " + core.getEventAPI().eventTypes.toString());
-	        core.getEventAPI().accessCount = 0;
 	        
 	        System.out.println("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -88,7 +86,6 @@ public class BlockToBlockUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF
 	        core.missCount = 0;
 	        Object res2 = query.evaluate(prefetchableAllInstances);
 	        end = System.currentTimeMillis();
-	        System.out.println("Events : " + core.getEventAPI().accessCount);
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        System.out.println("Hits - " + core.hitCount);
 	        System.out.println("Misses - " + core.missCount);

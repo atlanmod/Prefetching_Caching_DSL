@@ -12,4 +12,5 @@ Require-Bundle: org.eclipse.ocl.ecore;bundle-version="3.3.100",
  fr.inria.atlanmod.prefetch;bundle-version="0.0.1",
  org.junit;bundle-version="4.11.0",
  fr.inria.atlanmod.prefetch.emf.aspectj;bundle-version="1.0.0",
- org.eclipse.gmt.modisco.java.neoemf;bundle-version="1.0.0"
+ org.eclipse.gmt.modisco.java.neoemf;bundle-version="1.0.0",
+ fr.inria.atlanmod.neoemf.graph.prefetch;bundle-version="0.0.1"

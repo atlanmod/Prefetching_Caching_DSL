@@ -90,10 +90,6 @@ public class ClassDeclarationToClassUnitTestPrefetchEMF extends AbstractTestCase
 //	        System.out.println("resres = " + resCount);
 	        System.out.println("Hits - " + core.hitCount);
 	        System.out.println("Misses - " + core.missCount);
-	        System.out.println("Wasred " + DelegateEList.wastedTime);
-	        System.out.println("Missed time : " + DelegateEList.missTime);
-	        System.out.println("Consistency miss time : " + DelegateEList.consistencyMissTime);
-	        System.out.println("Event count : " + core.getEventAPI().accessCount);
 	        
 	        System.out.println("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -116,9 +112,6 @@ public class ClassDeclarationToClassUnitTestPrefetchEMF extends AbstractTestCase
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        System.out.println("Hits - " + core.hitCount);
 	        System.out.println("Misses - " + core.missCount);
-	        System.out.println("Missed time : " + DelegateEList.missTime);
-	        System.out.println("Consistency miss time : " + DelegateEList.consistencyMissTime);
-	        System.out.println("Event count : " + core.getEventAPI().accessCount);
 	        System.out.println("cache size : "  + core.getActiveCache().size());
 	       
     	} catch(Exception e) {

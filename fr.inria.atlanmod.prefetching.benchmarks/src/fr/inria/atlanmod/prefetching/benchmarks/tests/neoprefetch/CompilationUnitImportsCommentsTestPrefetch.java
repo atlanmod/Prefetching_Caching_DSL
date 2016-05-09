@@ -30,7 +30,7 @@ import org.junit.Test;
 
 import fr.inria.atlanmod.neoemf.datastore.PersistenceBackendFactoryRegistry;
 import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.BlueprintsPersistenceBackendFactory;
-import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.estores.impl.PrefetchingDirectWriteBlueprintsResourceEStoreImpl;
+import fr.inria.atlanmod.neoemf.graph.prefetch.datastore.estores.impl.PrefetchingDirectWriteBlueprintsResourceEStoreImpl;
 import fr.inria.atlanmod.neoemf.graph.blueprints.neo4j.resources.BlueprintsNeo4jResourceOptions;
 import fr.inria.atlanmod.neoemf.graph.blueprints.resources.BlueprintsResourceOptions;
 import fr.inria.atlanmod.neoemf.graph.blueprints.util.NeoBlueprintsURI;
