@@ -61,13 +61,10 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
     	if(feature instanceof EReference) {
     		EReference eReference = (EReference)feature;
 	    	final Map<Object,Object> cache = pCore.getActiveCache();
-	    	EventAPI eventAPI = pCore.getEventAPI();
 	    	if(!(eReference.getEType() instanceof EClass)) {
 	            return super.size(object, feature);
 	        }
             PersistentEObject neoEObject = NeoEObjectAdapterFactoryImpl.getAdapter(object, PersistentEObject.class);
-//	            NeoEMFCacheKey key = new NeoEMFCacheKey(neoEObject.id().toString(), eReference);
-//	            List<VertexWrapper> cacheHit = (List<VertexWrapper>)cache.get(key);
             NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -2);
             if(cache.containsKey(key)) {
             	hitCount++;
@@ -83,22 +80,6 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
             	missCount++;
             	return super.size(object, feature);
             }
-//	            if(cacheHit != null) {
-//	            	hitCount++;
-//	            	return cacheHit.size();
-	//            	NeoLogger.log(NeoLogger.SEVERITY_DEBUG, "hit !");
-	//            	System.out.println(index + "/" + cacheHit.size());
-//	            	if(cacheHit.get(lIndex) == null) {
-	//            		System.out.println("Prefetcher too slow");
-//	            }
-//	            System.out.println(super.size(object, feature));
-//	            	else {
-	//            		return cacheHit.get(index);
-	            		
-	//            		System.out.println("hit");
-	//            		System.out.println(e);
-//	            		return e;
-	//            System.out.println(missCount);
     	}
     	return super.size(object, feature);
     }
@@ -107,7 +88,6 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
     protected boolean isSet(InternalEObject object, EReference eReference) {
     	PrefetchLogger.info("Accessing eSet");
     	final Map<Object,Object> cache = pCore.getActiveCache();
-    	EventAPI eventAPI = pCore.getEventAPI();
     	if(!(eReference.getEType() instanceof EClass)) {
             return super.isSet(object, eReference);
         }
@@ -119,35 +99,14 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
             	int theSize = (int)cache.get(key);
             	return theSize > 0;
             }
-//            NeoEMFCacheKey key = new NeoEMFCacheKey(neoEObject.id().toString(), eReference);
-//            List<VertexWrapper> cacheHit = (List<VertexWrapper>)cache.get(key);
-//            if(cacheHit != null) {
-//            	hitCount++;
-//            	return cacheHit.size() > 0;
-//            	NeoLogger.log(NeoLogger.SEVERITY_DEBUG, "hit !");
-//            	System.out.println(index + "/" + cacheHit.size());
-//	            	if(cacheHit.get(lIndex) == null) {
-//            		System.out.println("Prefetcher too slow");
-//            }
-//	            System.out.println(super.size(object, feature));
-//	            	else {
-//            		return cacheHit.get(index);
-            		
-//            		System.out.println("hit");
-//            		System.out.println(e);
-//	            		return e;
         }
         missCount++;
-//            System.out.println(missCount);
     	return super.isSet(object, eReference);
     }
     
     
     @Override
     protected Object get(InternalEObject object, EReference eReference, int index) {
-//    	if(1==1) {
-//        	return super.get(object, eReference, index);
-//        }
     	Map<Object,Object> cache = pCore.getActiveCache();
     	EventAPI eventAPI = pCore.getEventAPI();
         if(!(eReference.getEType() instanceof EClass)) {
@@ -160,7 +119,6 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         }
         
         PersistentEObject neoEObject = NeoEObjectAdapterFactoryImpl.getAdapter(object, PersistentEObject.class);
-//        System.out.println(cache.toString());
         if(eReference.isMany()) {
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, index);
         	if(cache.containsKey(key)) {
@@ -184,7 +142,6 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         	}
         }
         else {
-//        	PrefetchLogger.info("accessing single ref : " + eReference.getName());
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -1);
         	if(cache.containsKey(key)) {
         		hitCount++;
@@ -206,63 +163,6 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
                 }
         	}
         }
-//            System.out.println("?????");
-////            NeoEMFCacheKey key = new NeoEMFCacheKey(neoEObject.id().toString(), eReference);
-////            List<VertexWrapper> cacheHit = (List<VertexWrapper>)cache.get(key);
-//            if(cacheHit != null) {
-////            	NeoLogger.log(NeoLogger.SEVERITY_DEBUG, "hit !");
-////            	System.out.println(index + "/" + cacheHit.size());
-//            	int lIndex = (index == -1 ? 0 : index);
-//            	try{
-//            	if(cacheHit.get(lIndex) == null) {
-////            		System.out.println("Prefetcher too slow");
-//            	}
-//            	else {
-////            		return cacheHit.get(index)
-//            		eventAPI.accessEvent(cacheHit.get(lIndex).getV(),cacheHit.get(lIndex).getEClass());
-//            		InternalEObject e = reifyVertex(cacheHit.get(lIndex));
-//            		hitCount++;
-////            		System.out.println("hit");
-////            		System.out.println(e);
-//            		return e;
-//            	}
-//            	}catch(ArrayIndexOutOfBoundsException e) {
-//            		if(cacheHit.size()==0 && lIndex == 0) {
-//            			return null;
-//            		}
-//            	}
-//            }
-//            missCount++;
-////            System.out.println(missCount);
-//        }
-//        Vertex vertex = graph.getVertex(object);
-//        
-//        if (!eReference.isMany()) {
-//            Iterator<Vertex> iterator = vertex.getVertices(Direction.OUT, eReference.getName()).iterator();
-//            if (iterator.hasNext()) {
-//                Vertex referencedVertex = iterator.next();
-//                eventAPI.accessEvent(referencedVertex,graph.resolveInstanceOf(referencedVertex));
-//                InternalEObject reifiedObject = reifyVertex(referencedVertex);
-//                return reifiedObject;
-//            } else {
-//                return null;
-//            }
-//        } else {
-//            Integer size = getSize(vertex, eReference);
-//            if (index < 0 || index >= size) {
-//                throw new IndexOutOfBoundsException();
-//            } else {
-//                Iterator<Vertex> iterator = vertex.query().labels(eReference.getName()).direction(Direction.OUT).has(POSITION, index).vertices().iterator();
-//                if (iterator.hasNext()) {
-//                    Vertex referencedVertex = iterator.next();
-//                    InternalEObject reifiedObject = reifyVertex(referencedVertex);
-//                    eventAPI.accessEvent(referencedVertex,graph.resolveInstanceOf(referencedVertex));
-//                    return reifiedObject;
-//                } else {
-//                    return null;
-//                }
-//            }
-//        }
     }
     
     protected InternalEObject reifyVertex(VertexWrapper vWrapper) {
@@ -286,7 +186,9 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
     
     class PrefetchEventBasicEList<E> extends BasicEList<E> {
     	
-    	public PrefetchEventBasicEList() {
+		private static final long serialVersionUID = 1L;
+
+		public PrefetchEventBasicEList() {
     		super();
 		}
     	
@@ -294,7 +196,6 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
     	public E get(int index) {
     		E res = super.get(index);
     		if(res instanceof PersistentEObject) {
-//    			Vertex vv = graph.getVertex((PersistentEObject)res);
     			pCore.getEventAPI().accessEvent(((PersistentEObject)res).id().toString(), ((PersistentEObject)res).eClass());
     		}
     		return res;
