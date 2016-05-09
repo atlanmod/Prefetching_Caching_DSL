@@ -11,7 +11,6 @@
 package fr.inria.atlanmod.neoemf.graph.prefetch.datastore.estores.impl;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,7 +31,6 @@ import fr.inria.atlanmod.neoemf.core.impl.NeoEObjectAdapterFactoryImpl;
 import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.BlueprintsPersistenceBackend;
 import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.estores.impl.DirectWriteBlueprintsResourceEStoreImpl;
 import fr.inria.atlanmod.neoemf.logger.NeoLogger;
-import fr.inria.atlanmod.prefetch.cache.NeoEMFCacheKey;
 import fr.inria.atlanmod.prefetch.cache.NeoEMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.core.PrefetchCore;
 import fr.inria.atlanmod.prefetch.event.EventAPI;
