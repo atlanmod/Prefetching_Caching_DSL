@@ -15,5 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  fr.inria.atlanmod.neoemf.core;bundle-version="0.0.1",
  fr.inria.atlanmod.neoemf.graph.blueprints;bundle-version="0.0.1",
  fr.inria.atlanmod.neoemf.graph.blueprints.neo4j;bundle-version="0.0.1",
- fr.inria.atlanmod.neoemf.map;bundle-version="0.0.1"
+ fr.inria.atlanmod.neoemf.map;bundle-version="0.0.1",
+ org.eclipse.gmt.modisco.java;bundle-version="0.11.1"
 Bundle-ActivationPolicy: lazy
