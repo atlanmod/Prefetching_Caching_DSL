@@ -1253,11 +1253,11 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             if ( (LA2_0==RULE_ID) ) {
                 int LA2_1 = input.LA(2);
 
-                if ( (LA2_1==31) ) {
-                    alt2=1;
-                }
-                else if ( (LA2_1==EOF||LA2_1==21||LA2_1==23||LA2_1==28||LA2_1==30||LA2_1==32) ) {
+                if ( (LA2_1==EOF||LA2_1==21||LA2_1==23||LA2_1==28||LA2_1==30||LA2_1==32) ) {
                     alt2=2;
+                }
+                else if ( (LA2_1==31) ) {
+                    alt2=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -4126,38 +4126,27 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__AccessRule__Group__4__Impl"
-    // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1573:1: rule__AccessRule__Group__4__Impl : ( ( rule__AccessRule__SourcePatternAssignment_4 )? ) ;
+    // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1573:1: rule__AccessRule__Group__4__Impl : ( ( rule__AccessRule__SourcePatternAssignment_4 ) ) ;
     public final void rule__AccessRule__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1577:1: ( ( ( rule__AccessRule__SourcePatternAssignment_4 )? ) )
-            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1578:1: ( ( rule__AccessRule__SourcePatternAssignment_4 )? )
+            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1577:1: ( ( ( rule__AccessRule__SourcePatternAssignment_4 ) ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1578:1: ( ( rule__AccessRule__SourcePatternAssignment_4 ) )
             {
-            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1578:1: ( ( rule__AccessRule__SourcePatternAssignment_4 )? )
-            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1579:1: ( rule__AccessRule__SourcePatternAssignment_4 )?
+            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1578:1: ( ( rule__AccessRule__SourcePatternAssignment_4 ) )
+            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1579:1: ( rule__AccessRule__SourcePatternAssignment_4 )
             {
              before(grammarAccess.getAccessRuleAccess().getSourcePatternAssignment_4()); 
-            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1580:1: ( rule__AccessRule__SourcePatternAssignment_4 )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1580:1: ( rule__AccessRule__SourcePatternAssignment_4 )
+            // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1580:2: rule__AccessRule__SourcePatternAssignment_4
+            {
+            pushFollow(FOLLOW_rule__AccessRule__SourcePatternAssignment_4_in_rule__AccessRule__Group__4__Impl3130);
+            rule__AccessRule__SourcePatternAssignment_4();
 
-            if ( (LA9_0==29) ) {
-                alt9=1;
-            }
-            switch (alt9) {
-                case 1 :
-                    // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1580:2: rule__AccessRule__SourcePatternAssignment_4
-                    {
-                    pushFollow(FOLLOW_rule__AccessRule__SourcePatternAssignment_4_in_rule__AccessRule__Group__4__Impl3130);
-                    rule__AccessRule__SourcePatternAssignment_4();
+            state._fsp--;
 
-                    state._fsp--;
-
-
-                    }
-                    break;
 
             }
 
@@ -4193,12 +4182,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1594:1: ( rule__AccessRule__Group__5__Impl rule__AccessRule__Group__6 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1595:2: rule__AccessRule__Group__5__Impl rule__AccessRule__Group__6
             {
-            pushFollow(FOLLOW_rule__AccessRule__Group__5__Impl_in_rule__AccessRule__Group__53161);
+            pushFollow(FOLLOW_rule__AccessRule__Group__5__Impl_in_rule__AccessRule__Group__53160);
             rule__AccessRule__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AccessRule__Group__6_in_rule__AccessRule__Group__53164);
+            pushFollow(FOLLOW_rule__AccessRule__Group__6_in_rule__AccessRule__Group__53163);
             rule__AccessRule__Group__6();
 
             state._fsp--;
@@ -4235,7 +4224,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1608:1: 'fetch'
             {
              before(grammarAccess.getAccessRuleAccess().getFetchKeyword_5()); 
-            match(input,26,FOLLOW_26_in_rule__AccessRule__Group__5__Impl3192); 
+            match(input,26,FOLLOW_26_in_rule__AccessRule__Group__5__Impl3191); 
              after(grammarAccess.getAccessRuleAccess().getFetchKeyword_5()); 
 
             }
@@ -4268,12 +4257,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1625:1: ( rule__AccessRule__Group__6__Impl rule__AccessRule__Group__7 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1626:2: rule__AccessRule__Group__6__Impl rule__AccessRule__Group__7
             {
-            pushFollow(FOLLOW_rule__AccessRule__Group__6__Impl_in_rule__AccessRule__Group__63223);
+            pushFollow(FOLLOW_rule__AccessRule__Group__6__Impl_in_rule__AccessRule__Group__63222);
             rule__AccessRule__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AccessRule__Group__7_in_rule__AccessRule__Group__63226);
+            pushFollow(FOLLOW_rule__AccessRule__Group__7_in_rule__AccessRule__Group__63225);
             rule__AccessRule__Group__7();
 
             state._fsp--;
@@ -4313,7 +4302,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1640:1: ( rule__AccessRule__TargetPatternAssignment_6 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1640:2: rule__AccessRule__TargetPatternAssignment_6
             {
-            pushFollow(FOLLOW_rule__AccessRule__TargetPatternAssignment_6_in_rule__AccessRule__Group__6__Impl3253);
+            pushFollow(FOLLOW_rule__AccessRule__TargetPatternAssignment_6_in_rule__AccessRule__Group__6__Impl3252);
             rule__AccessRule__TargetPatternAssignment_6();
 
             state._fsp--;
@@ -4353,7 +4342,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1654:1: ( rule__AccessRule__Group__7__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1655:2: rule__AccessRule__Group__7__Impl
             {
-            pushFollow(FOLLOW_rule__AccessRule__Group__7__Impl_in_rule__AccessRule__Group__73283);
+            pushFollow(FOLLOW_rule__AccessRule__Group__7__Impl_in_rule__AccessRule__Group__73282);
             rule__AccessRule__Group__7__Impl();
 
             state._fsp--;
@@ -4391,17 +4380,17 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             {
              before(grammarAccess.getAccessRuleAccess().getGroup_7()); 
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1668:1: ( rule__AccessRule__Group_7__0 )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA10_0==28) ) {
-                alt10=1;
+            if ( (LA9_0==28) ) {
+                alt9=1;
             }
-            switch (alt10) {
+            switch (alt9) {
                 case 1 :
                     // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1668:2: rule__AccessRule__Group_7__0
                     {
-                    pushFollow(FOLLOW_rule__AccessRule__Group_7__0_in_rule__AccessRule__Group__7__Impl3310);
+                    pushFollow(FOLLOW_rule__AccessRule__Group_7__0_in_rule__AccessRule__Group__7__Impl3309);
                     rule__AccessRule__Group_7__0();
 
                     state._fsp--;
@@ -4444,12 +4433,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1698:1: ( rule__AccessRule__Group_7__0__Impl rule__AccessRule__Group_7__1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1699:2: rule__AccessRule__Group_7__0__Impl rule__AccessRule__Group_7__1
             {
-            pushFollow(FOLLOW_rule__AccessRule__Group_7__0__Impl_in_rule__AccessRule__Group_7__03357);
+            pushFollow(FOLLOW_rule__AccessRule__Group_7__0__Impl_in_rule__AccessRule__Group_7__03356);
             rule__AccessRule__Group_7__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AccessRule__Group_7__1_in_rule__AccessRule__Group_7__03360);
+            pushFollow(FOLLOW_rule__AccessRule__Group_7__1_in_rule__AccessRule__Group_7__03359);
             rule__AccessRule__Group_7__1();
 
             state._fsp--;
@@ -4486,7 +4475,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1712:1: 'remove'
             {
              before(grammarAccess.getAccessRuleAccess().getRemoveKeyword_7_0()); 
-            match(input,28,FOLLOW_28_in_rule__AccessRule__Group_7__0__Impl3388); 
+            match(input,28,FOLLOW_28_in_rule__AccessRule__Group_7__0__Impl3387); 
              after(grammarAccess.getAccessRuleAccess().getRemoveKeyword_7_0()); 
 
             }
@@ -4519,12 +4508,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1729:1: ( rule__AccessRule__Group_7__1__Impl rule__AccessRule__Group_7__2 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1730:2: rule__AccessRule__Group_7__1__Impl rule__AccessRule__Group_7__2
             {
-            pushFollow(FOLLOW_rule__AccessRule__Group_7__1__Impl_in_rule__AccessRule__Group_7__13419);
+            pushFollow(FOLLOW_rule__AccessRule__Group_7__1__Impl_in_rule__AccessRule__Group_7__13418);
             rule__AccessRule__Group_7__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__AccessRule__Group_7__2_in_rule__AccessRule__Group_7__13422);
+            pushFollow(FOLLOW_rule__AccessRule__Group_7__2_in_rule__AccessRule__Group_7__13421);
             rule__AccessRule__Group_7__2();
 
             state._fsp--;
@@ -4561,7 +4550,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1743:1: 'type'
             {
              before(grammarAccess.getAccessRuleAccess().getTypeKeyword_7_1()); 
-            match(input,29,FOLLOW_29_in_rule__AccessRule__Group_7__1__Impl3450); 
+            match(input,29,FOLLOW_29_in_rule__AccessRule__Group_7__1__Impl3449); 
              after(grammarAccess.getAccessRuleAccess().getTypeKeyword_7_1()); 
 
             }
@@ -4594,7 +4583,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1760:1: ( rule__AccessRule__Group_7__2__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1761:2: rule__AccessRule__Group_7__2__Impl
             {
-            pushFollow(FOLLOW_rule__AccessRule__Group_7__2__Impl_in_rule__AccessRule__Group_7__23481);
+            pushFollow(FOLLOW_rule__AccessRule__Group_7__2__Impl_in_rule__AccessRule__Group_7__23480);
             rule__AccessRule__Group_7__2__Impl();
 
             state._fsp--;
@@ -4634,7 +4623,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1774:1: ( rule__AccessRule__RemoveTypeAssignment_7_2 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1774:2: rule__AccessRule__RemoveTypeAssignment_7_2
             {
-            pushFollow(FOLLOW_rule__AccessRule__RemoveTypeAssignment_7_2_in_rule__AccessRule__Group_7__2__Impl3508);
+            pushFollow(FOLLOW_rule__AccessRule__RemoveTypeAssignment_7_2_in_rule__AccessRule__Group_7__2__Impl3507);
             rule__AccessRule__RemoveTypeAssignment_7_2();
 
             state._fsp--;
@@ -4674,12 +4663,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1794:1: ( rule__SourcePattern__Group__0__Impl rule__SourcePattern__Group__1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1795:2: rule__SourcePattern__Group__0__Impl rule__SourcePattern__Group__1
             {
-            pushFollow(FOLLOW_rule__SourcePattern__Group__0__Impl_in_rule__SourcePattern__Group__03544);
+            pushFollow(FOLLOW_rule__SourcePattern__Group__0__Impl_in_rule__SourcePattern__Group__03543);
             rule__SourcePattern__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SourcePattern__Group__1_in_rule__SourcePattern__Group__03547);
+            pushFollow(FOLLOW_rule__SourcePattern__Group__1_in_rule__SourcePattern__Group__03546);
             rule__SourcePattern__Group__1();
 
             state._fsp--;
@@ -4716,7 +4705,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1808:1: 'type'
             {
              before(grammarAccess.getSourcePatternAccess().getTypeKeyword_0()); 
-            match(input,29,FOLLOW_29_in_rule__SourcePattern__Group__0__Impl3575); 
+            match(input,29,FOLLOW_29_in_rule__SourcePattern__Group__0__Impl3574); 
              after(grammarAccess.getSourcePatternAccess().getTypeKeyword_0()); 
 
             }
@@ -4749,12 +4738,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1825:1: ( rule__SourcePattern__Group__1__Impl rule__SourcePattern__Group__2 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1826:2: rule__SourcePattern__Group__1__Impl rule__SourcePattern__Group__2
             {
-            pushFollow(FOLLOW_rule__SourcePattern__Group__1__Impl_in_rule__SourcePattern__Group__13606);
+            pushFollow(FOLLOW_rule__SourcePattern__Group__1__Impl_in_rule__SourcePattern__Group__13605);
             rule__SourcePattern__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__SourcePattern__Group__2_in_rule__SourcePattern__Group__13609);
+            pushFollow(FOLLOW_rule__SourcePattern__Group__2_in_rule__SourcePattern__Group__13608);
             rule__SourcePattern__Group__2();
 
             state._fsp--;
@@ -4794,7 +4783,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1840:1: ( rule__SourcePattern__PatternAssignment_1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1840:2: rule__SourcePattern__PatternAssignment_1
             {
-            pushFollow(FOLLOW_rule__SourcePattern__PatternAssignment_1_in_rule__SourcePattern__Group__1__Impl3636);
+            pushFollow(FOLLOW_rule__SourcePattern__PatternAssignment_1_in_rule__SourcePattern__Group__1__Impl3635);
             rule__SourcePattern__PatternAssignment_1();
 
             state._fsp--;
@@ -4834,7 +4823,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1854:1: ( rule__SourcePattern__Group__2__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1855:2: rule__SourcePattern__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__SourcePattern__Group__2__Impl_in_rule__SourcePattern__Group__23666);
+            pushFollow(FOLLOW_rule__SourcePattern__Group__2__Impl_in_rule__SourcePattern__Group__23665);
             rule__SourcePattern__Group__2__Impl();
 
             state._fsp--;
@@ -4872,17 +4861,17 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             {
              before(grammarAccess.getSourcePatternAccess().getFilterAssignment_2()); 
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1868:1: ( rule__SourcePattern__FilterAssignment_2 )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA11_0==15) ) {
-                alt11=1;
+            if ( (LA10_0==15) ) {
+                alt10=1;
             }
-            switch (alt11) {
+            switch (alt10) {
                 case 1 :
                     // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1868:2: rule__SourcePattern__FilterAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__SourcePattern__FilterAssignment_2_in_rule__SourcePattern__Group__2__Impl3693);
+                    pushFollow(FOLLOW_rule__SourcePattern__FilterAssignment_2_in_rule__SourcePattern__Group__2__Impl3692);
                     rule__SourcePattern__FilterAssignment_2();
 
                     state._fsp--;
@@ -4925,12 +4914,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1888:1: ( rule__FilterPattern__Group__0__Impl rule__FilterPattern__Group__1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1889:2: rule__FilterPattern__Group__0__Impl rule__FilterPattern__Group__1
             {
-            pushFollow(FOLLOW_rule__FilterPattern__Group__0__Impl_in_rule__FilterPattern__Group__03730);
+            pushFollow(FOLLOW_rule__FilterPattern__Group__0__Impl_in_rule__FilterPattern__Group__03729);
             rule__FilterPattern__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FilterPattern__Group__1_in_rule__FilterPattern__Group__03733);
+            pushFollow(FOLLOW_rule__FilterPattern__Group__1_in_rule__FilterPattern__Group__03732);
             rule__FilterPattern__Group__1();
 
             state._fsp--;
@@ -4967,7 +4956,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1902:1: '['
             {
              before(grammarAccess.getFilterPatternAccess().getLeftSquareBracketKeyword_0()); 
-            match(input,15,FOLLOW_15_in_rule__FilterPattern__Group__0__Impl3761); 
+            match(input,15,FOLLOW_15_in_rule__FilterPattern__Group__0__Impl3760); 
              after(grammarAccess.getFilterPatternAccess().getLeftSquareBracketKeyword_0()); 
 
             }
@@ -5000,12 +4989,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1919:1: ( rule__FilterPattern__Group__1__Impl rule__FilterPattern__Group__2 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1920:2: rule__FilterPattern__Group__1__Impl rule__FilterPattern__Group__2
             {
-            pushFollow(FOLLOW_rule__FilterPattern__Group__1__Impl_in_rule__FilterPattern__Group__13792);
+            pushFollow(FOLLOW_rule__FilterPattern__Group__1__Impl_in_rule__FilterPattern__Group__13791);
             rule__FilterPattern__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__FilterPattern__Group__2_in_rule__FilterPattern__Group__13795);
+            pushFollow(FOLLOW_rule__FilterPattern__Group__2_in_rule__FilterPattern__Group__13794);
             rule__FilterPattern__Group__2();
 
             state._fsp--;
@@ -5045,7 +5034,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1934:1: ( rule__FilterPattern__StringPatternAssignment_1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1934:2: rule__FilterPattern__StringPatternAssignment_1
             {
-            pushFollow(FOLLOW_rule__FilterPattern__StringPatternAssignment_1_in_rule__FilterPattern__Group__1__Impl3822);
+            pushFollow(FOLLOW_rule__FilterPattern__StringPatternAssignment_1_in_rule__FilterPattern__Group__1__Impl3821);
             rule__FilterPattern__StringPatternAssignment_1();
 
             state._fsp--;
@@ -5085,7 +5074,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1948:1: ( rule__FilterPattern__Group__2__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1949:2: rule__FilterPattern__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__FilterPattern__Group__2__Impl_in_rule__FilterPattern__Group__23852);
+            pushFollow(FOLLOW_rule__FilterPattern__Group__2__Impl_in_rule__FilterPattern__Group__23851);
             rule__FilterPattern__Group__2__Impl();
 
             state._fsp--;
@@ -5122,7 +5111,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1961:1: ']'
             {
              before(grammarAccess.getFilterPatternAccess().getRightSquareBracketKeyword_2()); 
-            match(input,17,FOLLOW_17_in_rule__FilterPattern__Group__2__Impl3880); 
+            match(input,17,FOLLOW_17_in_rule__FilterPattern__Group__2__Impl3879); 
              after(grammarAccess.getFilterPatternAccess().getRightSquareBracketKeyword_2()); 
 
             }
@@ -5155,12 +5144,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1986:1: ( rule__PatternExp2__Group__0__Impl rule__PatternExp2__Group__1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:1987:2: rule__PatternExp2__Group__0__Impl rule__PatternExp2__Group__1
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group__0__Impl_in_rule__PatternExp2__Group__03919);
+            pushFollow(FOLLOW_rule__PatternExp2__Group__0__Impl_in_rule__PatternExp2__Group__03918);
             rule__PatternExp2__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PatternExp2__Group__1_in_rule__PatternExp2__Group__03922);
+            pushFollow(FOLLOW_rule__PatternExp2__Group__1_in_rule__PatternExp2__Group__03921);
             rule__PatternExp2__Group__1();
 
             state._fsp--;
@@ -5197,7 +5186,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2000:1: RULE_ID
             {
              before(grammarAccess.getPatternExp2Access().getIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternExp2__Group__0__Impl3949); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternExp2__Group__0__Impl3948); 
              after(grammarAccess.getPatternExp2Access().getIDTerminalRuleCall_0()); 
 
             }
@@ -5230,7 +5219,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2015:1: ( rule__PatternExp2__Group__1__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2016:2: rule__PatternExp2__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group__1__Impl_in_rule__PatternExp2__Group__13978);
+            pushFollow(FOLLOW_rule__PatternExp2__Group__1__Impl_in_rule__PatternExp2__Group__13977);
             rule__PatternExp2__Group__1__Impl();
 
             state._fsp--;
@@ -5268,21 +5257,21 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             {
              before(grammarAccess.getPatternExp2Access().getGroup_1()); 
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2029:1: ( rule__PatternExp2__Group_1__0 )*
-            loop12:
+            loop11:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA12_0==30) ) {
-                    alt12=1;
+                if ( (LA11_0==30) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt11) {
             	case 1 :
             	    // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2029:2: rule__PatternExp2__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__PatternExp2__Group_1__0_in_rule__PatternExp2__Group__1__Impl4005);
+            	    pushFollow(FOLLOW_rule__PatternExp2__Group_1__0_in_rule__PatternExp2__Group__1__Impl4004);
             	    rule__PatternExp2__Group_1__0();
 
             	    state._fsp--;
@@ -5292,7 +5281,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             	    break;
 
             	default :
-            	    break loop12;
+            	    break loop11;
                 }
             } while (true);
 
@@ -5328,12 +5317,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2047:1: ( rule__PatternExp2__Group_1__0__Impl rule__PatternExp2__Group_1__1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2048:2: rule__PatternExp2__Group_1__0__Impl rule__PatternExp2__Group_1__1
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1__0__Impl_in_rule__PatternExp2__Group_1__04040);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1__0__Impl_in_rule__PatternExp2__Group_1__04039);
             rule__PatternExp2__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1__1_in_rule__PatternExp2__Group_1__04043);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1__1_in_rule__PatternExp2__Group_1__04042);
             rule__PatternExp2__Group_1__1();
 
             state._fsp--;
@@ -5370,7 +5359,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2061:1: '.'
             {
              before(grammarAccess.getPatternExp2Access().getFullStopKeyword_1_0()); 
-            match(input,30,FOLLOW_30_in_rule__PatternExp2__Group_1__0__Impl4071); 
+            match(input,30,FOLLOW_30_in_rule__PatternExp2__Group_1__0__Impl4070); 
              after(grammarAccess.getPatternExp2Access().getFullStopKeyword_1_0()); 
 
             }
@@ -5403,7 +5392,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2078:1: ( rule__PatternExp2__Group_1__1__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2079:2: rule__PatternExp2__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1__1__Impl_in_rule__PatternExp2__Group_1__14102);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1__1__Impl_in_rule__PatternExp2__Group_1__14101);
             rule__PatternExp2__Group_1__1__Impl();
 
             state._fsp--;
@@ -5443,7 +5432,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2092:1: ( rule__PatternExp2__Alternatives_1_1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2092:2: rule__PatternExp2__Alternatives_1_1
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Alternatives_1_1_in_rule__PatternExp2__Group_1__1__Impl4129);
+            pushFollow(FOLLOW_rule__PatternExp2__Alternatives_1_1_in_rule__PatternExp2__Group_1__1__Impl4128);
             rule__PatternExp2__Alternatives_1_1();
 
             state._fsp--;
@@ -5483,12 +5472,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2110:1: ( rule__PatternExp2__Group_1_1_0__0__Impl rule__PatternExp2__Group_1_1_0__1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2111:2: rule__PatternExp2__Group_1_1_0__0__Impl rule__PatternExp2__Group_1_1_0__1
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_0__0__Impl_in_rule__PatternExp2__Group_1_1_0__04163);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_0__0__Impl_in_rule__PatternExp2__Group_1_1_0__04162);
             rule__PatternExp2__Group_1_1_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_0__1_in_rule__PatternExp2__Group_1_1_0__04166);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_0__1_in_rule__PatternExp2__Group_1_1_0__04165);
             rule__PatternExp2__Group_1_1_0__1();
 
             state._fsp--;
@@ -5525,7 +5514,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2124:1: RULE_ID
             {
              before(grammarAccess.getPatternExp2Access().getIDTerminalRuleCall_1_1_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_0__0__Impl4193); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_0__0__Impl4192); 
              after(grammarAccess.getPatternExp2Access().getIDTerminalRuleCall_1_1_0_0()); 
 
             }
@@ -5558,7 +5547,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2139:1: ( rule__PatternExp2__Group_1_1_0__1__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2140:2: rule__PatternExp2__Group_1_1_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_0__1__Impl_in_rule__PatternExp2__Group_1_1_0__14222);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_0__1__Impl_in_rule__PatternExp2__Group_1_1_0__14221);
             rule__PatternExp2__Group_1_1_0__1__Impl();
 
             state._fsp--;
@@ -5595,7 +5584,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2152:1: '*'
             {
              before(grammarAccess.getPatternExp2Access().getAsteriskKeyword_1_1_0_1()); 
-            match(input,31,FOLLOW_31_in_rule__PatternExp2__Group_1_1_0__1__Impl4250); 
+            match(input,31,FOLLOW_31_in_rule__PatternExp2__Group_1_1_0__1__Impl4249); 
              after(grammarAccess.getPatternExp2Access().getAsteriskKeyword_1_1_0_1()); 
 
             }
@@ -5628,12 +5617,12 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2173:1: ( rule__PatternExp2__Group_1_1_1__0__Impl rule__PatternExp2__Group_1_1_1__1 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2174:2: rule__PatternExp2__Group_1_1_1__0__Impl rule__PatternExp2__Group_1_1_1__1
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_1__0__Impl_in_rule__PatternExp2__Group_1_1_1__04285);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_1__0__Impl_in_rule__PatternExp2__Group_1_1_1__04284);
             rule__PatternExp2__Group_1_1_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_1__1_in_rule__PatternExp2__Group_1_1_1__04288);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_1__1_in_rule__PatternExp2__Group_1_1_1__04287);
             rule__PatternExp2__Group_1_1_1__1();
 
             state._fsp--;
@@ -5670,7 +5659,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2187:1: RULE_ID
             {
              before(grammarAccess.getPatternExp2Access().getIDTerminalRuleCall_1_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_1__0__Impl4315); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_1__0__Impl4314); 
              after(grammarAccess.getPatternExp2Access().getIDTerminalRuleCall_1_1_1_0()); 
 
             }
@@ -5703,7 +5692,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2202:1: ( rule__PatternExp2__Group_1_1_1__1__Impl )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2203:2: rule__PatternExp2__Group_1_1_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_1__1__Impl_in_rule__PatternExp2__Group_1_1_1__14344);
+            pushFollow(FOLLOW_rule__PatternExp2__Group_1_1_1__1__Impl_in_rule__PatternExp2__Group_1_1_1__14343);
             rule__PatternExp2__Group_1_1_1__1__Impl();
 
             state._fsp--;
@@ -5741,17 +5730,17 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             {
              before(grammarAccess.getPatternExp2Access().getLeftParenthesisRightParenthesisKeyword_1_1_1_1()); 
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2216:1: ( '()' )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA13_0==32) ) {
-                alt13=1;
+            if ( (LA12_0==32) ) {
+                alt12=1;
             }
-            switch (alt13) {
+            switch (alt12) {
                 case 1 :
                     // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2217:2: '()'
                     {
-                    match(input,32,FOLLOW_32_in_rule__PatternExp2__Group_1_1_1__1__Impl4373); 
+                    match(input,32,FOLLOW_32_in_rule__PatternExp2__Group_1_1_1__1__Impl4372); 
 
                     }
                     break;
@@ -5794,7 +5783,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2241:1: ruleMetamodelImport
             {
              before(grammarAccess.getModelAccess().getMetamodelMetamodelImportParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleMetamodelImport_in_rule__Model__MetamodelAssignment_04417);
+            pushFollow(FOLLOW_ruleMetamodelImport_in_rule__Model__MetamodelAssignment_04416);
             ruleMetamodelImport();
 
             state._fsp--;
@@ -5835,7 +5824,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2256:1: rulePlan
             {
              before(grammarAccess.getModelAccess().getPlansPlanParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_rulePlan_in_rule__Model__PlansAssignment_14448);
+            pushFollow(FOLLOW_rulePlan_in_rule__Model__PlansAssignment_14447);
             rulePlan();
 
             state._fsp--;
@@ -5876,7 +5865,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2271:1: RULE_STRING
             {
              before(grammarAccess.getMetamodelImportAccess().getNsURISTRINGTerminalRuleCall_1_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__MetamodelImport__NsURIAssignment_14479); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__MetamodelImport__NsURIAssignment_14478); 
              after(grammarAccess.getMetamodelImportAccess().getNsURISTRINGTerminalRuleCall_1_0()); 
 
             }
@@ -5913,7 +5902,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2286:1: ruleCacheType
             {
              before(grammarAccess.getCacheAccess().getTypeCacheTypeEnumRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleCacheType_in_rule__Cache__TypeAssignment_14510);
+            pushFollow(FOLLOW_ruleCacheType_in_rule__Cache__TypeAssignment_14509);
             ruleCacheType();
 
             state._fsp--;
@@ -5954,7 +5943,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2301:1: ruleCacheProperties
             {
              before(grammarAccess.getCacheAccess().getPropertiesCachePropertiesParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleCacheProperties_in_rule__Cache__PropertiesAssignment_24541);
+            pushFollow(FOLLOW_ruleCacheProperties_in_rule__Cache__PropertiesAssignment_24540);
             ruleCacheProperties();
 
             state._fsp--;
@@ -5995,7 +5984,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2316:1: RULE_INT
             {
              before(grammarAccess.getCachePropertiesAccess().getSizeINTTerminalRuleCall_2_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__CacheProperties__SizeAssignment_24572); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__CacheProperties__SizeAssignment_24571); 
              after(grammarAccess.getCachePropertiesAccess().getSizeINTTerminalRuleCall_2_0()); 
 
             }
@@ -6032,7 +6021,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2331:1: RULE_INT
             {
              before(grammarAccess.getCachePropertiesAccess().getChunkINTTerminalRuleCall_3_1_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__CacheProperties__ChunkAssignment_3_14603); 
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__CacheProperties__ChunkAssignment_3_14602); 
              after(grammarAccess.getCachePropertiesAccess().getChunkINTTerminalRuleCall_3_1_0()); 
 
             }
@@ -6069,7 +6058,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2346:1: RULE_ID
             {
              before(grammarAccess.getPlanAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Plan__NameAssignment_14634); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Plan__NameAssignment_14633); 
              after(grammarAccess.getPlanAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -6106,7 +6095,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2361:1: ruleAfterClause
             {
              before(grammarAccess.getPlanAccess().getAfterAfterClauseParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleAfterClause_in_rule__Plan__AfterAssignment_24665);
+            pushFollow(FOLLOW_ruleAfterClause_in_rule__Plan__AfterAssignment_24664);
             ruleAfterClause();
 
             state._fsp--;
@@ -6147,7 +6136,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2376:1: ruleCache
             {
              before(grammarAccess.getPlanAccess().getCacheCacheParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleCache_in_rule__Plan__CacheAssignment_44696);
+            pushFollow(FOLLOW_ruleCache_in_rule__Plan__CacheAssignment_44695);
             ruleCache();
 
             state._fsp--;
@@ -6191,7 +6180,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2392:1: ( rule__Plan__RulesAlternatives_5_0 )
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2392:2: rule__Plan__RulesAlternatives_5_0
             {
-            pushFollow(FOLLOW_rule__Plan__RulesAlternatives_5_0_in_rule__Plan__RulesAssignment_54727);
+            pushFollow(FOLLOW_rule__Plan__RulesAlternatives_5_0_in_rule__Plan__RulesAssignment_54726);
             rule__Plan__RulesAlternatives_5_0();
 
             state._fsp--;
@@ -6239,7 +6228,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2409:1: RULE_ID
             {
              before(grammarAccess.getAfterClauseAccess().getPlanPlanIDTerminalRuleCall_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AfterClause__PlanAssignment_14764); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AfterClause__PlanAssignment_14763); 
              after(grammarAccess.getAfterClauseAccess().getPlanPlanIDTerminalRuleCall_1_0_1()); 
 
             }
@@ -6280,7 +6269,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2426:1: RULE_ID
             {
              before(grammarAccess.getStartingRuleAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__StartingRule__NameAssignment_14799); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__StartingRule__NameAssignment_14798); 
              after(grammarAccess.getStartingRuleAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -6317,7 +6306,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2441:1: ruleTargetPattern
             {
              before(grammarAccess.getStartingRuleAccess().getTargetPatternTargetPatternParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleTargetPattern_in_rule__StartingRule__TargetPatternAssignment_54830);
+            pushFollow(FOLLOW_ruleTargetPattern_in_rule__StartingRule__TargetPatternAssignment_54829);
             ruleTargetPattern();
 
             state._fsp--;
@@ -6358,7 +6347,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2456:1: RULE_ID
             {
              before(grammarAccess.getAccessRuleAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AccessRule__NameAssignment_14861); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AccessRule__NameAssignment_14860); 
              after(grammarAccess.getAccessRuleAccess().getNameIDTerminalRuleCall_1_0()); 
 
             }
@@ -6395,7 +6384,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2471:1: ruleSourcePattern
             {
              before(grammarAccess.getAccessRuleAccess().getSourcePatternSourcePatternParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleSourcePattern_in_rule__AccessRule__SourcePatternAssignment_44892);
+            pushFollow(FOLLOW_ruleSourcePattern_in_rule__AccessRule__SourcePatternAssignment_44891);
             ruleSourcePattern();
 
             state._fsp--;
@@ -6436,7 +6425,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2486:1: ruleTargetPattern
             {
              before(grammarAccess.getAccessRuleAccess().getTargetPatternTargetPatternParserRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleTargetPattern_in_rule__AccessRule__TargetPatternAssignment_64923);
+            pushFollow(FOLLOW_ruleTargetPattern_in_rule__AccessRule__TargetPatternAssignment_64922);
             ruleTargetPattern();
 
             state._fsp--;
@@ -6477,7 +6466,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2501:1: ruleClassPatternExp
             {
              before(grammarAccess.getAccessRuleAccess().getRemoveTypeClassPatternExpParserRuleCall_7_2_0()); 
-            pushFollow(FOLLOW_ruleClassPatternExp_in_rule__AccessRule__RemoveTypeAssignment_7_24954);
+            pushFollow(FOLLOW_ruleClassPatternExp_in_rule__AccessRule__RemoveTypeAssignment_7_24953);
             ruleClassPatternExp();
 
             state._fsp--;
@@ -6518,7 +6507,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2516:1: ruleClassPatternExp
             {
              before(grammarAccess.getSourcePatternAccess().getPatternClassPatternExpParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleClassPatternExp_in_rule__SourcePattern__PatternAssignment_14985);
+            pushFollow(FOLLOW_ruleClassPatternExp_in_rule__SourcePattern__PatternAssignment_14984);
             ruleClassPatternExp();
 
             state._fsp--;
@@ -6559,7 +6548,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2531:1: ruleFilterPattern
             {
              before(grammarAccess.getSourcePatternAccess().getFilterFilterPatternParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleFilterPattern_in_rule__SourcePattern__FilterAssignment_25016);
+            pushFollow(FOLLOW_ruleFilterPattern_in_rule__SourcePattern__FilterAssignment_25015);
             ruleFilterPattern();
 
             state._fsp--;
@@ -6600,7 +6589,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2546:1: RULE_STRING
             {
              before(grammarAccess.getFilterPatternAccess().getStringPatternSTRINGTerminalRuleCall_1_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__FilterPattern__StringPatternAssignment_15047); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__FilterPattern__StringPatternAssignment_15046); 
              after(grammarAccess.getFilterPatternAccess().getStringPatternSTRINGTerminalRuleCall_1_0()); 
 
             }
@@ -6637,7 +6626,7 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
             // ../fr.inria.atlanmod.neoemf.prefetching.ui/src-gen/fr/inria/atlanmod/neoemf/ui/contentassist/antlr/internal/InternalPrefetching.g:2561:1: rulePatternExp2
             {
              before(grammarAccess.getTargetPatternAccess().getPatternPatternExp2ParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulePatternExp2_in_rule__TargetPattern__PatternAssignment5078);
+            pushFollow(FOLLOW_rulePatternExp2_in_rule__TargetPattern__PatternAssignment5077);
             rulePatternExp2();
 
             state._fsp--;
@@ -6802,85 +6791,85 @@ public class InternalPrefetchingParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_rule__AccessRule__Group__2__Impl_in_rule__AccessRule__Group__22976 = new BitSet(new long[]{0x0000000008000000L});
     public static final BitSet FOLLOW_rule__AccessRule__Group__3_in_rule__AccessRule__Group__22979 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_24_in_rule__AccessRule__Group__2__Impl3007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group__3__Impl_in_rule__AccessRule__Group__33038 = new BitSet(new long[]{0x0000000024000000L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group__3__Impl_in_rule__AccessRule__Group__33038 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_rule__AccessRule__Group__4_in_rule__AccessRule__Group__33041 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_27_in_rule__AccessRule__Group__3__Impl3069 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group__4__Impl_in_rule__AccessRule__Group__43100 = new BitSet(new long[]{0x0000000024000000L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group__4__Impl_in_rule__AccessRule__Group__43100 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_rule__AccessRule__Group__5_in_rule__AccessRule__Group__43103 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AccessRule__SourcePatternAssignment_4_in_rule__AccessRule__Group__4__Impl3130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group__5__Impl_in_rule__AccessRule__Group__53161 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group__6_in_rule__AccessRule__Group__53164 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rule__AccessRule__Group__5__Impl3192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group__6__Impl_in_rule__AccessRule__Group__63223 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group__7_in_rule__AccessRule__Group__63226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__TargetPatternAssignment_6_in_rule__AccessRule__Group__6__Impl3253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group__7__Impl_in_rule__AccessRule__Group__73283 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group_7__0_in_rule__AccessRule__Group__7__Impl3310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group_7__0__Impl_in_rule__AccessRule__Group_7__03357 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group_7__1_in_rule__AccessRule__Group_7__03360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__AccessRule__Group_7__0__Impl3388 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group_7__1__Impl_in_rule__AccessRule__Group_7__13419 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group_7__2_in_rule__AccessRule__Group_7__13422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__AccessRule__Group_7__1__Impl3450 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__Group_7__2__Impl_in_rule__AccessRule__Group_7__23481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AccessRule__RemoveTypeAssignment_7_2_in_rule__AccessRule__Group_7__2__Impl3508 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SourcePattern__Group__0__Impl_in_rule__SourcePattern__Group__03544 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__SourcePattern__Group__1_in_rule__SourcePattern__Group__03547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__SourcePattern__Group__0__Impl3575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SourcePattern__Group__1__Impl_in_rule__SourcePattern__Group__13606 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_rule__SourcePattern__Group__2_in_rule__SourcePattern__Group__13609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SourcePattern__PatternAssignment_1_in_rule__SourcePattern__Group__1__Impl3636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SourcePattern__Group__2__Impl_in_rule__SourcePattern__Group__23666 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SourcePattern__FilterAssignment_2_in_rule__SourcePattern__Group__2__Impl3693 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FilterPattern__Group__0__Impl_in_rule__FilterPattern__Group__03730 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__FilterPattern__Group__1_in_rule__FilterPattern__Group__03733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__FilterPattern__Group__0__Impl3761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FilterPattern__Group__1__Impl_in_rule__FilterPattern__Group__13792 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_rule__FilterPattern__Group__2_in_rule__FilterPattern__Group__13795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FilterPattern__StringPatternAssignment_1_in_rule__FilterPattern__Group__1__Impl3822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FilterPattern__Group__2__Impl_in_rule__FilterPattern__Group__23852 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__FilterPattern__Group__2__Impl3880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group__0__Impl_in_rule__PatternExp2__Group__03919 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group__1_in_rule__PatternExp2__Group__03922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternExp2__Group__0__Impl3949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group__1__Impl_in_rule__PatternExp2__Group__13978 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__0_in_rule__PatternExp2__Group__1__Impl4005 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__0__Impl_in_rule__PatternExp2__Group_1__04040 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__1_in_rule__PatternExp2__Group_1__04043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rule__PatternExp2__Group_1__0__Impl4071 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__1__Impl_in_rule__PatternExp2__Group_1__14102 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Alternatives_1_1_in_rule__PatternExp2__Group_1__1__Impl4129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_0__0__Impl_in_rule__PatternExp2__Group_1_1_0__04163 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_0__1_in_rule__PatternExp2__Group_1_1_0__04166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_0__0__Impl4193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_0__1__Impl_in_rule__PatternExp2__Group_1_1_0__14222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__PatternExp2__Group_1_1_0__1__Impl4250 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_1__0__Impl_in_rule__PatternExp2__Group_1_1_1__04285 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_1__1_in_rule__PatternExp2__Group_1_1_1__04288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_1__0__Impl4315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_1__1__Impl_in_rule__PatternExp2__Group_1_1_1__14344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_rule__PatternExp2__Group_1_1_1__1__Impl4373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMetamodelImport_in_rule__Model__MetamodelAssignment_04417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlan_in_rule__Model__PlansAssignment_14448 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__MetamodelImport__NsURIAssignment_14479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCacheType_in_rule__Cache__TypeAssignment_14510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCacheProperties_in_rule__Cache__PropertiesAssignment_24541 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__CacheProperties__SizeAssignment_24572 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__CacheProperties__ChunkAssignment_3_14603 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Plan__NameAssignment_14634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAfterClause_in_rule__Plan__AfterAssignment_24665 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCache_in_rule__Plan__CacheAssignment_44696 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Plan__RulesAlternatives_5_0_in_rule__Plan__RulesAssignment_54727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__AfterClause__PlanAssignment_14764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__StartingRule__NameAssignment_14799 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTargetPattern_in_rule__StartingRule__TargetPatternAssignment_54830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__AccessRule__NameAssignment_14861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSourcePattern_in_rule__AccessRule__SourcePatternAssignment_44892 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTargetPattern_in_rule__AccessRule__TargetPatternAssignment_64923 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClassPatternExp_in_rule__AccessRule__RemoveTypeAssignment_7_24954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleClassPatternExp_in_rule__SourcePattern__PatternAssignment_14985 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFilterPattern_in_rule__SourcePattern__FilterAssignment_25016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__FilterPattern__StringPatternAssignment_15047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePatternExp2_in_rule__TargetPattern__PatternAssignment5078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group__5__Impl_in_rule__AccessRule__Group__53160 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group__6_in_rule__AccessRule__Group__53163 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__AccessRule__Group__5__Impl3191 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group__6__Impl_in_rule__AccessRule__Group__63222 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group__7_in_rule__AccessRule__Group__63225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__TargetPatternAssignment_6_in_rule__AccessRule__Group__6__Impl3252 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group__7__Impl_in_rule__AccessRule__Group__73282 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group_7__0_in_rule__AccessRule__Group__7__Impl3309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group_7__0__Impl_in_rule__AccessRule__Group_7__03356 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group_7__1_in_rule__AccessRule__Group_7__03359 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__AccessRule__Group_7__0__Impl3387 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group_7__1__Impl_in_rule__AccessRule__Group_7__13418 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group_7__2_in_rule__AccessRule__Group_7__13421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__AccessRule__Group_7__1__Impl3449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__Group_7__2__Impl_in_rule__AccessRule__Group_7__23480 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__AccessRule__RemoveTypeAssignment_7_2_in_rule__AccessRule__Group_7__2__Impl3507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SourcePattern__Group__0__Impl_in_rule__SourcePattern__Group__03543 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__SourcePattern__Group__1_in_rule__SourcePattern__Group__03546 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__SourcePattern__Group__0__Impl3574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SourcePattern__Group__1__Impl_in_rule__SourcePattern__Group__13605 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_rule__SourcePattern__Group__2_in_rule__SourcePattern__Group__13608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SourcePattern__PatternAssignment_1_in_rule__SourcePattern__Group__1__Impl3635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SourcePattern__Group__2__Impl_in_rule__SourcePattern__Group__23665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SourcePattern__FilterAssignment_2_in_rule__SourcePattern__Group__2__Impl3692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FilterPattern__Group__0__Impl_in_rule__FilterPattern__Group__03729 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__FilterPattern__Group__1_in_rule__FilterPattern__Group__03732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__FilterPattern__Group__0__Impl3760 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FilterPattern__Group__1__Impl_in_rule__FilterPattern__Group__13791 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_rule__FilterPattern__Group__2_in_rule__FilterPattern__Group__13794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FilterPattern__StringPatternAssignment_1_in_rule__FilterPattern__Group__1__Impl3821 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FilterPattern__Group__2__Impl_in_rule__FilterPattern__Group__23851 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__FilterPattern__Group__2__Impl3879 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group__0__Impl_in_rule__PatternExp2__Group__03918 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group__1_in_rule__PatternExp2__Group__03921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternExp2__Group__0__Impl3948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group__1__Impl_in_rule__PatternExp2__Group__13977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__0_in_rule__PatternExp2__Group__1__Impl4004 = new BitSet(new long[]{0x0000000040000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__0__Impl_in_rule__PatternExp2__Group_1__04039 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__1_in_rule__PatternExp2__Group_1__04042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rule__PatternExp2__Group_1__0__Impl4070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1__1__Impl_in_rule__PatternExp2__Group_1__14101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Alternatives_1_1_in_rule__PatternExp2__Group_1__1__Impl4128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_0__0__Impl_in_rule__PatternExp2__Group_1_1_0__04162 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_0__1_in_rule__PatternExp2__Group_1_1_0__04165 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_0__0__Impl4192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_0__1__Impl_in_rule__PatternExp2__Group_1_1_0__14221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rule__PatternExp2__Group_1_1_0__1__Impl4249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_1__0__Impl_in_rule__PatternExp2__Group_1_1_1__04284 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_1__1_in_rule__PatternExp2__Group_1_1_1__04287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternExp2__Group_1_1_1__0__Impl4314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PatternExp2__Group_1_1_1__1__Impl_in_rule__PatternExp2__Group_1_1_1__14343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_rule__PatternExp2__Group_1_1_1__1__Impl4372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMetamodelImport_in_rule__Model__MetamodelAssignment_04416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlan_in_rule__Model__PlansAssignment_14447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__MetamodelImport__NsURIAssignment_14478 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCacheType_in_rule__Cache__TypeAssignment_14509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCacheProperties_in_rule__Cache__PropertiesAssignment_24540 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__CacheProperties__SizeAssignment_24571 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__CacheProperties__ChunkAssignment_3_14602 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Plan__NameAssignment_14633 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAfterClause_in_rule__Plan__AfterAssignment_24664 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCache_in_rule__Plan__CacheAssignment_44695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Plan__RulesAlternatives_5_0_in_rule__Plan__RulesAssignment_54726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__AfterClause__PlanAssignment_14763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__StartingRule__NameAssignment_14798 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTargetPattern_in_rule__StartingRule__TargetPatternAssignment_54829 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__AccessRule__NameAssignment_14860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSourcePattern_in_rule__AccessRule__SourcePatternAssignment_44891 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTargetPattern_in_rule__AccessRule__TargetPatternAssignment_64922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClassPatternExp_in_rule__AccessRule__RemoveTypeAssignment_7_24953 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleClassPatternExp_in_rule__SourcePattern__PatternAssignment_14984 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFilterPattern_in_rule__SourcePattern__FilterAssignment_25015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__FilterPattern__StringPatternAssignment_15046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternExp2_in_rule__TargetPattern__PatternAssignment5077 = new BitSet(new long[]{0x0000000000000002L});
 
 }

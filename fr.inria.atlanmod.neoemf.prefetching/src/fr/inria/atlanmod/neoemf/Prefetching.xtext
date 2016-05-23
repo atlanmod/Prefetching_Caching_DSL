@@ -46,8 +46,8 @@ StartingRule returns StartingRule:
 	'rule' name=ID ':' 'on starting' 'fetch' targetPattern=TargetPattern
 ;
 
-AccessRule:
-	'rule' name=ID ':' 'on access' (sourcePattern=SourcePattern)? 'fetch' targetPattern=TargetPattern 
+AccessRule returns AccessRule:
+	'rule' name=ID ':' 'on access' sourcePattern=SourcePattern 'fetch' targetPattern=TargetPattern 
 		('remove' 'type'removeType=ClassPatternExp)?
 ;
 

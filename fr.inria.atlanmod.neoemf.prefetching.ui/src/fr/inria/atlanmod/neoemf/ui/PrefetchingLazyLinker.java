@@ -33,9 +33,14 @@ public class PrefetchingLazyLinker extends LazyLinker {
 			}
 			if(e instanceof SourcePattern) {
 				SourcePattern sp = (SourcePattern)e;
+				System.out.println("Source Pattern");
 				if(ePackage != null) {
 					String classifierString = sp.getPattern();
+					System.out.println("Source Pattern : " + classifierString);
 					sp.setEClass((EClass)ePackage.getEClassifier(classifierString));
+				}
+				else {
+					System.out.println("Null Package");
 				}
 			}
 			if(e instanceof TargetPattern) {

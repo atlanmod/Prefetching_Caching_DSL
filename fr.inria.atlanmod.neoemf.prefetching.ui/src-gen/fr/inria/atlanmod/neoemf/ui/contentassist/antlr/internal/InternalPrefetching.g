@@ -1577,7 +1577,7 @@ rule__AccessRule__Group__4__Impl
 :
 (
 { before(grammarAccess.getAccessRuleAccess().getSourcePatternAssignment_4()); }
-(rule__AccessRule__SourcePatternAssignment_4)?
+(rule__AccessRule__SourcePatternAssignment_4)
 { after(grammarAccess.getAccessRuleAccess().getSourcePatternAssignment_4()); }
 )
 
