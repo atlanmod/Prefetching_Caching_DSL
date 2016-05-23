@@ -1,0 +1,10 @@
+import "http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf"
+ 
+
+
+plan PackageOwnedPackages { 
+	use cache MRU[size 300000] 
+	
+	rule c1 : on access type Block fetch Block.statements
+	 
+}

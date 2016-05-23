@@ -13,16 +13,17 @@ import org.junit.Test;
 import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCaseNoPrefetch;
 
-public class CompilationUnitImportsCommentsTestNoPrefetch extends AbstractTestCaseNoPrefetch {
+public class TypeToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	
-	public CompilationUnitImportsCommentsTestNoPrefetch(String resourceName) {
-		super(resourceName);
+	public TypeToUnitTestNoPrefetch(String resourceName, String scriptSuffix) {
+		super(resourceName, scriptSuffix);
 	}
 
 	protected String textualQuery;
 	protected EClass eContext;
 	
-    @Before
+    @SuppressWarnings("unchecked")
+	@Before
     public void setUp() {
     	super.setUp();
     	eContext = JavaPackage.eINSTANCE.getAbstractTypeDeclaration();
@@ -45,15 +46,16 @@ public class CompilationUnitImportsCommentsTestNoPrefetch extends AbstractTestCa
         this.query = ocl.createQuery(expression);
     }
     
-    @Test
-    public void compilTypesUsages() {
+    @SuppressWarnings("unchecked")
+	@Test
+    public void testTypeToUnit() {
     	try {
     		System.out.println(this.getClass().getName());
 	        EList<EObject> abstractTypeDeclarations = resource.getAllInstances(JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
 			System.out.println("input size : " + abstractTypeDeclarations.size());
 			System.out.println("Q1(1)");
 	        long begin = System.currentTimeMillis();
-	        Object res = query.evaluate(abstractTypeDeclarations);
+	        query.evaluate(abstractTypeDeclarations);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        
@@ -68,7 +70,7 @@ public class CompilationUnitImportsCommentsTestNoPrefetch extends AbstractTestCa
 	        }
 	        this.query = ocl.createQuery(expression);
 	        begin = System.currentTimeMillis();
-	        Object res2 = query.evaluate(abstractTypeDeclarations);
+	        query.evaluate(abstractTypeDeclarations);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
 

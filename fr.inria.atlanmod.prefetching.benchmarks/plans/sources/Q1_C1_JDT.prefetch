@@ -1,0 +1,20 @@
+import "http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf"
+ 
+
+
+plan PackageOwnedPackages { 
+	use cache MRU[size 300000] 
+	
+	rule c1 : on access type ClassDeclaration fetch ClassDeclaration.originalCompilationUnit.imports
+	rule c2 : on access type ClassDeclaration fetch ClassDeclaration.originalCompilationUnit.comments
+	rule c3 : on access type ClassDeclaration fetch ClassDeclaration.comments
+	rule c4 : on access type ClassDeclaration fetch ClassDeclaration.commentsBeforeBody
+	rule c5 : on access type ClassDeclaration fetch ClassDeclaration.commentsAfterBody
+	
+	rule i1 : on access type InterfaceDeclaration fetch InterfaceDeclaration.originalCompilationUnit.imports
+	rule i2 : on access type InterfaceDeclaration fetch InterfaceDeclaration.originalCompilationUnit.comments
+	rule i3 : on access type InterfaceDeclaration fetch InterfaceDeclaration.comments
+	rule i4 : on access type InterfaceDeclaration fetch InterfaceDeclaration.commentsBeforeBody
+	rule i5 : on access type InterfaceDeclaration fetch InterfaceDeclaration.commentsAfterBody
+	 
+}

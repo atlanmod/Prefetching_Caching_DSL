@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ASCII"?>
+<prefetching:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:prefetching="http://www.inria.fr/atlanmod/neoemf/Prefetching">
+  <metamodel nsURI="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf"/>
+  <plans name="PackageOwnedPackages">
+    <rules xsi:type="prefetching:AccessRule" name="bad1">
+      <targetPattern pattern="Archive.classFiles">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Archive"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Archive/classFiles"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="Archive">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Archive"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="bad2">
+      <targetPattern pattern="Manifest.entryAttributes">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Manifest"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Manifest/entryAttributes"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="Manifest">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Manifest"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="bad3">
+      <targetPattern pattern="Manifest.mainAttributes">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Manifest"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Manifest/mainAttributes"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="Manifest">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//Manifest"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="badc1">
+      <targetPattern pattern="ClassDeclaration.annotations">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//BodyDeclaration/annotations"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="ClassDeclaration">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="badc2">
+      <targetPattern pattern="ClassDeclaration.anonymousClassDeclarationOwner">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//BodyDeclaration/anonymousClassDeclarationOwner"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="ClassDeclaration">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="badc3">
+      <targetPattern pattern="ClassDeclaration.originalClassFile">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ASTNode/originalClassFile"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="ClassDeclaration">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ClassDeclaration"/>
+      </sourcePattern>
+    </rules>
+    <rules xsi:type="prefetching:AccessRule" name="badf1">
+      <targetPattern pattern="FieldDeclaration.comments">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//FieldDeclaration"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//ASTNode/comments"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="FieldDeclaration">
+        <eClass href="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf#//FieldDeclaration"/>
+      </sourcePattern>
+    </rules>
+    <cache type="MRU">
+      <properties size="16000"/>
+    </cache>
+  </plans>
+</prefetching:Model>

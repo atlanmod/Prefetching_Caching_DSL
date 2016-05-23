@@ -13,16 +13,17 @@ import org.junit.Test;
 import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCaseNoPrefetch;
 
-public class BlockToBlockUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
+public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	
-	public BlockToBlockUnitTestNoPrefetch(String resourceName) {
-		super(resourceName);
+	public BlockStatementTestNoPrefetch(String resourceName, String scriptSuffix) {
+		super(resourceName, scriptSuffix);
 	}
 
 	protected String textualQuery;
 	protected EClass eContext;
 	
-    @Before
+    @SuppressWarnings("unchecked")
+	@Before
     public void setUp() {
     	super.setUp();
     	eContext = JavaPackage.eINSTANCE.getBlock();
@@ -37,16 +38,17 @@ public class BlockToBlockUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
         this.query = ocl.createQuery(expression);
     }
     
-    @Test
-    public void compilTypesUsages() {
+    @SuppressWarnings("unchecked")
+	@Test
+    public void testBlockStatement() {
     	try {
     		System.out.println(this.getClass().getName());
 	        EList<EObject> blocks = resource.getAllInstances(JavaPackage.eINSTANCE.getBlock());
 	        System.out.println("size : " + blocks.size());
 			
-			System.out.println("Q1(1)");
+			System.out.println("Q1");
 	        long begin = System.currentTimeMillis();
-	        Object res = query.evaluate(blocks);
+	        query.evaluate(blocks);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
 
@@ -61,7 +63,7 @@ public class BlockToBlockUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	        }
 	        this.query = ocl.createQuery(expression);
 	        begin = System.currentTimeMillis();
-	        Object res2 = query.evaluate(blocks);
+	        query.evaluate(blocks);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
     	} catch(Exception e) {

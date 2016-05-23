@@ -14,14 +14,16 @@ import org.junit.runners.Parameterized.Parameters;
 import fr.inria.atlanmod.prefetching.benchmarks.util.ModelCreator;
 
 
+@SuppressWarnings("restriction")
 @RunWith(Parameterized.class)
 public class AbstractPrefetchTest {
 
 	protected String resourceName;
+	protected String scriptSuffix;
 	
-	private static String[][] parameters = new String[][]{
-		{"db/modisco.graph"},
-		{"db/jdt-core.graph"}
+	protected static String[][] parameters = new String[][]{
+		{"db/modisco.graph","Modisco"},
+		{"db/jdt-core.graph","JDT"}
 		};
 	
     @Parameters
@@ -29,8 +31,9 @@ public class AbstractPrefetchTest {
         return Arrays.asList(parameters);
     }
     
-    public AbstractPrefetchTest(String resourceName) {
+    public AbstractPrefetchTest(String resourceName, String scriptSuffix) {
     	this.resourceName = resourceName;
+    	this.scriptSuffix = scriptSuffix;
     }
     
     @BeforeClass

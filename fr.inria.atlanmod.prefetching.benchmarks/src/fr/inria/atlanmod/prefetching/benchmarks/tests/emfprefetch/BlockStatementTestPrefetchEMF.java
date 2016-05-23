@@ -1,8 +1,7 @@
 package fr.inria.atlanmod.prefetching.benchmarks.tests.emfprefetch;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
@@ -14,20 +13,20 @@ import org.junit.Test;
 
 import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetch.core.PrefetchCore;
-import fr.inria.atlanmod.prefetch.processor.emf.DelegateEList;
 import fr.inria.atlanmod.prefetch.processor.emf.EventNotifierDelegateEList;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCasePrefetchEMF;
 
-public class BlockToBlockUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
+public class BlockStatementTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 	
-	public BlockToBlockUnitTestPrefetchEMF(String resourceName) {
-		super(resourceName);
+	public BlockStatementTestPrefetchEMF(String resourceName, String scriptSuffix) {
+		super(resourceName, scriptSuffix);
 	}
 
 	protected String textualQuery;
 	protected EClass eContext;
 	
-    @Before
+    @SuppressWarnings("unchecked")
+	@Before
     public void setUp() {
     	super.setUp();
     	eContext = JavaPackage.eINSTANCE.getBlock();
@@ -44,29 +43,45 @@ public class BlockToBlockUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF
     
     @Override
     protected String getScriptString() {
-    	return "plans/Q3.prefetch.bin";
+    	return "plans/bin/Q3";
     }
     
-    @Test
-    public void compilTypesUsages() {
+	@Test
+    public void testBlockStatement_largeCache() {
+		runtime.loadPrefetchScript(URI.createURI(this.getScriptLargeCacheString()),resource);
+		performQuery();
+    }
+	
+	@Test
+	public void testBlockStatement_smallCache() {
+		runtime.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()), resource);
+		performQuery();
+	}
+	
+	@Test
+	public void testBlockStatement_badPlan() {
+		runtime.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()), resource);
+		performQuery();
+	}
+    
+    @SuppressWarnings("unchecked")
+	private void performQuery() {
     	try {
-    		Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-    		System.out.println("Prio set");
-    		System.out.println(this.getClass().getName());
-    		PrefetchCore core = runtime.getPCore();
-    		EList<EObject> blocks = resource.getAllInstances(eContext);
-    		EList<EObject> prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
-    		System.out.println(blocks.size() + " inputs");
+	    	Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+			System.out.println(this.getClass().getName());
+			PrefetchCore core = runtime.getPCore();
+			EList<EObject> blocks = resource.getAllInstances(eContext);
+			EList<EObject> prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
+			System.out.println(blocks.size() + " inputs");
 			long begin = System.currentTimeMillis();
 			System.out.println("Q1(1)");
 			core.resetHitCount();
 			core.resetMissCount();
-			Object res = query.evaluate(prefetchableAllInstances);
+			query.evaluate(prefetchableAllInstances);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        System.out.println("Hits - " + core.getHitCount());
 	        System.out.println("Misses - " + core.getMissCount());
-	        System.out.println("Event types : " + core.getEventAPI().eventTypes.toString());
 	        
 	        System.out.println("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -80,22 +95,21 @@ public class BlockToBlockUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF
 	        }
 	        this.query = ocl.createQuery(expression);
 	        blocks = resource.getAllInstances(eContext);
-    		prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
+			prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
 	        begin = System.currentTimeMillis();
 	        core.resetHitCount();
 	        core.resetMissCount();
-	        Object res2 = query.evaluate(prefetchableAllInstances);
+	        query.evaluate(prefetchableAllInstances);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        System.out.println("Hits - " + core.getHitCount());
 	        System.out.println("Misses - " + core.getMissCount());
 	        System.out.println(core.getActiveCache().size());
 	        
-	        System.out.println("Waiting");
-    	} catch(Exception e) {
-    		e.printStackTrace();
-    	} finally {
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
 			PersistentResourceImpl.shutdownWithoutUnload((PersistentResourceImpl)resource);
-    	}
+		}
     }
 }

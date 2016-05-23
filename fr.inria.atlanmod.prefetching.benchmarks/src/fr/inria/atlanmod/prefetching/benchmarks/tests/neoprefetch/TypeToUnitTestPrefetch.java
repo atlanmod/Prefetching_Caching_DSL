@@ -1,6 +1,7 @@
 package fr.inria.atlanmod.prefetching.benchmarks.tests.neoprefetch;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
@@ -13,16 +14,17 @@ import org.junit.Test;
 import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCasePrefetch;
 
-public class CompilationUnitImportsCommentsTestPrefetch extends AbstractTestCasePrefetch {
+public class TypeToUnitTestPrefetch extends AbstractTestCasePrefetch {
 	
-	public CompilationUnitImportsCommentsTestPrefetch(String resourceName) {
-		super(resourceName);
+	public TypeToUnitTestPrefetch(String resourceName, String scriptSuffix) {
+		super(resourceName, scriptSuffix);
 	}
 
 	protected String textualQuery;
 	protected EClass eContext;
 	
-    @Before
+    @SuppressWarnings("unchecked")
+	@Before
     public void setUp() {
     	super.setUp();
     	eContext = JavaPackage.eINSTANCE.getAbstractTypeDeclaration();
@@ -47,11 +49,29 @@ public class CompilationUnitImportsCommentsTestPrefetch extends AbstractTestCase
     
     @Override
     protected String getScriptString() {
-    	return "plans/Q1.prefetch.bin";
+    	return "plans/bin/Q1";
     }
     
-    @Test
-    public void compilTypesUsages() {
+	@Test
+    public void testTypeToUnit_largeCache() {
+		pCore.loadPrefetchScript(URI.createURI(this.getScriptLargeCacheString()));
+    	performQuery();
+    }
+	
+	@Test
+	public void testTypeToUnit_smallCache() {
+		pCore.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()));
+		performQuery();
+	}
+	
+	@Test
+	public void testTypeToUnit_badPlan() {
+		pCore.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()));
+		performQuery();
+	}
+    
+    @SuppressWarnings("unchecked")
+	private void performQuery() {
     	try {
     		System.out.println(this.getClass().getName());
     		Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
@@ -59,8 +79,7 @@ public class CompilationUnitImportsCommentsTestPrefetch extends AbstractTestCase
 			System.out.println("input size : " + abstractTypeDeclarations.size());
     		long begin = System.currentTimeMillis();
 			System.out.println("Q1(1)");
-	        @SuppressWarnings("unused")
-			Object res = query.evaluate(abstractTypeDeclarations);
+			query.evaluate(abstractTypeDeclarations);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        System.out.println("Hits - " + pCore.getHitCount());
@@ -79,7 +98,7 @@ public class CompilationUnitImportsCommentsTestPrefetch extends AbstractTestCase
 	        }
 	        this.query = ocl.createQuery(expression);
 	        begin = System.currentTimeMillis();
-	        Object res2 = query.evaluate(abstractTypeDeclarations);
+	        query.evaluate(abstractTypeDeclarations);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
 	        System.out.println("Hits - " + pCore.getHitCount());

@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage.Registry;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -34,16 +33,18 @@ import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceFactoryImpl;
 
 public class AbstractTestCaseNoPrefetch extends AbstractPrefetchTest {
 
+	@SuppressWarnings("rawtypes")
 	protected OCL ocl = null;
-    protected OCLHelper oclHelper = null;
+    @SuppressWarnings("rawtypes")
+	protected OCLHelper oclHelper = null;
     
     protected PersistentResource resource;
     
     protected OCLExpression<EClassifier> expression = null;
     protected Query<EClassifier, EClass, EObject> query = null;
 	
-    public AbstractTestCaseNoPrefetch(String resourceName) {
-    	super(resourceName);
+    public AbstractTestCaseNoPrefetch(String resourceName, String scriptSuffix) {
+    	super(resourceName,scriptSuffix);
 	}
     
 	@Before
@@ -58,13 +59,9 @@ public class AbstractTestCaseNoPrefetch extends AbstractPrefetchTest {
 			
 		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File(this.resourceName)));
 		
-//		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File("jdt-core.graph")));
-//		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File("modisco.graph")));
-
 		Map<Object,Object> options = new HashMap<Object,Object>();
 		List<Object> storeOptions = new ArrayList<Object>();
 		storeOptions.add(BlueprintsResourceOptions.EStoreGraphOption.DIRECT_WRITE);
-//		storeOptions.add(PersistentResourceOptions.EStoreOption.LOADED_OBJECT_COUNTER_LOGGING);
 		options.put(
 		    BlueprintsResourceOptions.OPTIONS_BLUEPRINTS_GRAPH_TYPE,
 		    BlueprintsNeo4jResourceOptions.OPTIONS_BLUEPRINTS_TYPE_NEO4J);
@@ -72,7 +69,6 @@ public class AbstractTestCaseNoPrefetch extends AbstractPrefetchTest {
 		try {
 			resource.load(options);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

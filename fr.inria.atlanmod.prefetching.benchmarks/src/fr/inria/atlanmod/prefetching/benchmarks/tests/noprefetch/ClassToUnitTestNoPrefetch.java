@@ -13,16 +13,17 @@ import org.junit.Test;
 import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCaseNoPrefetch;
 
-public class ClassDeclarationToClassUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
+public class ClassToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	
-	public ClassDeclarationToClassUnitTestNoPrefetch(String resourceName) {
-		super(resourceName);
+	public ClassToUnitTestNoPrefetch(String resourceName, String scriptSuffix) {
+		super(resourceName, scriptSuffix);
 	}
 
 	protected String textualQuery;
 	protected EClass eContext;
 	
-    @Before
+    @SuppressWarnings("unchecked")
+	@Before
     public void setUp() {
     	super.setUp();
     	eContext = JavaPackage.eINSTANCE.getClassDeclaration();
@@ -60,8 +61,9 @@ public class ClassDeclarationToClassUnitTestNoPrefetch extends AbstractTestCaseN
         this.query = ocl.createQuery(expression);
     }
     
-    @Test
-    public void compilTypesUsages() {
+    @SuppressWarnings("unchecked")
+	@Test
+    public void testClassToUnit() {
     	try {
     		System.out.println(this.getClass().getName());
 	        EList<EObject> classDeclarations = resource.getAllInstances(JavaPackage.eINSTANCE.getClassDeclaration());
@@ -69,7 +71,7 @@ public class ClassDeclarationToClassUnitTestNoPrefetch extends AbstractTestCaseN
 			System.out.println("input size = " + classDeclarations.size());
 			System.out.println("Q1(1)");
 	        long begin = System.currentTimeMillis();
-	        Object res = query.evaluate(classDeclarations);
+	        query.evaluate(classDeclarations);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
 	    
@@ -84,7 +86,7 @@ public class ClassDeclarationToClassUnitTestNoPrefetch extends AbstractTestCaseN
 	        }
 	        this.query = ocl.createQuery(expression);
 	        begin = System.currentTimeMillis();
-	        Object res2 = query.evaluate(classDeclarations);
+	        query.evaluate(classDeclarations);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
     	} catch(Exception e) {

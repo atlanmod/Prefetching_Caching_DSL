@@ -1,0 +1,15 @@
+import "http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf"
+ 
+
+
+plan PackageOwnedPackages { 
+	use cache MRU[size 16000] 
+	
+	rule bad1 : on access type Archive fetch Archive.classFiles
+	rule bad2 : on access type Manifest fetch Manifest.entryAttributes
+	rule bad3 : on access type Manifest fetch Manifest.mainAttributes
+	
+	rule badblock1 : on access type Block fetch Block.originalClassFile
+	rule badblock2 : on access type Block fetch Block.originalCompilationUnit
+	 
+}
