@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PrefetchML EMF Aspect Library
+Bundle-SymbolicName: fr.inria.atlanmod.prefetchml.emf.event
+Bundle-Version: 0.0.1.qualifier
+Export-Package: fr.inria.atlanmod.prefetch.emf.aspectj,
+ fr.inria.atlanmod.prefetch.emf.aspectj.runtime
+Require-Bundle: fr.inria.atlanmod.prefetchml.core,
+ org.eclipse.emf.ecore;bundle-version="2.10.2",
+ org.eclipse.gmt.modisco.java,
+ org.junit
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
