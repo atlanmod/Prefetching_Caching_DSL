@@ -1,6 +1,6 @@
 /**
  */
-package fr.inria.atlanmod.prefetchml.metamodel.util;
+package fr.inria.atlanmod.prefetchml.language.metamodel.util;
 
 import fr.inria.atlanmod.prefetchml.language.metamodel.*;
 
