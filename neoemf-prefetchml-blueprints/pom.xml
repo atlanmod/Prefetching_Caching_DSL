@@ -59,7 +59,7 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>
-                            ${project.groupId}.prefetchml.blueprints.
+                            ${project.groupId}.prefetchml.blueprints
                         </Bundle-SymbolicName>
                         <Export-Package>
                             fr.inria.atlanmod.neoemf.prefetchml.blueprints.*
