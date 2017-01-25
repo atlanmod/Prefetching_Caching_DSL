@@ -10,7 +10,6 @@ import java.util.NoSuchElementException;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import fr.inria.atlanmod.prefetch.core.PrefetchCore;
 

@@ -12,8 +12,8 @@
 	<name>PrefetchML Core Component</name>
 
     <properties>
-    	<maven.compiler.target>1.7</maven.compiler.target>
-    	<maven.compiler.source>1.7</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
+    	<maven.compiler.source>1.8</maven.compiler.source>
 		<maven-bundle-plugin.version>2.5.0</maven-bundle-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <manifest-location>META-INF</manifest-location>
@@ -108,7 +108,7 @@
 	           	<Import-Package></Import-Package>
 	           	<Embed-Dependency>blueprints-core</Embed-Dependency>
 	           	<!-- <DynamicImport-Package>*</DynamicImport-Package> -->
-	           	<Require-Bundle>fr.inria.atlanmod.neoemf.prefetching.metamodel,org.eclipse.emf.ecore;visibility:=reexport</Require-Bundle>
+	           	<Require-Bundle>fr.inria.atlanmod.prefetchml.language.metamodel,org.eclipse.emf.ecore;visibility:=reexport</Require-Bundle>
 	           </instructions>
 	          </configuration>
 	         <executions>

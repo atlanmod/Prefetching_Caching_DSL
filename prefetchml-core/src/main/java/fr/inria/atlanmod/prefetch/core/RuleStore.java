@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
 /**
  * Utility class that stores the PrefetchingRules loaded in Prefetch

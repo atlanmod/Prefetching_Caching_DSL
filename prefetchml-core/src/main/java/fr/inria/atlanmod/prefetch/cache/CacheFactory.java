@@ -3,9 +3,9 @@ package fr.inria.atlanmod.prefetch.cache;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Cache;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.CacheType;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.language.metamodel.Cache;
+import fr.inria.atlanmod.prefetchml.language.metamodel.CacheType;
 
 public class CacheFactory {
 

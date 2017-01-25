@@ -8,13 +8,13 @@ import java.util.concurrent.Executors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
 import fr.inria.atlanmod.prefetch.core.tasks.AccessRuleAction;
 import fr.inria.atlanmod.prefetch.core.tasks.StartingRuleAction;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessorFactory;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
 public class PrefetchWorker {
 

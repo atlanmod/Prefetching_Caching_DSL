@@ -2,8 +2,8 @@ package fr.inria.atlanmod.prefetch.core.tasks;
 
 import java.util.List;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 
 public class AccessRuleAction implements Runnable {
 	

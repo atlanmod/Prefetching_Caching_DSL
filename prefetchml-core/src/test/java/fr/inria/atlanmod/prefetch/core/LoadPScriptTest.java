@@ -12,8 +12,8 @@ import org.eclipse.gmt.modisco.java.JavaPackage;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
 import fr.inria.atlanmod.prefetch.processor.emf.EMFRuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 
 public class LoadPScriptTest {
 

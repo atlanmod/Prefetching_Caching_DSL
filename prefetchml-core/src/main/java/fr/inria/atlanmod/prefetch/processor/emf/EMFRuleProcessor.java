@@ -14,13 +14,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
 import fr.inria.atlanmod.prefetch.cache.EMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.FeaturePattern;
+import fr.inria.atlanmod.prefetchml.language.metamodel.PrefetchingRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
 public class EMFRuleProcessor implements RuleProcessor {
 
@@ -34,19 +34,23 @@ public class EMFRuleProcessor implements RuleProcessor {
 		this.resource = resource;
 	}
 	
+	@Override
 	public Object getCache() {
 		return this.cache;
 	}
 	
+	@Override
 	public void setCache(Map<Object,Object> newCache) {
 		this.cache = newCache;
 	}
 
+	@Override
 	public void processStartingRule(StartingRule sRule, Object resourceStore) {
 		// TODO Auto-generated method stub
 
 	}
 	
+	@Override
 	public void processStartingRules(List<StartingRule> sRules, Object resourceStore) {
 		if(!(resourceStore instanceof Resource)) {
 			PrefetchLogger.error("EMFRuleProcessor can only work with EMF Resource");
@@ -68,11 +72,13 @@ public class EMFRuleProcessor implements RuleProcessor {
 		
 	}
 	
+	@Override
 	public void processAccessRule(Object source, AccessRule aRule) {
 		// TODO Auto-generated method stub
 
 	}
 	
+	@Override
 	public void processAccessRules(Object source, List<AccessRule> aRules) {
 		if(!(source instanceof EObject)) {
 			PrefetchLogger.error("Cannot use EMFRuleProcessor on non EMF source object");

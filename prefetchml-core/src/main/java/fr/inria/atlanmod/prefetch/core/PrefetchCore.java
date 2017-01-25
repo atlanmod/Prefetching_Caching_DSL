@@ -15,17 +15,17 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 //import org.eclipse.gmt.modisco.java.JavaPackage;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.MetamodelImport;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Plan;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
 import fr.inria.atlanmod.prefetch.cache.CacheFactory;
 import fr.inria.atlanmod.prefetch.event.EventAPI;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessorFactory;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.MetamodelImport;
+import fr.inria.atlanmod.prefetchml.language.metamodel.Model;
+import fr.inria.atlanmod.prefetchml.language.metamodel.Plan;
+import fr.inria.atlanmod.prefetchml.language.metamodel.PrefetchingPackage;
+import fr.inria.atlanmod.prefetchml.language.metamodel.PrefetchingRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
 public class PrefetchCore {
 

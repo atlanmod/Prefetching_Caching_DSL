@@ -17,12 +17,12 @@ import com.tinkerpop.blueprints.KeyIndexableGraph;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.FeaturePattern;
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.StartingRule;
 import fr.inria.atlanmod.prefetch.cache.NeoEMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
+import fr.inria.atlanmod.prefetchml.language.metamodel.FeaturePattern;
+import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
 public class NeoEMFRuleProcessor implements RuleProcessor {
 
@@ -59,6 +59,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	/**
 	 * @return the cache used to store the elements
 	 */
+	@Override
 	public Object getCache() {
 		return cache;
 	}
@@ -67,6 +68,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	 * @param newCache the cache to use to store the elements
 	 * @note the previous cache content will be discarded
 	 */
+	@Override
 	public void setCache(Map<Object, Object> newCache) {
 		this.cache = newCache;
 	}
@@ -77,6 +79,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	 * @param sRule the @see{StartingRule} to process
 	 * @param resourceStore the store that contains the model representation
 	 */
+	@Override
 	public void processStartingRule(StartingRule sRule, Object resourceStore) {
 		// TODO Auto-generated method stub
 		
@@ -87,6 +90,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	 * @param sRules the @see{StartingRule}s to process
 	 * @param resourceStore the store that contains the model representation
 	 */
+	@Override
 	public void processStartingRules(List<StartingRule> sRules, Object resourceStore) {
 		for(StartingRule sRule : sRules) {
 			EClass eClassToFetch = sRule.getTargetPattern().getEClass();
@@ -104,6 +108,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	 * @param source the element which has been accessed
 	 * @param aRule the @see{AccessRule} to process
 	 */
+	@Override
 	public void processAccessRule(Object source, AccessRule aRule) {
 		// TODO Auto-generated method stub
 		
@@ -114,6 +119,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	 * @param source the element which has been accessed
 	 * @param aRules the @see{AccessRule}s to process
 	 */
+	@Override
 	public void processAccessRules(Object source, List<AccessRule> aRules) {
 		if(aRules.isEmpty()) {
             return;
