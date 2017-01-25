@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+	<parent>
+		<groupId>fr.inria.atlanmod.neoemf</groupId>
+        <artifactId>neoemf</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+    </parent>
+  
+  	<artifactId>neoemf-prefetchml-blueprints</artifactId>
+  	
+  	<packaging>bundle</packaging>
+  	<name>NeoEMF PrefetchML integration for Blueprints</name>
+  	<description>
+  		A connector that enables native prefetching for the Blueprints 
+  		implementation of NeoEMF.
+  	</description>
+
+  
+  	<dependencies>
+  		<!-- Test -->
+  		
+  		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		</dependency>
+  		
+  		<!-- NeoEMF -->
+  		<dependency>
+	  		<groupId>fr.inria.atlanmod.neoemf</groupId>
+	        <artifactId>neoemf-data-blueprints-core</artifactId>
+	  		<version>${project.version}</version>
+  		</dependency>
+  		
+		<dependency> 
+			<groupId>fr.inria.atlanmod.neoemf</groupId>
+			<artifactId>neoemf-data-blueprints-core</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+  		
+  		<!-- Internal -->
+  		<dependency>
+			<groupId>fr.inria.atlanmod.prefetch</groupId>
+			<artifactId>prefetch</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+  	
+
+  	
+  	</dependencies>
+  
+  	<build>
+  		<plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>
+                            ${project.groupId}.prefetchml.blueprints.
+                        </Bundle-SymbolicName>
+                        <Export-Package>
+                            fr.inria.atlanmod.neoemf.prefetchml.blueprints.*
+                        </Export-Package>
+                        <Require-Bundle>
+                            ${project.groupId}.data.blueprints.core
+                        </Require-Bundle>
+                        <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+  </build>
+</project>

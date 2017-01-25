@@ -8,7 +8,7 @@
  * Contributors:
  *     Atlanmod INRIA LINA Mines Nantes - initial API and implementation
  *******************************************************************************/
-package fr.inria.atlanmod.neoemf.graph.prefetch.datastore.estores.impl;
+package fr.inria.atlanmod.prefetchml.blueprints.store;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -27,42 +27,48 @@ import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Vertex;
 
 import fr.inria.atlanmod.neoemf.core.PersistentEObject;
-import fr.inria.atlanmod.neoemf.core.impl.NeoEObjectAdapterFactoryImpl;
-import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.BlueprintsPersistenceBackend;
-import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.estores.impl.DirectWriteBlueprintsResourceEStoreImpl;
-import fr.inria.atlanmod.neoemf.logger.NeoLogger;
+import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackend;
+import fr.inria.atlanmod.neoemf.data.blueprints.store.DirectWriteBlueprintsStore;
 import fr.inria.atlanmod.prefetch.cache.NeoEMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetch.core.PrefetchCore;
 import fr.inria.atlanmod.prefetch.event.EventAPI;
 import fr.inria.atlanmod.prefetch.processor.neoemf.NeoEMFRuleProcessor.VertexWrapper;
 import fr.inria.atlanmod.prefetch.processor.neoemf.NeoEMFRuleProcessorFactory;
-import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
 
-public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWriteBlueprintsResourceEStoreImpl{
+public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsStore {
 
 	protected PrefetchCore pCore;
     
-    public PrefetchingDirectWriteBlueprintsResourceEStoreImpl(Resource.Internal resource,
-            BlueprintsPersistenceBackend graph) {
-        super(resource, graph);
-        NeoLogger.log(NeoLogger.SEVERITY_INFO, "Creating a Prefetching EStore");
-        pCore = new PrefetchCore(graph,new NeoEMFRuleProcessorFactory());
+	/**
+	 * Constructs a new {@link DirectWritePrefetchMLBlueprintsStore} between the given {@code resource} and the {@code backend}.
+	 * 
+	 * @param resource the resource to persist and access
+     * @param backend  the persistence back-end used to store the model
+	 */
+    public DirectWritePrefetchMLBlueprintsStore(Resource.Internal resource,
+            BlueprintsPersistenceBackend backend) {
+        super(resource, backend);
+        pCore = new PrefetchCore(backend, new NeoEMFRuleProcessorFactory());
     }
     
+    /**
+     * Return the {@link PrefetchCore} instance associated to the store.
+     * @return
+     */
     public PrefetchCore getPrefetcher() {
     	return pCore;
     }
     
     @Override
-    public int size(InternalEObject object, EStructuralFeature feature) {
+    public int size(InternalEObject internalObject, EStructuralFeature feature) {
     	if(feature instanceof EReference) {
     		EReference eReference = (EReference)feature;
 	    	final Map<Object,Object> cache = pCore.getActiveCache();
 	    	if(!(eReference.getEType() instanceof EClass)) {
-	            return super.size(object, feature);
+	            return super.size(internalObject, feature);
 	        }
-            PersistentEObject neoEObject = NeoEObjectAdapterFactoryImpl.getAdapter(object, PersistentEObject.class);
-            NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -2);
+	    	PersistentEObject object = PersistentEObject.from(internalObject);
+            NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), eReference, -2);
             if(cache.containsKey(key)) {
             	pCore.hit();;
             	int cachedSize = (int)cache.get(key);
@@ -78,19 +84,17 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
             	return super.size(object, feature);
             }
     	}
-    	return super.size(object, feature);
+    	return super.size(internalObject, feature);
     }
     
     @Override
-    protected boolean isSet(InternalEObject object, EReference eReference) {
-    	PrefetchLogger.info("Accessing eSet");
+    protected boolean isSetReference(PersistentEObject object, EReference reference) {
     	final Map<Object,Object> cache = pCore.getActiveCache();
-    	if(!(eReference.getEType() instanceof EClass)) {
-            return super.isSet(object, eReference);
+    	if(!(reference.getEType() instanceof EClass)) {
+            return super.isSetReference(object, reference);
         }
         if(!cache.isEmpty()) {
-            PersistentEObject neoEObject = NeoEObjectAdapterFactoryImpl.getAdapter(object, PersistentEObject.class);
-            NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -2);
+            NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), reference, -2);
             if(cache.containsKey(key)) {
             	pCore.hit();;
             	int theSize = (int)cache.get(key);
@@ -98,26 +102,25 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
             }
         }
         pCore.miss();
-    	return super.isSet(object, eReference);
+    	return super.isSetReference(object, reference);
     }
     
     
     @Override
-    protected Object get(InternalEObject object, EReference eReference, int index) {
+    protected Object getReference(PersistentEObject object, EReference reference, int index) {
     	Map<Object,Object> cache = pCore.getActiveCache();
     	EventAPI eventAPI = pCore.getEventAPI();
-        if(!(eReference.getEType() instanceof EClass)) {
-            Object r = super.get(object, eReference, index);
+        if(!(reference.getEType() instanceof EClass)) {
+            Object r = super.getReference(object, reference, index);
             if(r instanceof PersistentEObject) {
-            	Vertex v = graph.getVertex(((PersistentEObject)r).id());
+            	Vertex v = backend.getVertex(((PersistentEObject)r).id());
             	eventAPI.accessEvent(v,((EObject)r).eClass());
             }
             return r;
         }
         
-        PersistentEObject neoEObject = NeoEObjectAdapterFactoryImpl.getAdapter(object, PersistentEObject.class);
-        if(eReference.isMany()) {
-        	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, index);
+        if(reference.isMany()) {
+        	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), reference, index);
         	if(cache.containsKey(key)) {
         		pCore.hit();
         		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
@@ -126,12 +129,12 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         	}
         	else {
         		pCore.miss();
-        		Vertex vertex = graph.getVertex(object);
-        		Iterator<Vertex> iterator = vertex.query().labels(eReference.getName()).direction(Direction.OUT).has(POSITION, index).vertices().iterator();
+        		Vertex vertex = backend.getVertex(object.id());
+        		Iterator<Vertex> iterator = vertex.query().labels(reference.getName()).direction(Direction.OUT).has(POSITION, index).vertices().iterator();
                 if (iterator.hasNext()) {
                     Vertex referencedVertex = iterator.next();
                     InternalEObject reifiedObject = reifyVertex(referencedVertex);
-                    eventAPI.accessEvent(referencedVertex,graph.resolveInstanceOf(referencedVertex));
+                    eventAPI.accessEvent(referencedVertex,backend.resolveInstanceOf(referencedVertex));
                     return reifiedObject;
                 } else {
                     return null;
@@ -139,7 +142,7 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         	}
         }
         else {
-        	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(neoEObject.id().toString(), eReference, -1);
+        	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), reference, -1);
         	if(cache.containsKey(key)) {
         		pCore.hit();
         		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
@@ -148,11 +151,11 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         	}
         	else {
         		pCore.miss();
-        		Vertex vertex = graph.getVertex(object);
-            	Iterator<Vertex> iterator = vertex.getVertices(Direction.OUT, eReference.getName()).iterator();
+        		Vertex vertex = backend.getVertex(object.id());
+            	Iterator<Vertex> iterator = vertex.getVertices(Direction.OUT, reference.getName()).iterator();
                 if (iterator.hasNext()) {
                     Vertex referencedVertex = iterator.next();
-                    eventAPI.accessEvent(referencedVertex,graph.resolveInstanceOf(referencedVertex));
+                    eventAPI.accessEvent(referencedVertex,backend.resolveInstanceOf(referencedVertex));
                     InternalEObject reifiedObject = reifyVertex(referencedVertex);
                     return reifiedObject;
                 } else {
@@ -162,25 +165,36 @@ public class PrefetchingDirectWriteBlueprintsResourceEStoreImpl extends DirectWr
         }
     }
     
+    /**
+     * Creates an {@link InternalEObject} from the given {@link VertexWrapper}.
+     *
+     * @param vWrapper the {@link VertexWrapper} to reify
+     *
+     * @return an {@link InternalEObject} build from the provided {@link VertexWrapper}
+     */
     protected InternalEObject reifyVertex(VertexWrapper vWrapper) {
     	return reifyVertex(vWrapper.getV(),vWrapper.getEClass());		
 	}
     
     @Override
     public EList<EObject> getAllInstances(EClass eClass, boolean strict) {
-    	Map<EClass, Iterator<Vertex>> indexHits = graph.getAllInstances(eClass, strict);
+    	Map<EClass, Iterable<Vertex>> indexHits = backend.getAllInstances(eClass, strict);
 		EList<EObject> instances = new PrefetchEventBasicEList<EObject>();
 		Set<EClass> mapKeys = indexHits.keySet();
 		for(EClass metaClass : mapKeys) {
-			Iterator<Vertex> instanceVertices = indexHits.get(metaClass);
-			while(instanceVertices.hasNext()) {
-				Vertex instanceVertex = instanceVertices.next();
-				instances.add(reifyVertex(instanceVertex, metaClass));
+			Iterable<Vertex> instanceVertices = indexHits.get(metaClass);
+			for(Vertex instanceVertex : instanceVertices) {
+			    instances.add(reifyVertex(instanceVertex,metaClass));
 			}
 		}
 		return instances;
     }
     
+    /**
+     * A subclass of {@link BasicEList} that sends events to the PrefetchML framework when an
+     * element is accessed.
+     * @param <E> the type of the elements in the list
+     */
     class PrefetchEventBasicEList<E> extends BasicEList<E> {
     	
 		private static final long serialVersionUID = 1L;
