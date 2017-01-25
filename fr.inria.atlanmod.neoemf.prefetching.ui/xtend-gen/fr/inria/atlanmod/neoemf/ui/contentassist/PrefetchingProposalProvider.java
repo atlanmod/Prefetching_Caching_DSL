@@ -10,6 +10,7 @@ import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model;
 import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule;
 import fr.inria.atlanmod.neoemf.ui.contentassist.AbstractPrefetchingProposalProvider;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -24,7 +25,6 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 /**
  * see http://www.eclipse.org/Xtext/documentation.html#contentAssist on how to customize content assistant
@@ -34,13 +34,13 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
   public void completeMetamodelImport_NsURI(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
     super.completeMetamodelImport_NsURI(model, assignment, context, acceptor);
     Set<String> _keySet = EPackage.Registry.INSTANCE.keySet();
-    final Procedure1<String> _function = new Procedure1<String>() {
-      public void apply(final String e) {
+    final Consumer<String> _function = new Consumer<String>() {
+      public void accept(final String e) {
         ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal((("\"" + e) + "\""), context);
         acceptor.accept(_createCompletionProposal);
       }
     };
-    IterableExtensions.<String>forEach(_keySet, _function);
+    _keySet.forEach(_function);
   }
   
   public void completeStartingRule_TargetPattern(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
@@ -61,14 +61,14 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
       }
     };
     Iterable<EClassifier> _filter_1 = IterableExtensions.<EClassifier>filter(_filter, _function_1);
-    final Procedure1<EClassifier> _function_2 = new Procedure1<EClassifier>() {
-      public void apply(final EClassifier c) {
+    final Consumer<EClassifier> _function_2 = new Consumer<EClassifier>() {
+      public void accept(final EClassifier c) {
         String _name = c.getName();
         ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal(_name, context);
         acceptor.accept(_createCompletionProposal);
       }
     };
-    IterableExtensions.<EClassifier>forEach(_filter_1, _function_2);
+    _filter_1.forEach(_function_2);
   }
   
   public void completeTargetPattern_Pattern(final EObject model, final Assignment assignment, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
@@ -106,15 +106,15 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
         }
       };
       Iterable<EClassifier> _filter_1 = IterableExtensions.<EClassifier>filter(_filter, _function_1);
-      final Procedure1<EClassifier> _function_2 = new Procedure1<EClassifier>() {
-        public void apply(final EClassifier c) {
+      final Consumer<EClassifier> _function_2 = new Consumer<EClassifier>() {
+        public void accept(final EClassifier c) {
           String _name = c.getName();
           String _plus = (prefix + _name);
           ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal(_plus, context);
           acceptor.accept(_createCompletionProposal);
         }
       };
-      IterableExtensions.<EClassifier>forEach(_filter_1, _function_2);
+      _filter_1.forEach(_function_2);
     } else {
       String _get = splittedPrefix[0];
       EClassifier _eClassifier = ePackage.getEClassifier(_get);
@@ -173,8 +173,8 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
         boolean _isEmpty = unknownRefName.isEmpty();
         if (_isEmpty) {
           EList<EReference> _eAllReferences = currentEClass.getEAllReferences();
-          final Procedure1<EReference> _function_3 = new Procedure1<EReference>() {
-            public void apply(final EReference r) {
+          final Consumer<EReference> _function_3 = new Consumer<EReference>() {
+            public void accept(final EReference r) {
               String _name = r.getName();
               String _plus = (prefix + _name);
               String _prefix = context.getPrefix();
@@ -182,7 +182,7 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
               acceptor.accept(_createCompletionProposal);
             }
           };
-          IterableExtensions.<EReference>forEach(_eAllReferences, _function_3);
+          _eAllReferences.forEach(_function_3);
         } else {
           final String refStartName = unknownRefName;
           EList<EReference> _eAllReferences_1 = currentEClass.getEAllReferences();
@@ -193,8 +193,8 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
             }
           };
           Iterable<EReference> _filter_2 = IterableExtensions.<EReference>filter(_eAllReferences_1, _function_4);
-          final Procedure1<EReference> _function_5 = new Procedure1<EReference>() {
-            public void apply(final EReference r) {
+          final Consumer<EReference> _function_5 = new Consumer<EReference>() {
+            public void accept(final EReference r) {
               String _name = r.getName();
               int _length = refStartName.length();
               String _substring = _name.substring(_length);
@@ -204,7 +204,7 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
               acceptor.accept(_createCompletionProposal);
             }
           };
-          IterableExtensions.<EReference>forEach(_filter_2, _function_5);
+          _filter_2.forEach(_function_5);
         }
       }
     }
@@ -228,14 +228,14 @@ public class PrefetchingProposalProvider extends AbstractPrefetchingProposalProv
       }
     };
     Iterable<EClassifier> _filter_1 = IterableExtensions.<EClassifier>filter(_filter, _function_1);
-    final Procedure1<EClassifier> _function_2 = new Procedure1<EClassifier>() {
-      public void apply(final EClassifier c) {
+    final Consumer<EClassifier> _function_2 = new Consumer<EClassifier>() {
+      public void accept(final EClassifier c) {
         String _name = c.getName();
         ICompletionProposal _createCompletionProposal = PrefetchingProposalProvider.this.createCompletionProposal(_name, context);
         acceptor.accept(_createCompletionProposal);
       }
     };
-    IterableExtensions.<EClassifier>forEach(_filter_1, _function_2);
+    _filter_1.forEach(_function_2);
   }
   
   public EPackage getImportedEPackage(final EObject in) {
