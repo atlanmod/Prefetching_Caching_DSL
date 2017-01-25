@@ -29,11 +29,11 @@ import com.tinkerpop.blueprints.Vertex;
 import fr.inria.atlanmod.neoemf.core.PersistentEObject;
 import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackend;
 import fr.inria.atlanmod.neoemf.data.blueprints.store.DirectWriteBlueprintsStore;
-import fr.inria.atlanmod.prefetch.cache.NeoEMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetch.core.PrefetchCore;
-import fr.inria.atlanmod.prefetch.event.EventAPI;
-import fr.inria.atlanmod.prefetch.processor.neoemf.NeoEMFRuleProcessor.VertexWrapper;
-import fr.inria.atlanmod.prefetch.processor.neoemf.NeoEMFRuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
+import fr.inria.atlanmod.prefetchml.core.cache.NeoEMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.event.EventAPI;
+import fr.inria.atlanmod.prefetchml.core.processor.neoemf.NeoEMFRuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.core.processor.neoemf.NeoEMFRuleProcessor.VertexWrapper;
 
 public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsStore {
 
