@@ -2,3 +2,8 @@
 /target/
 /META-INF/MANIFEST.MF
 *~
+.classpath
+.project
+build.properties
+plugin.properties
+plugin.xml
