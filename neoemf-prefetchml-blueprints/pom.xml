@@ -42,8 +42,8 @@
   		
   		<!-- Internal -->
   		<dependency>
-			<groupId>fr.inria.atlanmod.prefetch</groupId>
-			<artifactId>prefetch</artifactId>
+			<groupId>fr.inria.atlanmod.prefetchml</groupId>
+			<artifactId>prefetchml-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
   	
