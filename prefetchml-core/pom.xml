@@ -47,7 +47,7 @@
 		</dependency>
 		<dependency>
 			<groupId>fr.inria.atlanmod.prefetchml</groupId>
-			<artifactId>language-metamodel</artifactId>
+			<artifactId>prefetchml-language-metamodel</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
