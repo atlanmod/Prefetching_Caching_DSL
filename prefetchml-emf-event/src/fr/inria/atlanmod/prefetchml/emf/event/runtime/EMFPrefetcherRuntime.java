@@ -1,11 +1,11 @@
-package fr.inria.atlanmod.prefetch.emf.aspectj.runtime;
+package fr.inria.atlanmod.prefetchml.emf.event.runtime;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import fr.inria.atlanmod.prefetch.emf.aspectj.EGetAspect;
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
 import fr.inria.atlanmod.prefetchml.core.processor.emf.EMFRuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.emf.event.capture.EGetAspect;
 
 public class EMFPrefetcherRuntime {
 	

@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.emf.aspectj;
+package fr.inria.atlanmod.prefetchml.emf.event.capture;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

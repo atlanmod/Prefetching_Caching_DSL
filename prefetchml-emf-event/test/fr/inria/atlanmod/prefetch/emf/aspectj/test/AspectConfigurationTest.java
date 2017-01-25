@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmt.modisco.java.JavaPackage;
 import org.junit.Test;
 
-import fr.inria.atlanmod.prefetch.emf.aspectj.runtime.EMFPrefetcherRuntime;
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
+import fr.inria.atlanmod.prefetchml.emf.event.runtime.EMFPrefetcherRuntime;
 
 public class AspectConfigurationTest {
 
