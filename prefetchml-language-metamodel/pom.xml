@@ -2,12 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 	
-	<groupId>fr.inria.atlanmod.neoemf.prefetching</groupId>
-    <artifactId>metamodel</artifactId>
-    <packaging>bundle</packaging>
+	<groupId>fr.inria.atlanmod.prefetchml</groupId>
+    <artifactId>prefetchml-language-metamodel</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    
+    <packaging>bundle</packaging>
 
-    <name>NeoEMF Prefetcher :: Metamodel</name>
+    <name>PrefetchML Language Metamodel</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -56,9 +57,12 @@
           <configuration>
             <manifestLocation>${manifest-location}</manifestLocation>
            <instructions>
+           	<Bundle-SymbolicName>
+                fr.inria.atlanmod.prefetchml.language.metamodel
+            </Bundle-SymbolicName>
           	<Bundle-Version>0.0.1.$${tstamp}</Bundle-Version>
            	<Bundle-ClassPath>.,{maven-dependencies},target/classes/</Bundle-ClassPath>
-           	<Export-Package>fr.inria.atlanmod.neoemf.prefetching.metamodel.*</Export-Package>
+           	<Export-Package>fr.inria.atlanmod.prefetchml.language.metamodel.*</Export-Package>
            	<Import-Package></Import-Package>
            	<Embed-Dependency></Embed-Dependency>-->
            	<DynamicImport-Package></DynamicImport-Package>

@@ -2,12 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-	<groupId>fr.inria.atlanmod.prefetch</groupId>
-	<artifactId>prefetch</artifactId>
-	<packaging>bundle</packaging>
+	<groupId>fr.inria.atlanmod.prefetchml</groupId>
+	<artifactId>prefetchml-core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>Prefetch Framework</name>
+	<packaging>bundle</packaging>
+	
+
+	<name>PrefetchML Core Component</name>
 
     <properties>
     	<maven.compiler.target>1.7</maven.compiler.target>
@@ -44,8 +46,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>fr.inria.atlanmod.neoemf.prefetching</groupId>
-			<artifactId>metamodel</artifactId>
+			<groupId>fr.inria.atlanmod.prefetchml</groupId>
+			<artifactId>language-metamodel</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
