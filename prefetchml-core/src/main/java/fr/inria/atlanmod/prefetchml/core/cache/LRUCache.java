@@ -1,10 +1,10 @@
-package fr.inria.atlanmod.prefetch.cache;
+package fr.inria.atlanmod.prefetchml.core.cache;
 
 import org.apache.commons.collections.map.LRUMap;
 
-public class MRUCache extends LRUMap {
+public class LRUCache extends LRUMap {
 	private int chunkSize = 100;
-	public MRUCache(int size, int chunkSize) {
+	public LRUCache(int size, int chunkSize) {
 		super(size);
 		this.chunkSize = chunkSize;
 	}
@@ -12,8 +12,9 @@ public class MRUCache extends LRUMap {
 	@Override
 	public Object put(Object key, Object value) {
 		if(isFull()) {
+			System.out.println("Map full, removing chunk " + chunkSize);
 			for(int i = 0; i < chunkSize; i++) {
-				super.remove(super.lastKey());
+				super.remove(super.firstKey());
 			}
 		}
 		Object r = super.put(key, value);

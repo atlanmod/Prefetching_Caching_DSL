@@ -1,12 +1,12 @@
-package fr.inria.atlanmod.prefetch.processor.neoemf;
+package fr.inria.atlanmod.prefetchml.core.processor.neoemf;
 
 import java.util.Map;
 
 import com.tinkerpop.blueprints.KeyIndexableGraph;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
 
-import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
-import fr.inria.atlanmod.prefetch.processor.RuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
+import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
 
 public class NeoEMFRuleProcessorFactory implements RuleProcessorFactory {
 	

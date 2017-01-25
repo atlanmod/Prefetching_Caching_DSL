@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.util;
+package fr.inria.atlanmod.prefetchml.core.util;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

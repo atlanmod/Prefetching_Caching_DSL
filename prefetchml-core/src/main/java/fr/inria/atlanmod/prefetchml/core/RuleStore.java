@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.core;
+package fr.inria.atlanmod.prefetchml.core;
 
 import java.util.ArrayList;
 import java.util.HashMap;

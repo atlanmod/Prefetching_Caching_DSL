@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.processor;
+package fr.inria.atlanmod.prefetchml.core.processor;
 
 import java.util.List;
 import java.util.Map;

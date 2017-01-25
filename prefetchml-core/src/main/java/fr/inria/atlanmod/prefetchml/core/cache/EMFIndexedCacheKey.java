@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.cache;
+package fr.inria.atlanmod.prefetchml.core.cache;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 

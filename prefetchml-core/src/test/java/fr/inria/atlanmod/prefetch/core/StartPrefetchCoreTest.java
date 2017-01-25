@@ -7,7 +7,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.junit.Test;
 
-import fr.inria.atlanmod.prefetch.processor.emf.EMFRuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
+import fr.inria.atlanmod.prefetchml.core.processor.emf.EMFRuleProcessorFactory;
 
 public class StartPrefetchCoreTest {
 

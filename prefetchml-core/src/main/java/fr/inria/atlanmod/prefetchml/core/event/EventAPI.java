@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.event;
+package fr.inria.atlanmod.prefetchml.core.event;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import fr.inria.atlanmod.prefetch.core.PrefetchWorker;
+import fr.inria.atlanmod.prefetchml.core.PrefetchWorker;
 
 public class EventAPI {
 

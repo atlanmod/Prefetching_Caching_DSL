@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.core;
+package fr.inria.atlanmod.prefetchml.core;
 
 import java.util.List;
 import java.util.Map;
@@ -8,11 +8,11 @@ import java.util.concurrent.Executors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import fr.inria.atlanmod.prefetch.core.tasks.AccessRuleAction;
-import fr.inria.atlanmod.prefetch.core.tasks.StartingRuleAction;
-import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
-import fr.inria.atlanmod.prefetch.processor.RuleProcessorFactory;
-import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
+import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.core.tasks.AccessRuleAction;
+import fr.inria.atlanmod.prefetchml.core.tasks.StartingRuleAction;
+import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 

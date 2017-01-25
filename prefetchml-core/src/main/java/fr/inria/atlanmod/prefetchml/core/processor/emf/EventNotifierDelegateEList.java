@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.processor.emf;
+package fr.inria.atlanmod.prefetchml.core.processor.emf;
 
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
@@ -10,53 +10,29 @@ import java.util.NoSuchElementException;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
-import fr.inria.atlanmod.prefetch.cache.EMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetch.core.PrefetchCore;
-import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
 
-public class DelegateEList<E> implements EList<E> {
+public class EventNotifierDelegateEList<E> implements EList<E> {
 
-	private EObject owner;
-	private EStructuralFeature feature;
 	private PrefetchCore pCore;
+	private List<E> list;
 	
-	private List<E> innerList;
-	
-	public DelegateEList(EObject owner, EStructuralFeature feature, PrefetchCore core) {
-		this.owner = owner;
-		this.feature = feature;
-		if(!feature.isMany()) {
-			PrefetchLogger.error("DelegateEList cannot be created with single valued feature");
-		}
+	public EventNotifierDelegateEList(List<E> theList, PrefetchCore core) {
+		this.list = theList;
 		this.pCore = core;
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected List<E> delegateEGet() {
-		if(innerList == null) {
-			innerList = (List<E>)owner.eGet(feature);
-		}
-		return innerList;
-	}
-	
 	public int size() {
-		EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner),feature,-2);
-		if(pCore.getActiveCache().containsKey(sizeKey)) {
-			return (int)pCore.getActiveCache().get(sizeKey);
-		}
-		else {
-			return delegateEGet().size();
-		}
+		return list.size();
 	}
 
 	public boolean isEmpty() {
-		return delegateEGet().isEmpty();
+		return list.isEmpty();
 	}
 
 	public boolean contains(Object o) {
-		return delegateEGet().contains(o);
+		return list.contains(o);
 	}
 
 	public Iterator<E> iterator() {
@@ -145,7 +121,7 @@ public class DelegateEList<E> implements EList<E> {
 
 	      try
 	      {
-	        DelegateEList.this.remove(lastCursor);
+	        EventNotifierDelegateEList.this.remove(lastCursor);
 //	        expectedModCount = modCount;
 	        if (lastCursor < cursor)
 	        {
@@ -173,110 +149,83 @@ public class DelegateEList<E> implements EList<E> {
 	  }
 
 	public Object[] toArray() {
-		return delegateEGet().toArray();
+		return list.toArray();
 	}
 
 	public <T> T[] toArray(T[] a) {
-		return delegateEGet().toArray(a);
+		return list.toArray(a);
 	}
 
 	public boolean add(E e) {
-		return delegateEGet().add(e);
+		return list.add(e);
 	}
 
 	public boolean remove(Object o) {
-		return delegateEGet().remove(o);
+		return list.remove(o);
 	}
 
 	public boolean containsAll(Collection<?> c) {
-		return delegateEGet().containsAll(c);
+		return list.containsAll(c);
 	}
 
 	public boolean addAll(Collection<? extends E> c) {
-		return delegateEGet().addAll(c);
+		return list.addAll(c);
 	}
 
 	public boolean addAll(int index, Collection<? extends E> c) {
-		return delegateEGet().addAll(c);
+		return list.addAll(c);
 	}
 
 	public boolean removeAll(Collection<?> c) {
-		return delegateEGet().removeAll(c);
+		return list.removeAll(c);
 	}
 
 	public boolean retainAll(Collection<?> c) {
-		return delegateEGet().retainAll(c);
+		return list.retainAll(c);
 	}
 
 	public void clear() {
-		delegateEGet().clear();
+		list.clear();
 	}
 
 	public E get(int index) {
-		Object result = null;
-		if(owner != null && feature != null) {
-			EMFIndexedCacheKey cacheKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner), feature, index);
-	    	if(pCore.getActiveCache().containsKey(cacheKey)) {
-	    		result = pCore.getActiveCache().get(cacheKey);
-	    		if(result != null) {
-	    			pCore.hit();;
-	    			pCore.getEventAPI().accessEvent((EObject)result);
-	    			return (E)result;
-	    		}
-	    		else {
-	    			pCore.miss();
-	    			result = delegateEGet().get(index);
-	    			pCore.getEventAPI().accessEvent((EObject)result);
-	    			return (E)result;
-	    		}
-	    	}
-	    	else {
-	    		// The feature is not in the cache
-	    		pCore.miss();
-	    		Object r = delegateEGet().get(index);
-	    		pCore.getEventAPI().accessEvent((EObject)r);
-	    		return (E)r;
-	    	}
-		}
-		else {
-			// This is not a miss, null owner and feature means that the EList is 
-			// an allInstance result
-			result = delegateEGet().get(index);
-			pCore.getEventAPI().accessEvent((EObject)result);
-			return (E)result;
-		}
+		// Problem 2, what is this list field about ?
+		// The problem is here : in the cache access ? 
+		E result =  (E)list.get(index);
+		pCore.getEventAPI().accessEvent((EObject)result);
+		return result;
 	}
-	
+
 	public E set(int index, E element) {
-		return delegateEGet().set(index, element);
+		return list.set(index, element);
 	}
 
 	public void add(int index, E element) {
-		delegateEGet().add(index,element);
+		list.add(index,element);
 	}
 
 	public E remove(int index) {
-		return delegateEGet().remove(index);
+		return list.remove(index);
 	}
 
 	public int indexOf(Object o) {
-		return delegateEGet().indexOf(o);
+		return list.indexOf(o);
 	}
 
 	public int lastIndexOf(Object o) {
-		return delegateEGet().lastIndexOf(o);
+		return list.lastIndexOf(o);
 	}
 
 	public ListIterator<E> listIterator() {
-		return delegateEGet().listIterator();
+		return list.listIterator();
 	}
 
 	public ListIterator<E> listIterator(int index) {
-		return delegateEGet().listIterator(index);
+		return list.listIterator(index);
 	}
 
 	public List<E> subList(int fromIndex, int toIndex) {
-		return delegateEGet().subList(fromIndex, toIndex);
+		return list.subList(fromIndex, toIndex);
 	}
 
 	// TODO

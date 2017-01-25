@@ -1,12 +1,12 @@
-package fr.inria.atlanmod.prefetch.processor.emf;
+package fr.inria.atlanmod.prefetchml.core.processor.emf;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
-import fr.inria.atlanmod.prefetch.processor.RuleProcessorFactory;
-import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
+import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 
 public class EMFRuleProcessorFactory implements RuleProcessorFactory {
 

@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetch.processor.neoemf;
+package fr.inria.atlanmod.prefetchml.core.processor.neoemf;
 
 import java.util.Iterator;
 import java.util.List;
@@ -17,9 +17,9 @@ import com.tinkerpop.blueprints.KeyIndexableGraph;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
 
-import fr.inria.atlanmod.prefetch.cache.NeoEMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetch.processor.RuleProcessor;
-import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.cache.NeoEMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
+import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.FeaturePattern;
 import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;

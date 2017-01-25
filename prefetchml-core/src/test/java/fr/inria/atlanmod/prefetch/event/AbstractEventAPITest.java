@@ -12,8 +12,9 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmt.modisco.java.JavaPackage;
 import org.junit.Before;
 
-import fr.inria.atlanmod.prefetch.core.PrefetchCore;
-import fr.inria.atlanmod.prefetch.processor.emf.EMFRuleProcessorFactory;
+import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
+import fr.inria.atlanmod.prefetchml.core.event.EventAPI;
+import fr.inria.atlanmod.prefetchml.core.processor.emf.EMFRuleProcessorFactory;
 
 public abstract class AbstractEventAPITest {
 

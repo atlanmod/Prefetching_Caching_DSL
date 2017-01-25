@@ -1,9 +1,9 @@
-package fr.inria.atlanmod.prefetch.cache;
+package fr.inria.atlanmod.prefetchml.core.cache;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.inria.atlanmod.prefetch.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.language.metamodel.Cache;
 import fr.inria.atlanmod.prefetchml.language.metamodel.CacheType;
 
