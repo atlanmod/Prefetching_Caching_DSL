@@ -12,9 +12,12 @@ Export-Package: org.eclipse.gmt.modisco.java.neoemf.impl,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- fr.inria.atlanmod.neoemf.core;bundle-version="0.0.1",
- fr.inria.atlanmod.neoemf.graph.blueprints;bundle-version="0.0.1",
- fr.inria.atlanmod.neoemf.graph.blueprints.neo4j;bundle-version="0.0.1",
- fr.inria.atlanmod.neoemf.map;bundle-version="0.0.1",
- org.eclipse.gmt.modisco.java;bundle-version="0.11.1"
+ org.eclipse.gmt.modisco.java;bundle-version="0.11.1",
+ fr.inria.atlanmod.neoemf.core;bundle-version="1.0.2",
+ fr.inria.atlanmod.neoemf.data.berkeleydb;bundle-version="1.0.2",
+ fr.inria.atlanmod.neoemf.data.blueprints.neo4j.wrapper;bundle-version="1.0.2",
+ fr.inria.atlanmod.neoemf.data.hbase;bundle-version="1.0.2",
+ fr.inria.atlanmod.neoemf.data.mapdb;bundle-version="1.0.2",
+ fr.inria.atlanmod.neoemf.data.blueprints.core;bundle-version="1.0.2",
+ fr.inria.atlanmod.neoemf.data.blueprints.neo4j;bundle-version="1.0.2"
 Bundle-ActivationPolicy: lazy
