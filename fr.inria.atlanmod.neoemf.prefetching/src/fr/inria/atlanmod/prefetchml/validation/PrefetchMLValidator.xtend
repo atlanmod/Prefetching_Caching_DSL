@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.neoemf.validation
+package fr.inria.atlanmod.prefetchml.validation
 
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule
 import fr.inria.atlanmod.prefetchml.language.metamodel.MetamodelImport
@@ -18,7 +18,7 @@ import org.eclipse.xtext.validation.Check
  *
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
-class PrefetchingValidator extends AbstractPrefetchingValidator {
+class PrefetchMLValidator extends AbstractPrefetchingValidator {
 
 	public static val INVALID_PACKAGE = 'invalidPackage'
 	public static val INVALID_SOURCE_PATTERN = 'invalidSourcePattern'

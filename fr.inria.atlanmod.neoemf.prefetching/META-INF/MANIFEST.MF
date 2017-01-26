@@ -23,12 +23,12 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: fr.inria.atlanmod.neoemf,
- fr.inria.atlanmod.neoemf.services,
- fr.inria.atlanmod.neoemf.serializer,
+Export-Package: fr.inria.atlanmod.neoemf.formatting,
+ fr.inria.atlanmod.neoemf.generator,
  fr.inria.atlanmod.neoemf.parser.antlr,
  fr.inria.atlanmod.neoemf.parser.antlr.internal,
- fr.inria.atlanmod.neoemf.validation,
  fr.inria.atlanmod.neoemf.scoping,
- fr.inria.atlanmod.neoemf.generator,
- fr.inria.atlanmod.neoemf.formatting
+ fr.inria.atlanmod.neoemf.serializer,
+ fr.inria.atlanmod.neoemf.services,
+ fr.inria.atlanmod.neoemf.validation,
+ fr.inria.atlanmod.prefetchml.language
