@@ -10,7 +10,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCaseNoPrefetch;
 
 public class ClassToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
@@ -92,7 +91,7 @@ public class ClassToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {
-			PersistentResourceImpl.shutdownWithoutUnload((PersistentResourceImpl)resource);
+    	    resource.close();
     	}
     }
 }

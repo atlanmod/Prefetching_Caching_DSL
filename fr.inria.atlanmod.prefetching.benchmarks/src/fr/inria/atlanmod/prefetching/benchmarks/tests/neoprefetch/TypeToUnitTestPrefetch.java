@@ -11,7 +11,6 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCasePrefetch;
 
 public class TypeToUnitTestPrefetch extends AbstractTestCasePrefetch {
@@ -106,7 +105,7 @@ public class TypeToUnitTestPrefetch extends AbstractTestCasePrefetch {
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {
-			PersistentResourceImpl.shutdownWithoutUnload((PersistentResourceImpl)resource);
+    	    resource.close();
     	}
     }
 }

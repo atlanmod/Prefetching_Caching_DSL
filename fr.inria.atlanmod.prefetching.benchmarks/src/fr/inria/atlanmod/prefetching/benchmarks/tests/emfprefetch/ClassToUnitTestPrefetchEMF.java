@@ -11,10 +11,9 @@ import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceImpl;
-import fr.inria.atlanmod.prefetch.core.PrefetchCore;
-import fr.inria.atlanmod.prefetch.processor.emf.EventNotifierDelegateEList;
 import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCasePrefetchEMF;
+import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
+import fr.inria.atlanmod.prefetchml.core.processor.emf.EventNotifierDelegateEList;
 
 public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 	
@@ -132,7 +131,7 @@ public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {
-			PersistentResourceImpl.shutdownWithoutUnload((PersistentResourceImpl)resource);
+    	    resource.close();
     	}
     }
 }

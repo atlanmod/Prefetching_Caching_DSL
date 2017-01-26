@@ -22,15 +22,16 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.junit.Before;
 
-import fr.inria.atlanmod.neoemf.datastore.PersistenceBackendFactoryRegistry;
-import fr.inria.atlanmod.neoemf.graph.blueprints.datastore.BlueprintsPersistenceBackendFactory;
-import fr.inria.atlanmod.neoemf.graph.blueprints.neo4j.resources.BlueprintsNeo4jResourceOptions;
-import fr.inria.atlanmod.neoemf.graph.blueprints.resources.BlueprintsResourceOptions;
-import fr.inria.atlanmod.neoemf.graph.blueprints.util.NeoBlueprintsURI;
-import fr.inria.atlanmod.neoemf.resources.PersistentResource;
-import fr.inria.atlanmod.neoemf.resources.PersistentResourceOptions;
-import fr.inria.atlanmod.neoemf.resources.impl.PersistentResourceFactoryImpl;
-import fr.inria.atlanmod.prefetch.emf.aspectj.runtime.EMFPrefetcherRuntime;
+import fr.inria.atlanmod.neoemf.data.PersistenceBackendFactoryRegistry;
+import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactory;
+import fr.inria.atlanmod.neoemf.data.blueprints.neo4j.option.BlueprintsNeo4jOptionsBuilder;
+import fr.inria.atlanmod.neoemf.data.blueprints.neo4j.option.BlueprintsNeo4jResourceOptions;
+import fr.inria.atlanmod.neoemf.data.blueprints.option.BlueprintsResourceOptions;
+import fr.inria.atlanmod.neoemf.data.blueprints.util.BlueprintsURI;
+import fr.inria.atlanmod.neoemf.option.PersistentResourceOptions;
+import fr.inria.atlanmod.neoemf.resource.PersistentResource;
+import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
+import fr.inria.atlanmod.prefetchml.emf.event.runtime.EMFPrefetcherRuntime;
 
 public abstract class AbstractTestCasePrefetchEMF extends AbstractPrefetchTest {
 
@@ -55,20 +56,16 @@ public abstract class AbstractTestCasePrefetchEMF extends AbstractPrefetchTest {
 		Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
         this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
         this.oclHelper = ocl.createOCLHelper();
-        PersistenceBackendFactoryRegistry.getFactories().put(NeoBlueprintsURI.NEO_GRAPH_SCHEME, new BlueprintsPersistenceBackendFactory());
+        PersistenceBackendFactoryRegistry.register(BlueprintsURI.SCHEME, BlueprintsPersistenceBackendFactory.getInstance());
     	ResourceSet resSet = new ResourceSetImpl();
 		resSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		resSet.getResourceFactoryRegistry().getProtocolToFactoryMap().put(NeoBlueprintsURI.NEO_GRAPH_SCHEME, new PersistentResourceFactoryImpl());
+		resSet.getResourceFactoryRegistry().getProtocolToFactoryMap().put(BlueprintsURI.SCHEME, PersistentResourceFactory.getInstance());
 		
-		resource = (PersistentResource)resSet.createResource(NeoBlueprintsURI.createNeoGraphURI(new File(resourceName)));
+		resource = (PersistentResource)resSet.createResource(BlueprintsURI.createFileURI(new File(resourceName)));
 		
-		Map<Object,Object> options = new HashMap<Object,Object>();
-		List<Object> storeOptions = new ArrayList<Object>();
-		storeOptions.add(BlueprintsResourceOptions.EStoreGraphOption.DIRECT_WRITE);
-		options.put(
-		    BlueprintsResourceOptions.OPTIONS_BLUEPRINTS_GRAPH_TYPE,
-		    BlueprintsNeo4jResourceOptions.OPTIONS_BLUEPRINTS_TYPE_NEO4J);
-		options.put(PersistentResourceOptions.STORE_OPTIONS, storeOptions);
+		Map<String, Object> options = BlueprintsNeo4jOptionsBuilder.newBuilder()
+		        .directWrite()
+		        .asMap();
 		try {
 			resource.load(options);
 		} catch (IOException e) {
