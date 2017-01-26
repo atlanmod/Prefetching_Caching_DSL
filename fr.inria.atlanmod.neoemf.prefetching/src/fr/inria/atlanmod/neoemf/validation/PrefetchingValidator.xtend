@@ -1,17 +1,17 @@
 package fr.inria.atlanmod.neoemf.validation
 
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.MetamodelImport
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.Model
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingRule
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.SourcePattern
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.TargetPattern
+import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule
+import fr.inria.atlanmod.prefetchml.language.metamodel.MetamodelImport
+import fr.inria.atlanmod.prefetchml.language.metamodel.Model
+import fr.inria.atlanmod.prefetchml.language.metamodel.PrefetchingPackage
+import fr.inria.atlanmod.prefetchml.language.metamodel.PrefetchingRule
+import fr.inria.atlanmod.prefetchml.language.metamodel.SourcePattern
+import fr.inria.atlanmod.prefetchml.language.metamodel.TargetPattern
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EPackage
-import org.eclipse.xtext.validation.Check
 import org.eclipse.emf.ecore.EStructuralFeature
-import fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.AccessRule
+import org.eclipse.xtext.validation.Check
 
 /**
  * Custom validation rules. 

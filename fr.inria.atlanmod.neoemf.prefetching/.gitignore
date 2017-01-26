@@ -1,5 +1,5 @@
-bin/
-target/classes/
-*~
 xtend-gen/
 src-gen/
+.launch/
+bin/
+target/

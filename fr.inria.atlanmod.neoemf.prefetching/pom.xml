@@ -1,3 +1,4 @@
+<!-- Not used for now, need to mavenize this project -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
@@ -80,8 +81,8 @@ file://${project.basedir}/src/fr/inria/atlanmod/neoemf/GeneratePrefetching.mwe2
 <version>3.6.200-v20130402-1505</version>
 </dependency>
 <dependency>
-<groupId>fr.inria.atlanmod.neoemf.prefetching</groupId>
-<artifactId>metamodel</artifactId>
+<groupId>fr.inria.atlanmod.prefetchml</groupId>
+<artifactId>prefetchml-language-metamodel</artifactId>
 <version>0.0.1-SNAPSHOT</version>
 </dependency>
 </dependencies>
@@ -124,11 +125,4 @@ This plugin's configuration is used to store Eclipse m2e settings
 </plugins>
 </pluginManagement>
 </build>
-	<dependencies>
-		<dependency>
-			<groupId>fr.inria.atlanmod.neoemf.prefetching</groupId>
-			<artifactId>metamodel</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 </project>
