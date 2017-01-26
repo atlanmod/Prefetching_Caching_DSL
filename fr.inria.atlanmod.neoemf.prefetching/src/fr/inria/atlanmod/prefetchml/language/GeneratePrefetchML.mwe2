@@ -1,12 +1,12 @@
-module fr.inria.atlanmod.neoemf.GeneratePrefetching
+module fr.inria.atlanmod.prefetchml.GeneratePrefetchML
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var projectName = "fr.inria.atlanmod.neoemf.prefetching"
+var projectName = "fr.inria.atlanmod.prefetchml.language"
 //var grammarURI = "classpath:/fr/inria/atlanmod/neoemf/Prefetching.xtext"
-var grammarURI = "platform:/resource/${projectName}/src/fr/inria/atlanmod/neoemf/Prefetching.xtext"
+var grammarURI = "platform:/resource/${projectName}/src/fr/inria/atlanmod/prefetchml/language/Prefetching.xtext"
 var fileExtensions = "prefetch"
 var runtimeProject = "../${projectName}"
 var generateXtendStub = true
@@ -36,10 +36,10 @@ Workflow {
     	
     	scanClassPath = true
     	platformUri = "${runtimeProject}/.."
-    	registerGeneratedEPackage = "fr.inria.atlanmod.neoemf.prefetching.metamodel.prefetching.PrefetchingPackage"
+    	registerGeneratedEPackage = "fr.inria.atlanmod.prefetchml.language.metamodel.PrefetchingPackage"
     	// Relative path, cannot access it through the standard "platform:/" URI because it is 
     	// build with maven
-		registerGenModelFile = "../fr.inria.atlanmod.neoemf.prefetching.metamodel/model/Prefetching.genmodel"
+		registerGenModelFile = "../fr.inria.atlanmod.prefetchml.language.metamodel/model/Prefetching.genmodel"
     }
     
     component = DirectoryCleaner {
