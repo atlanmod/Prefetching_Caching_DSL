@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetching.benchmarks.util;
+package fr.inria.atlanmod.prefetchml.benchmarks.util;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetching.benchmarks.tests.emfprefetch;
+package fr.inria.atlanmod.prefetchml.benchmarks.prefetch.emf;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -11,7 +11,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCasePrefetchEMF;
+import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetchEMF;
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
 import fr.inria.atlanmod.prefetchml.core.processor.emf.EventNotifierDelegateEList;
 

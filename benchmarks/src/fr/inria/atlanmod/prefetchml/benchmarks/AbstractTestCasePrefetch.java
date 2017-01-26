@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetching.benchmarks.tests;
+package fr.inria.atlanmod.prefetchml.benchmarks;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetching.benchmarks.tests.neoprefetch;
+package fr.inria.atlanmod.prefetchml.benchmarks.prefetch.neoemf;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -11,7 +11,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCasePrefetch;
+import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetch;
 
 public class ClassToUnitTestPrefetch extends AbstractTestCasePrefetch {
 	

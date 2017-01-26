@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetching.benchmarks.tests.noprefetch;
+package fr.inria.atlanmod.prefetchml.benchmarks.noprefetch;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -10,11 +10,11 @@ import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCaseNoPrefetch;
+import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetch;
 
-public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
+public class TypeToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	
-	public BlockStatementTestNoPrefetch(String resourceName, String scriptSuffix) {
+	public TypeToUnitTestNoPrefetch(String resourceName, String scriptSuffix) {
 		super(resourceName, scriptSuffix);
 	}
 
@@ -25,11 +25,19 @@ public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	@Before
     public void setUp() {
     	super.setUp();
-    	eContext = JavaPackage.eINSTANCE.getBlock();
+    	eContext = JavaPackage.eINSTANCE.getAbstractTypeDeclaration();
         oclHelper.setContext(eContext);
         try {
         	textualQuery = ""
-        			+ "self.statements";
+        			+ "if(not(self.originalCompilationUnit.oclIsUndefined())) then"
+            		+ "	let res : Set(ASTNode) = self.originalCompilationUnit.imports in "
+            		+ "		res->union(self.originalCompilationUnit.comments)"
+            		+ "		->union(self.comments)"
+            		+ "		->union(self.commentsBeforeBody)"
+            		+ "		->union(self.commentsAfterBody)"
+            		+ "else "
+            		+ " Set(ASTNode){}"
+            		+ "endif";
             expression = oclHelper.createQuery(textualQuery);
         } catch (ParserException e) {
             e.printStackTrace();
@@ -39,18 +47,17 @@ public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
     
     @SuppressWarnings("unchecked")
 	@Test
-    public void testBlockStatement() {
+    public void testTypeToUnit() {
     	try {
     		System.out.println(this.getClass().getName());
-	        EList<EObject> blocks = resource.getAllInstances(JavaPackage.eINSTANCE.getBlock());
-	        System.out.println("size : " + blocks.size());
-			
-			System.out.println("Q1");
+	        EList<EObject> abstractTypeDeclarations = resource.getAllInstances(JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
+			System.out.println("input size : " + abstractTypeDeclarations.size());
+			System.out.println("Q1(1)");
 	        long begin = System.currentTimeMillis();
-	        query.evaluate(blocks);
+	        query.evaluate(abstractTypeDeclarations);
 	        long end = System.currentTimeMillis();       
 	        System.out.println("Done : " + (end-begin) + "ms");
-
+	        
 	        System.out.println("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
@@ -62,9 +69,10 @@ public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	        }
 	        this.query = ocl.createQuery(expression);
 	        begin = System.currentTimeMillis();
-	        query.evaluate(blocks);
+	        query.evaluate(abstractTypeDeclarations);
 	        end = System.currentTimeMillis();
 	        System.out.println("Done : " + (end-begin) + "ms");
+
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

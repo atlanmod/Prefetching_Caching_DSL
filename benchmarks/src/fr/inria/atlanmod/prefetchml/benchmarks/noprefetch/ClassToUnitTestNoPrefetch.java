@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetching.benchmarks.tests.noprefetch;
+package fr.inria.atlanmod.prefetchml.benchmarks.noprefetch;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -10,7 +10,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.prefetching.benchmarks.tests.AbstractTestCaseNoPrefetch;
+import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetch;
 
 public class ClassToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	

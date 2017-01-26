@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetching.benchmarks.tests;
+package fr.inria.atlanmod.prefetchml.benchmarks;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import fr.inria.atlanmod.prefetching.benchmarks.util.ModelCreator;
+import fr.inria.atlanmod.prefetchml.benchmarks.util.ModelCreator;
 
 
 @SuppressWarnings("restriction")
