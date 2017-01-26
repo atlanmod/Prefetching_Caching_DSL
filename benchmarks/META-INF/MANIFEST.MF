@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Benchmarks
-Bundle-SymbolicName: fr.inria.atlanmod.prefetching.benchmarks
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: PrefetchML Benchmarks
+Bundle-SymbolicName: fr.inria.atlanmod.prefetchml.benchmarks
+Bundle-Version: 0.0.1.qualifier
 Export-Package: fr.inria.atlanmod.prefetching.benchmarks.tests
 Require-Bundle: org.eclipse.ocl.ecore;bundle-version="3.3.100",
  org.eclipse.gmt.modisco.java;bundle-version="0.1.0",
