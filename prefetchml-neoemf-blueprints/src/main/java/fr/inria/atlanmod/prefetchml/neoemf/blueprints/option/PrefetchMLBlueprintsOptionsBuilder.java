@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.neoemf.prefetchml.blueprints.option;
+package fr.inria.atlanmod.prefetchml.neoemf.blueprints.option;
 
 import javax.annotation.Nonnull;
 

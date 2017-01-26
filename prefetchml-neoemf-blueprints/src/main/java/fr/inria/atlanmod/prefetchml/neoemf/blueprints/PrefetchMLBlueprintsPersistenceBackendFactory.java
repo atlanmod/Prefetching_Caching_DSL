@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.neoemf.prefetchml.blueprints;
+package fr.inria.atlanmod.prefetchml.neoemf.blueprints;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -13,10 +13,10 @@ import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackend;
 import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactory;
 import fr.inria.atlanmod.neoemf.data.store.PersistentStore;
 import fr.inria.atlanmod.neoemf.option.PersistentStoreOptions;
-import fr.inria.atlanmod.neoemf.prefetchml.blueprints.option.PrefetchMLBlueprintsOptionsBuilder;
-import fr.inria.atlanmod.neoemf.prefetchml.blueprints.option.PrefetchMLBlueprintsStoreOptions;
-import fr.inria.atlanmod.neoemf.prefetchml.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
+import fr.inria.atlanmod.prefetchml.neoemf.blueprints.option.PrefetchMLBlueprintsOptionsBuilder;
+import fr.inria.atlanmod.prefetchml.neoemf.blueprints.option.PrefetchMLBlueprintsStoreOptions;
+import fr.inria.atlanmod.prefetchml.neoemf.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
 
 /**
  * A subclass of {@link BlueprintsPersistenceBackendFactory} that creates a

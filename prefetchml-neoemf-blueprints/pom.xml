@@ -7,7 +7,9 @@
         <version>1.0.2-SNAPSHOT</version>
     </parent>
   
-  	<artifactId>neoemf-prefetchml-blueprints</artifactId>
+  	<groupId>fr.inria.atlanmod.prefetchml</groupId>
+  	<artifactId>prefetchml-neoemf-blueprints</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
   	
   	<packaging>bundle</packaging>
   	<name>NeoEMF PrefetchML integration for Blueprints</name>
@@ -16,6 +18,9 @@
   		implementation of NeoEMF.
   	</description>
 
+  	<properties>
+		<neoemf.version>1.0.2-SNAPSHOT</neoemf.version>
+  	</properties>
   
   	<dependencies>
   		<!-- Test -->
@@ -29,13 +34,13 @@
   		<dependency>
 	  		<groupId>fr.inria.atlanmod.neoemf</groupId>
 	        <artifactId>neoemf-data-blueprints-core</artifactId>
-	  		<version>${project.version}</version>
+	  		<version>${neoemf.version}</version>
   		</dependency>
   		
 		<dependency> 
 			<groupId>fr.inria.atlanmod.neoemf</groupId>
 			<artifactId>neoemf-data-blueprints-core</artifactId>
-			<version>${project.version}</version>
+			<version>${neoemf.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -44,7 +49,7 @@
   		<dependency>
 			<groupId>fr.inria.atlanmod.prefetchml</groupId>
 			<artifactId>prefetchml-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
   	
 
@@ -59,13 +64,13 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>
-                            ${project.groupId}.prefetchml.blueprints
+                            ${project.groupId}.neoemf.blueprints
                         </Bundle-SymbolicName>
                         <Export-Package>
-                            fr.inria.atlanmod.neoemf.prefetchml.blueprints.*
+                            fr.inria.atlanmod.prefetchml.neoemf.blueprints.*
                         </Export-Package>
                         <Require-Bundle>
-                            ${project.groupId}.data.blueprints.core
+							fr.inria.atlanmod.neoemf.data.blueprints.core
                         </Require-Bundle>
                         <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
                     </instructions>

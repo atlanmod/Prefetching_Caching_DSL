@@ -13,4 +13,4 @@ Require-Bundle: org.eclipse.ocl.ecore;bundle-version="3.3.100",
  fr.inria.atlanmod.prefetchml.core;bundle-version="0.0.1",
  org.junit;bundle-version="4.11.0",
  fr.inria.atlanmod.prefetchml.emf.event;bundle-version="0.0.1",
- fr.inria.atlanmod.neoemf.prefetchml.blueprints;bundle-version="1.0.2"
+ fr.inria.atlanmod.prefetchml.neoemf.blueprints;bundle-version="0.0.1"
