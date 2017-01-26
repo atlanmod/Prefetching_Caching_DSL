@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: fr.inria.atlanmod.neoemf.prefetching
-Bundle-Vendor: My Company
+Bundle-Name: PrefetchML Language Grammar
 Bundle-Version: 0.0.1.qualifier
-Bundle-SymbolicName: language; singleton:=true
+Bundle-SymbolicName: fr.inria.atlanmod.prefetchml.language;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.xbase;resolution:=optional;visibility:=reexport,
