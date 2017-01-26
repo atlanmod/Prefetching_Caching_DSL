@@ -12,17 +12,17 @@ import fr.inria.atlanmod.prefetchml.core.processor.emf.EMFRuleProcessorFactory;
 
 public class StartPrefetchCoreTest {
 
-	@Test
-	public void testConstructor() {
-		ResourceSet rSet = new ResourceSetImpl();
-		rSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		Resource dummyResource = rSet.createResource(URI.createURI("dummy.xmi"));
-		PrefetchCore pCore = new PrefetchCore(dummyResource, new EMFRuleProcessorFactory());
-		assert pCore.getRuleStore().isEmptyA();
-		assert pCore.getRuleStore().isEmptyS();
-		assert pCore.getActiveCache() == null;
-		assert pCore.getWorker().isStarted();
-		assert pCore.getEventAPI() != null;
-	}
+//	@Test
+//	public void testConstructor() {
+//		ResourceSet rSet = new ResourceSetImpl();
+//		rSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+//		Resource dummyResource = rSet.createResource(URI.createURI("dummy.xmi"));
+//		PrefetchCore pCore = new PrefetchCore(dummyResource, new EMFRuleProcessorFactory());
+//		assert pCore.getRuleStore().isEmptyA();
+//		assert pCore.getRuleStore().isEmptyS();
+//		assert pCore.getActiveCache() == null;
+//		assert pCore.getWorker().isStarted();
+//		assert pCore.getEventAPI() != null;
+//	}
 
 }

@@ -1,8 +1,8 @@
-package fr.inria.atlanmod.neoemf.prefetchml.blueprints;
-
-import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactoryTest;
-
-public class PrefetchMLBlueprintsPersistenceBackendFactoryTest extends BlueprintsPersistenceBackendFactoryTest {
+//package fr.inria.atlanmod.neoemf.prefetchml.blueprints;
+//
+//import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactoryTest;
+//
+//public class PrefetchMLBlueprintsPersistenceBackendFactoryTest extends BlueprintsPersistenceBackendFactoryTest {
 
 //	@Before
 //	public void setUp() {
@@ -28,4 +28,4 @@ public class PrefetchMLBlueprintsPersistenceBackendFactoryTest extends Blueprint
 //		assert innerBackend == persistentBackend : "The backend in the EStore is not the created one";
 //	}
 
-}
+//}
