@@ -4,7 +4,7 @@ import fr.inria.atlanmod.neoemf.data.blueprints.store.DirectWriteBlueprintsCache
 import fr.inria.atlanmod.neoemf.data.blueprints.store.DirectWriteBlueprintsStore;
 import fr.inria.atlanmod.neoemf.data.store.AutocommitStoreDecorator;
 import fr.inria.atlanmod.neoemf.option.PersistentStoreOptions;
-import fr.inria.atlanmod.prefetchml.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
+import fr.inria.atlanmod.neoemf.prefetchml.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
 
 /**
  * {@link PersistentStoreOptions} that hold PrefetchML Blueprints related features.

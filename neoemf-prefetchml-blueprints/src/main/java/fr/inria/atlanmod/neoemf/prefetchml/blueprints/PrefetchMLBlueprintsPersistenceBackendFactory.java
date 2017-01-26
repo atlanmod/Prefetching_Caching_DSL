@@ -15,8 +15,8 @@ import fr.inria.atlanmod.neoemf.data.store.PersistentStore;
 import fr.inria.atlanmod.neoemf.option.PersistentStoreOptions;
 import fr.inria.atlanmod.neoemf.prefetchml.blueprints.option.PrefetchMLBlueprintsOptionsBuilder;
 import fr.inria.atlanmod.neoemf.prefetchml.blueprints.option.PrefetchMLBlueprintsStoreOptions;
+import fr.inria.atlanmod.neoemf.prefetchml.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
-import fr.inria.atlanmod.prefetchml.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
 
 /**
  * A subclass of {@link BlueprintsPersistenceBackendFactory} that creates a

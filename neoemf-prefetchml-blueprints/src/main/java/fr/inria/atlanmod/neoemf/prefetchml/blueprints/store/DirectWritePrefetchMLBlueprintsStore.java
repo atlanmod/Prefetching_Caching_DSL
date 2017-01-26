@@ -8,7 +8,7 @@
  * Contributors:
  *     Atlanmod INRIA LINA Mines Nantes - initial API and implementation
  *******************************************************************************/
-package fr.inria.atlanmod.prefetchml.blueprints.store;
+package fr.inria.atlanmod.neoemf.prefetchml.blueprints.store;
 
 import java.util.Iterator;
 import java.util.Map;
