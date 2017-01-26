@@ -23,12 +23,12 @@ import fr.inria.atlanmod.neoemf.data.PersistenceBackendFactoryRegistry;
 import fr.inria.atlanmod.neoemf.data.blueprints.neo4j.option.BlueprintsNeo4jResourceOptions;
 import fr.inria.atlanmod.neoemf.data.blueprints.option.BlueprintsResourceOptions;
 import fr.inria.atlanmod.neoemf.data.blueprints.util.BlueprintsURI;
-import fr.inria.atlanmod.neoemf.prefetchml.blueprints.PrefetchMLBlueprintsPersistenceBackendFactory;
-import fr.inria.atlanmod.neoemf.prefetchml.blueprints.option.PrefetchMLBlueprintsOptionsBuilder;
-import fr.inria.atlanmod.neoemf.prefetchml.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
 import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
+import fr.inria.atlanmod.prefetchml.neoemf.blueprints.PrefetchMLBlueprintsPersistenceBackendFactory;
+import fr.inria.atlanmod.prefetchml.neoemf.blueprints.option.PrefetchMLBlueprintsOptionsBuilder;
+import fr.inria.atlanmod.prefetchml.neoemf.blueprints.store.DirectWritePrefetchMLBlueprintsStore;
 
 public abstract class AbstractTestCasePrefetch extends AbstractPrefetchTest {
 
