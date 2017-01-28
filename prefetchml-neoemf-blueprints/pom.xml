@@ -12,7 +12,7 @@
   	<version>0.0.1-SNAPSHOT</version>
   	
   	<packaging>bundle</packaging>
-  	<name>NeoEMF PrefetchML integration for Blueprints</name>
+  	<name>PrefetchML integration for NeoEMF Blueprints</name>
   	<description>
   		A connector that enables native prefetching for the Blueprints 
   		implementation of NeoEMF.
