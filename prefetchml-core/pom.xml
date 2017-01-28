@@ -2,95 +2,93 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-	<groupId>fr.inria.atlanmod.prefetchml</groupId>
+    <parent>
+    	<groupId>fr.inria.atlanmod.prefetchml</groupId>
+    	<artifactId>prefetchml</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </parent>
+    
 	<artifactId>prefetchml-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>bundle</packaging>
-	
-
 	<name>PrefetchML Core Component</name>
+	<description>
+		Core classes responsible of rule triggering and model element caching. This module
+		is generic and doesn't rely on a specific persistence implementation.
+	</description>
+	
+	<properties>
+		<log4j.version>2.7</log4j.version>
+		<blueprints.version>2.4.0</blueprints.version>
+	</properties>
 
-    <properties>
-    	<maven.compiler.target>1.8</maven.compiler.target>
-    	<maven.compiler.source>1.8</maven.compiler.source>
-		<maven-bundle-plugin.version>2.5.0</maven-bundle-plugin.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <manifest-location>META-INF</manifest-location>
-		<build.tstamp>$${tstamp}</build.tstamp>
-    </properties>
-
-    <dependencies>   	    
-        <dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.8.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-integration</artifactId>
-			<version>1.2.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.avh4.util</groupId>
-			<artifactId>imagecomparison</artifactId>
-			<version>0.0.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>fr.inria.atlanmod.prefetchml</groupId>
-			<artifactId>prefetchml-language-metamodel</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
+    <dependencies>   
+    	<!-- EMF -->	
+    	<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore</artifactId>
-			<version>2.9.2-v20131212-0545</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-			<version>2.9.1-v20131212-0545</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.emf</groupId>
-			<artifactId>org.eclipse.emf.codegen</artifactId>
-			<version>2.9.0-v20140203-1126</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.emf</groupId>
-			<artifactId>org.eclipse.emf.codegen.ecore</artifactId>
-			<version>2.9.1-v20140203-1126</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.common</artifactId>
-			<version>2.9.2-v20131212-0545</version>
 		</dependency>
+		<!-- Common -->    
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+		</dependency>
+		<!-- Logging -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.2</version>
+		</dependency>
+		<!-- Test -->
+        <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- Internal -->
+		<dependency>
+			<groupId>fr.inria.atlanmod.prefetchml</groupId>
+			<artifactId>prefetchml-language-metamodel</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.tinkerpop.blueprints</groupId>
 			<artifactId>blueprints-core</artifactId>
-			<version>2.4.0</version>
 		</dependency>
     </dependencies>
+    
+    <dependencyManagement>
+    	<dependencies>
+    		<!-- Logging -->
+    		<dependency>
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-core</artifactId>
+    			<version>${log4j.version}</version>
+    		</dependency>
+    		<dependency>
+    			<groupId>org.apache.logging.log4j</groupId>
+    			<artifactId>log4j-api</artifactId>
+    			<version>${log4j.version}</version>
+    		</dependency>
+    		<!-- Blueprints -->
+    		<dependency>
+				<groupId>com.tinkerpop.blueprints</groupId>
+				<artifactId>blueprints-core</artifactId>
+				<version>${blueprints.version}</version>
+    		</dependency>
+    	</dependencies>
+    </dependencyManagement>
     
     <build>
     	<plugins>
@@ -98,31 +96,23 @@
 	        <groupId>org.apache.felix</groupId>
 	        <artifactId>maven-bundle-plugin</artifactId>
 	        <extensions>true</extensions>
-	        <version>${maven-bundle-plugin.version}</version>
 	          <configuration>
-	            <manifestLocation>${manifest-location}</manifestLocation>
 	           <instructions>
 	           	<Bundle-SymbolicName>
                 	fr.inria.atlanmod.prefetchml.core
             	</Bundle-SymbolicName>
-	           	<Bundle-Version>0.0.1.${build.tstamp}</Bundle-Version>
-	           	<Bundle-ClassPath>.,{maven-dependencies},target/classes/</Bundle-ClassPath>
-	           	<Export-Package>fr.inria.atlanmod.prefetchml.core.*</Export-Package>
-	           	<Import-Package></Import-Package>
-	           	<Embed-Dependency>blueprints-core</Embed-Dependency>
-	           	<!-- <DynamicImport-Package>*</DynamicImport-Package> -->
-	           	<Require-Bundle>fr.inria.atlanmod.prefetchml.language.metamodel,org.eclipse.emf.ecore;visibility:=reexport</Require-Bundle>
+	           	<Export-Package>
+	           		fr.inria.atlanmod.prefetchml.core.*
+	           	</Export-Package>
+	           	<Embed-Dependency>
+	           		blueprints-core
+	           	</Embed-Dependency>
+	           	<Require-Bundle>
+	           		fr.inria.atlanmod.prefetchml.language.metamodel,
+	           		org.eclipse.emf.ecore;visibility:=reexport
+	           	</Require-Bundle>
 	           </instructions>
 	          </configuration>
-	         <executions>
-	          <execution>
-	            <id>bundle-manifest</id>
-	            <phase>process-classes</phase>
-	            <!--<goals>
-	              <goal>manifest</goal>
-	            </goals>-->
-	          </execution>
-	        </executions>
 	      </plugin>
 	    </plugins>
     </build>

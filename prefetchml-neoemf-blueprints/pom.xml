@@ -24,19 +24,16 @@
   
   	<dependencies>
   		<!-- Test -->
-  		
   		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		</dependency>
-  		
   		<!-- NeoEMF -->
   		<dependency>
 	  		<groupId>fr.inria.atlanmod.neoemf</groupId>
 	        <artifactId>neoemf-data-blueprints-core</artifactId>
 	  		<version>${neoemf.version}</version>
   		</dependency>
-  		
 		<dependency> 
 			<groupId>fr.inria.atlanmod.neoemf</groupId>
 			<artifactId>neoemf-data-blueprints-core</artifactId>
@@ -44,16 +41,12 @@
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-  		
   		<!-- Internal -->
   		<dependency>
 			<groupId>fr.inria.atlanmod.prefetchml</groupId>
 			<artifactId>prefetchml-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-  	
-
-  	
   	</dependencies>
   
   	<build>
