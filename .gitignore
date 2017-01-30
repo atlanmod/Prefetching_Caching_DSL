@@ -1,3 +1,6 @@
 **/*.class
 **/*~
 **/.settings/
+# Root Eclipse project (should be generalized when all the project will be
+# maven-based)
+.project
