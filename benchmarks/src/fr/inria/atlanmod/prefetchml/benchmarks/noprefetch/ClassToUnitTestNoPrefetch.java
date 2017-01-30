@@ -9,7 +9,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
-
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetch;
 
 public class ClassToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
@@ -64,17 +64,14 @@ public class ClassToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	@Test
     public void testClassToUnit() {
     	try {
-    		System.out.println(this.getClass().getName());
+    		PrefetchMLLogger.info(this.getClass().getName());
 	        EList<EObject> classDeclarations = resource.getAllInstances(JavaPackage.eINSTANCE.getClassDeclaration());
-			System.out.println("AI done");
-			System.out.println("input size = " + classDeclarations.size());
-			System.out.println("Q1(1)");
-	        long begin = System.currentTimeMillis();
-	        query.evaluate(classDeclarations);
-	        long end = System.currentTimeMillis();       
-	        System.out.println("Done : " + (end-begin) + "ms");
+			PrefetchMLLogger.info("Input size: {0}", classDeclarations.size());
+			
+			PrefetchMLLogger.info("Q1");
+			computeQuery(query, classDeclarations);
 	    
-	        System.out.println("Q2");
+	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        oclHelper.setContext(eContext);
@@ -84,10 +81,7 @@ public class ClassToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	            e.printStackTrace();
 	        }
 	        this.query = ocl.createQuery(expression);
-	        begin = System.currentTimeMillis();
-	        query.evaluate(classDeclarations);
-	        end = System.currentTimeMillis();
-	        System.out.println("Done : " + (end-begin) + "ms");
+	        computeQuery(query, classDeclarations);
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

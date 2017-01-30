@@ -9,7 +9,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
-
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetch;
 
 public class TypeToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
@@ -49,16 +49,14 @@ public class TypeToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	@Test
     public void testTypeToUnit() {
     	try {
-    		System.out.println(this.getClass().getName());
+    	    PrefetchMLLogger.info(this.getClass().getName());
 	        EList<EObject> abstractTypeDeclarations = resource.getAllInstances(JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
-			System.out.println("input size : " + abstractTypeDeclarations.size());
-			System.out.println("Q1(1)");
-	        long begin = System.currentTimeMillis();
-	        query.evaluate(abstractTypeDeclarations);
-	        long end = System.currentTimeMillis();       
-	        System.out.println("Done : " + (end-begin) + "ms");
+			PrefetchMLLogger.info("Input size: {0}", abstractTypeDeclarations.size());
+			
+			PrefetchMLLogger.info("Q1");
+			computeQuery(query, abstractTypeDeclarations);
 	        
-	        System.out.println("Q2");
+	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        oclHelper.setContext(eContext);
@@ -68,11 +66,7 @@ public class TypeToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	            e.printStackTrace();
 	        }
 	        this.query = ocl.createQuery(expression);
-	        begin = System.currentTimeMillis();
-	        query.evaluate(abstractTypeDeclarations);
-	        end = System.currentTimeMillis();
-	        System.out.println("Done : " + (end-begin) + "ms");
-
+	        computeQuery(query, abstractTypeDeclarations);
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

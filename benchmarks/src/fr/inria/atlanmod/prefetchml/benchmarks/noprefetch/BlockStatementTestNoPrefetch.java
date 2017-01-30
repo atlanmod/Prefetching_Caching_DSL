@@ -1,5 +1,8 @@
 package fr.inria.atlanmod.prefetchml.benchmarks.noprefetch;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -11,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetch;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	
@@ -41,17 +45,14 @@ public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	@Test
     public void testBlockStatement() {
     	try {
-    		System.out.println(this.getClass().getName());
+    	    PrefetchMLLogger.info(this.getClass().getName());
 	        EList<EObject> blocks = resource.getAllInstances(JavaPackage.eINSTANCE.getBlock());
-	        System.out.println("size : " + blocks.size());
-			
-			System.out.println("Q1");
-	        long begin = System.currentTimeMillis();
-	        query.evaluate(blocks);
-	        long end = System.currentTimeMillis();       
-	        System.out.println("Done : " + (end-begin) + "ms");
+	        PrefetchMLLogger.info("Input size: " + blocks.size());
+	        
+			PrefetchMLLogger.info("Q1");
+			computeQuery(query, blocks);
 
-	        System.out.println("Q2");
+	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        oclHelper.setContext(eContext);
@@ -61,10 +62,7 @@ public class BlockStatementTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	            e.printStackTrace();
 	        }
 	        this.query = ocl.createQuery(expression);
-	        begin = System.currentTimeMillis();
-	        query.evaluate(blocks);
-	        end = System.currentTimeMillis();
-	        System.out.println("Done : " + (end-begin) + "ms");
+	        computeQuery(query, blocks);
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {
