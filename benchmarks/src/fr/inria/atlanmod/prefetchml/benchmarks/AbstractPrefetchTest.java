@@ -28,8 +28,8 @@ public abstract class AbstractPrefetchTest {
 	protected long stopTimestamp;
 	
 	protected static String[][] parameters = new String[][]{
-		{"db/modisco.graph","Modisco"},
-//		{"db/jdt-core.graph","JDT"}
+//		{"db/modisco.graph","Modisco"},
+		{"db/jdt-core.graph","JDT"}
 		};
 	
     @Parameters
@@ -44,23 +44,23 @@ public abstract class AbstractPrefetchTest {
     
     @BeforeClass
     public static void setUpBeforeClass() {
-    	System.out.println("Checking databases");
+    	PrefetchMLLogger.info("Checking databases");
     	File modelFile = new File(parameters[0][0]);
     	if(!modelFile.exists()) {
             Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
-    		System.out.println("Databases can not be found, creating them");
+    		PrefetchMLLogger.info("Databases can not be found, creating them");
     		try {
-    			System.out.println("Unzipping XMI models");
+    			PrefetchMLLogger.info("Unzipping XMI models");
 				ModelCreator.unzip("db/resources.zip", "db/xmi");
-				System.out.println("Creating modisco.graph");
+				PrefetchMLLogger.info("Creating modisco.graph");
 				ModelCreator.createNeoEMFModel(
 						new File("db/xmi/resources/org.eclipse.gmt.modisco.java.kyanos.xmi"), 
 						new File("db/modisco.graph"));
-//				System.out.println("Creating jdt-core.graph");
-//				ModelCreator.createNeoEMFModel(
-//						new File("db/xmi/resources/org.eclipse.jdt.core.xmi"), 
-//						new File("db/jdt-core.graph"));
-				System.out.println("Cleaning temp files");
+				PrefetchMLLogger.info("Creating jdt-core.graph");
+				ModelCreator.createNeoEMFModel(
+						new File("db/xmi/resources/org.eclipse.jdt.core.xmi"), 
+						new File("db/jdt-core.graph"));
+				PrefetchMLLogger.info("Cleaning temp files");
 				File xmiFolder = new File("db/xmi/resources");
 				File[] xmiContents = xmiFolder.listFiles();
 				for(int i = 0; i < xmiContents.length; i++) {
