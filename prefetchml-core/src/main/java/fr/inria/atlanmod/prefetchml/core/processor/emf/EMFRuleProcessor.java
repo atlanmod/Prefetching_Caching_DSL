@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.FeaturePattern;
@@ -53,14 +53,14 @@ public class EMFRuleProcessor implements RuleProcessor {
 	@Override
 	public void processStartingRules(List<StartingRule> sRules, Object resourceStore) {
 		if(!(resourceStore instanceof Resource)) {
-			PrefetchLogger.error("EMFRuleProcessor can only work with EMF Resource");
+			PrefetchMLLogger.error("EMFRuleProcessor can only work with EMF Resource");
 			return;
 		}
 		// Update the resource
 		resource = (Resource)resourceStore;
-		PrefetchLogger.warn("StartingRule are discouraged when using EMFRuleProcessor");
+		PrefetchMLLogger.warn("StartingRule are discouraged when using EMFRuleProcessor");
 		if(sRules.isEmpty()) {
-			PrefetchLogger.debug("Empty sRule list");
+			PrefetchMLLogger.debug("Empty sRule list");
 			return;
 		}
 		for(StartingRule sRule : sRules) {
@@ -81,7 +81,7 @@ public class EMFRuleProcessor implements RuleProcessor {
 	@Override
 	public void processAccessRules(Object source, List<AccessRule> aRules) {
 		if(!(source instanceof EObject)) {
-			PrefetchLogger.error("Cannot use EMFRuleProcessor on non EMF source object");
+			PrefetchMLLogger.error("Cannot use EMFRuleProcessor on non EMF source object");
 			throw new IllegalArgumentException("Cannot use EMFRuleProcessor on non EMF source object");
 		}
 		if(aRules.isEmpty()) {
@@ -99,7 +99,7 @@ public class EMFRuleProcessor implements RuleProcessor {
 				// and process the references from them
 				// Note: their is no reason to use this kind of patterns in EMFRuleProcessor, since 
 				// allInstances() call will load the entire model into memory
-				PrefetchLogger.warn("The use of different source and target EClass is discouraged with EMFRuleProcessor");
+				PrefetchMLLogger.warn("The use of different source and target EClass is discouraged with EMFRuleProcessor");
 			}
 		}
 	}

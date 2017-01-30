@@ -22,7 +22,7 @@ import java.text.MessageFormat;
  * It also provides static methods for logging without declaring a specific instance. In this case, the root logger is
  * used by default.
  */
-public final class PrefetchLogger {
+public final class PrefetchMLLogger {
 
     /**
      * In-memory cache that holds loaded {@link Logger}s, identified by their name.
@@ -34,7 +34,7 @@ public final class PrefetchLogger {
      *
      * @throws IllegalStateException every time
      */
-    private PrefetchLogger() {
+    private PrefetchMLLogger() {
         throw new IllegalStateException("This class should not be instantiated");
     }
 

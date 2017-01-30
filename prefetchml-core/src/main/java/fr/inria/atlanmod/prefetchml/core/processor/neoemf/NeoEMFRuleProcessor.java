@@ -18,7 +18,7 @@ import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
 
 import fr.inria.atlanmod.prefetchml.core.cache.NeoEMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.FeaturePattern;
@@ -139,7 +139,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
             	}
             }
             else {
-            	PrefetchLogger.warn("The use of different source and target EClasses is not supported in NeoEMFRuleProcessor");
+            	PrefetchMLLogger.warn("The use of different source and target EClasses is not supported in NeoEMFRuleProcessor");
             }
             } catch(IllegalStateException e) {
             	// DB already closed
@@ -219,7 +219,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		        			int edgeIdx = theEdge.getProperty("position");
 		        			Vertex otherEnd = theEdge.getVertex(Direction.IN);
 		        			if(otherEnd == v) {
-		        				PrefetchLogger.error("An Edge links a Vertex with himself");
+		        				PrefetchMLLogger.error("An Edge links a Vertex with himself");
 		        			}
 		        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
 		        			key = new NeoEMFIndexedCacheKey(keyId, theFeature, edgeIdx);
@@ -316,7 +316,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		        			int edgeIdx = theEdge.getProperty("position");
 		        			Vertex otherEnd = theEdge.getVertex(Direction.IN);
 		        			if(otherEnd == v) {
-		        				PrefetchLogger.error("An Edge links a Vertex with himself");
+		        				PrefetchMLLogger.error("An Edge links a Vertex with himself");
 		        			}
 		        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
 		        			key = new NeoEMFIndexedCacheKey(keyId, theFeature, edgeIdx);
@@ -356,7 +356,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
             return metaclassInstances;
         }
         else {
-            PrefetchLogger.warn("Metaclass " + eClass.getName() + " not found");
+            PrefetchMLLogger.warn("Metaclass " + eClass.getName() + " not found");
             return null;
         }
     }

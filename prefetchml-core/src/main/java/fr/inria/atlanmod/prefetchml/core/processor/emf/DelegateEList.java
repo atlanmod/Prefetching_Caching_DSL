@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 public class DelegateEList<E> implements EList<E> {
 
@@ -28,7 +28,7 @@ public class DelegateEList<E> implements EList<E> {
 		this.owner = owner;
 		this.feature = feature;
 		if(!feature.isMany()) {
-			PrefetchLogger.error("DelegateEList cannot be created with single valued feature");
+			PrefetchMLLogger.error("DelegateEList cannot be created with single valued feature");
 		}
 		this.pCore = core;
 	}

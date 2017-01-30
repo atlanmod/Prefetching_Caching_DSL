@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import fr.inria.atlanmod.prefetchml.core.cache.CacheFactory;
 import fr.inria.atlanmod.prefetchml.core.event.EventAPI;
-import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.MetamodelImport;
@@ -52,14 +52,14 @@ public class PrefetchCore {
 	private int missCount = 0;
 	
 	public PrefetchCore(Object resourceStore, RuleProcessorFactory ruleProcessorFactory) {
-		PrefetchLogger.info("Starting Prefetch Framework");
+		PrefetchMLLogger.info("Starting Prefetch Framework");
 		// Register language package
 		EPackage.Registry.INSTANCE.put(PrefetchingPackage.eNS_URI, PrefetchingPackage.eINSTANCE);
 		PrefetchingPackage.eINSTANCE.eClass();
-		PrefetchLogger.info("PrefetchingPackage Registered");
+		PrefetchMLLogger.info("PrefetchingPackage Registered");
 		// Init Ecore package to handle cross-reference navigation between Prefetch and Ecore concepts
 		EcorePackage.eINSTANCE.eClass();
-		PrefetchLogger.info("EcorePackage initialized");
+		PrefetchMLLogger.info("EcorePackage initialized");
 		
 		this.resourceStore = resourceStore;
 		
@@ -69,38 +69,38 @@ public class PrefetchCore {
 		// and ecore extension to enable metamodel navigation
 		prefetchStore.getResourceFactoryRegistry().getExtensionToFactoryMap().put("bin",  new XMIResourceFactoryImpl());
 		prefetchStore.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		PrefetchLogger.info("Prefetch Script store created");
+		PrefetchMLLogger.info("Prefetch Script store created");
 		ruleStore = new RuleStore();
-		PrefetchLogger.info("Rule Store Created");
+		PrefetchMLLogger.info("Rule Store Created");
 		worker = new PrefetchWorker(ruleProcessorFactory, ruleStore, cache, resourceStore);
-		PrefetchLogger.info("Prefetch Worker Created");
+		PrefetchMLLogger.info("Prefetch Worker Created");
 		eventAPI = new EventAPI(worker);
-		PrefetchLogger.info("Event API Ready");
-		PrefetchLogger.info("Prefetch Framework Started");
+		PrefetchMLLogger.info("Event API Ready");
+		PrefetchMLLogger.info("Prefetch Framework Started");
 	}
 	
 	public void loadPrefetchScript(URI uri) {
-		PrefetchLogger.info("Loading Prefetch Script " + uri.toFileString());
+		PrefetchMLLogger.info("Loading Prefetch Script " + uri.toFileString());
 		Resource scriptResource = prefetchStore.createResource(uri);
 		if(scriptResource == null) {
-			PrefetchLogger.warn("Unable to find {0}, loading canceled", uri.toFileString());
+			PrefetchMLLogger.warn("Unable to find {0}, loading canceled", uri.toFileString());
 			return;
 		}
 		try {
 			scriptResource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			PrefetchLogger.error("Unable to load the Prefetch Script at {0}, loading canceled", uri.toFileString());
-			PrefetchLogger.error(e);
+			PrefetchMLLogger.error("Unable to load the Prefetch Script at {0}, loading canceled", uri.toFileString());
+			PrefetchMLLogger.error(e);
 			return;
 		}
 		
 		if(scriptResource.getContents().size() == 0) {
-			PrefetchLogger.warn("No Prefetching Model found, no rule added to the registry");
+			PrefetchMLLogger.warn("No Prefetching Model found, no rule added to the registry");
 			return;
 		}
 		Model pModel = (Model)scriptResource.getContents().get(0);
 		if(pModel.getPlans().size() == 0) {
-			PrefetchLogger.warn("No Plan found, no rule added to the registry");
+			PrefetchMLLogger.warn("No Plan found, no rule added to the registry");
 			return;
 		}
 		if(pModel.getMetamodel() != null) {
@@ -108,24 +108,24 @@ public class PrefetchCore {
 //			prefetchStore.getPackageRegistry().put(mImport.getNsURI(), JavaPackage.eINSTANCE);
 			System.out.println(Registry.INSTANCE.getEPackage(mImport.getNsURI()));
 		}
-		PrefetchLogger.info("Creating Plan caches");
+		PrefetchMLLogger.info("Creating Plan caches");
 		// TODO handle multiple caches
 		cache = CacheFactory.createCacheInstance(pModel.getPlans().get(0).getCache());
 		worker.setCache(cache);
-		PrefetchLogger.info("Plan caches created");
-		PrefetchLogger.info("Adding Plan Rules to Rule Store");
+		PrefetchMLLogger.info("Plan caches created");
+		PrefetchMLLogger.info("Adding Plan Rules to Rule Store");
 		for(Plan plan : pModel.getPlans()) {
 			String planName = plan.getName();
 			for(PrefetchingRule pRule : plan.getRules()) {
 				if(pRule instanceof AccessRule) {
 					AccessRule aRule = (AccessRule)pRule;
 					ruleStore.putARule(planName, aRule.getSourcePattern().getEClass(), aRule);
-					PrefetchLogger.debug("ARule {0} added", aRule.getName());
+					PrefetchMLLogger.debug("ARule {0} added", aRule.getName());
 				}
 				else if(pRule instanceof StartingRule) {
 					StartingRule sRule = (StartingRule)pRule;
 					ruleStore.putSRule(planName, sRule);
-					PrefetchLogger.debug("SRule {0} added", sRule.getName());
+					PrefetchMLLogger.debug("SRule {0} added", sRule.getName());
 				}
 				// TODO Handle other rules
 			}
