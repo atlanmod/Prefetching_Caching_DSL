@@ -10,7 +10,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.junit.Before;
 import org.junit.Test;
-
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetch;
 
 public class BlockStatementTestPrefetch extends AbstractTestCasePrefetch {
@@ -64,19 +64,16 @@ public class BlockStatementTestPrefetch extends AbstractTestCasePrefetch {
     @SuppressWarnings("unchecked")
 	private void performQuery() {
     	try {
-    		System.out.println(this.getClass().getName());
-    		Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-    		EList<EObject> blocks = resource.getAllInstances(eContext);
-			long begin = System.currentTimeMillis();
-			System.out.println("Q1(1)");
-			query.evaluate(blocks);
-	        long end = System.currentTimeMillis();       
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pCore.getHitCount());
-	        System.out.println("Misses - " + pCore.getMissCount());
-	        pCore.resetHitCount();
-	        pCore.resetMissCount();
-	        System.out.println("Q2");
+            Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+    	    PrefetchMLLogger.info(this.getClass().getName());
+    		
+    	    EList<EObject> blocks = resource.getAllInstances(eContext);
+			PrefetchMLLogger.info("Input size: {0}", blocks.size());
+			
+			PrefetchMLLogger.info("Q1");
+			computeQuery(query, blocks);
+			
+	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        oclHelper.setContext(eContext);
@@ -86,12 +83,9 @@ public class BlockStatementTestPrefetch extends AbstractTestCasePrefetch {
 	            e.printStackTrace();
 	        }
 	        this.query = ocl.createQuery(expression);
-	        begin = System.currentTimeMillis();
-	        query.evaluate(blocks);
-	        end = System.currentTimeMillis();
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pCore.getHitCount());
-	        System.out.println("Misses - " + pCore.getMissCount());
+	        computeQuery(query, blocks);
+	        
+	        PrefetchMLLogger.info("Cache size: {0}", pCore.getActiveCache().size());
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

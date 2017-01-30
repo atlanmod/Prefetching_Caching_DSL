@@ -9,9 +9,8 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
-
-import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetch;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
+import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetch;
 
 public class TypeToUnitTestNoPrefetch extends AbstractTestCaseNoPrefetch {
 	

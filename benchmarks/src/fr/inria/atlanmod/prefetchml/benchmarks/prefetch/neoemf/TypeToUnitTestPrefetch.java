@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetch;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 public class TypeToUnitTestPrefetch extends AbstractTestCasePrefetch {
 	
@@ -57,36 +58,31 @@ public class TypeToUnitTestPrefetch extends AbstractTestCasePrefetch {
     	performQuery();
     }
 	
-	@Test
-	public void testTypeToUnit_smallCache() {
-		pCore.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()));
-		performQuery();
-	}
-	
-	@Test
-	public void testTypeToUnit_badPlan() {
-		pCore.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()));
-		performQuery();
-	}
+//	@Test
+//	public void testTypeToUnit_smallCache() {
+//		pCore.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()));
+//		performQuery();
+//	}
+//	
+//	@Test
+//	public void testTypeToUnit_badPlan() {
+//		pCore.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()));
+//		performQuery();
+//	}
     
     @SuppressWarnings("unchecked")
 	private void performQuery() {
     	try {
-    		System.out.println(this.getClass().getName());
     		Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-    		EList<EObject> abstractTypeDeclarations = resource.getAllInstances(JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
-			System.out.println("input size : " + abstractTypeDeclarations.size());
-    		long begin = System.currentTimeMillis();
-			System.out.println("Q1(1)");
-			query.evaluate(abstractTypeDeclarations);
-	        long end = System.currentTimeMillis();       
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pCore.getHitCount());
-	        System.out.println("Misses - " + pCore.getMissCount());
-	        pCore.resetHitCount();
-	        pCore.resetMissCount();
+    		PrefetchMLLogger.info(this.getClass().getName());
+    		
+    		EList<EObject> abstractTypeDeclarations = resource.getAllInstances(eContext);
+			PrefetchMLLogger.info("Input size: {0}", abstractTypeDeclarations.size());
+
+			PrefetchMLLogger.info("Q1");
+			computeQuery(query, abstractTypeDeclarations);
 	        
-	        System.out.println("Q2");
+	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        oclHelper.setContext(eContext);
@@ -96,12 +92,9 @@ public class TypeToUnitTestPrefetch extends AbstractTestCasePrefetch {
 	            e.printStackTrace();
 	        }
 	        this.query = ocl.createQuery(expression);
-	        begin = System.currentTimeMillis();
-	        query.evaluate(abstractTypeDeclarations);
-	        end = System.currentTimeMillis();
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pCore.getHitCount());
-	        System.out.println("Misses - " + pCore.getMissCount());
+	        computeQuery(query, abstractTypeDeclarations);
+	        
+	        PrefetchMLLogger.info("Cache size: {0}", pCore.getActiveCache().size());
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {

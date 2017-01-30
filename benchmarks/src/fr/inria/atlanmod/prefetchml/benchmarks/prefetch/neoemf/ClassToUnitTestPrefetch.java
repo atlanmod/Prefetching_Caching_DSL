@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetch;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 public class ClassToUnitTestPrefetch extends AbstractTestCasePrefetch {
 	
@@ -88,20 +89,15 @@ public class ClassToUnitTestPrefetch extends AbstractTestCasePrefetch {
 	private void performQuery() {
     	try {
     		Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-    		System.out.println(this.getClass().getName());
+    		PrefetchMLLogger.info(this.getClass().getName());
+
     		EList<EObject> classDeclarations = resource.getAllInstances(eContext);
-    		System.out.println("input size = " + classDeclarations.size());
-			long begin = System.currentTimeMillis();
-			System.out.println("Q1(1)");
-			query.evaluate(classDeclarations);
-	        long end = System.currentTimeMillis();       
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pCore.getHitCount());
-	        System.out.println("Misses - " + pCore.getMissCount());
-	        pCore.resetHitCount();
-	        pCore.resetMissCount();
+    		PrefetchMLLogger.info("Input size: {0}", classDeclarations.size());
+
+    		PrefetchMLLogger.info("Q1");
+    		computeQuery(query, classDeclarations);
 	        
-	        System.out.println("Q2");
+	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        oclHelper.setContext(eContext);
@@ -111,12 +107,9 @@ public class ClassToUnitTestPrefetch extends AbstractTestCasePrefetch {
 	            e.printStackTrace();
 	        }
 	        this.query = ocl.createQuery(expression);
-	        begin = System.currentTimeMillis();
-	        query.evaluate(classDeclarations);
-	        end = System.currentTimeMillis();
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + pCore.getHitCount());
-	        System.out.println("Misses - " + pCore.getMissCount());
+	        computeQuery(query, classDeclarations);
+	        
+	        PrefetchMLLogger.info("Cache size: {0}", pCore.getActiveCache().size());
     	} catch(Exception e) {
     		e.printStackTrace();
     	} finally {
