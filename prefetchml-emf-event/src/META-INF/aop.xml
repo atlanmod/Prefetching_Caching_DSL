@@ -3,11 +3,11 @@
             <aspects>
               <!-- declare two existing aspects to the weaver -->
            <!--   <aspect name="fr.inria.atlanmod.prefetch.emf.aspectj.ResourceAspect"/> -->
-              <aspect name="fr.inria.atlanmod.prefetch.emf.aspectj.EGetAspect"/>
+              <aspect name="fr.inria.atlanmod.prefetchml.emf.event.capture.EGetAspect"/>
 
               <!-- Of the set of aspects declared to the weaver
                    use aspects matching the type pattern "com..*" for weaving. -->
-              <include within="fr.inria.atlanmod.prefetch.emf.aspectj..*"/>
+              <include within="fr.inria.atlanmod.prefetchml.emf.event.capture..*"/>
 
             </aspects>
 
@@ -21,7 +21,7 @@
               <include within="org.eclipse.emf.ecore.impl.*"/>
               <include within="org.eclipse.emf.common.util.*"/>
               
-              <include within="fr.inria.atlanmod.prefetch.processor..*"/>
+              <include within="fr.inria.atlanmod.prefetchml.core.processor..*"/>
               <!-- <include within="fr.inria.atlanmod.neoemf..*"/> -->
 
               <!-- Dump all types within the "somepack" package,
