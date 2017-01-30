@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetchEMF;
-import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.emf.EventNotifierDelegateEList;
 
 public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
@@ -89,23 +89,20 @@ public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
     @SuppressWarnings("unchecked")
 	private void performQuery() {
     	try {
-    		System.out.println(this.getClass().getName());
     		Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
-    		PrefetchCore core = runtime.getPCore();
-    		EList<EObject> blocks = resource.getAllInstances(eContext);
-    		EList<EObject> prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
-    		System.out.println("input size : " + blocks.size());
-			System.out.println("Q1(1)");
-			core.resetHitCount();
-			core.resetMissCount();
-			long begin = System.currentTimeMillis();
-			query.evaluate(prefetchableAllInstances);
-	        long end = System.currentTimeMillis();       
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + core.getHitCount());
-	        System.out.println("Misses - " + core.getMissCount());
+            PrefetchMLLogger.info(this.getClass().getName());
+
+            EList<EObject> blocks = resource.getAllInstances(eContext);
+            /*
+             * Necessary for now, we need to find a way to hide this to the client
+             */
+    		EList<EObject> prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,runtime.getPCore());
+    		PrefetchMLLogger.info("Input size: ", prefetchableAllInstances.size());
+
+    		PrefetchMLLogger.info("Q1");
+    		computeQuery(query, prefetchableAllInstances);
 	        
-	        System.out.println("Q2");
+	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        oclHelper.setContext(eContext);
@@ -116,17 +113,10 @@ public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 	        }
 	        this.query = ocl.createQuery(expression);
 	        blocks = resource.getAllInstances(eContext);
-    		prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,core);
-	        begin = System.currentTimeMillis();
-	        core.resetHitCount();
-	        core.resetMissCount();
-	        
-	        query.evaluate(prefetchableAllInstances);
-	        end = System.currentTimeMillis();
-	        System.out.println("Done : " + (end-begin) + "ms");
-	        System.out.println("Hits - " + core.getHitCount());
-	        System.out.println("Misses - " + core.getMissCount());
-	        System.out.println("cache size : "  + core.getActiveCache().size());
+    		prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,runtime.getPCore());	        
+    		computeQuery(query, prefetchableAllInstances);
+
+	        PrefetchMLLogger.info("Cache size: {0}", runtime.getPCore().getActiveCache().size());
 	       
     	} catch(Exception e) {
     		e.printStackTrace();

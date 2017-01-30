@@ -2,6 +2,7 @@ package fr.inria.atlanmod.prefetchml.benchmarks;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +26,7 @@ import fr.inria.atlanmod.neoemf.data.blueprints.neo4j.option.BlueprintsNeo4jOpti
 import fr.inria.atlanmod.neoemf.data.blueprints.util.BlueprintsURI;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
 import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.emf.event.runtime.EMFPrefetcherRuntime;
 
 public abstract class AbstractTestCasePrefetchEMF extends AbstractPrefetchTest {
@@ -69,6 +71,19 @@ public abstract class AbstractTestCasePrefetchEMF extends AbstractPrefetchTest {
 		runtime = new EMFPrefetcherRuntime(resource);
 		
 	}
+	
+	protected List<Object> computeQuery(Query query, List<?> input) {
+	    runtime.getPCore().resetHitCount();
+	    runtime.getPCore().resetMissCount();
+        startTimer();
+        List<Object> results = query.evaluate(input);
+        stopTimer();
+        PrefetchMLLogger.info("Done : {0}ms", (stopTimestamp-startTimestamp));
+        PrefetchMLLogger.info("Result contains {0} elements", getFlattenedSize(results));
+        PrefetchMLLogger.info("#Hits: {0}", runtime.getPCore().getHitCount());
+        PrefetchMLLogger.info("#Misses: {0}", runtime.getPCore().getMissCount());
+        return results;
+    }
 	
 	protected abstract String getScriptString();
 	

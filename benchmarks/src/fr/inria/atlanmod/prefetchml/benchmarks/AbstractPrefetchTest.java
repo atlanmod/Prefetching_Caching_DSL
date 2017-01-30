@@ -19,7 +19,7 @@ import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 
 @RunWith(Parameterized.class)
-public class AbstractPrefetchTest {
+public abstract class AbstractPrefetchTest {
 
 	protected String resourceName;
 	protected String scriptSuffix;
@@ -44,10 +44,10 @@ public class AbstractPrefetchTest {
     
     @BeforeClass
     public static void setUpBeforeClass() {
-        Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
     	System.out.println("Checking databases");
     	File modelFile = new File(parameters[0][0]);
     	if(!modelFile.exists()) {
+            Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
     		System.out.println("Databases can not be found, creating them");
     		try {
     			System.out.println("Unzipping XMI models");
@@ -112,14 +112,6 @@ public class AbstractPrefetchTest {
         stopTimestamp = System.currentTimeMillis();
     }
     
-    protected List<Object> computeQuery(Query query, List<?> input) {
-        startTimer();
-        List<Object> results = query.evaluate(input);
-        stopTimer();
-        PrefetchMLLogger.info("Done : {0}ms", (stopTimestamp-startTimestamp));
-        PrefetchMLLogger.info("Result contains {0} elements", getFlattenedSize(results));
-        return results;
-    }
-    
+    protected abstract List<Object> computeQuery(Query query, List<?> input);    
 
 }
