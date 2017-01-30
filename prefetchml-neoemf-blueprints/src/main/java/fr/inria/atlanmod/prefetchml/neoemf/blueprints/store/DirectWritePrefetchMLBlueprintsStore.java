@@ -48,7 +48,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
     public DirectWritePrefetchMLBlueprintsStore(Resource.Internal resource,
             BlueprintsPersistenceBackend backend) {
         super(resource, backend);
-        pCore = new PrefetchCore(backend, new NeoEMFRuleProcessorFactory());
+        pCore = new PrefetchCore(backend.getGraph(), new NeoEMFRuleProcessorFactory());
     }
     
     /**
