@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.eclipse.gmt.modisco.java.impl.JavaPackageImpl;
+import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -14,7 +15,6 @@ import org.junit.runners.Parameterized.Parameters;
 import fr.inria.atlanmod.prefetchml.benchmarks.util.ModelCreator;
 
 
-@SuppressWarnings("restriction")
 @RunWith(Parameterized.class)
 public class AbstractPrefetchTest {
 
@@ -38,11 +38,11 @@ public class AbstractPrefetchTest {
     
     @BeforeClass
     public static void setUpBeforeClass() {
+        Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
     	System.out.println("Checking databases");
     	File modelFile = new File(parameters[0][0]);
     	if(!modelFile.exists()) {
     		System.out.println("Databases can not be found, creating them");
-    		JavaPackageImpl.init();
     		try {
     			System.out.println("Unzipping XMI models");
 				ModelCreator.unzip("db/resources.zip", "db/xmi");
