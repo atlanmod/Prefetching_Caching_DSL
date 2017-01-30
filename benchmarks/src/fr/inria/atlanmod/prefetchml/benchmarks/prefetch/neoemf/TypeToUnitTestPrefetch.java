@@ -58,17 +58,17 @@ public class TypeToUnitTestPrefetch extends AbstractTestCasePrefetch {
     	performQuery();
     }
 	
-//	@Test
-//	public void testTypeToUnit_smallCache() {
-//		pCore.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()));
-//		performQuery();
-//	}
-//	
-//	@Test
-//	public void testTypeToUnit_badPlan() {
-//		pCore.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()));
-//		performQuery();
-//	}
+	@Test
+	public void testTypeToUnit_smallCache() {
+		pCore.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()));
+		performQuery();
+	}
+	
+	@Test
+	public void testTypeToUnit_badPlan() {
+		pCore.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()));
+		performQuery();
+	}
     
     @SuppressWarnings("unchecked")
 	private void performQuery() {
