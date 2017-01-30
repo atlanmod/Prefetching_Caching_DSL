@@ -23,7 +23,15 @@
 	</properties>
 
     <dependencies>   
+    	<!-- Cache -->
+
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+        </dependency>
+        
     	<!-- EMF -->	
+    	
     	<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore</artifactId>
@@ -36,12 +44,21 @@
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.common</artifactId>
 		</dependency>
+		
 		<!-- Common -->    
+		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 		</dependency>
+		
+		<dependency>
+        	<groupId>com.google.guava</groupId>
+        	<artifactId>guava</artifactId>
+    	</dependency>
+		
 		<!-- Logging -->
+		
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
@@ -50,13 +67,17 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 		</dependency>
+		
 		<!-- Test -->
+        
         <dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- Internal -->
+		
 		<dependency>
 			<groupId>fr.inria.atlanmod.prefetchml</groupId>
 			<artifactId>prefetchml-language-metamodel</artifactId>

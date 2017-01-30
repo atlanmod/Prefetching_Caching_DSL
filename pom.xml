@@ -75,7 +75,11 @@
         <argLine /> <!-- Keep it empty -->
         <argLine.global>-Xms256m -Xmx2g -XX:+UseConcMarkSweepGC</argLine.global>
 
+		<caffeine.version>2.3.5</caffeine.version>
+	
         <commons-collections.version>4.1</commons-collections.version>
+        <guava.version>21.0</guava.version>
+        
         <osgi.version>6.0.0</osgi.version>
         <emf.version>2.12.0</emf.version>
         <ecore.version>2.12.0</ecore.version>
@@ -95,12 +99,26 @@
     <dependencyManagement>
         <dependencies>
 
+	    	<!-- Cache -->
+
+            <dependency>
+                <groupId>com.github.ben-manes.caffeine</groupId>
+                <artifactId>caffeine</artifactId>
+                <version>${caffeine.version}</version>
+            </dependency>
+	  
             <!-- Common -->
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>${commons-collections.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
             <!-- EMF -->

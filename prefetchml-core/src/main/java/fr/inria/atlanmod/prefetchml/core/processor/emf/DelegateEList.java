@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
 
 public class DelegateEList<E> implements EList<E> {
 

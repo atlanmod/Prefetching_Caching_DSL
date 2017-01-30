@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
-import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.FeaturePattern;
 import fr.inria.atlanmod.prefetchml.language.metamodel.PrefetchingRule;

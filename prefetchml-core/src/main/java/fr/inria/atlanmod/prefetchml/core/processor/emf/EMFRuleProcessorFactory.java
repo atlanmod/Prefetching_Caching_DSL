@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
-import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 
 public class EMFRuleProcessorFactory implements RuleProcessorFactory {
 

@@ -19,10 +19,12 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 
 
+
+
 import fr.inria.atlanmod.prefetchml.core.cache.CacheFactory;
 import fr.inria.atlanmod.prefetchml.core.event.EventAPI;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
-import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.MetamodelImport;
 import fr.inria.atlanmod.prefetchml.language.metamodel.Model;
@@ -81,13 +83,13 @@ public class PrefetchCore {
 		PrefetchLogger.info("Loading Prefetch Script " + uri.toFileString());
 		Resource scriptResource = prefetchStore.createResource(uri);
 		if(scriptResource == null) {
-			PrefetchLogger.warn("Unable to find " + uri.toFileString() + ", loading canceled");
+			PrefetchLogger.warn("Unable to find {0}, loading canceled", uri.toFileString());
 			return;
 		}
 		try {
 			scriptResource.load(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			PrefetchLogger.error("Unable to load the Prefetch Script at " + uri.toFileString() + ", loading canceled");
+			PrefetchLogger.error("Unable to load the Prefetch Script at {0}, loading canceled", uri.toFileString());
 			PrefetchLogger.error(e);
 			return;
 		}
@@ -118,12 +120,12 @@ public class PrefetchCore {
 				if(pRule instanceof AccessRule) {
 					AccessRule aRule = (AccessRule)pRule;
 					ruleStore.putARule(planName, aRule.getSourcePattern().getEClass(), aRule);
-					PrefetchLogger.debug("ARule " + aRule.getName() + " added");
+					PrefetchLogger.debug("ARule {0} added", aRule.getName());
 				}
 				else if(pRule instanceof StartingRule) {
 					StartingRule sRule = (StartingRule)pRule;
 					ruleStore.putSRule(planName, sRule);
-					PrefetchLogger.debug("SRule " + sRule.getName() + " added");
+					PrefetchLogger.debug("SRule {0} added", sRule.getName());
 				}
 				// TODO Handle other rules
 			}

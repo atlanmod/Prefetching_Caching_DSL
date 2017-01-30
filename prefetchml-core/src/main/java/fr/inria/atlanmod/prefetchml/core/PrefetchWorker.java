@@ -8,11 +8,11 @@ import java.util.concurrent.Executors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
 import fr.inria.atlanmod.prefetchml.core.tasks.AccessRuleAction;
 import fr.inria.atlanmod.prefetchml.core.tasks.StartingRuleAction;
-import fr.inria.atlanmod.prefetchml.core.util.PrefetchLogger;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
@@ -31,7 +31,7 @@ public class PrefetchWorker {
 			worker = Executors.newSingleThreadExecutor();
 		}
 		else {
-			PrefetchLogger.info("Creating a multi thread (" + executorCount + ") worker");
+			PrefetchLogger.info("Creating a multi-threaded ({0}) worder", executorCount);
 			worker = Executors.newFixedThreadPool(executorCount);
 		}
 	}
