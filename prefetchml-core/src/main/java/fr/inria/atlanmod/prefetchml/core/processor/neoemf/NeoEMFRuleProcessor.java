@@ -7,7 +7,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage.Registry;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -349,7 +348,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
     }
 	
 	@Override
-	public void invalidateCache(Object source, EStructuralFeature feature, int index) {
+	public void invalidateCacheValue(Object source, EStructuralFeature feature, int index) {
 	    NeoEMFIndexedCacheKey key = null;
 	    if(source instanceof Vertex) {
 	        key = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, index);
@@ -358,9 +357,44 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	        key = new NeoEMFIndexedCacheKey((String)source, feature, index);
 	    }
 	    else {
-	        PrefetchMLLogger.warn("Unknown source to invalidate {0}", source);
+	        PrefetchMLLogger.error("Unknown source to invalidate {0}", source);
+	        throw new IllegalArgumentException();
 	    }
 	    cache.remove(key);
+	}
+	
+	@Override
+	public void incrementCacheSize(Object source, EStructuralFeature feature) {
+	    NeoEMFIndexedCacheKey key = null;
+        if(source instanceof Vertex) {
+            key = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, -2);
+        }
+        else if(source instanceof String) {
+            key = new NeoEMFIndexedCacheKey((String)source, feature, -2);
+        }
+        else {
+            PrefetchMLLogger.error("Unknown source {0}", source);
+            throw new IllegalArgumentException();
+        }
+        int oldSize = (int)cache.get(key);
+        cache.put(key, oldSize + 1);
+	}
+	
+	@Override
+	public void decrementCacheSize(Object source, EStructuralFeature feature) {
+	    NeoEMFIndexedCacheKey key = null;
+        if(source instanceof Vertex) {
+            key = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, -2);
+        }
+        else if(source instanceof String) {
+            key = new NeoEMFIndexedCacheKey((String)source, feature, -2);
+        }
+        else {
+            PrefetchMLLogger.error("Unknown source {0}", source);
+            throw new IllegalArgumentException();
+        }
+        int oldSize = (int)cache.get(key);
+        cache.put(key, oldSize -1);
 	}
 	
 	private Iterator<Vertex> getAllInstancesOfEClass(EClass eClass) {

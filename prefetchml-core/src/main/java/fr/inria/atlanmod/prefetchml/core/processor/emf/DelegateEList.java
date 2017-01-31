@@ -248,10 +248,18 @@ public class DelegateEList<E> implements EList<E> {
 	}
 	
 	public E set(int index, E element) {
+	    /*
+	     * Register an update event to ensure cache consistency
+	     */
+	    pCore.getEventAPI().updateEvent(owner, feature, index);
 		return delegateEGet().set(index, element);
 	}
 
 	public void add(int index, E element) {
+	    /*
+	     * Register an add event to ensure cache consistency
+	     */
+	    pCore.getEventAPI().addEvent(owner, feature);
 		delegateEGet().add(index,element);
 	}
 

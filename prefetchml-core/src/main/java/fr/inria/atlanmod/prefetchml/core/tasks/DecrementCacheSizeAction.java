@@ -5,22 +5,20 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 
-public class InvalidateCacheAction implements Runnable {
+public class DecrementCacheSizeAction implements Runnable {
 	
 	private EObject theSource;
 	private EStructuralFeature theFeature;
-	private int theIndex;
 	private RuleProcessor theProcessor;
 	
-	public InvalidateCacheAction(EObject source, EStructuralFeature feature, int index, RuleProcessor processor) {
+	public DecrementCacheSizeAction(EObject source, EStructuralFeature feature, RuleProcessor processor) {
 		this.theSource = source;
 		this.theFeature= feature;
-		this.theIndex = index;
 		this.theProcessor = processor;
 	}
 	
 	public void run() {
-		this.theProcessor.invalidateCacheValue(theSource,theFeature,theIndex);
+		this.theProcessor.decrementCacheSize(theSource,theFeature);
 	}
 
 }

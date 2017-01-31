@@ -183,13 +183,35 @@ public class EMFRuleProcessor implements RuleProcessor {
 	}
 
 	@Override
-	public void invalidateCache(Object source, EStructuralFeature feature, int index) {
+	public void invalidateCacheValue(Object source, EStructuralFeature feature, int index) {
 	    if(!(source instanceof EObject)) {
-	        PrefetchMLLogger.error("Unkown source to invalidate {0}", source);
+	        PrefetchMLLogger.error("Unknown source to invalidate {0}", source);
 	        throw new IllegalArgumentException();
 	    }
 	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, index);
 	    cache.remove(key);
+	}
+	
+	@Override
+	public void incrementCacheSize(Object source, EStructuralFeature feature) {
+	    if(!(source instanceof EObject)) {
+	        PrefetchMLLogger.error("Unknown source {0}", source);
+	        throw new IllegalArgumentException();
+	    }
+	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, -2);
+	    int oldValue = (int)cache.get(key);
+	    cache.put(key, oldValue + 1);
+	}
+	
+	@Override
+	public void decrementCacheSize(Object source, EStructuralFeature feature) {
+	    if(!(source instanceof EObject)) {
+	        PrefetchMLLogger.error("Unknown source {0}", source);
+	        throw new IllegalArgumentException();
+	    }
+	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, -2);
+        int oldValue = (int)cache.get(key);
+        cache.put(key, oldValue -1);
 	}
 
 }

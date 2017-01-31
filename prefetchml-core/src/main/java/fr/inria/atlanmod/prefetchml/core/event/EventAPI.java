@@ -30,5 +30,13 @@ public class EventAPI {
 	    worker.handleUpdate(source, feature, index);
 	}
 	
+	public void addEvent(EObject source, EStructuralFeature feature) {
+	    worker.handleAdd(source, feature);
+	}
+	
+	public void removeEvent(EObject source, EStructuralFeature feature) {
+	    worker.handleRemove(source, feature);
+	}
+	
 	
 }
