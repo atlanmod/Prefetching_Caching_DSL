@@ -7,6 +7,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -346,6 +347,21 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         	}
         }
     }
+	
+	@Override
+	public void invalidateCache(Object source, EStructuralFeature feature, int index) {
+	    NeoEMFIndexedCacheKey key = null;
+	    if(source instanceof Vertex) {
+	        key = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, index);
+	    }
+	    else if(source instanceof String) {
+	        key = new NeoEMFIndexedCacheKey((String)source, feature, index);
+	    }
+	    else {
+	        PrefetchMLLogger.warn("Unknown source to invalidate {0}", source);
+	    }
+	    cache.remove(key);
+	}
 	
 	private Iterator<Vertex> getAllInstancesOfEClass(EClass eClass) {
         Index<Vertex> idx = graph.getIndex("metaclasses", Vertex.class);

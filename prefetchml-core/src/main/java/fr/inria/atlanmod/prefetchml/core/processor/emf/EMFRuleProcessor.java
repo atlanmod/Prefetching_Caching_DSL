@@ -182,6 +182,14 @@ public class EMFRuleProcessor implements RuleProcessor {
 		return instanceOfMap.get(eClass.getName());
 	}
 
-
+	@Override
+	public void invalidateCache(Object source, EStructuralFeature feature, int index) {
+	    if(!(source instanceof EObject)) {
+	        PrefetchMLLogger.error("Unkown source to invalidate {0}", source);
+	        throw new IllegalArgumentException();
+	    }
+	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, index);
+	    cache.remove(key);
+	}
 
 }

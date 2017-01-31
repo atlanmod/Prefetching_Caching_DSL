@@ -7,11 +7,13 @@ import java.util.concurrent.Executors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
 import fr.inria.atlanmod.prefetchml.core.tasks.AccessRuleAction;
+import fr.inria.atlanmod.prefetchml.core.tasks.InvalidateCacheAction;
 import fr.inria.atlanmod.prefetchml.core.tasks.StartingRuleAction;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
@@ -66,6 +68,10 @@ public class PrefetchWorker {
 			return;
 		}
 		worker.execute(new AccessRuleAction(source, pRules, theProcessor));
+	}
+	
+	public void handleUpdate(EObject source, EStructuralFeature feature, int index) {
+	    worker.execute(new InvalidateCacheAction(source, feature, index, theProcessor));
 	}
 	
 	public boolean isStarted() {
