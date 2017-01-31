@@ -13,10 +13,9 @@ import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
 import fr.inria.atlanmod.prefetchml.core.tasks.AccessRuleAction;
-import fr.inria.atlanmod.prefetchml.core.tasks.DecrementCacheSizeAction;
-import fr.inria.atlanmod.prefetchml.core.tasks.UpdateCacheSizeAction;
 import fr.inria.atlanmod.prefetchml.core.tasks.InvalidateCacheAction;
 import fr.inria.atlanmod.prefetchml.core.tasks.StartingRuleAction;
+import fr.inria.atlanmod.prefetchml.core.tasks.UpdateCacheSizeAction;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
@@ -78,6 +77,10 @@ public class PrefetchWorker {
 	
 	public void handleSizeUpdate(EObject source, EStructuralFeature feature, int sizeDelta) {
 	    worker.execute(new UpdateCacheSizeAction(source, feature, sizeDelta, theProcessor));
+	}
+	
+	public void handleRemove(EObject source, EStructuralFeature feature) {
+	    worker.execute(new InvalidateCacheAction(source, feature, -2, theProcessor));
 	}
 	
 	public boolean isStarted() {

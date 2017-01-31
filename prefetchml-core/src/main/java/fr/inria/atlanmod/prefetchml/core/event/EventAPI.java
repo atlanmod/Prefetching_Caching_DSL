@@ -39,11 +39,11 @@ public class EventAPI {
 	}
 	
 	public void removeEvent(EObject source, EStructuralFeature feature) {
-	    worker.handleSizeUpdate(source, feature, -1);
+	    worker.handleRemove(source, feature);
 	}
 	
 	public void removeEvent(EObject source, EStructuralFeature feature, int removeSize) {
-	    worker.handleSizeUpdate(source, feature, -removeSize);
+	    worker.handleRemove(source, feature);
 	}
 	
 	

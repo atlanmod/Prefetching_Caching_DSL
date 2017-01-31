@@ -193,14 +193,27 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public boolean addAll(Collection<? extends E> c) {
+	    /*
+	     * Register an add event to ensure cache consistency
+	     */
+	    pCore.getEventAPI().addEvent(owner, feature, c.size());
 		return delegateEGet().addAll(c);
 	}
 
 	public boolean addAll(int index, Collection<? extends E> c) {
+	    /*
+	     * Register an add event to ensure cache consistency
+	     */
+	    pCore.getEventAPI().addEvent(owner, feature, c.size());
+	    PrefetchMLLogger.warn("addAll at a given index are not supported, cache may be inconsistent");
 		return delegateEGet().addAll(c);
 	}
 
 	public boolean removeAll(Collection<?> c) {
+	    /*
+	     * Register a remove event to ensure cache consistency
+	     */
+	    PrefetchMLLogger.warn("addAll at a given index are not supported, cache may be inconsistent");
 		return delegateEGet().removeAll(c);
 	}
 
@@ -264,6 +277,10 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public E remove(int index) {
+	    /*
+	     * Register a remove event to ensure cache consistency
+	     */
+	    pCore.getEventAPI().removeEvent(owner, feature);
 		return delegateEGet().remove(index);
 	}
 

@@ -360,6 +360,19 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	        PrefetchMLLogger.error("Unknown source to invalidate {0}", source);
 	        throw new IllegalArgumentException();
 	    }
+	    if(index == -2) {
+	        int size = (int)cache.get(key);
+	        for(int i = 0; i < size; i++) {
+	            NeoEMFIndexedCacheKey vKey = null;
+	            if(source instanceof Vertex) {
+	                vKey = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, i);
+	            }
+	            else if(source instanceof String) {
+	                vKey = new NeoEMFIndexedCacheKey((String)source, feature, i);
+	            }
+	            cache.remove(vKey);
+	        }
+	    }
 	    cache.remove(key);
 	}
 	

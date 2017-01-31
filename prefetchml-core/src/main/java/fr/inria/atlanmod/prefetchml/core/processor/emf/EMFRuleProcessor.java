@@ -188,7 +188,15 @@ public class EMFRuleProcessor implements RuleProcessor {
 	        PrefetchMLLogger.error("Unknown source to invalidate {0}", source);
 	        throw new IllegalArgumentException();
 	    }
+	    EObject eObject = (EObject)source;
 	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, index);
+	    if(index == -2) {
+	        int size = (int)cache.get(key);
+	        for(int i = 0; i < size; i++) {
+	            EMFIndexedCacheKey vKey = new EMFIndexedCacheKey(eObject.eResource().getURIFragment(eObject), feature, i);
+	            cache.remove(vKey);
+	        }
+	    }
 	    cache.remove(key);
 	}
 	
