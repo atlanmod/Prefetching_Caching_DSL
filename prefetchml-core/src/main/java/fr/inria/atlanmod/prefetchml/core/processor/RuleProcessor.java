@@ -19,7 +19,6 @@ public interface RuleProcessor {
 	public void processAccessRules(Object source, List<AccessRule> aRules);
 	
 	public void invalidateCacheValue(Object source, EStructuralFeature feature, int index);
-	public void incrementCacheSize(Object source, EStructuralFeature feature);
-	public void decrementCacheSize(Object source, EStructuralFeature feature);
+	public void updateCacheSize(Object source, EStructuralFeature feature, int sizeDelta);
 	
 }

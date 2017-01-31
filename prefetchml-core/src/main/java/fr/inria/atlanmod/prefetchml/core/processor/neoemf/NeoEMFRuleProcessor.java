@@ -364,7 +364,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	}
 	
 	@Override
-	public void incrementCacheSize(Object source, EStructuralFeature feature) {
+	public void updateCacheSize(Object source, EStructuralFeature feature, int sizeDelta) {
 	    NeoEMFIndexedCacheKey key = null;
         if(source instanceof Vertex) {
             key = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, -2);
@@ -377,24 +377,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
             throw new IllegalArgumentException();
         }
         int oldSize = (int)cache.get(key);
-        cache.put(key, oldSize + 1);
-	}
-	
-	@Override
-	public void decrementCacheSize(Object source, EStructuralFeature feature) {
-	    NeoEMFIndexedCacheKey key = null;
-        if(source instanceof Vertex) {
-            key = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, -2);
-        }
-        else if(source instanceof String) {
-            key = new NeoEMFIndexedCacheKey((String)source, feature, -2);
-        }
-        else {
-            PrefetchMLLogger.error("Unknown source {0}", source);
-            throw new IllegalArgumentException();
-        }
-        int oldSize = (int)cache.get(key);
-        cache.put(key, oldSize -1);
+        cache.put(key, oldSize + sizeDelta);
 	}
 	
 	private Iterator<Vertex> getAllInstancesOfEClass(EClass eClass) {

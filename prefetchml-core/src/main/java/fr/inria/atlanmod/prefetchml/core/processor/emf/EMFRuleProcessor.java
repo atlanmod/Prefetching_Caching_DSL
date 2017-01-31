@@ -193,25 +193,14 @@ public class EMFRuleProcessor implements RuleProcessor {
 	}
 	
 	@Override
-	public void incrementCacheSize(Object source, EStructuralFeature feature) {
+	public void updateCacheSize(Object source, EStructuralFeature feature, int sizeDelta) {
 	    if(!(source instanceof EObject)) {
 	        PrefetchMLLogger.error("Unknown source {0}", source);
 	        throw new IllegalArgumentException();
 	    }
 	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, -2);
 	    int oldValue = (int)cache.get(key);
-	    cache.put(key, oldValue + 1);
+	    cache.put(key, oldValue + sizeDelta);
 	}
 	
-	@Override
-	public void decrementCacheSize(Object source, EStructuralFeature feature) {
-	    if(!(source instanceof EObject)) {
-	        PrefetchMLLogger.error("Unknown source {0}", source);
-	        throw new IllegalArgumentException();
-	    }
-	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, -2);
-        int oldValue = (int)cache.get(key);
-        cache.put(key, oldValue -1);
-	}
-
 }
