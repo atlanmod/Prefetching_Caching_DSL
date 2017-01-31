@@ -78,9 +78,9 @@ public class BlockStatementTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 			
 			PrefetchMLLogger.info("Q1");
 			computeQuery(query, prefetchableAllInstances);
-	        
-	        PrefetchMLLogger.info("Q2");
-	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+
+			PrefetchMLLogger.info("Q2");
+			this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        eContext = JavaPackage.eINSTANCE.getBlock();
 	        oclHelper.setContext(eContext);
@@ -95,7 +95,6 @@ public class BlockStatementTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 			computeQuery(query, prefetchableAllInstances);
 	        
 			PrefetchMLLogger.info("Cache size: {0}", runtime.getPCore().getActiveCache().size());
-	        
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
