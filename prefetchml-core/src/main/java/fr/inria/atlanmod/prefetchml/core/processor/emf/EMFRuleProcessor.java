@@ -133,6 +133,7 @@ public class EMFRuleProcessor implements RuleProcessor {
 				theSize = r.size();
 				cache.put(sizeKey, theSize);
 			}
+			// TODO use toArray (optimized with NeoEMF)
 			for(int i = 0; i < theSize; i++) {
 				EMFIndexedCacheKey key = new EMFIndexedCacheKey(sourceFragment, theFeature, i);
 				if(cache.containsKey(key)) {
