@@ -97,7 +97,7 @@ public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
              * Necessary for now, we need to find a way to hide this to the client
              */
     		EList<EObject> prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,runtime.getPCore());
-    		PrefetchMLLogger.info("Input size: ", prefetchableAllInstances.size());
+    		PrefetchMLLogger.info("Input size: {0}", prefetchableAllInstances.size());
 
     		PrefetchMLLogger.info("Q1");
     		computeQuery(query, prefetchableAllInstances);
