@@ -18,6 +18,7 @@ import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.util.wrappers.id.IdGraph;
 
 import fr.inria.atlanmod.prefetchml.core.cache.NeoEMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
@@ -26,7 +27,7 @@ import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
 public class NeoEMFRuleProcessor implements RuleProcessor {
 
-	private Map<Object,Object> cache;
+	private Map<Object,MonitoredCacheValue> cache;
 	private IdGraph<KeyIndexableGraph> graph;
 	
 	public class VertexWrapper {
@@ -51,7 +52,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	 * @param cache the structure to store the cached objects in
 	 * @param graph the graph that contains the model representation
 	 */
-	public NeoEMFRuleProcessor(Map<Object,Object> cache, IdGraph<KeyIndexableGraph> graph) {
+	public NeoEMFRuleProcessor(Map<Object,MonitoredCacheValue> cache, IdGraph<KeyIndexableGraph> graph) {
 		this.cache = cache;
 		this.graph = graph;
 	}
@@ -69,7 +70,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	 * @note the previous cache content will be discarded
 	 */
 	@Override
-	public void setCache(Map<Object, Object> newCache) {
+	public void setCache(Map<Object, MonitoredCacheValue> newCache) {
 		this.cache = newCache;
 	}
 
@@ -182,18 +183,18 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         	int theSize = -1;
         	Vertex v = null;
         	if(cache.containsKey(sizeKey)) {
-        		theSize = (int)cache.get(sizeKey);
+// !       		theSize = (int)cache.get(sizeKey);
         	}
         	else {
         		v = graph.getVertex(vId);
         		links = v.getEdges(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
         		if(links.hasNext()) {
         			theSize = v.getProperty(features.get(idx).getFeature().getName()+":size");
-        			cache.put(sizeKey, theSize);
+// !        			cache.put(sizeKey, theSize);
         		}
         		else {
         			// Cache an invalid size
-        			cache.put(sizeKey, -1);
+// !       			cache.put(sizeKey, -1);
         		}
         		
         	}
@@ -206,8 +207,8 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         		for(int i = 0; i < theSize; i++) {
         			NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, i);
         			if(cache.containsKey(key)) {
-        				VertexWrapper wrapper = (VertexWrapper)cache.get(key);
-        				processFeatures(wrapper.getV(), features, idx + 1);
+//  !      				VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+//  !     				processFeatures(wrapper.getV(), features, idx + 1);
         			}
         			else {
         				// Get the links, the size is cached but not the individual item
@@ -224,7 +225,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
 		        			key = new NeoEMFIndexedCacheKey(keyId, theFeature, edgeIdx);
 		        			if(!cache.containsKey(key)) {
-			        			cache.put(key, wrapper);
+//	!		        			cache.put(key, wrapper);
 			        			processFeatures(otherEnd, features, idx + 1);
 		        			}
 	        			}
@@ -235,8 +236,8 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         else {
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, -1);
         	if(cache.containsKey(key)) {
-        		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
-        		processFeatures(wrapper.getV(), features, idx + 1);
+//  !      		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+//  !      		processFeatures(wrapper.getV(), features, idx + 1);
         	}
         	else {
         		Vertex v = graph.getVertex(vId);
@@ -244,7 +245,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         		if(otherEndIterator.hasNext()) {
         			Vertex otherEnd = otherEndIterator.next();
         			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
-        			cache.put(key, wrapper);
+//  !      			cache.put(key, wrapper);
         			processFeatures(otherEnd, features, idx + 1);
         		}
         	}
@@ -283,17 +284,17 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         	Iterator<Edge> links = null;
         	int theSize = -1;
         	if(cache.containsKey(sizeKey)) {
-        		theSize = (int)cache.get(sizeKey);
+//  !      		theSize = (int)cache.get(sizeKey);
         	}
         	else {
         		links = v.getEdges(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
         		if(links.hasNext()) {
         			theSize = v.getProperty(features.get(idx).getFeature().getName()+":size");
-        			cache.put(sizeKey, theSize);
+//  !      			cache.put(sizeKey, theSize);
         		}
         		else {
         			// Cache an invalid size
-        			cache.put(sizeKey, -1);
+//  !      			cache.put(sizeKey, -1);
         		}
         		
         	}
@@ -303,8 +304,8 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         		for(int i = 0; i < theSize; i++) {
         			NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, i);
         			if(cache.containsKey(key)) {
-        				VertexWrapper wrapper = (VertexWrapper)cache.get(key);
-        				processFeatures(wrapper.getV(), features, idx + 1);
+// !       				VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+//  !      				processFeatures(wrapper.getV(), features, idx + 1);
         			}
         			else {
         				// Get the links, the size is cached but not the individual item
@@ -321,7 +322,7 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		        			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
 		        			key = new NeoEMFIndexedCacheKey(keyId, theFeature, edgeIdx);
 		        			if(!cache.containsKey(key)) {
-			        			cache.put(key, wrapper);
+//	!		        			cache.put(key, wrapper);
 			        			processFeatures(otherEnd, features, idx + 1);
 		        			}
 	        			}
@@ -332,15 +333,15 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
         else {
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(keyId, theFeature, -1);
         	if(cache.containsKey(key)) {
-        		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
-        		processFeatures(wrapper.getV(), features, idx + 1);
+// !       		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+//  !      		processFeatures(wrapper.getV(), features, idx + 1);
         	}
         	else {
         		Iterator<Vertex> otherEndIterator = v.getVertices(Direction.OUT, features.get(idx).getFeature().getName()).iterator();
         		if(otherEndIterator.hasNext()) {
         			Vertex otherEnd = otherEndIterator.next();
         			VertexWrapper wrapper = new VertexWrapper(otherEnd, resolveInstanceOf(otherEnd));
-        			cache.put(key, wrapper);
+//!        			cache.put(key, wrapper);
         			processFeatures(otherEnd, features, idx + 1);
         		}
         	}
@@ -361,17 +362,17 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 	        throw new IllegalArgumentException();
 	    }
 	    if(index == -2) {
-	        int size = (int)cache.get(key);
-	        for(int i = 0; i < size; i++) {
-	            NeoEMFIndexedCacheKey vKey = null;
-	            if(source instanceof Vertex) {
-	                vKey = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, i);
-	            }
-	            else if(source instanceof String) {
-	                vKey = new NeoEMFIndexedCacheKey((String)source, feature, i);
-	            }
-	            cache.remove(vKey);
-	        }
+//!	        int size = (int)cache.get(key);
+//!	        for(int i = 0; i < size; i++) {
+//!	            NeoEMFIndexedCacheKey vKey = null;
+//!	            if(source instanceof Vertex) {
+//!	                vKey = new NeoEMFIndexedCacheKey((String)((Vertex)source).getId(), feature, i);
+//!	            }
+//!	            else if(source instanceof String) {
+//!	                vKey = new NeoEMFIndexedCacheKey((String)source, feature, i);
+//!	            }
+//!	            cache.remove(vKey);
+//!	        }
 	    }
 	    cache.remove(key);
 	}
@@ -389,8 +390,8 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
             PrefetchMLLogger.error("Unknown source {0}", source);
             throw new IllegalArgumentException();
         }
-        int oldSize = (int)cache.get(key);
-        cache.put(key, oldSize + sizeDelta);
+//!        int oldSize = (int)cache.get(key);
+//!        cache.put(key, oldSize + sizeDelta);
 	}
 	
 	private Iterator<Vertex> getAllInstancesOfEClass(EClass eClass) {
