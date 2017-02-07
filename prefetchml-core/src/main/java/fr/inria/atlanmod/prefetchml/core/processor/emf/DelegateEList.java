@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 public class DelegateEList<E> implements EList<E> {
@@ -43,23 +44,31 @@ public class DelegateEList<E> implements EList<E> {
 	
 	public int size() {
 		EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner),feature,-2);
-		if(pCore.getActiveCache().containsKey(sizeKey)) {
-			return (int)pCore.getActiveCache().get(sizeKey);
+		MonitoredCacheValue cachedSize = pCore.getActiveCache().get(sizeKey);
+		if(cachedSize != null) {
+		    pCore.hit();
+		    return (int)cachedSize.value();
 		}
 		else {
-			return delegateEGet().size();
+		    int theSize = delegateEGet().size();
+		    pCore.getActiveCache().put(sizeKey, new MonitoredCacheValue(theSize, null));
+		    pCore.miss();
+		    return theSize;
 		}
 	}
 
 	public boolean isEmpty() {
+	    PrefetchMLLogger.debug("IsEmpty");
 		return delegateEGet().isEmpty();
 	}
 
 	public boolean contains(Object o) {
+	    PrefetchMLLogger.debug("Contains");
 		return delegateEGet().contains(o);
 	}
 
 	public Iterator<E> iterator() {
+	    PrefetchMLLogger.debug("Iterator");
 		return new EIterator<E>();
 	}
 
@@ -77,6 +86,8 @@ public class DelegateEList<E> implements EList<E> {
 	     * The previous position of the iterator.
 	     */
 	    protected int lastCursor = -1;
+	    
+	    protected int size = -1;
 
 	    /**
 	     * The modification count of the containing list.
@@ -89,7 +100,10 @@ public class DelegateEList<E> implements EList<E> {
 	     */
 	    public boolean hasNext()
 	    {
-	      return cursor != size();
+	        if(size == -1) {
+	            size = size();
+	        }
+	      return cursor != size;
 	    }
 
 	    /**
@@ -173,26 +187,32 @@ public class DelegateEList<E> implements EList<E> {
 	  }
 
 	public Object[] toArray() {
+	    PrefetchMLLogger.debug("ToArray");
 		return delegateEGet().toArray();
 	}
 
 	public <T> T[] toArray(T[] a) {
+	    PrefetchMLLogger.debug("ToArray");
 		return delegateEGet().toArray(a);
 	}
 
 	public boolean add(E e) {
+	    PrefetchMLLogger.debug("Add");
 		return delegateEGet().add(e);
 	}
 
 	public boolean remove(Object o) {
+	    PrefetchMLLogger.info("Remove");
 		return delegateEGet().remove(o);
 	}
 
 	public boolean containsAll(Collection<?> c) {
+	    PrefetchMLLogger.debug("ContainsAll");
 		return delegateEGet().containsAll(c);
 	}
 
 	public boolean addAll(Collection<? extends E> c) {
+	    PrefetchMLLogger.debug("AddAll");
 	    /*
 	     * Register an add event to ensure cache consistency
 	     */
@@ -201,6 +221,7 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public boolean addAll(int index, Collection<? extends E> c) {
+	    PrefetchMLLogger.debug("AddAll");
 	    /*
 	     * Register an add event to ensure cache consistency
 	     */
@@ -210,6 +231,7 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public boolean removeAll(Collection<?> c) {
+	    PrefetchMLLogger.debug("RemoveAll");
 	    /*
 	     * Register a remove event to ensure cache consistency
 	     */
@@ -218,49 +240,48 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public boolean retainAll(Collection<?> c) {
+	    PrefetchMLLogger.debug("RetainAll");
 		return delegateEGet().retainAll(c);
 	}
 
 	public void clear() {
+	    PrefetchMLLogger.debug("Clear");
 		delegateEGet().clear();
 	}
 
-	public E get(int index) {
-		Object result = null;
+	@SuppressWarnings("unchecked")
+    public E get(int index) {
+	    Object result = null;
 		if(owner != null && feature != null) {
 			EMFIndexedCacheKey cacheKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner), feature, index);
-	    	if(pCore.getActiveCache().containsKey(cacheKey)) {
-	    		result = pCore.getActiveCache().get(cacheKey);
-	    		if(result != null) {
-	    			pCore.hit();;
-	    			pCore.getEventAPI().accessEvent((EObject)result);
-	    			return (E)result;
-	    		}
-	    		else {
-	    			pCore.miss();
-	    			result = delegateEGet().get(index);
-	    			pCore.getEventAPI().accessEvent((EObject)result);
-	    			return (E)result;
-	    		}
+	    	MonitoredCacheValue cachedValue = pCore.getActiveCache().get(cacheKey);
+	    	if(cachedValue != null) {
+    	        pCore.hit();
+    	        pCore.getEventAPI().accessEvent((EObject)cachedValue.value());
+    	        return (E)cachedValue.value();
 	    	}
 	    	else {
-	    		// The feature is not in the cache
-	    		pCore.miss();
-	    		Object r = delegateEGet().get(index);
-	    		pCore.getEventAPI().accessEvent((EObject)r);
-	    		return (E)r;
+	    	    Object theObject = delegateEGet().get(index);
+	    	    pCore.getActiveCache().put(cacheKey, new MonitoredCacheValue(theObject, null));
+	    	    pCore.getEventAPI().accessEvent((EObject)theObject);
+	    	    pCore.miss();
+	    	    return (E)theObject;
 	    	}
 		}
 		else {
 			// This is not a miss, null owner and feature means that the EList is 
 			// an allInstance result
+		    t++;
 			result = delegateEGet().get(index);
 			pCore.getEventAPI().accessEvent((EObject)result);
 			return (E)result;
 		}
 	}
 	
+	public static int t = 0;
+	
 	public E set(int index, E element) {
+	    PrefetchMLLogger.debug("Set");
 	    /*
 	     * Register an update event to ensure cache consistency
 	     */
@@ -269,6 +290,7 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public void add(int index, E element) {
+	    PrefetchMLLogger.debug("Add");
 	    /*
 	     * Register an add event to ensure cache consistency
 	     */
@@ -277,6 +299,7 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public E remove(int index) {
+	    PrefetchMLLogger.debug("Remove");
 	    /*
 	     * Register a remove event to ensure cache consistency
 	     */
@@ -285,22 +308,27 @@ public class DelegateEList<E> implements EList<E> {
 	}
 
 	public int indexOf(Object o) {
+	    PrefetchMLLogger.debug("IndexOf");
 		return delegateEGet().indexOf(o);
 	}
 
 	public int lastIndexOf(Object o) {
+	    PrefetchMLLogger.debug("LastIndexOf");
 		return delegateEGet().lastIndexOf(o);
 	}
 
 	public ListIterator<E> listIterator() {
+	    PrefetchMLLogger.debug("ListIterator");
 		return delegateEGet().listIterator();
 	}
 
 	public ListIterator<E> listIterator(int index) {
+	    PrefetchMLLogger.debug("ListIterator");
 		return delegateEGet().listIterator(index);
 	}
 
 	public List<E> subList(int fromIndex, int toIndex) {
+	    PrefetchMLLogger.debug("SubList");
 		return delegateEGet().subList(fromIndex, toIndex);
 	}
 
