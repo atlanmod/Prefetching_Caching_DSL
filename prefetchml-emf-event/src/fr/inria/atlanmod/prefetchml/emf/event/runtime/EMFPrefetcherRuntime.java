@@ -34,4 +34,12 @@ public class EMFPrefetcherRuntime {
 		pCore.getEventAPI().startingEvent(resource);
 	}
 	
+	public void disable() {
+	    EGetAspect.aspectOf().disable();
+	}
+	
+	public void enable() {
+	    EGetAspect.aspectOf().enable();
+	}
+	
 }
