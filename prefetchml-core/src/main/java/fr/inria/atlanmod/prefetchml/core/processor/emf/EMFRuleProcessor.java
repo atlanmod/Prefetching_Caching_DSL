@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.PrefetchMLMonitor;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
@@ -24,12 +26,12 @@ import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 
 public class EMFRuleProcessor implements RuleProcessor {
 
-	private Map<Object,Object> cache;
+	private Map<Object,MonitoredCacheValue> cache;
 	private Resource resource;
 	
 	private Map<String,List<EObject>> instanceOfMap;
 	
-	public EMFRuleProcessor(Map<Object,Object> cache, Resource resource) {
+	public EMFRuleProcessor(Map<Object,MonitoredCacheValue> cache, Resource resource) {
 		this.cache = cache;
 		this.resource = resource;
 	}
@@ -40,7 +42,7 @@ public class EMFRuleProcessor implements RuleProcessor {
 	}
 	
 	@Override
-	public void setCache(Map<Object,Object> newCache) {
+	public void setCache(Map<Object,MonitoredCacheValue> newCache) {
 		this.cache = newCache;
 	}
 
@@ -66,7 +68,7 @@ public class EMFRuleProcessor implements RuleProcessor {
 		for(StartingRule sRule : sRules) {
 			List<EObject> allInstances = getAllInstances(sRule.getTargetPattern().getEClass(), sRules, resource);
 			for(EObject e : allInstances) {
-				processFeatures(e, sRule.getTargetPattern().getFeatures());
+				processFeatures(e, sRule);
 			}
 		}
 		
@@ -91,8 +93,11 @@ public class EMFRuleProcessor implements RuleProcessor {
 			EClass sourceEClass = aRule.getSourcePattern().getEClass();
 			EClass targetEClass = aRule.getTargetPattern().getEClass();
 			if(sourceEClass.equals(targetEClass)) {
+			    long startProcess = System.currentTimeMillis();
 				// The target pattern is an extension of the source one, simply process the references
-				processFeatures((EObject)source,aRule.getTargetPattern().getFeatures());
+				processFeatures((EObject)source,aRule);
+				long stopProcess = System.currentTimeMillis();
+//				PrefetchMLMonitor.getInstance().registerExecutionTime(aRule, (stopProcess-startProcess));
 			}
 			else {
 				// The target pattern starts with another EClass, fetch all the instances of this EClass
@@ -104,11 +109,12 @@ public class EMFRuleProcessor implements RuleProcessor {
 		}
 	}
 	
-	private void processFeatures(EObject source, EList<FeaturePattern> features) {
-		this.processFeatures(source, features,0);
+	private void processFeatures(EObject source, PrefetchingRule rule) {
+		this.processFeatures(source, rule,0);
 	}
 	
-	private void processFeatures(EObject source, EList<FeaturePattern> features, int idx) {
+	private void processFeatures(EObject source, PrefetchingRule rule, int idx) {
+	    EList<FeaturePattern> features = rule.getTargetPattern().getFeatures();
 		if(source == null) {
 			return;
 		}
@@ -126,37 +132,40 @@ public class EMFRuleProcessor implements RuleProcessor {
 			// Costly
 			EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(sourceFragment, theFeature, -2);
 			int theSize = -1;
-			if(cache.containsKey(sizeKey)) {
-				theSize = (int)cache.get(sizeKey);
+			MonitoredCacheValue cachedSize = cache.get(sizeKey);
+			if(cachedSize != null) {
+			    theSize = (int)cachedSize.value();
 			}
 			else {
-				theSize = r.size();
-				cache.put(sizeKey, theSize);
+			    theSize = r.size();
+			    cache.put(sizeKey, new MonitoredCacheValue(theSize, rule));
 			}
-			// TODO use toArray (optimized with NeoEMF)
-			for(int i = 0; i < theSize; i++) {
-				EMFIndexedCacheKey key = new EMFIndexedCacheKey(sourceFragment, theFeature, i);
-				if(cache.containsKey(key)) {
-					EObject cachedObject = (EObject)cache.get(key);
-					processFeatures(cachedObject, features, idx + 1);
-				}
-				else {
-					EObject computedObject = (EObject)r.get(i);
-					cache.put(key, computedObject);
-					processFeatures(computedObject, features, idx + 1);
-				}
+			
+			for(int i = theSize - 1; i >= 0; i--) {
+			    EMFIndexedCacheKey key = new EMFIndexedCacheKey(sourceFragment, theFeature, i);
+			    MonitoredCacheValue cachedValue = cache.get(key);
+			    if(cachedValue != null) {
+			        EObject cachedEObject = (EObject)cachedValue.value();
+			        processFeatures(cachedEObject, rule, idx + 1);
+			    }
+			    else {
+			        EObject computedEObject = r.get(i);
+			        cache.put(key, new MonitoredCacheValue(computedEObject, rule));
+			        processFeatures(computedEObject, rule, idx + 1);
+			    }
 			}
 		}
 		else {
 			EMFIndexedCacheKey key = new EMFIndexedCacheKey(sourceFragment, theFeature, -1);
 			if(cache.containsKey(key)) {
-				EObject cachedObject = (EObject)cache.get(key);
-				processFeatures(cachedObject, features, idx + 1);
+				EObject cachedObject = (EObject)cache.get(key).value();
+				processFeatures(cachedObject, rule, idx + 1);
 			}
 			else {
 				EObject computedObject = (EObject)source.eGet(theFeature);
-				cache.put(key, computedObject);
-				processFeatures(computedObject, features, idx + 1);
+				cache.put(key, new MonitoredCacheValue(computedObject, rule));
+//				PrefetchMLMonitor.getInstance().registerCachedElement(rule);
+				processFeatures(computedObject, rule, idx + 1);
 			}
 		}
 	}
@@ -191,7 +200,7 @@ public class EMFRuleProcessor implements RuleProcessor {
 	    EObject eObject = (EObject)source;
 	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, index);
 	    if(index == -2) {
-	        int size = (int)cache.get(key);
+	        int size = (int)cache.get(key).value();
 	        for(int i = 0; i < size; i++) {
 	            EMFIndexedCacheKey vKey = new EMFIndexedCacheKey(eObject.eResource().getURIFragment(eObject), feature, i);
 	            cache.remove(vKey);
@@ -207,8 +216,12 @@ public class EMFRuleProcessor implements RuleProcessor {
 	        throw new IllegalArgumentException();
 	    }
 	    EMFIndexedCacheKey key = new EMFIndexedCacheKey(((EObject)source).eResource().getURIFragment((EObject)source), feature, -2);
-	    int oldValue = (int)cache.get(key);
-	    cache.put(key, oldValue + sizeDelta);
+	    MonitoredCacheValue vWrapper = cache.get(key);
+	    int oldValue = (int)vWrapper.value();
+	    PrefetchingRule oldrule = vWrapper.cachingRule();
+	    // Reset the cachingRule value to the previous one (does it make sense?)
+	    // Furthermore, does it make sense to put the rule for a size caching?
+	    cache.put(key, new MonitoredCacheValue(oldValue + sizeDelta, oldrule));
 	}
 	
 }

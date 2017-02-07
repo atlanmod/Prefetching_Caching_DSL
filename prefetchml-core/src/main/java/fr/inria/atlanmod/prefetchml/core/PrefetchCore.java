@@ -21,7 +21,9 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 
 
+
 import fr.inria.atlanmod.prefetchml.core.cache.CacheFactory;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.event.EventAPI;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
@@ -36,7 +38,7 @@ import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
 public class PrefetchCore {
 
 	private ResourceSet prefetchStore;
-	private Map<Object,Object> cache;
+	private Map<Object,MonitoredCacheValue> cache;
 	private RuleStore ruleStore;
 	private PrefetchWorker worker;
 	private EventAPI eventAPI;
@@ -120,12 +122,12 @@ public class PrefetchCore {
 				if(pRule instanceof AccessRule) {
 					AccessRule aRule = (AccessRule)pRule;
 					ruleStore.putARule(planName, aRule.getSourcePattern().getEClass(), aRule);
-					PrefetchMLLogger.debug("ARule {0} added", aRule.getName());
+					PrefetchMLLogger.info("ARule {0} added", aRule.getName());
 				}
 				else if(pRule instanceof StartingRule) {
 					StartingRule sRule = (StartingRule)pRule;
 					ruleStore.putSRule(planName, sRule);
-					PrefetchMLLogger.debug("SRule {0} added", sRule.getName());
+					PrefetchMLLogger.info("SRule {0} added", sRule.getName());
 				}
 				// TODO Handle other rules
 			}
@@ -135,7 +137,7 @@ public class PrefetchCore {
 		missCount = 0;
 	}
 	
-	public final Map<Object,Object> getActiveCache() {
+	public final Map<Object,MonitoredCacheValue> getActiveCache() {
 		return cache;
 	}
 	

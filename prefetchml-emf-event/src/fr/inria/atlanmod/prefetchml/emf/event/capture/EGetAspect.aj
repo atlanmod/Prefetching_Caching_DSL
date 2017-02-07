@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.processor.emf.DelegateEList;
 import fr.inria.atlanmod.prefetchml.core.processor.emf.EMFRuleProcessor;
 //import org.eclipse.emf.ecore.impl.BasicEObjectAspect;
@@ -31,7 +32,8 @@ public aspect EGetAspect extends AbstractEMFAspect {
     	EStructuralFeature feature = (EStructuralFeature)thisJoinPoint.getArgs()[0];
     	
     	EPackage pack = (EPackage)sourceObject.eClass().eContainer();
-    	if(!pack.getNsURI().equals("http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf")) {
+    	if(!pack.getNsURI().equals("http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf")
+    	        && !pack.getNsURI().equals("http://www.semanticweb.org/ontologies/2015/trainbenchmark")) {
     		return proceed();
     	}
     	
@@ -44,18 +46,17 @@ public aspect EGetAspect extends AbstractEMFAspect {
     	}
     	else {
     		EMFIndexedCacheKey cacheKey = new EMFIndexedCacheKey(sourceObject.eResource().getURIFragment(sourceObject),feature,-1);
-    		Object result = null;
-    		if(pCore.getActiveCache().containsKey(cacheKey)) {
-    			pCore.hit();
-    			result = pCore.getActiveCache().get(cacheKey);
-    			return result;
+    		MonitoredCacheValue cachedValue = pCore.getActiveCache().get(cacheKey);
+    		if(cachedValue != null) {
+    		    pCore.hit();
+    		    return cachedValue.value();
     		}
     		else {
-    			// The value is not in the cache
-    			pCore.miss();
-    			return proceed();
+    		    Object theObject = proceed();
+    		    pCore.miss();
+    		    pCore.getActiveCache().put(cacheKey, new MonitoredCacheValue(theObject, null));
+    		    return theObject;
     		}
     	}
     }
-	
 }

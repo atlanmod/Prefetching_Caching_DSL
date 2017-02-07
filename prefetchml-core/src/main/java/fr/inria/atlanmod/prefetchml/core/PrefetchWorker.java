@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
@@ -25,7 +26,7 @@ public class PrefetchWorker {
 	private RuleStore ruleStore;
 	private ExecutorService worker;
 	
-	public PrefetchWorker(RuleProcessorFactory processorFactory, RuleStore ruleStore, Map<Object,Object> cache, Object resourceStore, int executorCount) {
+	public PrefetchWorker(RuleProcessorFactory processorFactory, RuleStore ruleStore, Map<Object,MonitoredCacheValue> cache, Object resourceStore, int executorCount) {
 		assert executorCount > 0 : "PrefetchWorker need to instantiate at least one thread, " + executorCount + " given";
 		this.theProcessor = processorFactory.createProcessor(cache, resourceStore);
 		this.ruleStore = ruleStore;
@@ -39,28 +40,26 @@ public class PrefetchWorker {
 		}
 	}
 	
-	public PrefetchWorker(RuleProcessorFactory processorFactory, RuleStore ruleStore, Map<Object,Object> cache, Object resourceStore) {
+	public PrefetchWorker(RuleProcessorFactory processorFactory, RuleStore ruleStore, Map<Object,MonitoredCacheValue> cache, Object resourceStore) {
 		this(processorFactory,ruleStore,cache,resourceStore,1);
 	}
 	
-	public void setCache(Map<Object,Object> newCache) {
+	public void setCache(Map<Object,MonitoredCacheValue> newCache) {
 		theProcessor.setCache(newCache);
 	}
 	
 	public void handleStart(Object resourceStore) {
 		List<StartingRule> sRules = ruleStore.getSRuleList();
-		worker.execute(new StartingRuleAction(resourceStore, sRules, theProcessor));
+		worker.submit(new StartingRuleAction(resourceStore, sRules, theProcessor));
 	}
 	
-	private AccessRuleAction ar;
 	
 	public void handleAccess(EObject source) {
 		List<AccessRule> pRules = ruleStore.getARuleList(source.eClass());
 		if(pRules.isEmpty()) {
 			return;
 		}
-		ar = new AccessRuleAction(source, pRules, theProcessor);
-		worker.execute(ar);
+		worker.submit(new AccessRuleAction(source, pRules, theProcessor));
 	}
 	
 	public void handleAccess(Object source, EClass eClass) {
@@ -68,7 +67,7 @@ public class PrefetchWorker {
 		if(pRules.isEmpty()) {
 			return;
 		}
-		worker.execute(new AccessRuleAction(source, pRules, theProcessor));
+		worker.submit(new AccessRuleAction(source, pRules, theProcessor));
 	}
 	
 	public void handleUpdate(EObject source, EStructuralFeature feature, int index) {
