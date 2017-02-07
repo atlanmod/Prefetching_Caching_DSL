@@ -1,2 +1,2 @@
-/db/jdt-core.graph
-/db/modisco.graph
+/db/*.graph
+/db/*.mapdb

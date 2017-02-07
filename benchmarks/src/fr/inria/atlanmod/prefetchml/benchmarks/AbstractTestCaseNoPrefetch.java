@@ -61,6 +61,7 @@ public class AbstractTestCaseNoPrefetch extends AbstractPrefetchTest {
                 this.resourceName)));
         
         Map<String, Object> options = BlueprintsNeo4jOptionsBuilder.newBuilder()
+                .softCache()
                 .directWrite()
                 .asMap();
 
