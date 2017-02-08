@@ -51,17 +51,17 @@ public class BlockStatementTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 		performQuery();
     }
 	
-	@Test
-	public void testBlockStatement_smallCache() {
-		runtime.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()), resource);
-		performQuery();
-	}
-	
-	@Test
-	public void testBlockStatement_badPlan() {
-		runtime.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()), resource);
-		performQuery();
-	}
+//	@Test
+//	public void testBlockStatement_smallCache() {
+//		runtime.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()), resource);
+//		performQuery();
+//	}
+//	
+//	@Test
+//	public void testBlockStatement_badPlan() {
+//		runtime.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()), resource);
+//		performQuery();
+//	}
     
     @SuppressWarnings("unchecked")
 	private void performQuery() {

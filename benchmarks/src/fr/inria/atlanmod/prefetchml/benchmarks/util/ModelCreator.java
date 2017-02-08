@@ -20,6 +20,9 @@ import fr.inria.atlanmod.neoemf.data.PersistenceBackendFactoryRegistry;
 import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactory;
 import fr.inria.atlanmod.neoemf.data.blueprints.neo4j.option.BlueprintsNeo4jOptionsBuilder;
 import fr.inria.atlanmod.neoemf.data.blueprints.util.BlueprintsURI;
+import fr.inria.atlanmod.neoemf.data.mapdb.MapDbPersistenceBackendFactory;
+import fr.inria.atlanmod.neoemf.data.mapdb.option.MapDbOptionsBuilder;
+import fr.inria.atlanmod.neoemf.data.mapdb.util.MapDbURI;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
 import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
 
@@ -72,6 +75,44 @@ public class ModelCreator {
         bos.close();
     }
     
+    public static void createNeoEMFMapModel(File sourceFile, File targetFile) throws IOException {
+        PersistenceBackendFactoryRegistry.register(MapDbURI.SCHEME, MapDbPersistenceBackendFactory.getInstance());
+        
+        URI sourceURI = URI.createFileURI(sourceFile.getAbsolutePath());
+        URI targetURI = MapDbURI.createFileURI(targetFile);
+
+        ResourceSet resourceSet = new ResourceSetImpl();
+        
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("zxmi", new XMIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getProtocolToFactoryMap().put(MapDbURI.SCHEME, PersistentResourceFactory.getInstance());
+        
+        Resource sourceResource = resourceSet.createResource(sourceURI);
+        Map<String, Object> loadOpts = new HashMap<String, Object>();
+        
+        sourceResource.load(loadOpts);
+        
+        Resource targetResource = resourceSet.createResource(targetURI);
+        
+        Map<String, Object> saveOpts = MapDbOptionsBuilder.newBuilder()
+                .directWrite()
+                .asMap();
+        
+        targetResource.save(saveOpts);
+
+        /*
+         * Not needed here, and throws an NPE (see NeoEMF issue #64)
+         */
+//      targetResource.getContents().clear();
+        targetResource.getContents().addAll(sourceResource.getContents());
+        targetResource.save(saveOpts);
+        
+        if (targetResource instanceof PersistentResource) {
+            ((PersistentResource)targetResource).close();
+        } else {
+            targetResource.unload();
+        }
+    }
     
     
     public static void createNeoEMFModel(File sourceFile, File targetFile) throws IOException {

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ASCII"?>
+<prefetching:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:prefetching="http://www.inria.fr/atlanmod/neoemf/Prefetching">
+  <metamodel nsURI="http://www.eclipse.org/MoDisco/Java/0.2.incubation/java-neoemf"/>
+  <plans name="PackageOwnedPackages">
+    <rules xsi:type="prefetching:AccessRule" name="c1">
+      <targetPattern pattern="Sensor.monitors.connectsTo.monitoredBy">
+        <eClass href="http://www.semanticweb.org/ontologies/2015/trainbenchmark#//Sensor"/>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.semanticweb.org/ontologies/2015/trainbenchmark#//Sensor/monitors"/>
+        </features>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.semanticweb.org/ontologies/2015/trainbenchmark#//TrackElement/connectsTo"/>
+        </features>
+        <features>
+          <feature xsi:type="ecore:EReference" href="http://www.semanticweb.org/ontologies/2015/trainbenchmark#//TrackElement/monitoredBy"/>
+        </features>
+      </targetPattern>
+      <sourcePattern pattern="Sensor">
+        <eClass href="http://www.semanticweb.org/ontologies/2015/trainbenchmark#//Sensor"/>
+      </sourcePattern>
+    </rules>
+    <cache type="MRU">
+      <properties size="300000"/>
+    </cache>
+  </plans>
+</prefetching:Model>

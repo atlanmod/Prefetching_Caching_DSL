@@ -1,5 +1,7 @@
 package fr.inria.atlanmod.prefetchml.benchmarks;
 
+import hu.bme.hit.trainbenchmark.railway.RailwayPackage;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,7 +31,9 @@ public abstract class AbstractPrefetchTest {
 	
 	protected static String[][] parameters = new String[][]{
 //		{"db/modisco.graph","Modisco"},
-		{"db/jdt-core.graph","JDT"}
+//		{"db/jdt-core.graph","JDT"},
+//	    {"db/jdt-core.mapdb", "JDT-MAP"}
+	    {"db/railway-repair-64.mapdb", "RAILWAY-MAP"}
 		};
 	
     @Parameters
@@ -48,18 +52,27 @@ public abstract class AbstractPrefetchTest {
     	File modelFile = new File(parameters[0][0]);
     	if(!modelFile.exists()) {
             Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
+            Registry.INSTANCE.put(RailwayPackage.eINSTANCE.getNsURI(), RailwayPackage.eINSTANCE);
     		PrefetchMLLogger.info("Databases can not be found, creating them");
     		try {
     			PrefetchMLLogger.info("Unzipping XMI models");
 				ModelCreator.unzip("db/resources.zip", "db/xmi");
 				PrefetchMLLogger.info("Creating modisco.graph");
-				ModelCreator.createNeoEMFModel(
-						new File("db/xmi/resources/org.eclipse.gmt.modisco.java.kyanos.xmi"), 
-						new File("db/modisco.graph"));
-				PrefetchMLLogger.info("Creating jdt-core.graph");
-				ModelCreator.createNeoEMFModel(
-						new File("db/xmi/resources/org.eclipse.jdt.core.xmi"), 
-						new File("db/jdt-core.graph"));
+//				ModelCreator.createNeoEMFModel(
+//						new File("db/xmi/resources/org.eclipse.gmt.modisco.java.kyanos.xmi"), 
+//						new File("db/modisco.graph"));
+//				PrefetchMLLogger.info("Creating jdt-core.graph");
+//				ModelCreator.createNeoEMFModel(
+//						new File("db/xmi/resources/org.eclipse.jdt.core.xmi"), 
+//						new File("db/jdt-core.graph"));
+//				PrefetchMLLogger.info("Creating jdt-core.mapdb");
+//				ModelCreator.createNeoEMFMapModel(
+//				        new File("db/xmi/resources/org.eclipse.jdt.core.xmi"),
+//				        new File("db/jdt-core.mapdb"));
+				PrefetchMLLogger.info("Creating railway-repair-64.mapdb");
+				ModelCreator.createNeoEMFMapModel(
+				        new File("db/xmi/resources/railway-repair-64.xmi"), 
+				        new File("db/railway-repair-64.mapdb"));
 				PrefetchMLLogger.info("Cleaning temp files");
 				File xmiFolder = new File("db/xmi/resources");
 				File[] xmiContents = xmiFolder.listFiles();

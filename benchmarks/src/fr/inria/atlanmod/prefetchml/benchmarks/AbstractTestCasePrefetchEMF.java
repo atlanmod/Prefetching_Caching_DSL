@@ -26,6 +26,7 @@ import fr.inria.atlanmod.neoemf.data.blueprints.neo4j.option.BlueprintsNeo4jOpti
 import fr.inria.atlanmod.neoemf.data.blueprints.util.BlueprintsURI;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
 import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.PrefetchMLMonitor;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.emf.event.runtime.EMFPrefetcherRuntime;
 
@@ -60,6 +61,8 @@ public abstract class AbstractTestCasePrefetchEMF extends AbstractPrefetchTest {
 		resource = (PersistentResource)resSet.createResource(BlueprintsURI.createFileURI(new File(resourceName)));
 		
 		Map<String, Object> options = BlueprintsNeo4jOptionsBuilder.newBuilder()
+//		        .log()
+		        .softCache()
 		        .directWrite()
 		        .asMap();
 		try {
@@ -75,13 +78,18 @@ public abstract class AbstractTestCasePrefetchEMF extends AbstractPrefetchTest {
 	protected List<Object> computeQuery(Query query, List<?> input) {
 	    runtime.getPCore().resetHitCount();
 	    runtime.getPCore().resetMissCount();
+	    PrefetchMLMonitor.getInstance().reset();
         startTimer();
         List<Object> results = query.evaluate(input);
         stopTimer();
+        
         PrefetchMLLogger.info("Done : {0}ms", (stopTimestamp-startTimestamp));
         PrefetchMLLogger.info("Result contains {0} elements", getFlattenedSize(results));
         PrefetchMLLogger.info("#Hits: {0}", runtime.getPCore().getHitCount());
         PrefetchMLLogger.info("#Misses: {0}", runtime.getPCore().getMissCount());
+        
+        PrefetchMLLogger.info(PrefetchMLMonitor.getInstance().getMonitoringInformations());
+        PrefetchMLLogger.info("Cache size: {0}", runtime.getPCore().getActiveCache().size());
         return results;
     }
 	

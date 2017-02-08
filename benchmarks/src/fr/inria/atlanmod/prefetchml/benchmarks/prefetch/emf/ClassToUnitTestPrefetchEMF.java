@@ -1,5 +1,7 @@
 package fr.inria.atlanmod.prefetchml.benchmarks.prefetch.emf;
 
+import java.util.HashSet;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -12,8 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetchEMF;
+import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
+import fr.inria.atlanmod.prefetchml.core.processor.emf.DelegateEList;
 import fr.inria.atlanmod.prefetchml.core.processor.emf.EventNotifierDelegateEList;
+import fr.inria.atlanmod.prefetchml.emf.event.capture.EGetAspect;
 
 public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 	
@@ -74,17 +79,17 @@ public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 		performQuery();
     }
 	
-	@Test
-	public void testClassToUnit_smallCache() {
-		runtime.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()),resource);
-		performQuery();
-	}
-	
-	@Test
-	public void testClassToUnit_badPlan() {
-		runtime.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()), resource);
-		performQuery();
-	}
+//	@Test
+//	public void testClassToUnit_smallCache() {
+//		runtime.loadPrefetchScript(URI.createURI(this.getScriptSmallCacheString()),resource);
+//		performQuery();
+//	}
+//	
+//	@Test
+//	public void testClassToUnit_badPlan() {
+//		runtime.loadPrefetchScript(URI.createURI(this.getScriptBadCacheString()), resource);
+//		performQuery();
+//	}
     
     @SuppressWarnings("unchecked")
 	private void performQuery() {
@@ -101,6 +106,10 @@ public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 
     		PrefetchMLLogger.info("Q1");
     		computeQuery(query, prefetchableAllInstances);
+            System.out.println("t = " + DelegateEList.t);
+            System.out.println(EGetAspect.m);
+            System.out.println(EGetAspect.s.size());
+
 	        
 	        PrefetchMLLogger.info("Q2");
 	        this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -113,10 +122,16 @@ public class ClassToUnitTestPrefetchEMF extends AbstractTestCasePrefetchEMF {
 	        }
 	        this.query = ocl.createQuery(expression);
 	        blocks = resource.getAllInstances(eContext);
-    		prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,runtime.getPCore());	        
-    		computeQuery(query, prefetchableAllInstances);
+    		prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,runtime.getPCore());
+            PrefetchMLLogger.info("Input size: {0}", prefetchableAllInstances.size());
 
-	        PrefetchMLLogger.info("Cache size: {0}", runtime.getPCore().getActiveCache().size());
+            DelegateEList.t = 0;
+            EGetAspect.m = 0;
+            EGetAspect.s = new HashSet<EMFIndexedCacheKey>();
+    		computeQuery(query, prefetchableAllInstances);
+    		System.out.println("t = " + DelegateEList.t);
+    		System.out.println(EGetAspect.m);
+    		System.out.println(EGetAspect.s.size());
 	       
     	} catch(Exception e) {
     		e.printStackTrace();
