@@ -78,6 +78,10 @@ public class CdoBackend {
 
         return transaction.getRootResource();
     }
+    
+    public CDOTransaction getTransaction() {
+        return transaction;
+    }
 
     public Map<String, Object> getOptions() {
         Map<String, Object> saveOpts = new HashMap<>();

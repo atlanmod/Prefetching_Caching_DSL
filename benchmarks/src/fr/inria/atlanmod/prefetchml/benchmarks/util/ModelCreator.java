@@ -5,16 +5,25 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage;
 
 import fr.inria.atlanmod.neoemf.data.PersistenceBackendFactoryRegistry;
 import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactory;
@@ -25,6 +34,7 @@ import fr.inria.atlanmod.neoemf.data.mapdb.option.MapDbOptionsBuilder;
 import fr.inria.atlanmod.neoemf.data.mapdb.util.MapDbURI;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
 import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 public class ModelCreator {
 
@@ -73,6 +83,55 @@ public class ModelCreator {
             bos.write(bytesIn, 0, read);
         }
         bos.close();
+    }
+    
+    public static void createCDOModel(File sourceFile, File targetFile) throws Exception {
+        List<EClass> inputEClasses = new ArrayList<EClass>();
+        inputEClasses.add(JavaPackage.eINSTANCE.getBlock());
+        inputEClasses.add(JavaPackage.eINSTANCE.getClassDeclaration());
+        inputEClasses.add(JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
+        URI sourceURI = URI.createFileURI(sourceFile.getAbsolutePath());
+        CdoBackend cdoBackend = new CdoBackend();
+        
+        ResourceSet resourceSet = new ResourceSetImpl();
+        
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("zxmi", new XMIResourceFactoryImpl());
+        
+        System.out.println("loading input");
+//        Resource sourceResource = resourceSet.getResource(sourceURI, true);
+        Resource sourceResource = resourceSet.createResource(sourceURI);
+        sourceResource.load(Collections.emptyMap());
+        
+        Resource targetResource = cdoBackend.createResource(targetFile, resourceSet);
+//        targetResource.save(Collections.emptyMap());
+        
+        targetResource.getContents().addAll(sourceResource.getContents());
+        targetResource.save(Collections.emptyMap());
+
+        
+        Iterable<EObject> savedContents = () -> targetResource.getAllContents();
+        long targetSize = StreamSupport.stream(savedContents.spliterator(), false).count();
+        PrefetchMLLogger.info("Target size {0}", targetSize);
+        Map<EClass, List<String>> uriFragments = new HashMap<>();
+        // Initialize lists
+        for(EClass eClass : inputEClasses) {
+            uriFragments.put(eClass, new ArrayList<String>());
+        }
+        for(EObject e : savedContents) {
+            for(EClass eClass : inputEClasses) {
+                if(eClass.isInstance(e)) {
+                    uriFragments.get(eClass).add(targetResource.getURIFragment(e));
+                }
+            }
+        }
+        
+        PropertiesConfiguration propertyFile = new PropertiesConfiguration(new File(targetFile + "/allInstances.properties"));
+        for(EClass eClass : uriFragments.keySet()) {
+            propertyFile.addProperty(eClass.getName(), uriFragments.get(eClass));
+        }
+        
+        propertyFile.save();        
     }
     
     public static void createNeoEMFMapModel(File sourceFile, File targetFile) throws IOException {

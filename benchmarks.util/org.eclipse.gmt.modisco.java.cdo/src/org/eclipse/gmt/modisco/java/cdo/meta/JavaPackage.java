@@ -5,7 +5,6 @@ package org.eclipse.gmt.modisco.java.cdo.meta;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -24,7 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface JavaPackage extends EPackage {
+public interface JavaPackage extends org.eclipse.gmt.modisco.java.emf.JavaPackage {
     /**
      * The package name.
      * <!-- begin-user-doc -->

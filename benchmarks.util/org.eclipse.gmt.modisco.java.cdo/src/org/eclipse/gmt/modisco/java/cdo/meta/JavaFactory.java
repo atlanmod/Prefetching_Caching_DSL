@@ -2,7 +2,6 @@
  */
 package org.eclipse.gmt.modisco.java.cdo.meta;
 
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.gmt.modisco.java.*;
 
 /**
@@ -13,7 +12,7 @@ import org.eclipse.gmt.modisco.java.*;
  * @see org.eclipse.gmt.modisco.java.cdo.meta.JavaPackage
  * @generated
  */
-public interface JavaFactory extends EFactory {
+public interface JavaFactory extends org.eclipse.gmt.modisco.java.emf.JavaFactory {
     /**
      * The singleton instance of the factory.
      * <!-- begin-user-doc -->

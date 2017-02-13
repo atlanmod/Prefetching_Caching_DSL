@@ -1,2 +1,3 @@
 /db/*.graph
 /db/*.mapdb
+/db/*.cdo

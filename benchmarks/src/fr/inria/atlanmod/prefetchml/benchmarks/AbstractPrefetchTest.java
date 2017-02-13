@@ -33,7 +33,9 @@ public abstract class AbstractPrefetchTest {
 //		{"db/modisco.graph","Modisco"},
 //		{"db/jdt-core.graph","JDT"},
 //	    {"db/jdt-core.mapdb", "JDT-MAP"}
-	    {"db/railway-repair-64.mapdb", "RAILWAY-MAP"}
+//	    {"db/railway-repair-64.mapdb", "RAILWAY-MAP"}
+//	    {"db/modisco.cdo","Modisco-CDO"}
+	    {"db/jdt-core.cdo","JDT-CDO"}
 		};
 	
     @Parameters
@@ -47,17 +49,22 @@ public abstract class AbstractPrefetchTest {
     }
     
     @BeforeClass
-    public static void setUpBeforeClass() {
+    public static void setUpBeforeClass() throws Exception {
     	PrefetchMLLogger.info("Checking databases");
     	File modelFile = new File(parameters[0][0]);
     	if(!modelFile.exists()) {
             Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
+//            Registry.INSTANCE.put(org.eclipse.gmt.modisco.java.cdo.meta.JavaPackage.eINSTANCE.getNsURI(),
+//                    org.eclipse.gmt.modisco.java.cdo.meta.JavaPackage.eINSTANCE);
+            System.out.println(org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage.eINSTANCE.getNsURI());
+            Registry.INSTANCE.put(org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage.eINSTANCE.getNsURI(),
+                    org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage.eINSTANCE);
             Registry.INSTANCE.put(RailwayPackage.eINSTANCE.getNsURI(), RailwayPackage.eINSTANCE);
     		PrefetchMLLogger.info("Databases can not be found, creating them");
     		try {
     			PrefetchMLLogger.info("Unzipping XMI models");
 				ModelCreator.unzip("db/resources.zip", "db/xmi");
-				PrefetchMLLogger.info("Creating modisco.graph");
+//				PrefetchMLLogger.info("Creating modisco.graph");
 //				ModelCreator.createNeoEMFModel(
 //						new File("db/xmi/resources/org.eclipse.gmt.modisco.java.kyanos.xmi"), 
 //						new File("db/modisco.graph"));
@@ -69,10 +76,18 @@ public abstract class AbstractPrefetchTest {
 //				ModelCreator.createNeoEMFMapModel(
 //				        new File("db/xmi/resources/org.eclipse.jdt.core.xmi"),
 //				        new File("db/jdt-core.mapdb"));
-				PrefetchMLLogger.info("Creating railway-repair-64.mapdb");
-				ModelCreator.createNeoEMFMapModel(
-				        new File("db/xmi/resources/railway-repair-64.xmi"), 
-				        new File("db/railway-repair-64.mapdb"));
+//				PrefetchMLLogger.info("Creating railway-repair-64.mapdb");
+//				ModelCreator.createNeoEMFMapModel(
+//				        new File("db/xmi/resources/railway-repair-64.xmi"), 
+//				        new File("db/railway-repair-64.mapdb"));
+//				PrefetchMLLogger.info("Creating modisco.cdo");
+//				ModelCreator.createCDOModel(
+//				        new File("db/xmi/resources/org.eclipse.gmt.modisco.java.cdo.xmi"),
+//				        new File("db/modisco.cdo"));
+				PrefetchMLLogger.info("Creating jdt-core.cdo");
+                ModelCreator.createCDOModel(
+                        new File("db/xmi/resources/org.eclipse.jdt.core.cdo.xmi"),
+                        new File("db/jdt-core.cdo"));
 				PrefetchMLLogger.info("Cleaning temp files");
 				File xmiFolder = new File("db/xmi/resources");
 				File[] xmiContents = xmiFolder.listFiles();
