@@ -109,8 +109,6 @@ public class ClassToUnitTestPrefetchEMFMapDB extends AbstractTestCasePrefetchEMF
     		PrefetchMLLogger.info("Q1");
     		computeQuery(query, prefetchableAllInstances);
             System.out.println("t = " + DelegateEList.t);
-            System.out.println(EGetAspect.m);
-            System.out.println(EGetAspect.s.size());
 
 	        
 	        PrefetchMLLogger.info("Q2");
@@ -130,12 +128,8 @@ public class ClassToUnitTestPrefetchEMFMapDB extends AbstractTestCasePrefetchEMF
     		PrefetchMLLogger.info("Input size: {0}", prefetchableAllInstances.size());
 
             DelegateEList.t = 0;
-            EGetAspect.m = 0;
-            EGetAspect.s = new HashSet<EMFIndexedCacheKey>();
     		computeQuery(query, prefetchableAllInstances);
     		System.out.println("t = " + DelegateEList.t);
-    		System.out.println(EGetAspect.m);
-    		System.out.println(EGetAspect.s.size());
 	       
     	} catch(Exception e) {
     		e.printStackTrace();
