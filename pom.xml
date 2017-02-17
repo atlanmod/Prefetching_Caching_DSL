@@ -83,6 +83,7 @@
         <osgi.version>6.0.0</osgi.version>
         <emf.version>2.12.0</emf.version>
         <ecore.version>2.12.0</ecore.version>
+        <cdo.version>4.3.0</cdo.version>
         <javax-annotations.version>3.0.1</javax-annotations.version>
         <junit.version>4.12</junit.version>
     </properties>
@@ -128,6 +129,14 @@
                 <artifactId>org.eclipse.emf.common</artifactId>
                 <version>${emf.version}</version>
             </dependency>
+            
+            <!-- CDO -->
+			<dependency>
+                <groupId>org.eclipselabs</groupId>
+                <artifactId>cdo</artifactId>
+                <version>${cdo.version}</version>
+                <type>pom</type>
+			</dependency>
 
             <dependency>
                 <groupId>org.eclipse.emf</groupId>
@@ -233,7 +242,7 @@
                                 *;
                                 scope=compile|runtime;
                                 type=!pom;
-                                artifactId=!jsr305;
+                                artifactId=!jsr305|cdo;
                                 groupId=!${project.groupId}|org.eclipse.emf|org.osgi
                             </Embed-Dependency>
                             <Embed-Transitive>true</Embed-Transitive>

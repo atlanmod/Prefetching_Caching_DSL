@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -43,7 +45,8 @@ public class DelegateEList<E> implements EList<E> {
 	}
 	
 	public int size() {
-		EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner),feature,-2);
+	    String id = IDUtil.getURIFragment(owner);
+		EMFIndexedCacheKey sizeKey = new EMFIndexedCacheKey(id,feature,-2);
 		MonitoredCacheValue cachedSize = pCore.getActiveCache().get(sizeKey);
 		if(cachedSize != null) {
 		    pCore.hit();
@@ -253,18 +256,38 @@ public class DelegateEList<E> implements EList<E> {
     public E get(int index) {
 	    Object result = null;
 		if(owner != null && feature != null) {
-			EMFIndexedCacheKey cacheKey = new EMFIndexedCacheKey(owner.eResource().getURIFragment(owner), feature, index);
+		    String id = IDUtil.getURIFragment(owner);
+			EMFIndexedCacheKey cacheKey = new EMFIndexedCacheKey(id, feature, index);
 	    	MonitoredCacheValue cachedValue = pCore.getActiveCache().get(cacheKey);
 	    	if(cachedValue != null) {
     	        pCore.hit();
     	        pCore.getEventAPI().accessEvent((EObject)cachedValue.value());
-    	        return (E)cachedValue.value();
+    	        E returnValue = (E)cachedValue.value();
+    	        if(pCore.isMirrored()) {
+    	            if(returnValue instanceof CDOObject) {
+    	                CDOObject cdoObject = (CDOObject)returnValue;
+    	                if(((CDOResource)pCore.getBaseResource()).cdoView().equals(cdoObject.cdoView())) {
+    	                    returnValue = (E)cdoObject;
+    	                }
+    	                else {
+    	                    returnValue = (E)pCore.getBaseResource().getEObject(IDUtil.getURIFragment((EObject)returnValue));
+    	                }
+    	            }
+    	        }
+    	        if(returnValue instanceof CDOObject) {
+//    	            System.out.println("delegatelist view: " + ((CDOObject)returnValue).cdoView());
+    	        }
+    	        return returnValue;
+//    	        return (E)cachedValue.value();
 	    	}
 	    	else {
 	    	    Object theObject = delegateEGet().get(index);
 	    	    pCore.getActiveCache().put(cacheKey, new MonitoredCacheValue(theObject, null));
 	    	    pCore.getEventAPI().accessEvent((EObject)theObject);
 	    	    pCore.miss();
+	    	    if(theObject instanceof CDOObject) {
+//	    	        System.out.println("delegateget view: " + ((CDOObject)theObject).cdoView());
+	    	    }
 	    	    return (E)theObject;
 	    	}
 		}
@@ -341,5 +364,5 @@ public class DelegateEList<E> implements EList<E> {
 		return null;
 //		return list.move(newPosition, oldPosition);
 	}
-
+	
 }

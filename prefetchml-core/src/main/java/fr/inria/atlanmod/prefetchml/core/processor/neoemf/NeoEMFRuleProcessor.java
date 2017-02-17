@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
@@ -74,6 +75,11 @@ public class NeoEMFRuleProcessor implements RuleProcessor {
 		this.cache = newCache;
 	}
 
+	@Override
+	public void setMirroredResource(Resource baseResource) {
+	    throw new RuntimeException("Not implemented yet");
+	}
+	
 	/**
 	 * @deprecated executes a single starting rule
 	 * @see{NeoEMFRuleProcessor.processStartingRules(List<StartingRule>, Object)} instead

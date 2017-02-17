@@ -43,6 +43,8 @@ public class PrefetchCore {
 	private PrefetchWorker worker;
 	private EventAPI eventAPI;
 	private Object resourceStore;
+	private Resource baseResource;
+	
 	
 	/**
 	 * The number of cache hits
@@ -79,6 +81,11 @@ public class PrefetchCore {
 		eventAPI = new EventAPI(worker);
 		PrefetchMLLogger.info("Event API Ready");
 		PrefetchMLLogger.info("Prefetch Framework Started");
+	}
+	
+	public void setMirroredResource(Resource baseResource) {
+	    this.baseResource = baseResource;
+	    this.worker.setMirroredResource(baseResource);
 	}
 	
 	public void loadPrefetchScript(URI uri) {
@@ -139,6 +146,14 @@ public class PrefetchCore {
 	
 	public final Map<Object,MonitoredCacheValue> getActiveCache() {
 		return cache;
+	}
+	
+	public Resource getBaseResource() {
+	    return baseResource;
+	}
+	
+	public boolean isMirrored() {
+	    return baseResource != null;
 	}
 	
 	public RuleStore getRuleStore() {

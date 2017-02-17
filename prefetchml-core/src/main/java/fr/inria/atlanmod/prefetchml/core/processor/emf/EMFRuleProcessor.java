@@ -8,14 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.spi.cdo.InternalCDOObject;
 
 import fr.inria.atlanmod.prefetchml.core.cache.EMFIndexedCacheKey;
-import fr.inria.atlanmod.prefetchml.core.cache.monitoring.PrefetchMLMonitor;
 import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
@@ -28,12 +30,15 @@ public class EMFRuleProcessor implements RuleProcessor {
 
 	private Map<Object,MonitoredCacheValue> cache;
 	private Resource resource;
+	private Resource baseResource;
+	private boolean isMirrored;
 	
 	private Map<String,List<EObject>> instanceOfMap;
 	
 	public EMFRuleProcessor(Map<Object,MonitoredCacheValue> cache, Resource resource) {
 		this.cache = cache;
 		this.resource = resource;
+		this.isMirrored = false;
 	}
 	
 	@Override
@@ -44,6 +49,12 @@ public class EMFRuleProcessor implements RuleProcessor {
 	@Override
 	public void setCache(Map<Object,MonitoredCacheValue> newCache) {
 		this.cache = newCache;
+	}
+	
+	@Override
+	public void setMirroredResource(Resource baseResource) {
+	    this.isMirrored = true;
+	    this.baseResource = baseResource;
 	}
 
 	@Override
@@ -89,13 +100,28 @@ public class EMFRuleProcessor implements RuleProcessor {
 		if(aRules.isEmpty()) {
 			return;
 		}
+		
+		EObject computedSource = (EObject)source;
+		if(isMirrored) {
+//		    ((InternalCDOObject)computedSource).cdoInternalSetView(((CDOResource)resource).cdoView());
+		    if(computedSource instanceof CDOObject) {
+		        CDOObject cdoObject = (CDOObject)computedSource;
+		        if(((CDOResource)resource).cdoView().equals(cdoObject.cdoView())) {
+		            computedSource = cdoObject;
+		        }
+		        else {
+		            computedSource = resource.getEObject(IDUtil.getURIFragment((EObject)source));
+		        }
+		    }
+		}
+		
 		for(AccessRule aRule : aRules) {
 			EClass sourceEClass = aRule.getSourcePattern().getEClass();
 			EClass targetEClass = aRule.getTargetPattern().getEClass();
 			if(sourceEClass.equals(targetEClass)) {
 			    long startProcess = System.currentTimeMillis();
 				// The target pattern is an extension of the source one, simply process the references
-				processFeatures((EObject)source,aRule);
+				processFeatures(computedSource,aRule);
 				long stopProcess = System.currentTimeMillis();
 //				PrefetchMLMonitor.getInstance().registerExecutionTime(aRule, (stopProcess-startProcess));
 			}
@@ -121,10 +147,13 @@ public class EMFRuleProcessor implements RuleProcessor {
 		if(features == null || idx >= features.size()) {
 			return;
 		}
-
-		EStructuralFeature theFeature = features.get(idx).getFeature();
-		String sourceFragment = source.eResource().getURIFragment(source);
 		
+		if(source instanceof CDOObject) {
+//		    System.out.println("process source view: " + ((CDOObject)source).cdoView().toString());
+		}
+		
+		EStructuralFeature theFeature = features.get(idx).getFeature();
+		String sourceFragment = IDUtil.getURIFragment(source);
 		if(theFeature.isMany()) {
 			// Not costly (just a wrapper)
 			@SuppressWarnings("unchecked")
@@ -146,11 +175,23 @@ public class EMFRuleProcessor implements RuleProcessor {
 			    MonitoredCacheValue cachedValue = cache.get(key);
 			    if(cachedValue != null) {
 			        EObject cachedEObject = (EObject)cachedValue.value();
+			        if(isMirrored) {
+			            if(cachedEObject instanceof CDOObject) {
+			                CDOObject cdoObject = (CDOObject)cachedEObject;
+			                if(((CDOResource)resource).cdoView().equals(cdoObject.cdoView())) {
+			                    cachedEObject = cdoObject;
+			                }
+			                else {
+			                    cachedEObject = resource.getEObject(IDUtil.getURIFragment(cachedEObject));
+			                }
+			            }
+			        }
 			        processFeatures(cachedEObject, rule, idx + 1);
 			    }
 			    else {
 			        EObject computedEObject = r.get(i);
-			        cache.put(key, new MonitoredCacheValue(computedEObject, rule));
+			        EObject toStore = computedEObject;
+			        cache.put(key, new MonitoredCacheValue(toStore, rule));
 			        processFeatures(computedEObject, rule, idx + 1);
 			    }
 			}
@@ -159,12 +200,23 @@ public class EMFRuleProcessor implements RuleProcessor {
 			EMFIndexedCacheKey key = new EMFIndexedCacheKey(sourceFragment, theFeature, -1);
 			if(cache.containsKey(key)) {
 				EObject cachedObject = (EObject)cache.get(key).value();
+				if(isMirrored) {
+				    if(cachedObject instanceof CDOObject) {
+				        CDOObject cdoObject = (CDOObject)cachedObject;
+    				    if(((CDOResource)resource).cdoView().equals(cdoObject.cdoView())) {
+    				        cachedObject = cdoObject;
+    				    }
+    				    else {
+    				        cachedObject = resource.getEObject(IDUtil.getURIFragment(cachedObject));
+    				    }
+				    }
+				}
 				processFeatures(cachedObject, rule, idx + 1);
 			}
 			else {
 				EObject computedObject = (EObject)source.eGet(theFeature);
-				cache.put(key, new MonitoredCacheValue(computedObject, rule));
-//				PrefetchMLMonitor.getInstance().registerCachedElement(rule);
+				EObject toStore = computedObject;
+				cache.put(key, new MonitoredCacheValue(toStore, rule));
 				processFeatures(computedObject, rule, idx + 1);
 			}
 		}
@@ -223,5 +275,8 @@ public class EMFRuleProcessor implements RuleProcessor {
 	    // Furthermore, does it make sense to put the rule for a size caching?
 	    cache.put(key, new MonitoredCacheValue(oldValue + sizeDelta, oldrule));
 	}
+	
+	
+
 	
 }

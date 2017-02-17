@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
@@ -13,6 +14,7 @@ public interface RuleProcessor {
 
 	public Object getCache();
 	public void setCache(Map<Object,MonitoredCacheValue> newCache);
+	public void setMirroredResource(Resource baseResource);
 	
 	public void processStartingRule(StartingRule sRule, Object resourceStore);
 	public void processStartingRules(List<StartingRule> sRules, Object resourceStore);

@@ -45,6 +45,13 @@
 			<artifactId>org.eclipse.emf.common</artifactId>
 		</dependency>
 		
+		<!-- CDO -->
+		<dependency>
+	        <groupId>org.eclipselabs</groupId>
+	        <artifactId>cdo</artifactId>
+	        <type>pom</type>
+		</dependency>
+		
 		<!-- Common -->    
 		
 		<dependency>
@@ -130,7 +137,8 @@
 	           	</Embed-Dependency>
 	           	<Require-Bundle>
 	           		fr.inria.atlanmod.prefetchml.language.metamodel,
-	           		org.eclipse.emf.ecore;visibility:=reexport
+	           		org.eclipse.emf.ecore;visibility:=reexport,
+	           		org.eclipse.emf.cdo
 	           	</Require-Bundle>
 	           </instructions>
 	          </configuration>

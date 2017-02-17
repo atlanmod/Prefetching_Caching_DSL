@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
@@ -15,7 +16,6 @@ import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessor;
 import fr.inria.atlanmod.prefetchml.core.processor.RuleProcessorFactory;
 import fr.inria.atlanmod.prefetchml.core.tasks.AccessRuleAction;
 import fr.inria.atlanmod.prefetchml.core.tasks.InvalidateCacheAction;
-import fr.inria.atlanmod.prefetchml.core.tasks.StartingRuleAction;
 import fr.inria.atlanmod.prefetchml.core.tasks.UpdateCacheSizeAction;
 import fr.inria.atlanmod.prefetchml.language.metamodel.AccessRule;
 import fr.inria.atlanmod.prefetchml.language.metamodel.StartingRule;
@@ -48,9 +48,14 @@ public class PrefetchWorker {
 		theProcessor.setCache(newCache);
 	}
 	
+	public void setMirroredResource(Resource baseResource) {
+	    // Notify the processor
+	    this.theProcessor.setMirroredResource(baseResource);
+	}
+	
 	public void handleStart(Object resourceStore) {
 		List<StartingRule> sRules = ruleStore.getSRuleList();
-		worker.submit(new StartingRuleAction(resourceStore, sRules, theProcessor));
+//		worker.submit(new StartingRuleAction(resourceStore, sRules, theProcessor));
 	}
 	
 	
