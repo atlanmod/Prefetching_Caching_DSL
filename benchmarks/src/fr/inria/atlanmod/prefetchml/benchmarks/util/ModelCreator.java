@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage;
 
+import railway.RailwayPackage;
 import fr.inria.atlanmod.neoemf.data.PersistenceBackendFactoryRegistry;
 import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactory;
 import fr.inria.atlanmod.neoemf.data.blueprints.neo4j.option.BlueprintsNeo4jOptionsBuilder;
@@ -90,6 +91,12 @@ public class ModelCreator {
         inputEClasses.add(JavaPackage.eINSTANCE.getBlock());
         inputEClasses.add(JavaPackage.eINSTANCE.getClassDeclaration());
         inputEClasses.add(JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
+        inputEClasses.add(JavaPackage.eINSTANCE.getModifier());
+        inputEClasses.add(JavaPackage.eINSTANCE.getTypeAccess());
+        inputEClasses.add(JavaPackage.eINSTANCE.getStatement());
+        inputEClasses.add(RailwayPackage.eINSTANCE.getSensor());
+        inputEClasses.add(RailwayPackage.eINSTANCE.getRoute());
+        
         URI sourceURI = URI.createFileURI(sourceFile.getAbsolutePath());
         CdoBackend cdoBackend = new CdoBackend();
         
@@ -129,6 +136,7 @@ public class ModelCreator {
         PropertiesConfiguration propertyFile = new PropertiesConfiguration(new File(targetFile + "/allInstances.properties"));
         for(EClass eClass : uriFragments.keySet()) {
             propertyFile.addProperty(eClass.getName(), uriFragments.get(eClass));
+            PrefetchMLLogger.info("Model contains {0} {1}", uriFragments.get(eClass).size(), eClass.getName());
         }
         
         propertyFile.save();        

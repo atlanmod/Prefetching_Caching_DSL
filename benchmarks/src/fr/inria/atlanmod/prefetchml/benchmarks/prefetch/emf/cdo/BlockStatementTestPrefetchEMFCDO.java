@@ -1,25 +1,24 @@
-package fr.inria.atlanmod.prefetchml.benchmarks.prefetch.emf.mapdb;
+package fr.inria.atlanmod.prefetchml.benchmarks.prefetch.emf.cdo;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmt.modisco.java.neoemf.meta.JavaPackage;
+import org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetchEMF;
-import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetchEMFMapDB;
+import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCasePrefetchEMFCDO;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 import fr.inria.atlanmod.prefetchml.core.processor.emf.EventNotifierDelegateEList;
 import fr.inria.atlanmod.prefetchml.emf.event.capture.EGetAspect;
 
-public class BlockStatementTestPrefetchEMFMapDB extends AbstractTestCasePrefetchEMFMapDB {
+public class BlockStatementTestPrefetchEMFCDO extends AbstractTestCasePrefetchEMFCDO {
 	
-	public BlockStatementTestPrefetchEMFMapDB(String resourceName, String scriptSuffix) {
+	public BlockStatementTestPrefetchEMFCDO(String resourceName, String scriptSuffix) {
 		super(resourceName, scriptSuffix);
 	}
 
@@ -72,7 +71,7 @@ public class BlockStatementTestPrefetchEMFMapDB extends AbstractTestCasePrefetch
 			PrefetchMLLogger.info(this.getClass().getName());
 			
 			runtime.disable();
-			EList<EObject> blocks = resource.getAllInstances(eContext);
+			EList<EObject> blocks = getAllInstances(resource, eContext);
 			/*
 			 * Necessary for now, we need to find a way to hide this to the client
 			 */
@@ -82,9 +81,10 @@ public class BlockStatementTestPrefetchEMFMapDB extends AbstractTestCasePrefetch
 			
 			PrefetchMLLogger.info("Q1");
 			computeQuery(query, prefetchableAllInstances);
-            PrefetchMLLogger.info("EGetAscpect triggered {0} times", EGetAspect.count);
-            EGetAspect.count = 0;
+			PrefetchMLLogger.info("EGetAscpect triggered {0} times", EGetAspect.count);
+			EGetAspect.count = 0;
 			PrefetchMLLogger.info("Q2");
+			Thread.sleep(10000);
 			this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 	        this.oclHelper = ocl.createOCLHelper();
 	        eContext = JavaPackage.eINSTANCE.getBlock();
@@ -96,18 +96,18 @@ public class BlockStatementTestPrefetchEMFMapDB extends AbstractTestCasePrefetch
 	        }
 	        this.query = ocl.createQuery(expression);
 	        runtime.disable();
-	        blocks = resource.getAllInstances(eContext);
+	        blocks = getAllInstances(resource, eContext);
 			prefetchableAllInstances = new EventNotifierDelegateEList<EObject>(blocks,runtime.getPCore());
 			runtime.enable();
 			computeQuery(query, prefetchableAllInstances);
 	        
 			PrefetchMLLogger.info("Cache size: {0}", runtime.getPCore().getActiveCache().size());
-	        PrefetchMLLogger.info("EGetAscpect triggered {0} times", EGetAspect.count);
-
+			PrefetchMLLogger.info("EGetAscpect triggered {0} times", EGetAspect.count);
+			Thread.sleep(1000000);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
-		    resource.close();
+		    resource.unload();
 		}
     }
 }

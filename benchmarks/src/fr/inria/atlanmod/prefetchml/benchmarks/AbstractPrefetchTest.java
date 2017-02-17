@@ -36,6 +36,7 @@ public abstract class AbstractPrefetchTest {
 //	    {"db/railway-repair-64.mapdb", "RAILWAY-MAP"}
 //	    {"db/modisco.cdo","Modisco-CDO"}
 	    {"db/jdt-core.cdo","JDT-CDO"}
+//	    {"db/railway-repair-64.cdo", "RAILWAY-CDO"}
 		};
 	
     @Parameters
@@ -59,6 +60,7 @@ public abstract class AbstractPrefetchTest {
             System.out.println(org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage.eINSTANCE.getNsURI());
             Registry.INSTANCE.put(org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage.eINSTANCE.getNsURI(),
                     org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage.eINSTANCE);
+            Registry.INSTANCE.put(railway.RailwayPackage.eINSTANCE.getNsURI(), railway.RailwayPackage.eINSTANCE);
             Registry.INSTANCE.put(RailwayPackage.eINSTANCE.getNsURI(), RailwayPackage.eINSTANCE);
     		PrefetchMLLogger.info("Databases can not be found, creating them");
     		try {
@@ -88,6 +90,10 @@ public abstract class AbstractPrefetchTest {
                 ModelCreator.createCDOModel(
                         new File("db/xmi/resources/org.eclipse.jdt.core.cdo.xmi"),
                         new File("db/jdt-core.cdo"));
+//				PrefetchMLLogger.info("Creating railway-repair-64.cdo");
+//				ModelCreator.createCDOModel(
+//                      new File("db/xmi/resources/railway-repair-64.cdo.xmi"), 
+//                      new File("db/railway-repair-64.cdo"));
 				PrefetchMLLogger.info("Cleaning temp files");
 				File xmiFolder = new File("db/xmi/resources");
 				File[] xmiContents = xmiFolder.listFiles();

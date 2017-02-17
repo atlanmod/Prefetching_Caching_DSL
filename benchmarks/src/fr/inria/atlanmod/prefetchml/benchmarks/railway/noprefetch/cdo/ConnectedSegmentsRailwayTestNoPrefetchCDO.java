@@ -1,4 +1,4 @@
-package fr.inria.atlanmod.prefetchml.benchmarks.noprefetch.cdo;
+package fr.inria.atlanmod.prefetchml.benchmarks.railway.noprefetch.cdo;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -10,12 +10,14 @@ import org.eclipse.ocl.ecore.OCL;
 import org.junit.Before;
 import org.junit.Test;
 
+import railway.RailwayPackage;
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseNoPrefetchCDO;
+import fr.inria.atlanmod.prefetchml.benchmarks.AbstractTestCaseRailwayNoPrefetchCDO;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
-public class BlockStatementTestNoPrefetchCDO extends AbstractTestCaseNoPrefetchCDO {
+public class ConnectedSegmentsRailwayTestNoPrefetchCDO extends AbstractTestCaseRailwayNoPrefetchCDO {
 
-	public BlockStatementTestNoPrefetchCDO(String resourceName, String scriptSuffix) {
+	public ConnectedSegmentsRailwayTestNoPrefetchCDO(String resourceName, String scriptSuffix) {
 		super(resourceName, scriptSuffix);
 	}
 
@@ -26,11 +28,11 @@ public class BlockStatementTestNoPrefetchCDO extends AbstractTestCaseNoPrefetchC
 	@Before
     public void setUp() {
     	super.setUp();
-    	eContext = JavaPackage.eINSTANCE.getBlock();
+    	eContext = RailwayPackage.eINSTANCE.getSensor();
         oclHelper.setContext(eContext);
         try {
-        	textualQuery = ""
-        			+ "self.statements";
+            textualQuery = ""
+                    + "self.monitors->collect(segment1 | segment1.connectsTo->select(segment2 | segment2.monitoredBy->includes(self)))";
             expression = oclHelper.createQuery(textualQuery);
         } catch (ParserException e) {
             e.printStackTrace();
@@ -44,7 +46,7 @@ public class BlockStatementTestNoPrefetchCDO extends AbstractTestCaseNoPrefetchC
     	try {
     	    PrefetchMLLogger.info(this.getClass().getName());
 	        Thread.sleep(10000);
-    	    EList<EObject> blocks = getAllInstances(resource, JavaPackage.eINSTANCE.getBlock());
+    	    EList<EObject> blocks = getAllInstances(resource, RailwayPackage.eINSTANCE.getSensor());
 	        PrefetchMLLogger.info("Input size: " + blocks.size());
 	        
 			PrefetchMLLogger.info("Q1");

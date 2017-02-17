@@ -29,10 +29,11 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.junit.Before;
 
+import railway.RailwayPackage;
 import fr.inria.atlanmod.prefetchml.benchmarks.util.CdoBackend;
 import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
-public class AbstractTestCaseNoPrefetchCDO extends AbstractPrefetchTest {
+public class AbstractTestCaseRailwayNoPrefetchCDO extends AbstractPrefetchTest {
 
     @SuppressWarnings("rawtypes")
     protected OCL ocl = null;
@@ -45,14 +46,14 @@ public class AbstractTestCaseNoPrefetchCDO extends AbstractPrefetchTest {
     protected OCLExpression<EClassifier> expression = null;
     protected Query<EClassifier, EClass, EObject> query = null;
 
-    public AbstractTestCaseNoPrefetchCDO(String resourceName, String scriptSuffix) {
+    public AbstractTestCaseRailwayNoPrefetchCDO(String resourceName, String scriptSuffix) {
         super(resourceName, scriptSuffix);
         cdoBackend = new CdoBackend();
     }
 
     @Before
     public void setUp() {
-        Registry.INSTANCE.put(JavaPackage.eINSTANCE.getNsURI(), JavaPackage.eINSTANCE);
+        Registry.INSTANCE.put(RailwayPackage.eINSTANCE.getNsURI(), RailwayPackage.eINSTANCE);
         this.ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
         this.oclHelper = ocl.createOCLHelper();
         ResourceSet resSet = new ResourceSetImpl();
@@ -80,40 +81,40 @@ public class AbstractTestCaseNoPrefetchCDO extends AbstractPrefetchTest {
 ////                    e.printStackTrace();
 ////                }
 //                long begin = System.currentTimeMillis();
-//                Iterable<EObject> allContents = () -> resource.getAllContents();
-//                PrefetchMLLogger.info("Base resource contains {0} elements",
-//                        StreamSupport.stream(allContents.spliterator(), false).count());
-//                List<EObject> topLevelElements = resource.getContents();
+////                Iterable<EObject> allContents = () -> resource.getAllContents();
+////                PrefetchMLLogger.info("Base resource contains {0} elements",
+////                        StreamSupport.stream(allContents.spliterator(), false).count());
+////                List<EObject> topLevelElements = resource.getContents();
 //                int count = 0;
 ////                while(count < 200000) {
-////                    try {
-////                         si on met resource on perturbe pas l'exec, si on
-////                         met newTransactionalResource on a du lock
-////                        List<EObject> allBlocks = getAllInstances(resource, JavaPackage.eINSTANCE.getBlock());
-////                        List<EObject> allClassDeclarations = getAllInstances(resource, JavaPackage.eINSTANCE.getClassDeclaration());
-////                        List<EObject> allAbstractTypeDeclarations = getAllInstances(resource, JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
-////                        List<EObject> allModifiers = getAllInstances(resource, JavaPackage.eINSTANCE.getModifier());
-////                        List<EObject> allTypeAccesses = getAllInstances(resource, JavaPackage.eINSTANCE.getTypeAccess());
-////                        List<EObject> allStatements = getAllInstances(resource, JavaPackage.eINSTANCE.getStatement());
-////                        count += allBlocks.size();
-////                        count += allClassDeclarations.size();
-////                        count += allAbstractTypeDeclarations.size();
-////                        count += allModifiers.size();
-////                        count += allTypeAccesses.size();
-////                        count += allStatements.size();
-////                        
-////                        PrefetchMLLogger.info("Prefetched {0} elements", count);
-////                    } catch (ConfigurationException e) {
-////                        // TODO Auto-generated catch block
-////                        e.printStackTrace();
-////                    }
+//                    try {
+//                        // si on met resource on perturbe pas l'exec, si on
+//                        // met newTransactionalResource on a du lock
+//                        List<EObject> allBlocks = getAllInstances(resource, JavaPackage.eINSTANCE.getBlock());
+//                        List<EObject> allClassDeclarations = getAllInstances(resource, JavaPackage.eINSTANCE.getClassDeclaration());
+//                        List<EObject> allAbstractTypeDeclarations = getAllInstances(resource, JavaPackage.eINSTANCE.getAbstractTypeDeclaration());
+//                        List<EObject> allModifiers = getAllInstances(resource, JavaPackage.eINSTANCE.getModifier());
+//                        List<EObject> allTypeAccesses = getAllInstances(resource, JavaPackage.eINSTANCE.getTypeAccess());
+//                        List<EObject> allStatements = getAllInstances(resource, JavaPackage.eINSTANCE.getStatement());
+//                        count += allBlocks.size();
+//                        count += allClassDeclarations.size();
+//                        count += allAbstractTypeDeclarations.size();
+//                        count += allModifiers.size();
+//                        count += allTypeAccesses.size();
+//                        count += allStatements.size();
+//                        
+//                        PrefetchMLLogger.info("Prefetched {0} elements", count);
+//                    } catch (ConfigurationException e) {
+//                        // TODO Auto-generated catch block
+//                        e.printStackTrace();
+//                    }
 ////                }
 //                long end = System.currentTimeMillis();
 //                PrefetchMLLogger.info("Base loop Computed in {0}ms", (end-begin));
 //            }
 //        });
-//                
-//        
+                
+        
 //        long begin = System.currentTimeMillis();
 //        Iterable<EObject> allContents = () -> newTransactionalResource.getAllContents();
 //        PrefetchMLLogger.info("New resource contains {0} elements",
