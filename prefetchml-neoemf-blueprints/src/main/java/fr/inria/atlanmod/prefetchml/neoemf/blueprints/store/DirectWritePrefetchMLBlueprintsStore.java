@@ -31,6 +31,7 @@ import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackend;
 import fr.inria.atlanmod.neoemf.data.blueprints.store.DirectWriteBlueprintsStore;
 import fr.inria.atlanmod.prefetchml.core.PrefetchCore;
 import fr.inria.atlanmod.prefetchml.core.cache.NeoEMFIndexedCacheKey;
+import fr.inria.atlanmod.prefetchml.core.cache.monitoring.MonitoredCacheValue;
 import fr.inria.atlanmod.prefetchml.core.event.EventAPI;
 import fr.inria.atlanmod.prefetchml.core.processor.neoemf.NeoEMFRuleProcessorFactory;
 import fr.inria.atlanmod.prefetchml.core.processor.neoemf.NeoEMFRuleProcessor.VertexWrapper;
@@ -63,7 +64,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
     public int size(InternalEObject internalObject, EStructuralFeature feature) {
     	if(feature instanceof EReference) {
     		EReference eReference = (EReference)feature;
-	    	final Map<Object,Object> cache = pCore.getActiveCache();
+	    	final Map<Object, MonitoredCacheValue> cache = pCore.getActiveCache();
 	    	if(!(eReference.getEType() instanceof EClass)) {
 	            return super.size(internalObject, feature);
 	        }
@@ -71,7 +72,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
             NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), eReference, -2);
             if(cache.containsKey(key)) {
             	pCore.hit();;
-            	int cachedSize = (int)cache.get(key);
+            	int cachedSize = (int)cache.get(key).value();
             	if(cachedSize == -1) {
             		return 0;
             	}
@@ -89,7 +90,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
     
     @Override
     protected boolean isSetReference(PersistentEObject object, EReference reference) {
-    	final Map<Object,Object> cache = pCore.getActiveCache();
+    	final Map<Object, MonitoredCacheValue> cache = pCore.getActiveCache();
     	if(!(reference.getEType() instanceof EClass)) {
             return super.isSetReference(object, reference);
         }
@@ -97,7 +98,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
             NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), reference, -2);
             if(cache.containsKey(key)) {
             	pCore.hit();;
-            	int theSize = (int)cache.get(key);
+            	int theSize = (int)cache.get(key).value();
             	return theSize > 0;
             }
         }
@@ -108,7 +109,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
     
     @Override
     protected Object getReference(PersistentEObject object, EReference reference, int index) {
-    	Map<Object,Object> cache = pCore.getActiveCache();
+    	Map<Object, MonitoredCacheValue> cache = pCore.getActiveCache();
     	EventAPI eventAPI = pCore.getEventAPI();
         if(!(reference.getEType() instanceof EClass)) {
             Object r = super.getReference(object, reference, index);
@@ -123,7 +124,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), reference, index);
         	if(cache.containsKey(key)) {
         		pCore.hit();
-        		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+        		VertexWrapper wrapper = (VertexWrapper)cache.get(key).value();
         		eventAPI.accessEvent(wrapper.getV(),wrapper.getEClass());
         		return reifyVertex(wrapper);
         	}
@@ -145,7 +146,7 @@ public class DirectWritePrefetchMLBlueprintsStore extends DirectWriteBlueprintsS
         	NeoEMFIndexedCacheKey key = new NeoEMFIndexedCacheKey(object.id().toString(), reference, -1);
         	if(cache.containsKey(key)) {
         		pCore.hit();
-        		VertexWrapper wrapper = (VertexWrapper)cache.get(key);
+        		VertexWrapper wrapper = (VertexWrapper)cache.get(key).value();
         		eventAPI.accessEvent(wrapper.getV(),wrapper.getEClass());
         		return reifyVertex(wrapper);
         	}
