@@ -21,7 +21,7 @@ public class IDUtil {
             sourceFragment = sb.toString();
         }
         else {
-            PrefetchMLLogger.info("Accessing eResource, may be costly");
+            // Accessing eResource(), may be costly for some implementations
             sourceFragment = eObject.eResource().getURIFragment(eObject);
         }
         return sourceFragment;

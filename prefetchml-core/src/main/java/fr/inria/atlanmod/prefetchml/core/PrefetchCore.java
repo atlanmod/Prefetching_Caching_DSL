@@ -45,6 +45,8 @@ public class PrefetchCore {
 	private Object resourceStore;
 	private Resource baseResource;
 	
+	private URI previousLoadedPlan;
+	
 	
 	/**
 	 * The number of cache hits
@@ -119,7 +121,10 @@ public class PrefetchCore {
 		}
 		PrefetchMLLogger.info("Creating Plan caches");
 		// TODO handle multiple caches
-		cache = CacheFactory.createCacheInstance(pModel.getPlans().get(0).getCache());
+		if(!uri.equals(previousLoadedPlan)) {
+		    // Quick fix to avoid re-creation of the cache if the plan is simply reloaded
+		    cache = CacheFactory.createCacheInstance(pModel.getPlans().get(0).getCache());
+		}
 		worker.setCache(cache);
 		PrefetchMLLogger.info("Plan caches created");
 		PrefetchMLLogger.info("Adding Plan Rules to Rule Store");
@@ -142,6 +147,7 @@ public class PrefetchCore {
 		eventAPI.startingEvent(resourceStore);
 		hitCount = 0;
 		missCount = 0;
+		previousLoadedPlan = uri;
 	}
 	
 	public final Map<Object,MonitoredCacheValue> getActiveCache() {

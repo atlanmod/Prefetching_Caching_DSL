@@ -16,34 +16,12 @@ import static java.util.Objects.nonNull;
 
 import java.io.Closeable;
 import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.file.Path;
-import java.text.MessageFormat;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.emf.cdo.common.id.CDOID;
-import org.eclipse.emf.cdo.common.model.CDOModelUtil;
-import org.eclipse.emf.cdo.common.model.CDOType;
-import org.eclipse.emf.cdo.common.revision.CDOElementProxy;
-import org.eclipse.emf.cdo.common.revision.CDOList;
-import org.eclipse.emf.cdo.common.revision.CDORevision;
-import org.eclipse.emf.cdo.common.revision.CDORevisionUtil;
-import org.eclipse.emf.cdo.common.revision.delta.CDOFeatureDelta;
 import org.eclipse.emf.cdo.eresource.CDOResource;
-import org.eclipse.emf.cdo.internal.common.revision.delta.CDOAddFeatureDeltaImpl;
-import org.eclipse.emf.cdo.internal.common.revision.delta.CDOClearFeatureDeltaImpl;
-import org.eclipse.emf.cdo.internal.common.revision.delta.CDOContainerFeatureDeltaImpl;
-import org.eclipse.emf.cdo.internal.common.revision.delta.CDOMoveFeatureDeltaImpl;
-import org.eclipse.emf.cdo.internal.common.revision.delta.CDORemoveFeatureDeltaImpl;
-import org.eclipse.emf.cdo.internal.common.revision.delta.CDOSetFeatureDeltaImpl;
-import org.eclipse.emf.cdo.internal.common.revision.delta.CDOUnsetFeatureDeltaImpl;
 import org.eclipse.emf.cdo.net4j.CDONet4jSessionConfiguration;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
 import org.eclipse.emf.cdo.server.CDOServerUtil;
@@ -54,33 +32,11 @@ import org.eclipse.emf.cdo.server.db.CDODBUtil;
 import org.eclipse.emf.cdo.server.db.mapping.IMappingStrategy;
 import org.eclipse.emf.cdo.server.net4j.CDONet4jServerUtil;
 import org.eclipse.emf.cdo.session.CDOSession;
-import org.eclipse.emf.cdo.spi.common.revision.InternalCDORevision;
-import org.eclipse.emf.cdo.spi.common.revision.InternalCDORevisionManager;
 import org.eclipse.emf.cdo.spi.server.ISessionProtocol;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
-import org.eclipse.emf.cdo.util.ObjectNotFoundException;
-import org.eclipse.emf.cdo.view.CDOFeatureAnalyzer;
-import org.eclipse.emf.cdo.view.CDORevisionPrefetchingPolicy;
-import org.eclipse.emf.cdo.view.CDOStaleReferencePolicy;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.InternalEObject.EStore;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
-import org.eclipse.emf.internal.cdo.bundle.OM;
-import org.eclipse.emf.internal.cdo.view.CDOStateMachine;
-import org.eclipse.emf.internal.cdo.view.CDOStoreImpl;
-import org.eclipse.emf.spi.cdo.CDOStore;
-import org.eclipse.emf.spi.cdo.FSMUtil;
-import org.eclipse.emf.spi.cdo.InternalCDOObject;
-import org.eclipse.emf.spi.cdo.InternalCDOView;
 import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.acceptor.IAcceptor;
 import org.eclipse.net4j.db.DBUtil;
@@ -90,43 +46,28 @@ import org.eclipse.net4j.db.h2.H2Adapter;
 import org.eclipse.net4j.jvm.IJVMConnector;
 import org.eclipse.net4j.jvm.JVMUtil;
 import org.eclipse.net4j.signal.ISignalProtocol;
-import org.eclipse.net4j.util.ObjectUtil;
 import org.eclipse.net4j.util.container.ContainerEventAdapter;
 import org.eclipse.net4j.util.container.ContainerUtil;
 import org.eclipse.net4j.util.container.IContainer;
 import org.eclipse.net4j.util.container.IManagedContainer;
-import org.eclipse.net4j.util.om.trace.ContextTracer;
 import org.h2.jdbcx.JdbcDataSource;
 
 public class CdoBackend {
 
     public static final String NAME = "cdo";
 
-    private static final String RESOURCE_EXTENSION = "cdo";
-    private static final String STORE_EXTENSION = "resource"; // -> cdo.resource
-
-//    private static final Class<?> EPACKAGE_CLASS = org.eclipse.gmt.modisco.java.cdo.impl.JavaPackageImpl.class;
-
     private EmbeddedCdoServer server;
     private CDOSession session;
     private CDOTransaction transaction;
-    private String usedPath;
 
     public CdoBackend() {
-//        super(NAME, RESOURCE_EXTENSION, STORE_EXTENSION, EPACKAGE_CLASS);
     }
 
     public Resource createResource(File file, ResourceSet resourceSet) throws Exception {
         server = new EmbeddedCdoServer(file.getAbsolutePath());
-        usedPath = file.getAbsolutePath();
         server.run();
         session = server.openSession();
         transaction = session.openTransaction();
-//        BenchmarkCDOStore store = new BenchmarkCDOStore((InternalCDOView)transaction);
-//        Field f = transaction.getClass().getSuperclass().getSuperclass().getDeclaredField("store");
-//        f.setAccessible(true);
-//        f.set(transaction, store);
-//        return session.openView().getRootResource();
         return transaction.getRootResource();
     }
     
@@ -149,13 +90,7 @@ public class CdoBackend {
             throw new IllegalStateException(
                     "Cannot create a new transaction, the resource has to be opened before");
         }
-//        EmbeddedCdoServer newServer = new EmbeddedCdoServer(usedPath);
-//        newServer.run();
-//        return(newServer.openSession().openView().getRootResource());
-//        return(server.openSession().openView().getRootResource());
-//        CDOTransaction newTransaction = session.openTransaction();
           return session.openView().getRootResource();
-//        return newTransaction.getRootResource();
     }
 
     public Map<String, Object> getOptions() {
@@ -215,7 +150,6 @@ public class CdoBackend {
         public void run() {
             try {
                 JdbcDataSource dataSource = createDataSource("jdbc:h2:" + path + "/" + repositoryName);
-
                 IStore cdoStore = createStore(dataSource);
                 IRepository cdoRepository = createRepository(cdoStore);
 

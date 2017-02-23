@@ -111,7 +111,7 @@ public class ModelCreator {
         sourceResource.load(Collections.emptyMap());
         
         Resource targetResource = cdoBackend.createResource(targetFile, resourceSet);
-//        targetResource.save(Collections.emptyMap());
+//        targetResource.save(Collections.emptyMap());  
         
         targetResource.getContents().addAll(sourceResource.getContents());
         targetResource.save(Collections.emptyMap());
@@ -139,7 +139,7 @@ public class ModelCreator {
             PrefetchMLLogger.info("Model contains {0} {1}", uriFragments.get(eClass).size(), eClass.getName());
         }
         
-        propertyFile.save();        
+        propertyFile.save();  
     }
     
     public static void createNeoEMFMapModel(File sourceFile, File targetFile) throws IOException {
