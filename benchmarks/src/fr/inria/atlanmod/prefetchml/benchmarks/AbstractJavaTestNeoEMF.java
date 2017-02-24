@@ -32,8 +32,8 @@ public abstract class AbstractJavaTestNeoEMF extends AbstractPrefetchMLTest {
      */
     protected static String[][] parameters = new String[][] {
             { "db/modisco.graph", "db/xmi/resources/org.eclipse.gmt.modisco.java.kyanos.xmi", "Modisco", GRAPH_TYPE },
-//            { "db/jdt-core.graph", "db/xmi/resources/org.eclipse.jdt.core.xmi", "JDT", GRAPH_TYPE },
-//            { "db/jdt-core.mapdb", "db/xmi/resources/org.eclipse.jdt.core.xmi", "JDT-MAP", MAP_TYPE } 
+            { "db/jdt-core.graph", "db/xmi/resources/org.eclipse.jdt.core.xmi", "JDT", GRAPH_TYPE },
+            { "db/jdt-core.mapdb", "db/xmi/resources/org.eclipse.jdt.core.xmi", "JDT-MAP", MAP_TYPE } 
             };
 
     /**
