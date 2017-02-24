@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
@@ -47,28 +46,6 @@ public abstract class AbstractJavaTestCDO extends AbstractPrefetchMLTest {
     }
 
     /**
-     * Checks before starting the test suite that the databases required to
-     * compute the queries are built.
-     * <p>
-     * If a database is missing it will be created before executing the tests.
-     * <p>
-     * <b>Note:</b> this benchmark is performance oriented, building the
-     * databases and running the tests in the same JVM may result in unexpected
-     * execution time / memory consumption, due to internal caching. It is
-     * recommended to run a first time the tests to build the databases, and
-     * then run them again to have the real results from "cold" databases.
-     * 
-     * @see AbstractPrefetchMLTest#checkDatabases(Collection)
-     * 
-     * @throws Exception
-     *             if one of the database cannot be built
-     */
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        AbstractPrefetchMLTest.checkDatabases(resourceNames());
-    }
-
-    /**
      * Constructs a new {@link AbstractJavaTestCDO} with the given
      * {@code resourceName}, {@code scriptSuffix}, and {@code resourceType}.
      * 
@@ -86,5 +63,4 @@ public abstract class AbstractJavaTestCDO extends AbstractPrefetchMLTest {
     public AbstractJavaTestCDO(String resourceName, String xmiLocation, String scriptSuffix, String resourceType) {
         super(resourceName, xmiLocation, scriptSuffix, resourceType);
     }
-
 }

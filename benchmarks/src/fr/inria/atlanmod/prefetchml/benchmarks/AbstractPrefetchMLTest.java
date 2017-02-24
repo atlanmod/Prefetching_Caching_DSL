@@ -1,13 +1,11 @@
 package fr.inria.atlanmod.prefetchml.benchmarks;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +21,8 @@ import org.eclipse.ocl.helper.OCLHelper;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.inria.atlanmod.prefetchml.benchmarks.strategy.PrefetchMLStrategy;
+import fr.inria.atlanmod.prefetchml.benchmarks.strategy.PrefetchMLStrategyFactory;
 import fr.inria.atlanmod.prefetchml.benchmarks.util.ModelCreator;
 import fr.inria.atlanmod.prefetchml.benchmarks.util.QueryExecutorUtil;
 import fr.inria.atlanmod.prefetchml.benchmarks.util.ResourceUtil;
@@ -62,6 +62,14 @@ public abstract class AbstractPrefetchMLTest {
      * The location of the extracted XMI files.
      */
     private static final String XMI_EXTRACTED_PATH = "db/xmi";
+    
+    private final static String SCRIPT_FOLDER = "plans/bin/";
+    
+    private final static String SCRIPT_CACHE_LITERAL = "_C1_";
+    
+    private final static String SCRIPT_EXTENSION = ".prefetch.bin";
+    
+    private final static int GC_ITERATIONS = 10;
     
     /**
      * The name of the resource to benchmark.
@@ -105,22 +113,12 @@ public abstract class AbstractPrefetchMLTest {
      * The {@link Resource} to benchmark.
      */
     protected Resource resource;
-
-//    /**
-//     * The list of resources to benchmarks.
-//     * <p>
-//     * {@link Resource}s are provided using the following pattern:
-//     * <resource_location>,<script_suffix>,<resource_type>.
-//     */
-//    protected static String[][] parameters = new String[][] {
-//    // {"db/modisco.graph","Modisco",GRAPH_TYPE},
-//    // {"db/jdt-core.graph","JDT",GRAPH_TYPE},
-//    // {"db/jdt-core.mapdb", "JDT-MAP",MAP_TYPE}
-//    // {"db/railway-repair-64.mapdb", "RAILWAY-MAP",MAP_TYPE}
-//    // {"db/modisco.cdo","Modisco-CDO",CDO_TYPE}
-//    { "db/jdt-core.cdo", "JDT-CDO", CDO_TYPE }
-//    // {"db/railway-repair-64.cdo", "RAILWAY-CDO",CDO_TYPE}
-//    };
+    
+    /**
+     * The prefetching strategy to use (see {@link PrefetchMLStrategy}
+     * subclasses).
+     */
+    protected PrefetchMLStrategy strategy;
 
     /**
      * The list of {@link EPackage}s used in the benchmarks.
@@ -151,6 +149,9 @@ public abstract class AbstractPrefetchMLTest {
         this.xmiLocation = xmiLocation;
         this.scriptSuffix = scriptSuffix;
         this.resourceType = resourceType;
+        String strategyName = System.getProperty("strategy");
+        PrefetchMLLogger.info("STRATEGY USED: {0}", strategyName);
+        this.strategy = PrefetchMLStrategyFactory.createStrategy(strategyName);
     }
 
     /**
@@ -160,46 +161,41 @@ public abstract class AbstractPrefetchMLTest {
      * @throws Exception
      *             if an exception is thrown during database creation
      */
-    public static void checkDatabases(Collection<String[]> resourceNames) throws Exception {
-        PrefetchMLLogger.info("Checking databases");
-        String[][] sNames = (String[][])resourceNames.toArray();
-        for(int i = 0; i < sNames.length; i++) {
-            File modelFile = new File(sNames[i][0]);
-            checkArgument(sNames[i].length == 4, "Invalid collection provided, should contain "
-                    + "4 elements/line, but found {0}", sNames[i].length);
-            if(!modelFile.exists()) {
+    public static void checkDatabase(String resourceName, String xmiLocation, String scriptSuffix, String resourceType) throws Exception {
+        PrefetchMLLogger.info("Checking database {0}", resourceName);
+        File modelFile = new File(resourceName);
+        if(!modelFile.exists()) {
+            /*
+             *  Need to do it here because AspectJ listener will trigger
+             *  events otherwise.
+             */
+            registerBenchmarkEPackages();
+            PrefetchMLLogger.info("Database {0} doesn't exist, creating it", resourceName);
+            File xmiFile = new File(xmiLocation);
+            
+            if(!xmiFile.exists()) {
                 /*
-                 *  Need to do it here because AspectJ listener will trigger
-                 *  events otherwise.
+                 * Cannot find the xmi file needed to construct the model, we have
+                 * to extract it from the zip resource file (this will extract all the 
+                 * models needed for all the benchmarks).
                  */
-                registerBenchmarkEPackages();
-                PrefetchMLLogger.info("Database {0} doesn't exist, creating it", sNames[i][0]);
-                File xmiFile = new File(sNames[i][1]);
-                
-                if(!xmiFile.exists()) {
-                    /*
-                     * Cannot find the xmi file needed to construct the model, we have
-                     * to extract it from the zip resource file (this will extract all the 
-                     * models needed for all the benchmarks).
-                     */
-                    PrefetchMLLogger.info("Unzipping XMI models");
-                    ModelCreator.unzip(XMI_ZIP_PATH, XMI_EXTRACTED_PATH);
-                }
-                
-                switch(sNames[i][3]) {
-                case GRAPH_TYPE:
-                    ModelCreator.createNeoEMFModel(xmiFile, modelFile);
-                    break;
-                case MAP_TYPE:
-                    ModelCreator.createNeoEMFMapModel(xmiFile, modelFile);
-                    break;
-                case CDO_TYPE:
-                    ModelCreator.createCDOModel(xmiFile, modelFile);
-                    break;
-                default:
-                    throw new IllegalArgumentException(MessageFormat
-                            .format("Unknown resource type {0}", sNames[i][3]));
-                }
+                PrefetchMLLogger.info("Unzipping XMI models");
+                ModelCreator.unzip(XMI_ZIP_PATH, XMI_EXTRACTED_PATH);
+            }
+            
+            switch(resourceType) {
+            case GRAPH_TYPE:
+                ModelCreator.createNeoEMFModel(xmiFile, modelFile);
+                break;
+            case MAP_TYPE:
+                ModelCreator.createNeoEMFMapModel(xmiFile, modelFile);
+                break;
+            case CDO_TYPE:
+                ModelCreator.createCDOModel(xmiFile, modelFile);
+                break;
+            default:
+                throw new IllegalArgumentException(MessageFormat
+                        .format("Unknown resource type {0}", resourceType));
             }
         }
         File xmiFolder = new File(XMI_EXTRACTED_PATH + "/resources");
@@ -219,6 +215,11 @@ public abstract class AbstractPrefetchMLTest {
             PrefetchMLLogger.info("Done");
         }
     }
+    
+    protected final URI getPlanURI() {
+        return URI.createURI(SCRIPT_FOLDER + getPlanName() + SCRIPT_CACHE_LITERAL
+                + scriptSuffix + SCRIPT_EXTENSION);
+    }
 
     /**
      * Registers the {@link EPackage}s used in the benchmarks, create the
@@ -231,7 +232,16 @@ public abstract class AbstractPrefetchMLTest {
     @Before
     public void setUp() throws Exception {
         registerBenchmarkEPackages();
+        checkDatabase(resourceName, xmiLocation, scriptSuffix,
+                resourceType);
         resource = ResourceUtil.getResource(resourceName, resourceType);
+    }
+
+    public void tearDown() throws Exception {
+        resource = null;
+        for(int i = 0; i < GC_ITERATIONS; i++) {
+            System.gc();
+        }
     }
 
     /**
@@ -254,6 +264,19 @@ public abstract class AbstractPrefetchMLTest {
      */
     protected abstract EClass getQueryContext();
 
+    /**
+     * Provides the name of the PrefetchML plan associated to the OCL
+     * {@link Query}.
+     * <p>
+     * This method has to be overriden by concrete subclasses even if the
+     * {@link PrefetchMLStrategy} used to compute the query doesn't use
+     * PrefetchML plans.
+     * 
+     * @return the name of the PrefetchML plan associated to the OCL
+     *         {@link Query}
+     */
+    protected abstract String getPlanName();
+    
     /**
      * Provides the input elements to compute the OCL {@link Query} from.
      * <p>
@@ -302,72 +325,18 @@ public abstract class AbstractPrefetchMLTest {
      * @return a {@link List} containing query results
      */
     protected final List<Object> computeQuery(List<?> input) {
-        beforeExecutingQuery();
-        List<?> adaptedInput = adaptInput(input);
+        strategy.beforeExecutingQuery();
+        List<?> adaptedInput = strategy.adaptInput(input);
+        PrefetchMLLogger.info("Input contains {0} elements", adaptedInput.size());
         QueryExecutorUtil.startTimer();
         @SuppressWarnings("unchecked")
         List<Object> results = (List<Object>) oclQuery.evaluate(adaptedInput);
         QueryExecutorUtil.stopTimer();
-        afterExecutingQuery();
-        List<Object> adaptedResults = adaptResult(results);
+        strategy.afterExecutingQuery();
+        List<Object> adaptedResults = strategy.adaptResult(results);
         PrefetchMLLogger.info("Done : {0}ms", QueryExecutorUtil.getElapsedTime());
         PrefetchMLLogger.info("Result contains {0} elements", QueryExecutorUtil.getFlattenedSize(adaptedResults));
         return results;
-    }
-
-    /**
-     * A hook that enables subclasses to adapt the input element {@link List}
-     * before executing the OCL {@link Query}.
-     * <p>
-     * <b>Note:</b> this method is executed before
-     * {@link #beforeExecutingQuery()} and
-     * {@link QueryExecutorUtil#startTimer()}.
-     * 
-     * @param input
-     *            the input element {@link List} to adapt
-     * @return a {@link List} containing the adapted elements
-     */
-    protected List<?> adaptInput(List<?> input) {
-        return input;
-    }
-
-    /**
-     * A hook that enables subclasses to adapt the result of the OCL
-     * {@link Query}.
-     * <p>
-     * <b>Note:</b> this method is executed after {@link #afterExecutingQuery()}
-     * and {@link QueryExecutorUtil#stopTimer()}.
-     * 
-     * @param result
-     *            the result of the OCL {@link Query} to adapt
-     * @return a {@link List} containing the adapted elements
-     */
-    protected List<Object> adaptResult(List<Object> result) {
-        return result;
-    }
-
-    /**
-     * A hook that enables subclasses to add query monitoring computation before
-     * executing the OCL {@link Query}.
-     * <p>
-     * <b>Note:</b> this method is executed before
-     * {@link QueryExecutorUtil#startTimer()}.
-     */
-    protected void beforeExecutingQuery() {
-        // Do nothing, can be extended in subclasses to provide additional
-        // monitoring informations.
-    }
-
-    /**
-     * A hook that enables subclasses to add query monitoring computation after
-     * executing the OCL {@link Query}.
-     * <p>
-     * <b>Note:</b> this method is executed after
-     * {@link QueryExecutorUtil#stopTimer()}.
-     */
-    protected void afterExecutingQuery() {
-        // Do nothing, can be extended in subclasses to provide additional
-        // monitoring informations.
     }
 
     /**
@@ -378,16 +347,16 @@ public abstract class AbstractPrefetchMLTest {
             Registry.INSTANCE.put(ePackage.getNsURI(), ePackage);
         }
     }
-    
-    @Test
-    public void test() throws Exception {
+
+    public void run() throws Exception {
         createOCLHelpers();
         
         createOCLQuery();
         PrefetchMLLogger.info("Execution #1");
         computeQuery(getQueryInput());
         
-        // We need to recreate the OCL helpers and the query to clear OCL-level caches
+        // We need to recreate the OCL helpers and the query to clear OCL-level
+        // caches
         createOCLHelpers();
         createOCLQuery();
         PrefetchMLLogger.info("Execution #2");
@@ -396,4 +365,9 @@ public abstract class AbstractPrefetchMLTest {
         ResourceUtil.closeResource(resource);
     }
     
+    @Test
+    public void testNoPrefetching() throws Exception {
+        strategy.init(resource, getPlanURI());
+        run();
+    }
 }

@@ -27,6 +27,7 @@ import fr.inria.atlanmod.neoemf.data.mapdb.util.MapDbURI;
 import fr.inria.atlanmod.neoemf.resource.PersistentResource;
 import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
 import fr.inria.atlanmod.prefetchml.benchmarks.AbstractPrefetchMLTest;
+import fr.inria.atlanmod.prefetchml.core.logging.PrefetchMLLogger;
 
 
 public class ResourceUtil {
@@ -51,6 +52,7 @@ public class ResourceUtil {
     
     @SuppressWarnings("unchecked")
     public static List<EObject> getAllInstances(EClass eClass, Resource resource, String resourceName) throws Exception {
+        long start = System.currentTimeMillis();
         List<EObject> result = new ArrayList<EObject>();
         if (resource instanceof PersistentResource) {
             result = ((PersistentResource) resource).getAllInstances(eClass);
@@ -79,6 +81,8 @@ public class ResourceUtil {
                     "Cannot handle resource {0}: unknown type {1}", resource.getURI().toString(),
                     resource.getClass().getName()));
         }
+        long end = System.currentTimeMillis();
+        PrefetchMLLogger.info("Computed allInstances in {0}ms", (end-start));
         return result;
     }
     
@@ -114,7 +118,7 @@ public class ResourceUtil {
                 .createFileURI(new File(resourceName)));
 
         Map<String, Object> options = BlueprintsNeo4jOptionsBuilder.newBuilder()
-                .softCache()
+                .weakCache()
                 .directWrite()
                 .asMap();
         resource.load(options);
