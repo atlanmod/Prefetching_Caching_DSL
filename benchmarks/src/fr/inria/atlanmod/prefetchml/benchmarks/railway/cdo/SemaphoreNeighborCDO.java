@@ -1,5 +1,8 @@
 package fr.inria.atlanmod.prefetchml.benchmarks.railway.cdo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -60,13 +63,13 @@ public class SemaphoreNeighborCDO extends AbstractRailwayTestCDO {
     }
 
     @Override
-    protected EClass getQueryContext() {
-        return RailwayPackage.eINSTANCE.getRoute();
+    protected List<EClass> getQueryContexts() {
+        return Arrays.asList(new EClass[]{RailwayPackage.eINSTANCE.getRoute()});
     }
 
     @Override
-    protected String getTextualQuery() {
-        return QueryUtil.getSemaphoreNeighborQuery();
+    protected List<String> getTextualQueries() {
+        return Arrays.asList(new String[]{QueryUtil.getSemaphoreNeighborQuery()});
     }
 
     @Override

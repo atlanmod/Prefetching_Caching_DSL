@@ -1,5 +1,6 @@
 package fr.inria.atlanmod.prefetchml.benchmarks.strategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -58,7 +59,7 @@ public abstract class EMFPrefetchMLStrategy implements PrefetchMLStrategy {
      * loads the PrefetchML script to use.
      */
     @Override
-    public void beforeExecutingQuery() {
+    public void beforeExecutingQueries() {
         Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
         prefetchmlRuntime.loadPrefetchScript(scriptURI,
                 resource);
@@ -71,7 +72,7 @@ public abstract class EMFPrefetchMLStrategy implements PrefetchMLStrategy {
      * @see PrefetchMLMonitor
      */
     @Override
-    public void afterExecutingQuery() {
+    public void afterExecutingQueries() {
         PrefetchMLLogger.info("#Hits: {0}", prefetchmlRuntime.getPCore().getHitCount());
         PrefetchMLLogger.info("#Misses: {0}", prefetchmlRuntime.getPCore().getMissCount());
         PrefetchMLLogger.info(PrefetchMLMonitor.getInstance().getMonitoringInformations());
@@ -94,13 +95,17 @@ public abstract class EMFPrefetchMLStrategy implements PrefetchMLStrategy {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public List<?> adaptInput(List<?> input) {
-        return new EventNotifierDelegateEList<EObject>(
-                (List<EObject>) input, prefetchmlRuntime.getPCore());
+    public List<List<?>> adaptInput(List<List<?>> input) {
+        List<List<?>> result = new ArrayList<>();
+        for (List<?> in : input) {
+            result.add(new EventNotifierDelegateEList<EObject>((List<EObject>) in,
+                    prefetchmlRuntime.getPCore()));
+        }
+        return result;
     }
 
     @Override
-    public List<Object> adaptResult(List<Object> result) {
+    public List<List<Object>> adaptResult(List<List<Object>> result) {
         return result;
     }
 

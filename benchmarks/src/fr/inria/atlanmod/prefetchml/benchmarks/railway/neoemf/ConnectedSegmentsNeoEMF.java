@@ -2,6 +2,9 @@ package fr.inria.atlanmod.prefetchml.benchmarks.railway.neoemf;
 
 import hu.bme.hit.trainbenchmark.railway.RailwayPackage;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -52,13 +55,13 @@ public class ConnectedSegmentsNeoEMF extends AbstractRailwayTestNeoEMF {
     }
 
     @Override
-    protected EClass getQueryContext() {
-        return RailwayPackage.eINSTANCE.getSensor();
+    protected List<EClass> getQueryContexts() {
+        return Arrays.asList(new EClass[]{RailwayPackage.eINSTANCE.getSensor()});
     }
 
     @Override
-    protected String getTextualQuery() {
-        return QueryUtil.getConnectedSegmentsQuery();
+    protected List<String> getTextualQueries() {
+        return Arrays.asList(new String[]{QueryUtil.getConnectedSegmentsQuery()});
     }
 
     @Override

@@ -60,7 +60,7 @@ public interface PrefetchMLStrategy {
      * <b>Note:</b> this method is executed at the beginning of the query
      * computation (before {@link QueryExecutorUtil#startTimer()}).
      */
-    public void beforeExecutingQuery();
+    public void beforeExecutingQueries();
 
     /**
      * A hook that enables subclasses to add query monitoring computation after
@@ -69,7 +69,7 @@ public interface PrefetchMLStrategy {
      * <b>Note:</b> this method is executed at the end of the query (after
      * {@link QueryExecutorUtil#stopTimer()}).
      */
-    public void afterExecutingQuery();
+    public void afterExecutingQueries();
 
     /**
      * A hook that enables subclasses to adapt the input element {@link List} to
@@ -82,7 +82,7 @@ public interface PrefetchMLStrategy {
      *            the input element {@link List} to adapt
      * @return a {@link List} containing the adapted elements
      */
-    public List<?> adaptInput(List<?> input);
+    public List<List<?>> adaptInput(List<List<?>> input);
 
     /**
      * A hook that enables subclasses to adapt the result of the OCL
@@ -94,5 +94,5 @@ public interface PrefetchMLStrategy {
      *            the result of the OCL {@link Query} to adapt
      * @return a {@link List} containing the adapted elements
      */
-    public List<Object> adaptResult(List<Object> result);
+    public List<List<Object>> adaptResult(List<List<Object>> result);
 }

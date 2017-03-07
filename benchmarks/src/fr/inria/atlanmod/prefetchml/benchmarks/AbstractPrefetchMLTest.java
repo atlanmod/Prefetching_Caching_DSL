@@ -2,6 +2,7 @@ package fr.inria.atlanmod.prefetchml.benchmarks;
 
 import java.io.File;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -107,7 +108,7 @@ public abstract class AbstractPrefetchMLTest {
     /**
      * The {@link Query} to compute against the benchmarked resource.
      */
-    private Query<EClassifier, EClass, EObject> oclQuery;
+    private List<Query<EClassifier, EClass, EObject>> oclQueries;
 
     /**
      * The {@link Resource} to benchmark.
@@ -252,7 +253,7 @@ public abstract class AbstractPrefetchMLTest {
      * 
      * @return the textual representation of the OCL {@link Query}
      */
-    protected abstract String getTextualQuery();
+    protected abstract List<String> getTextualQueries();
 
     /**
      * Provides the context of the OCL {@link Query} to compute against the
@@ -262,7 +263,7 @@ public abstract class AbstractPrefetchMLTest {
      * 
      * @return the context of the OCL {@link Query}
      */
-    protected abstract EClass getQueryContext();
+    protected abstract List<EClass> getQueryContexts();
 
     /**
      * Provides the name of the PrefetchML plan associated to the OCL
@@ -290,8 +291,13 @@ public abstract class AbstractPrefetchMLTest {
      * @throws Exception
      *             if the {@code allInstances()} computation fails
      */
-    protected List<?> getQueryInput() throws Exception {
-        return ResourceUtil.getAllInstances(getQueryContext(), resource, resourceName);
+    protected List<List<?>> getQueryInput() throws Exception {
+        List<EClass> queryContexts = getQueryContexts();
+        List<List<?>> result = new ArrayList<>();
+        for(EClass e : queryContexts) {
+            result.add(ResourceUtil.getAllInstances(e, resource, resourceName));
+        }
+        return result;
     }
 
     /**
@@ -307,10 +313,16 @@ public abstract class AbstractPrefetchMLTest {
      * @throws ParserException
      */
     @SuppressWarnings("unchecked")
-    private void createOCLQuery() throws ParserException {
-        oclHelper.setContext(getQueryContext());
-        OCLExpression<EClassifier> oclExpression = oclHelper.createQuery(getTextualQuery());
-        oclQuery = ocl.createQuery(oclExpression);
+    private void createOCLQueries() throws ParserException {
+        oclQueries = new ArrayList<>();
+        List<EClass> queryContexts = getQueryContexts();
+        List<String> textualQueries = getTextualQueries();
+        
+        for(int i = 0; i < queryContexts.size(); i++) {
+            oclHelper.setContext(queryContexts.get(i));
+            OCLExpression<EClassifier> oclExpression = oclHelper.createQuery(textualQueries.get(i));
+            oclQueries.add(ocl.createQuery(oclExpression));
+        }
     }
 
     /**
@@ -324,19 +336,24 @@ public abstract class AbstractPrefetchMLTest {
      *            the input elements of the query
      * @return a {@link List} containing query results
      */
-    protected final List<Object> computeQuery(List<?> input) {
-        strategy.beforeExecutingQuery();
-        List<?> adaptedInput = strategy.adaptInput(input);
-        PrefetchMLLogger.info("Input contains {0} elements", adaptedInput.size());
+    protected final List<List<Object>> computeQuery(List<List<?>> input) {
+        strategy.beforeExecutingQueries();
+        List<List<?>> adaptedInput = strategy.adaptInput(input);
+        List<List<Object>> globalResults = new ArrayList<>();
         QueryExecutorUtil.startTimer();
-        @SuppressWarnings("unchecked")
-        List<Object> results = (List<Object>) oclQuery.evaluate(adaptedInput);
+        for(int i = 0; i < oclQueries.size(); i++) {
+            PrefetchMLLogger.info("Computing {0}", oclQueries.get(i));
+            PrefetchMLLogger.info("Input contains {0} elements", adaptedInput.get(i).size());
+            globalResults.add((List<Object>) oclQueries.get(i).evaluate(adaptedInput.get(i)));
+        }
         QueryExecutorUtil.stopTimer();
-        strategy.afterExecutingQuery();
-        List<Object> adaptedResults = strategy.adaptResult(results);
+        strategy.afterExecutingQueries();
+        List<List<Object>> adaptedResults = strategy.adaptResult(globalResults);
         PrefetchMLLogger.info("Done : {0}ms", QueryExecutorUtil.getElapsedTime());
-        PrefetchMLLogger.info("Result contains {0} elements", QueryExecutorUtil.getFlattenedSize(adaptedResults));
-        return results;
+        for(int i = 0; i < adaptedResults.size(); i++) {
+            PrefetchMLLogger.info("Result contains {0} elements", QueryExecutorUtil.getFlattenedSize(adaptedResults.get(i)));
+        }
+        return adaptedResults;
     }
 
     /**
@@ -351,14 +368,14 @@ public abstract class AbstractPrefetchMLTest {
     public void run() throws Exception {
         createOCLHelpers();
         
-        createOCLQuery();
+        createOCLQueries();
         PrefetchMLLogger.info("Execution #1");
         computeQuery(getQueryInput());
         
         // We need to recreate the OCL helpers and the query to clear OCL-level
         // caches
         createOCLHelpers();
-        createOCLQuery();
+        createOCLQueries();
         PrefetchMLLogger.info("Execution #2");
         computeQuery(getQueryInput());
         

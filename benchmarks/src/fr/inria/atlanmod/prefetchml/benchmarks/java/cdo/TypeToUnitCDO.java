@@ -1,5 +1,8 @@
 package fr.inria.atlanmod.prefetchml.benchmarks.java.cdo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmt.modisco.pouet.cdo.java.JavaPackage;
@@ -57,13 +60,13 @@ public class TypeToUnitCDO extends AbstractJavaTestCDO {
     }
 
     @Override
-    protected EClass getQueryContext() {
-        return JavaPackage.eINSTANCE.getAbstractTypeDeclaration();
+    protected List<EClass> getQueryContexts() {
+        return Arrays.asList(new EClass[]{JavaPackage.eINSTANCE.getAbstractTypeDeclaration()});
     }
 
     @Override
-    protected String getTextualQuery() {
-        return QueryUtil.getTypeToUnitQuery();
+    protected List<String> getTextualQueries() {
+        return Arrays.asList(new String[]{QueryUtil.getTypeToUnitQuery()});
     }
 
     @Override

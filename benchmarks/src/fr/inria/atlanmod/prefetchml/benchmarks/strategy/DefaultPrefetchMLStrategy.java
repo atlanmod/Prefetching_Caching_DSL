@@ -28,20 +28,20 @@ public class DefaultPrefetchMLStrategy implements PrefetchMLStrategy {
     }
 
     @Override
-    public void beforeExecutingQuery() {
+    public void beforeExecutingQueries() {
     }
 
     @Override
-    public void afterExecutingQuery() {
+    public void afterExecutingQueries() {
     }
 
     @Override
-    public List<?> adaptInput(List<?> input) {
+    public List<List<?>> adaptInput(List<List<?>> input) {
         return input;
     }
 
     @Override
-    public List<Object> adaptResult(List<Object> result) {
+    public List<List<Object>> adaptResult(List<List<Object>> result) {
         return result;
     }
 
