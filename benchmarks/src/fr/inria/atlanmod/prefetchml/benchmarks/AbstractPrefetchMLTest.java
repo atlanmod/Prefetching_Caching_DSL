@@ -366,7 +366,7 @@ public abstract class AbstractPrefetchMLTest {
     }
     
     @Test
-    public void testNoPrefetching() throws Exception {
+    public void test() throws Exception {
         strategy.init(resource, getPlanURI());
         run();
     }
