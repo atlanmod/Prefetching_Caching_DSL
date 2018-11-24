@@ -1,4 +1,7 @@
 # Prefetching_Caching_DSL
+
+[Warning] This tool was developed as a prototype for two research papers ([PrefetchML: a Framework for Prefetching and Caching Models](https://www.researchgate.net/publication/308723510_PrefetchML_a_Framework_for_Prefetching_and_Caching_Models) at MODELS'16, and [Advanced Prefetching and Caching of Models with PrefetchML](https://www.researchgate.net/publication/323537573_Advanced_Prefetching_and_Caching_of_Models_with_PrefetchML) in SoSyM 2018) and is no longer maintained. You can contact us to discuss about the approach, but we will not update the tool nor fix existing issues.
+
 PrefetchML is a DSL to express Caching/Prefetching rules for EMF, and an execution engine that performs prefetching and caching actions through EMF and [NeoEMF](https://github.com/atlanmod/NeoEMF) API.
 
 It relies on an XText-based editor that allows designers to create their prefetching plans, composed of a set of rules. A prefetching rule is composed of three parts
