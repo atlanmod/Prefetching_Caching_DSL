@@ -18,7 +18,7 @@
 	</description>
 	
 	<properties>
-		<log4j.version>2.13.3</log4j.version>
+		<log4j.version>2.17.0</log4j.version>
 		<blueprints.version>2.4.0</blueprints.version>
 	</properties>
 
